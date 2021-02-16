@@ -2,5 +2,7 @@ module.exports = [
     'port',
     'start',
     'morgan',
-    'cors'
+    'cors',
+    'register',
+    'inicio'
 ]
