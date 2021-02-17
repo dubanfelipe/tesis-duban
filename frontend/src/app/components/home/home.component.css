@@ -1,0 +1,87 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.menu{
+    background-color: #00468f;
+    background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%2379787b' fill-opacity='0.4'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");    
+}
+a{
+    color: white;
+    text-decoration: none;    
+}
+a:hover{
+    padding: 2px;
+    border-bottom: 2px solid white;
+}
+ul{
+    list-style: none;
+    display: flex;    
+}
+li{
+    padding: 10px;
+}
+.container{
+    width: 90%;
+    margin: auto;
+}
+.nav-main{
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 120px;
+    padding: 50px 0;
+}
+.nav-brand{
+    width: 500px;
+}
+.nav-menu{
+    flex: 1;
+    margin-left: 200px;
+}
+.centro{    
+    position: relative;   
+}
+.Imag1{
+    width: 100%;
+    height: 400px;
+    opacity: 0.9;
+}
+.texto{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+
+}
+.texto1{
+    display: flex;
+    align-items: center;
+}
+.Bienvenido{
+    font-family: 'Righteous', cursive;
+    color: black;
+    font-size: 100px;
+}
+.al{
+    font-family: 'Josefin Slab', serif;
+    color: black;
+    text-decoration: underline;    
+    font-size: 40px;
+}
+.usta{
+    font-family: 'Dancing Script', cursive;
+    color: black;
+    text-decoration: overline; 
+    margin-left: 20px;
+    font-size: 80px;
+}
+.gimnasio{
+    font-family: 'Anton', sans-serif;
+    color: black;
+    margin-left: 20px;    
+    font-size: 70px;
+}
