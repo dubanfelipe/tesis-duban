@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RegisterService } from '../../services/register.service';
 
 @Component({
   selector: 'app-register',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  register: any = [];
+  constructor(private registerService : RegisterService) { }
 
   ngOnInit(): void {
+    this.registerService.getRegister().subscribe(
+      res => {this.register = res},
+      err => console.log(err)      
+    );
   }
 
 }
