@@ -16,7 +16,8 @@ export class RegisterService{
         return this.http.get(this.API_URL+`/register/${id}`);
     }
     createRegister(user:Users){
-        return this.http.post(this.API_URL+`/register/createRegister`,user);
+        console.log(this.API_URL+`/register/createRegister`);
+        return this.http.post(this.API_URL+'/register/createRegister',user);
     }
     deleteRegisterById(id:number){
         return this.http.get(this.API_URL+`/register/${id}`);

@@ -1,11 +1,116 @@
 <body>
-    <form action="." oninput="range_control_value.value = range_control.valueAsNumber">
-        <p> Cedula: <input type="number" class="cedula_control" autofocus required /> </p>
-        <p> Nombre: <input type="text" class="nombre_control" required/> </p>
-        <p> Codigo: <input type="number" class="codigo_control" required/> </p>
-        <p> Facultad: <input type="text" class="facultad_control" required/> </p>
-        <p> Semestre: <input type="number" class="semestre_control" required/> </p>
-        <p> Ocupacion: <input type="text" class="semestre_control" required/> </p>       
-        <input type="submit" value="Registrarse" />    
+    <form [formGroup]="registerForm" novalidate>
+        <div class="form-label-group">
+            <label for="ejemplo">Cedula*</label>
+            <input  type="text" class="form-control" name="Cedula" placeholder="Ingrese su Cedula" autofocus required formControlName="Cedula" maxlength="44">
+            <div *ngIf="registerForm.get('Cedula').errors" class="alert alert-danger">
+                <div *ngIf="registerForm.get('Cedula').errors['required']">
+                    Cedula requerida
+                </div>
+                <div *ngIf="registerForm.get('Cedula').errors['pattern']">
+                    Cedula requerida
+                </div>
+                <div *ngIf="registerForm.get('Cedula').errors['min'] && !registerForm.get('Cedula').errors['pattern']">
+                    Cedula incorrecto
+                  </div>
+                <div *ngIf="registerForm.get('Cedula').errors['max'] && !registerForm.get('Cedula').errors['pattern']">
+                    Cedula incorrecto
+                </div>
+            </div>
+        </div> 
+        <div class="form-label-group">
+            <label for="ejemplo">Nombre*</label>
+            <input  type="text" class="form-control" name="Nombre" placeholder="Ingrese su Nombre" autofocus required formControlName="Nombre" maxlength="44">
+            <div *ngIf="registerForm.get('Nombre').errors" class="alert alert-danger">
+                <div *ngIf="registerForm.get('Nombre').errors['required']">
+                  Nombre requerido
+                </div>
+                <div *ngIf="registerForm.get('Nombre').errors['pattern']">
+                  Nombre incorrecto
+                </div>
+            </div>
+        </div> 
+        <div class="form-label-group">
+            <label for="ejemplo">Codigo*</label>
+            <input  type="text" class="form-control" name="Codigo" placeholder="Ingrese su Codigo" autofocus required formControlName="Codigo" maxlength="44">
+            <div *ngIf="registerForm.get('Codigo').errors" class="alert alert-danger">
+                <div *ngIf="registerForm.get('Codigo').errors['required']">
+                  Codigo requerido
+                </div>
+                <div *ngIf="registerForm.get('Codigo').errors['pattern']">
+                  Codigo incorrecto
+                </div>
+            </div>
+        </div>  
+        <div class="form-label-group">
+            <label for="ejemplo">Facultad*</label>
+            <input  type="text" class="form-control" name="Facultad" placeholder="Ingrese su Facultad" autofocus required formControlName="Facultad" maxlength="44">
+            <div *ngIf="registerForm.get('Facultad').errors" class="alert alert-danger">
+                <div *ngIf="registerForm.get('Facultad').errors['required']">
+                  Facultad requerida
+                </div>
+                <div *ngIf="registerForm.get('Facultad').errors['pattern']">
+                  Facultad incorrecta
+                </div>
+            </div>
+        </div> 
+        <div class="form-label-group">
+            <label for="ejemplo">Semestre*</label>
+            <input  type="text" class="form-control" name="Semestre" placeholder="Ingrese su Semestre" autofocus required formControlName="Semestre" maxlength="44">
+            <div *ngIf="registerForm.get('Semestre').errors" class="alert alert-danger">
+                <div *ngIf="registerForm.get('Semestre').errors['required']">
+                  Semestre requerida
+                </div>
+                <div *ngIf="registerForm.get('Semestre').errors['pattern']">
+                  Semestre incorrecta
+                </div>
+                <div *ngIf="registerForm.get('Semestre').errors['min'] && !registerForm.get('Semestre').errors['pattern']">
+                    Semestre incorrecto 
+                  </div>
+                  <div *ngIf="registerForm.get('Semestre').errors['max'] && !registerForm.get('Semestre').errors['pattern']">
+                    Semestre incorrecto 
+                  </div>
+            </div>
+        </div> 
+        <div class="form-label-group">
+            <label for="ejemplo">Ocupacion*</label>
+            <input  type="text" class="form-control" name="Ocupacion" placeholder="Ingrese su Ocupacion" autofocus required formControlName="Ocupacion" maxlength="44">
+            <div *ngIf="registerForm.get('Ocupacion').errors" class="alert alert-danger">
+                <div *ngIf="registerForm.get('Ocupacion').errors['required']">
+                  Ocupacion requerida
+                </div>
+                <div *ngIf="registerForm.get('Ocupacion').errors['pattern']">
+                  Ocupacion incorrecta
+                </div>
+            </div>
+        </div> 
+<!--         <div class="form-group">
+            <label for="ejemplo">Contraseña*</label>
+            <input type="password" class= "form-control" name="password" placeholder="Contraseña" formControlName= "password">
+            <div *ngIf="registerForm.get('password').errors" class="alert alert-danger">
+                <div *ngIf="registerForm.get('password').errors['required']">
+                  Contraseña requerido
+                </div>
+                <div *ngIf="registerForm.get('password').errors['pattern']">
+                  Contraseña incorrecto
+                </div>
+            </div>              
+        </div>  
+        <div class="form-group">
+            <label for="ejemplo">Confirmar contraseña*</label>
+            <input type="password" class= "form-control" name="passwordone" placeholder="Confirmar contraseña" formControlName= "passwordone">
+            <div *ngIf="registerForm.get('passwordone').errors" class="alert alert-danger">
+                <div *ngIf="registerForm.get('passwordone').errors['required']">
+                  Confirmar contraseña 
+                </div>
+                <div *ngIf="registerForm.get('passwordone').errors['pattern']">
+                  Contraseña incorrecto
+                </div>
+            </div>  
+        </div>   -->
+        <div class="form-label-group">
+            <button [disabled]="!registerForm.valid" class="btn btn-block" id="btnLogin" (click)="addRegister(registerForm)"
+              type="button">Registrar</button>
+        </div>
     </form>
 </body>

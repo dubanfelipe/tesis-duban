@@ -31,7 +31,7 @@ registerCtrl.createRegister = async (req, res) => {
     console.log("usuarios que llego :", req.body);
     usuarios = req.body;
     console.log(usuarios);
-    var query = `INSERT INTO users (cedula,Nombre,Codigo,Facultad,Semestre,Ocupacion)
+    var query = `INSERT INTO users (Cedula,Nombre,Codigo,Facultad,Semestre,Ocupacion)
     VALUES ('${usuarios.Cedula}','${usuarios.Nombre}','${usuarios.Codigo}','${usuarios.Facultad}','${usuarios.Semestre}','${usuarios.Ocupacion}')`;
     db.query(query, function(err, data) {
         if (err) {
