@@ -12,8 +12,10 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { UsersComponent } from './components/users/users.component';
 
 import { RegisterService } from './services/register.service';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { RegisterService } from './services/register.service';
     RegisterComponent,
     HomeComponent,
     AdminComponent,
-    FooterComponent
+    FooterComponent,
+    UsersComponent
   ],
   imports: [
     HttpClientModule,

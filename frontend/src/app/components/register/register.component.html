@@ -86,25 +86,25 @@
         </div> 
         <div class="form-group">
             <label for="ejemplo">Contraseña*</label>
-            <input type="Password" class= "form-control" name="Password" placeholder="Contraseña" formControlName= "Password">
+            <input type="Password" class= "form-control" name="Password" placeholder="Ingrese su Contraseña" formControlName= "Password">
             <div *ngIf="registerForm.get('Password').errors" class="alert alert-danger">
                 <div *ngIf="registerForm.get('Password').errors['required']">
-                  Contraseña requerido
+                  Contraseña requerida
                 </div>
                 <div *ngIf="registerForm.get('Password').errors['minlength']">
-                  Contraseña incorrecto
+                  Contraseña incorrecta minimo 6 caracteres
                 </div>
             </div>              
         </div>  
         <div class="form-group">
-            <label for="ejemplo">Contraseña*</label>
-            <input type="Password" class= "form-control" name="PasswordConfirm" placeholder="Contraseña" formControlName= "PasswordConfirm">
+            <label for="ejemplo">Confirmar contraseña*</label>
+            <input type="Password" class= "form-control" name="PasswordConfirm" placeholder="Confirmar contraseña" formControlName= "PasswordConfirm">
             <div *ngIf="registerForm.get('PasswordConfirm').errors" class="alert alert-danger">
                 <div *ngIf="registerForm.get('PasswordConfirm').errors['required']">
-                  Contraseña requerido
+                  Contraseña requerida
                 </div>
                 <div *ngIf="registerForm.get('PasswordConfirm').errors['minlength']">
-                  Contraseña incorrecto
+                  Contraseña incorrecta minimo 6 caracteres
                 </div>
             </div>    
             <div *ngIf="verifyPasswordConfirm() && !registerForm.get('PasswordConfirm').errors" class="alert alert-danger">

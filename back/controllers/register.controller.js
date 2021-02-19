@@ -1,6 +1,7 @@
 var express = require('express');
 const { request} = require('http');
 var db = require('../database');
+var bcrypt = require('bcryptjs');
 
 const registerCtrl = {};
 
@@ -30,17 +31,24 @@ registerCtrl.getRegisterById = (req, res) => {
 registerCtrl.createRegister = async (req, res) => {
     console.log("usuarios que llego :", req.body);
     usuarios = req.body;
-    console.log(usuarios);
-    var query = `INSERT INTO users (Cedula,Nombre,Codigo,Facultad,Semestre,Ocupacion,Password)
-    VALUES ('${usuarios.Cedula}','${usuarios.Nombre}','${usuarios.Codigo}','${usuarios.Facultad}','${usuarios.Semestre}','${usuarios.Ocupacion}','${usuarios.Passrowd}')`;
-    db.query(query, function(err, data) {
-        if (err) {
-            res.json({ error: err });
-            console.log("Hubo un error INSERTANDO USUARIO" + err);
-        } else {
-            res.json(data);
+    bcrypt.hash(usuarios.Password,10,function(err,data){
+        if(data){
+            usuarios.Password=data;
+            console.log("Password encriptado ",usuarios.Password);            
+        }else{
+            console.log("Hubo un error ENCRIPTANDOCLAVE" + err);
         }
-    });
+        var query = `INSERT INTO users (Cedula,Nombre,Codigo,Facultad,Semestre,Ocupacion,Password)
+        VALUES ('${usuarios.Cedula}','${usuarios.Nombre}','${usuarios.Codigo}','${usuarios.Facultad}','${usuarios.Semestre}','${usuarios.Ocupacion}','${usuarios.Password}')`;
+        db.query(query, function(err, data) {
+            if (err) {
+                res.json({ error: err });
+                console.log("Hubo un error INSERTANDO USUARIO" + err);
+            } else {
+                res.json(data);
+            }
+        });
+    });    
 }
 
 registerCtrl.deleteRegisterById = (req, res) =>{
