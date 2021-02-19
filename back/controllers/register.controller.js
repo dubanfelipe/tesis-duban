@@ -31,8 +31,8 @@ registerCtrl.createRegister = async (req, res) => {
     console.log("usuarios que llego :", req.body);
     usuarios = req.body;
     console.log(usuarios);
-    var query = `INSERT INTO users (Cedula,Nombre,Codigo,Facultad,Semestre,Ocupacion)
-    VALUES ('${usuarios.Cedula}','${usuarios.Nombre}','${usuarios.Codigo}','${usuarios.Facultad}','${usuarios.Semestre}','${usuarios.Ocupacion}')`;
+    var query = `INSERT INTO users (Cedula,Nombre,Codigo,Facultad,Semestre,Ocupacion,Password)
+    VALUES ('${usuarios.Cedula}','${usuarios.Nombre}','${usuarios.Codigo}','${usuarios.Facultad}','${usuarios.Semestre}','${usuarios.Ocupacion}','${usuarios.Passrowd}')`;
     db.query(query, function(err, data) {
         if (err) {
             res.json({ error: err });
@@ -58,7 +58,7 @@ registerCtrl.updateRegisterById = (req, res) =>{
     const Id_update = req.params.id_users;
     const update = req.body;
     console.log(`dato 1 ${Id_update} id usuarios ${JSON.stringify(req.body)}`);
-    var query = `UPDATE Users SET Cedula = '${update.Cedula}', Nombre ='${update.Nombre}', Codigo ='${update.Codigo}', Facultad ='${update.Facultad}', Semestre ='${update.Semestre}', Ocupacion ='${update.Ocupacion}'  WHERE Id_users = '${Id_update}'`;
+    var query = `UPDATE Users SET Cedula = '${update.Cedula}', Nombre ='${update.Nombre}', Codigo ='${update.Codigo}', Facultad ='${update.Facultad}', Semestre ='${update.Semestre}', Ocupacion ='${update.Ocupacion}', Password ='${update.Passrowd}'  WHERE Id_users = '${Id_update}'`;
     try {
         db.query(query, (err, data) => {
             if (err) {

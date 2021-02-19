@@ -6,4 +6,5 @@ export interface Users{
     Facultad : string;
     Semestre : number;
     Ocupacion : string;
+    Password : string;
 }

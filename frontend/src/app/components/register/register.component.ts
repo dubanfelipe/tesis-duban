@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
+import { FormBuilder, FormGroup, ValidatorFn, Validators, } from '@angular/forms';
 import { Users } from '../../models/Users';
 import { RegisterService } from '../../services/register.service';
 import { Router } from '@angular/router';
+import { verifyPasswords } from 'src/app/validators/register.validator';
 
 @Component({
   selector: 'app-register',
@@ -24,13 +25,16 @@ export class RegisterComponent implements OnInit {
       Facultad: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-z A-Z ñ Ñ]*$/)])],
       Semestre: ['', Validators.compose([Validators.required, Validators.pattern(/^[0-9]*$/), Validators.max(10), Validators.min(1)])],
       Ocupacion: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-z A-Z ñ Ñ]*$/)])],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
-      passwordone: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
+      Password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+      PasswordConfirm: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
+    }, {
+      validators: verifyPasswords
     })
   };
   ngOnInit(): void {
     
   }  
+
   addRegister(form: FormGroup){
     this.createRegister(form);
   }
@@ -39,5 +43,8 @@ export class RegisterComponent implements OnInit {
         console.log(res);
       })
       console.log(form.value);
+  }
+  verifyPasswordConfirm() {
+    return this.registerForm.hasError('notEquals') && this.registerForm.get('Password').dirty && this.registerForm.get('PasswordConfirm').dirty
   }
 }
