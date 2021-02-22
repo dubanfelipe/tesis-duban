@@ -4,5 +4,6 @@ module.exports = [
     'morgan',
     'cors',
     'register',
-    'inicio'
+    'inicio',
+    'login'
 ]
