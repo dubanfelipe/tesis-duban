@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router'
 import { loginService } from '../../services/login.service';
 import  decode  from 'jwt-decode';
-import { ToastrService } from 'ngx-toastr';
 
 declare var M: any;
 
@@ -14,9 +13,10 @@ declare var M: any;
 })
 export class LoginComponent implements OnInit {
 
+  
   loginForm: FormGroup;
   tokenPayload;
-  constructor(private LoginService: loginService, private toastr: ToastrService, private fb: FormBuilder, private router: Router) { 
+  constructor(private LoginService: loginService, private fb: FormBuilder, private router: Router) { 
     this.buildForm();
   }
 
@@ -37,14 +37,14 @@ export class LoginComponent implements OnInit {
       if (data['fail'] == 1) {
         M.toast({
           html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
-                <h4 class="alert-heading">FALLO AUTENTICACIÓN</h4>
-                <p>Correo y/o contraseña incorrecta</p>
-                <hr>
-          </div>`});
+                 <h4 class="alert-heading">FALLO AUTENTICACIÓN</h4>
+                 <p>Correo y/o contraseña incorrecta</p>
+                 <hr>
+            </div>`});
       }
       else if (data['fail'] == 2) {
-        console.log("entro hpta");
-        M.toast({
+        
+        M.toast({          
           html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
                  <h4 class="alert-heading">FALLO AUTENTICACIÓN</h4>
                  <p>Correo y/o contraseña incorrecta</p>
@@ -52,11 +52,11 @@ export class LoginComponent implements OnInit {
             </div>`});
       }
       else {
-        console.log("entro");
-        //localStorage.setItem('usuario', data['token']);
-        this.router.navigate(['register']);
+        localStorage.setItem('usuario', data['token']);        
+        this.router.navigate(['login/usuarios']); 
         this.tokenPayload = decode(data['token']); 
-        console.log(this.tokenPayload);         
+        console.log("que es estoooooooo token",this.tokenPayload.nombre); 
+                 
       }
     });
   }

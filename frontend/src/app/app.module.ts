@@ -13,9 +13,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { UsersComponent } from './components/users/users.component';
 
 import { RegisterService } from './services/register.service';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
 
 
 @NgModule({
@@ -27,7 +27,7 @@ import { RegisterService } from './services/register.service';
     HomeComponent,
     AdminComponent,
     FooterComponent,
-    UsersComponent
+    UsuariosComponent,
   ],
   imports: [
     HttpClientModule,

@@ -4,6 +4,7 @@
           <div class="card" style="width: 500px;">
             <div class="card-body">
               <h5 class="card-title">INGRESAR</h5>
+
               <form [formGroup]="loginForm" novalidate>
                   <div class="form-group">
                       <input type="text" class= "form-control" name="cedula" placeholder="Cedula" formControlName="cedula" autofocus>
@@ -28,6 +29,7 @@
                       </div>  
                   </div>  
                   <div class="form-label-group">
+
                       <button [disabled]="!loginForm.valid" class="btn btn-block" id="btnLogin" (click)="login(loginForm)"
                         type="button">Login</button>
                       <button [routerLink]="['/register']" class="btn btn-block" id="btnRegister"

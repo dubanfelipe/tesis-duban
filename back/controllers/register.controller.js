@@ -66,7 +66,7 @@ registerCtrl.updateRegisterById = (req, res) =>{
     const Id_update = req.params.id_users;
     const update = req.body;
     console.log(`dato 1 ${Id_update} id usuarios ${JSON.stringify(req.body)}`);
-    var query = `UPDATE Users SET Cedula = '${update.Cedula}', Nombre ='${update.Nombre}', Codigo ='${update.Codigo}', Facultad ='${update.Facultad}', Semestre ='${update.Semestre}', Ocupacion ='${update.Ocupacion}', Password ='${update.Passrowd}'  WHERE Id_users = '${Id_update}'`;
+    var query = `UPDATE Users SET Cedula = '${update.Cedula}', Nombre ='${update.Nombre}', Codigo ='${update.Codigo}', Facultad ='${update.Facultad}', Semestre ='${update.Semestre}', Ocupacion ='${update.Ocupacion}',  WHERE Id_users = '${Id_update}'`;
     try {
         db.query(query, (err, data) => {
             if (err) {

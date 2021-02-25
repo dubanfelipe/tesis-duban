@@ -13,4 +13,8 @@ export class loginService{
         console.log(this.API_URL+`/login`);
         return this.http.post(this.API_URL+'/login',usuario);
     }
+    logout(){
+        return this.http.get(this.API_URL+'/login/logout');
+    }
+
 }
