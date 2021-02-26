@@ -13,9 +13,8 @@ export class GuardsGuard implements CanActivate {
   }
   canActivate(): boolean  {
       const token = localStorage.getItem('usuario');
-      console.log("en el guards", token);
       if (token === 'null') {      
-        this.router.navigate(['/login']);
+        this.router.navigate(['login']);
         return false;
       } else {
         return true;

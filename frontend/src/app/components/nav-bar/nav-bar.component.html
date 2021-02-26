@@ -1,14 +1,10 @@
-<body class="menu">
-    <div class="container">
-        <nav class="nav-main">
-            <img src="https://facultadderecho.usta.edu.co/images/Logo-USTA-19.png" alt="TechNews Logo" class="nav-brand">
-            <ul class="navbar-nav">
-                <span>{{nombre_Usuario}}</span>  
-                <li><a href="#" routerLink="/usuarios">INICIO</a></li>
-                <li><a href="#" routerLink="/contenido">MI PERFIL</a></li>
-                <a (click)='logout()' href="#"><i class="fa fa-lock"></i> Cerrar Sesión</a>
-            </ul>            
-        </nav>
-    </div>
+<body class="menu">           
+    <ul class= "nav-menu">
+        <img src="https://facultadderecho.usta.edu.co/images/Logo-USTA-19.png" alt="TechNews Logo" class="nav-brand">
+        <i><p>{{nombre_Usuario}}</p></i>
+        <li><a href="#" routerLink="/usuarios">Inicio</a></li>
+        <li><p><a routerLink='/usuarios/profile'> Mi Perfil</a></p></li>
+        <li><a (click)='logout()' routerLink="/login"><i class="fa fa-lock"></i> Cerrar Sesión</a></li>
+    </ul>      
 </body>
         

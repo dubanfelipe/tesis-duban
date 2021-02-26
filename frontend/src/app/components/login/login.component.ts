@@ -28,6 +28,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.LoginService.logout()
+      .subscribe((data) => {
+        localStorage.setItem('usuario', data['token']);
+        this.router.navigate(['login']);
+      });
   }
   
   login(form){
@@ -53,7 +58,7 @@ export class LoginComponent implements OnInit {
       }
       else {
         localStorage.setItem('usuario', data['token']);        
-        this.router.navigate(['login/usuarios']); 
+        this.router.navigate(['usuarios']); 
         this.tokenPayload = decode(data['token']); 
         console.log("que es estoooooooo token",this.tokenPayload.nombre); 
                  

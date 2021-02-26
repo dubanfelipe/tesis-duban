@@ -9,41 +9,31 @@
 }
 a{
     color: white;
-    text-decoration: none;   
-    padding: 10px; 
+       
 }
 a:hover{
+    text-decoration: none; 
     padding: 2px;
     border-bottom: 2px solid white;
 }
 ul{
     list-style: none;
-    display: flex;    
 }
-.container{
-    width: 90%;
-    margin: auto;
+li{
+    padding: 10px;
 }
-.nav-main{
+.nav-brand{
+    width: 500px;
+}
+.nav-menu{
+    margin-left: 5px;
+    width: 100%;
     font-size: 20px;
-    display: flex;
     justify-content: space-between;
     align-items: center;
     height: 120px;
-    padding: 50px 0;
+    display: flex;
 }
-.navbar-nav{
-    width: 500px;
-    flex: 1;
-    margin-left: 250px;
-}
-span{
+p{
     color: white;
-    text-decoration: none; 
-    padding: 10px;
-}
-div{
-    margin-left: 200px;
-    list-style: none;
-    display: flex;  
 }

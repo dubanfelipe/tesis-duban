@@ -1,0 +1,93 @@
+<app-nav-bar></app-nav-bar>
+<body>
+    <form [formGroup]="editForm" novalidate>
+        <div class="form-label-group">
+            <label for="ejemplo">Cedula*</label>
+            <input  type="text" class="form-control" name="Cedula" placeholder="Ingrese su Cedula" autofocus required formControlName="Cedula" maxlength="44">
+            <div *ngIf="editForm.get('Cedula').errors" class="alert alert-danger">
+                <div *ngIf="editForm.get('Cedula').errors['required']">
+                    Cedula requerida
+                </div>
+                <div *ngIf="editForm.get('Cedula').errors['pattern']">
+                    Cedula requerida
+                </div>
+                <div *ngIf="editForm.get('Cedula').errors['min'] && !editForm.get('Cedula').errors['pattern']">
+                    Cedula incorrecto
+                  </div>
+                <div *ngIf="editForm.get('Cedula').errors['max'] && !editForm.get('Cedula').errors['pattern']">
+                    Cedula incorrecto
+                </div>
+            </div>
+        </div> 
+        <div class="form-label-group">
+            <label for="ejemplo">Nombre*</label>
+            <input  type="text" class="form-control" name="Nombre" placeholder="Ingrese su Nombre" autofocus required formControlName="Nombre" maxlength="44">
+            <div *ngIf="editForm.get('Nombre').errors" class="alert alert-danger">
+                <div *ngIf="editForm.get('Nombre').errors['required']">
+                  Nombre requerido
+                </div>
+                <div *ngIf="editForm.get('Nombre').errors['pattern']">
+                  Nombre incorrecto
+                </div>
+            </div>
+        </div> 
+        <div class="form-label-group">
+            <label for="ejemplo">Codigo*</label>
+            <input  type="text" class="form-control" name="Codigo" placeholder="Ingrese su Codigo" autofocus required formControlName="Codigo" maxlength="44">
+            <div *ngIf="editForm.get('Codigo').errors" class="alert alert-danger">
+                <div *ngIf="editForm.get('Codigo').errors['required']">
+                  Codigo requerido
+                </div>
+                <div *ngIf="editForm.get('Codigo').errors['pattern']">
+                  Codigo incorrecto
+                </div>
+            </div>
+        </div>  
+        <div class="form-label-group">
+            <label for="ejemplo">Facultad*</label>
+            <input  type="text" class="form-control" name="Facultad" placeholder="Ingrese su Facultad" autofocus required formControlName="Facultad" maxlength="44">
+            <div *ngIf="editForm.get('Facultad').errors" class="alert alert-danger">
+                <div *ngIf="editForm.get('Facultad').errors['required']">
+                  Facultad requerida
+                </div>
+                <div *ngIf="editForm.get('Facultad').errors['pattern']">
+                  Facultad incorrecta
+                </div>
+            </div>
+        </div> 
+        <div class="form-label-group">
+            <label for="ejemplo">Semestre*</label>
+            <input  type="text" class="form-control" name="Semestre" placeholder="Ingrese su Semestre" autofocus required formControlName="Semestre" maxlength="44">
+            <div *ngIf="editForm.get('Semestre').errors" class="alert alert-danger">
+                <div *ngIf="editForm.get('Semestre').errors['required']">
+                  Semestre requerida
+                </div>
+                <div *ngIf="editForm.get('Semestre').errors['pattern']">
+                  Semestre incorrecta
+                </div>
+                <div *ngIf="editForm.get('Semestre').errors['min'] && !editForm.get('Semestre').errors['pattern']">
+                    Semestre incorrecto 
+                  </div>
+                  <div *ngIf="editForm.get('Semestre').errors['max'] && !editForm.get('Semestre').errors['pattern']">
+                    Semestre incorrecto 
+                  </div>
+            </div>
+        </div> 
+        <div class="form-label-group">
+            <label for="ejemplo">Ocupacion*</label>
+            <input  type="text" class="form-control" name="Ocupacion" placeholder="Ingrese su Ocupacion" autofocus required formControlName="Ocupacion" maxlength="44">
+            <div *ngIf="editForm.get('Ocupacion').errors" class="alert alert-danger">
+                <div *ngIf="editForm.get('Ocupacion').errors['required']">
+                  Ocupacion requerida
+                </div>
+                <div *ngIf="editForm.get('Ocupacion').errors['pattern']">
+                  Ocupacion incorrecta
+                </div>
+            </div>
+        </div> 
+        <div class="form-label-group">
+            <button [disabled]="!editForm.valid" class="btn btn-block" id="btnLogin" (click)="addEdit(editForm)"
+              type="button">Editar</button>
+        </div>
+    </form>
+</body>

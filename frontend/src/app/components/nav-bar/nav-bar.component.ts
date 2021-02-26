@@ -3,15 +3,21 @@ import { loginService } from '../../services/login.service';
 import { Router } from '@angular/router'
 
 import decode from 'jwt-decode';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
+
+
+//let condition: number=0;
+
 export class NavBarComponent implements OnInit {
 
   nombre_Usuario: any;
+  
 
   constructor(private LoginService : loginService, private router:Router) {  }
 
@@ -22,7 +28,7 @@ export class NavBarComponent implements OnInit {
     this.LoginService.logout()
     .subscribe( (data)=>{
       localStorage.setItem('usuario', data['token']);
-      this.router.navigate(['login'])
+      this.router.navigate(['login']);
     });
   }
   getValidRol(){
