@@ -3,9 +3,20 @@ const registerCtrl = require('../controllers/register.controller');
 const router = express.Router();
 
 router.get('/', registerCtrl.getRegister);
-router.get('/:id_users', registerCtrl.getRegisterById);
-router.post('/createRegister', registerCtrl.createRegister);
-router.delete('/:id_users', registerCtrl.deleteRegisterById);
-router.put('/:id_users', registerCtrl.updateRegisterById);
+//Persona
+router.get('/Persona/:id_persona', registerCtrl.getRegisterByIdPersona);
+router.post('/Persona/createRegisterPersona', registerCtrl.createRegisterPersona);
+router.delete('/Persona/:id_persona', registerCtrl.deleteRegisterByIdPersona);
+router.put('/Persona/:id_persona', registerCtrl.updateRegisterByIdPersona);
+//Usuario
+router.get('/Usuario/:id_usuario', registerCtrl.getRegisterByIdUsuario);
+router.post('/Usuario/createRegisterUsuario', registerCtrl.createRegisterUsuario);
+router.delete('/Usuario/:id_usuario', registerCtrl.deleteRegisterByIdUsuario);
+router.put('/Usuario/:id_usuario', registerCtrl.updateRegisterByIdUsuario);
+//Estudiante
+router.get('/Estudiante/:id_estudiante', registerCtrl.getRegisterByIdEstudiante);
+router.post('/Estudiante/createRegisterEstudiante', registerCtrl.createRegisterEstudiante);
+router.delete('/Estudiante/:id_estudiante', registerCtrl.deleteRegisterByIdEstudiante);
+router.put('/Estudiante/:id_estudiante', registerCtrl.updateRegisterByIdEstudiante);
 
 module.exports = router;
