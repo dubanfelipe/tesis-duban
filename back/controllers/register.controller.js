@@ -6,7 +6,7 @@ var bcrypt = require('bcryptjs');
 const registerCtrl = {};
 
 registerCtrl.getRegister = (req, res) => {
-    db.query(`SELECT * FROM Estudiante`, (err, data) => {
+    db.query(`SELECT * FROM Persona`, (err, data) => {
         if (err) {
             res.json({ error: err });
             console.log("Hubo un error en la busqueda de Usuarios" + err);
@@ -19,8 +19,9 @@ registerCtrl.getRegister = (req, res) => {
 //Persona
 
 registerCtrl.getRegisterByIdPersona = (req, res) => {   
-    let id = req.params.id_persona;
-    db.query(`SELECT * FROM Persona WHERE Id_persona='${id}'`, (err, data) => {
+    let id = req.params.Cedula;
+    console.log("Estamosss aquiiiiiii",id);
+    db.query(`SELECT * FROM Persona WHERE Cedula='${id}'`, (err, data) => {
         if (err) {
             res.json({ error: err });
             console.log("Hubo un error en la busqueda del Persona" + err);
@@ -33,7 +34,14 @@ registerCtrl.getRegisterByIdPersona = (req, res) => {
 registerCtrl.createRegisterPersona = async (req, res) => {
     console.log("usuarios que llego :", req.body);
     usuarios = req.body;
-    var query = `INSERT INTO Persona (Nombre,Apellido,Correo,Cedula,Celular,Password,Rol_id_rol)
+    bcrypt.hash(usuarios.Password,10,function(err,data){
+        if(data){
+            usuarios.Password=data;
+            console.log("Password encriptado ",usuarios.Password);            
+        }else{
+            console.log("Hubo un error ENCRIPTANDOCLAVE" + err);
+        }  
+        var query = `INSERT INTO Persona (Nombre,Apellido,Correo,Cedula,Celular,Password,Rol_id_rol)
         VALUES ('${usuarios.Nombre}','${usuarios.Apellido}','${usuarios.Correo}','${usuarios.Cedula}','${usuarios.Celular}','${usuarios.Password}','${usuarios.Rol_id_rol}')`;
         db.query(query, function(err, data) {
             if (err) {
@@ -43,15 +51,8 @@ registerCtrl.createRegisterPersona = async (req, res) => {
                 console.log("hecho");
                 res.json(data);
             }
-        });
-    /* bcrypt.hash(usuarios.Password,10,function(err,data){
-        if(data){
-            usuarios.Password=data;
-            console.log("Password encriptado ",usuarios.Password);            
-        }else{
-            console.log("Hubo un error ENCRIPTANDOCLAVE" + err);
-        } */          
-    //});    
+        });             
+    });    
 }
 
 registerCtrl.deleteRegisterByIdPersona = (req, res) =>{
