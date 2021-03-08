@@ -53,38 +53,20 @@
                     Cedula incorrecto
                 </div>
             </div>
-        </div> 
+        </div>         
         <div class="form-label-group">
-          <label for="ejemplo">Celular*</label>
-          <input  type="text" class="form-control" name="Celular" placeholder="Ingrese su Celular" required formControlName="Celular">
-          <div *ngIf="registerForm.get('Celular').errors" class="alert alert-danger">
-              <div *ngIf="registerForm.get('Celular').errors['required']">
-                Celular requerido
+          <label><label id="lbl"></label>Ocupacion*</label>
+            <select id="select" class="form-control" name="Rol_id_rol" formControlName="Rol_id_rol"> 
+              <option value="" disabled>Seleccione su Ocupacion</option>
+              <option *ngFor="let roles of registerService.Rol | slice:1 " value={{roles.ID_ROL}}>
+                {{roles.NOMBRE_ROL}}
+              </option>
+            </select>
+            <div *ngIf="registerForm.get('Rol_id_rol').errors" class="alert alert-danger">
+                <div *ngIf="registerForm.get('Rol_id_rol').errors['required']">
+                  Ocupacion requerida
+                </div>
               </div>
-              <div *ngIf="registerForm.get('Celular').errors['pattern']">
-                Celular incorrecto
-              </div>
-              <div *ngIf="registerForm.get('Celular').errors['min'] && !registerForm.get('Celular').errors['pattern']">
-                Celular incorrecto
-              </div>
-              <div *ngIf="registerForm.get('Celular').errors['max'] && !registerForm.get('Celular').errors['pattern']">
-                Celular incorrecto
-              </div>
-          </div>
-        </div> 
-        <div class="form-label-group">
-          <label for="ejemplo">Seleccione su Ocupacion*</label>
-          <select id="select" class="form-control" name="Rol" formControlName="Rol_id_rol">
-            <option value="2">Estudiante</option>
-            <option value="3">Docente</option>
-            <option value="4">Decano</option>
-            <option value="5">Personal Administrativo</option>
-          </select>
-          <div *ngIf="registerForm.get('Rol_id_rol').errors" class="alert alert-danger">
-            <div *ngIf="registerForm.get('Rol_id_rol').errors['required']">
-              Ocupacion requerida
-            </div>
-          </div>
         </div>
         <div class="form-label-group">
             <label for="ejemplo">Contraseña*</label>
@@ -115,6 +97,24 @@
         </div>
     </form>
     <form [formGroup]="registerUsuarioForm" novalidate> 
+      <div class="form-label-group">
+        <label for="ejemplo">Celular*</label>
+        <input  type="text" class="form-control" name="Celular" placeholder="Ingrese su Celular" required formControlName="Celular">
+        <div *ngIf="registerUsuarioForm.get('Celular').errors" class="alert alert-danger">
+            <div *ngIf="registerUsuarioForm.get('Celular').errors['required']">
+              Celular requerido
+            </div>
+            <div *ngIf="registerUsuarioForm.get('Celular').errors['pattern']">
+              Celular incorrecto
+            </div>
+            <div *ngIf="registerUsuarioForm.get('Celular').errors['min'] && !registerUsuarioForm.get('Celular').errors['pattern']">
+              Celular incorrecto
+            </div>
+            <div *ngIf="registerUsuarioForm.get('Celular').errors['max'] && !registerUsuarioForm.get('Celular').errors['pattern']">
+              Celular incorrecto
+            </div>
+        </div>
+      </div> 
         <div class="form-label-group">
           <label for="ejemplo">Edad*</label>
           <input  type="text" class="form-control" name="Edad" placeholder="Ingrese su Edad" required formControlName="Edad">
@@ -242,8 +242,54 @@
           </div>
         </div>      
     </form>
+    <form *ngIf="estudianteCargo(registerForm)" [formGroup]="registerEstudianteForm" novalidate>
+      <div class="form-label-group">
+        <label for="ejemplo">Codigo*</label>
+        <input  type="text" class="form-control" name="Codigo" placeholder="Ingrese su Codigo" required formControlName="Codigo">
+        <div *ngIf="registerEstudianteForm.get('Codigo').errors" class="alert alert-danger">
+            <div *ngIf="registerEstudianteForm.get('Codigo').errors['required']">
+              Codigo requerido
+            </div>
+            <div *ngIf="registerEstudianteForm.get('Codigo').errors['pattern']">
+              Codigo incorrecto
+            </div>
+        </div>
+      </div>
+      <div class="form-label-group">
+        <label for="ejemplo">Semestre*</label>
+        <input  type="text" class="form-control" name="Semestre" placeholder="Ingrese su Semestre" required formControlName="Semestre">
+        <div *ngIf="registerEstudianteForm.get('Semestre').errors" class="alert alert-danger">
+            <div *ngIf="registerEstudianteForm.get('Semestre').errors['required']">
+              Semestre requerido
+            </div>
+            <div *ngIf="registerEstudianteForm.get('Semestre').errors['pattern']">
+              Semestre incorrecto
+            </div>
+            <div *ngIf="registerEstudianteForm.get('Semestre').errors['min'] && !registerEstudianteForm.get('Semestre').errors['pattern']">
+              Semestre incorrecto
+            </div>
+            <div *ngIf="registerEstudianteForm.get('Semestre').errors['max'] && !registerEstudianteForm.get('Semestre').errors['pattern']">
+              Semestre incorrecto
+            </div>
+        </div>
+      </div>
+      <div class="form-label-group">
+        <label><label id="lbl"></label>Facultad*</label>
+          <select id="select" class="form-control" name="Facultad_id_facultad" formControlName="Facultad_id_facultad"> 
+            <option value="" disabled>Seleccione su Facultad</option>
+            <option *ngFor="let facultades of registerService.Facultad" value={{facultades.ID_FACULTAD}}>
+              {{facultades.NOMBRE_FACULTAD}}
+            </option>
+          </select>
+          <div *ngIf="registerEstudianteForm.get('Facultad_id_facultad').errors" class="alert alert-danger">
+              <div *ngIf="registerEstudianteForm.get('Facultad_id_facultad').errors['required']">
+                Facultad requerida
+              </div>
+            </div>
+      </div>
+    </form>
     <div class="form-label-group">
-          <button [disabled]="!registerForm || !registerUsuarioForm.valid" class="btn btn-block" id="btnLogin" (click)="addRegister(registerForm, registerUsuarioForm)"
+          <button [disabled]="!registerForm.valid || !registerUsuarioForm.valid" class="btn btn-block" id="btnLogin" (click)="addRegister(registerForm, registerUsuarioForm, registerEstudianteForm)"
             type="button">Registrar</button>
     </div>
 </body>

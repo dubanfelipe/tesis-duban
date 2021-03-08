@@ -1,5 +1,6 @@
 export interface Usuarios{
-    Id_usuario : number;
+    Id_usuario : number;    
+    Celular : string;
     Edad : number;
     Estatura : number;
     Peso : number;
