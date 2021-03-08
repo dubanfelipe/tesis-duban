@@ -3,7 +3,8 @@ export interface Personas{
     Nombre : string;
     Apellido : string;
     Correo : string;
-    Cedula : number;
+    Cedula : number;    
+    Activo: number;
     Password : string;
     Rol_id_rol: number;
 }

@@ -11,6 +11,5 @@ export interface Usuarios{
     Nombre_Acompanante: string;
     Celular_Acompanante: string;
     Parentesco_Acompanante: string;
-    Activo: number;
     Persona_id_persona: number;
 }

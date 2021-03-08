@@ -30,6 +30,7 @@ export class RegisterComponent implements OnInit {
       Apellido: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-z A-Z ñ Ñ]*$/)])],
       Correo: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-z]*.[a-z]*@(usantotomas)[.](edu)[.](co)$/)])],
       Cedula: ['', Validators.compose([Validators.required, Validators.min(100000), Validators.max(2000000000), Validators.pattern(/^[0-9]*$/)])],
+      Activo: [1],
       Rol_id_rol: ['', Validators.compose([Validators.required])],
       Password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
       PasswordConfirm: ['', Validators.compose([Validators.required, Validators.minLength(6)])],       
@@ -48,7 +49,6 @@ export class RegisterComponent implements OnInit {
       Nombre_Acompanante: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-z A-Z ñ Ñ]*$/)])],
       Celular_Acompanante: ['', Validators.compose([Validators.required, Validators.pattern(/^[0-9]*$/)])],
       Parentesco_Acompanante: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-z A-Z ñ Ñ]*$/)])],
-      Activo: [0]
     })
     this.registerEstudianteForm = this.fb.group({
       Codigo: ['', Validators.compose([Validators.required, Validators.pattern(/^[0-9]*$/)])],

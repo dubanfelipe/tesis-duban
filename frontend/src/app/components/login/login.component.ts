@@ -47,22 +47,26 @@ export class LoginComponent implements OnInit {
                  <hr>
             </div>`});
       }
-      else if (data['fail'] == 2) {
-        
+      else if (data['fail'] == 2) {        
         M.toast({          
           html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
                  <h4 class="alert-heading">FALLO AUTENTICACIÓN</h4>
                  <p>Correo y/o contraseña incorrecta</p>
                  <hr>
             </div>`});
-      }
-      else {
+      }else if (data['fail'] == 3) {
+        M.toast({
+          html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+               <h4 class="alert-heading">USUARIO INACTIVO</h4>
+               <p>El usuario ya se encuentra registrado, pero aun no ha sido activado</p>
+               <hr>
+           </div>`});
+      } else {
         localStorage.setItem('usuario', data['token']);        
         this.router.navigate(['usuarios']); 
         this.tokenPayload = decode(data['token']); 
         console.log("que es estoooooooo token",this.tokenPayload.nombre); 
-                 
-      }
+      } 
     });
   }
 }

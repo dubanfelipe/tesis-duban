@@ -41,8 +41,8 @@ registerCtrl.createRegisterPersona = async (req, res) => {
         }else{
             console.log("Hubo un error ENCRIPTANDOCLAVE" + err);
         }  
-        var query = `INSERT INTO Persona (Nombre,Apellido,Correo,Cedula,Password,Rol_id_rol)
-        VALUES ('${usuarios.Nombre}','${usuarios.Apellido}','${usuarios.Correo}','${usuarios.Cedula}','${usuarios.Password}','${usuarios.Rol_id_rol}')`;
+        var query = `INSERT INTO Persona (Nombre,Apellido,Correo,Cedula,Activo,Password,Rol_id_rol)
+        VALUES ('${usuarios.Nombre}','${usuarios.Apellido}','${usuarios.Correo}','${usuarios.Cedula}','${usuarios.Activo}','${usuarios.Password}','${usuarios.Rol_id_rol}')`;
         db.query(query, function(err, data) {
             if (err) {
                 res.json({ error: err });
@@ -70,7 +70,7 @@ registerCtrl.updateRegisterByIdPersona = (req, res) =>{
     const Id_update = req.params.id_persona;
     const update = req.body;
     console.log(`dato 1 ${Id_update} id persona ${JSON.stringify(req.body)}`);
-    var query = `UPDATE Persona SET Nombre = '${update.Nombre}', Apellido ='${update.Apellido}', Correo ='${update.Correo}', Cedula ='${update.Cedula}'  WHERE Id_persona = '${Id_update}'`;
+    var query = `UPDATE Persona SET Nombre = '${update.Nombre}', Apellido ='${update.Apellido}', Correo ='${update.Correo}', Cedula ='${update.Cedula}', Activo ='${update.Activo}'  WHERE Id_persona = '${Id_update}'`;
     try {
         db.query(query, (err, data) => {
             if (err) {
@@ -104,8 +104,8 @@ registerCtrl.getRegisterByIdUsuario = (req, res) => {
 registerCtrl.createRegisterUsuario = async (req, res) => {
     console.log("usuarios que llego :", req.body);
     usuarios = req.body;    
-    var query = `INSERT INTO Usuario (Celular,Edad,Estatura,Peso,Rh,Eps,Dificultades_patologicas,Fecha_nacimiento,Nombre_Acompanante,Celular_Acompanante,Parentesco_Acompanante,Activo,Persona_id_persona)
-    VALUES ('${usuarios.Celular}','${usuarios.Edad}','${usuarios.Estatura}','${usuarios.Peso}','${usuarios.Rh}','${usuarios.Eps}','${usuarios.Dificultades_patologicas}','${usuarios.Fecha_nacimiento}','${usuarios.Nombre_Acompanante}','${usuarios.Celular_Acompanante}','${usuarios.Parentesco_Acompanante}','${usuarios.Activo}','${usuarios.Persona_id_persona}')`;
+    var query = `INSERT INTO Usuario (Celular,Edad,Estatura,Peso,Rh,Eps,Dificultades_patologicas,Fecha_nacimiento,Nombre_Acompanante,Celular_Acompanante,Parentesco_Acompanante,Persona_id_persona)
+    VALUES ('${usuarios.Celular}','${usuarios.Edad}','${usuarios.Estatura}','${usuarios.Peso}','${usuarios.Rh}','${usuarios.Eps}','${usuarios.Dificultades_patologicas}','${usuarios.Fecha_nacimiento}','${usuarios.Nombre_Acompanante}','${usuarios.Celular_Acompanante}','${usuarios.Parentesco_Acompanante}','${usuarios.Persona_id_persona}')`;
     db.query(query, function(err, data) {
     if (err) {
             res.json({ error: err });
@@ -131,7 +131,7 @@ registerCtrl.updateRegisterByIdUsuario = (req, res) =>{
     const Id_update = req.params.id_usuario;
     const update = req.body;
     console.log(`dato 1 ${Id_update} id usuario ${JSON.stringify(req.body)}`);
-    var query = `UPDATE Usuario SET Celular = '${update.Celular}', Edad = '${update.Edad}', Estatura ='${update.Estatura}', Peso ='${update.Peso}', Rh ='${update.Rh}', Eps ='${update.Eps}', Dificultades_patologicas ='${update.Dificultades_patologicas}', Fecha_nacimiento ='${update.Fecha_nacimiento}', Nombre_Acompanante ='${update.Nombre_Acompanante}', Celular_Acompanante ='${update.Celular_Acompanante}', Parentesco_Acompanante ='${update.Parentesco_Acompanante}', Activo ='${update.Activo}'  WHERE Id_usuario = '${Id_update}'`;
+    var query = `UPDATE Usuario SET Celular = '${update.Celular}', Edad = '${update.Edad}', Estatura ='${update.Estatura}', Peso ='${update.Peso}', Rh ='${update.Rh}', Eps ='${update.Eps}', Dificultades_patologicas ='${update.Dificultades_patologicas}', Fecha_nacimiento ='${update.Fecha_nacimiento}', Nombre_Acompanante ='${update.Nombre_Acompanante}', Celular_Acompanante ='${update.Celular_Acompanante}', Parentesco_Acompanante ='${update.Parentesco_Acompanante}' WHERE Id_usuario = '${Id_update}'`;
     try {
         db.query(query, (err, data) => {
             if (err) {

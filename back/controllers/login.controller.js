@@ -17,7 +17,7 @@ loginCtrl.authentication = (req, res) => {
     let cedula = req.body.cedula;
     let password = req.body.password;
     let id_usuario;
-    db.query(`SELECT * FROM Users WHERE cedula = '${cedula}'`, (err, data) => {
+    db.query(`SELECT * FROM Persona WHERE cedula = '${cedula}'`, (err, data) => {
         if (err) { 
             res.send('Ocurrio un error en la busqueda' + err) 
         } 
@@ -26,11 +26,14 @@ loginCtrl.authentication = (req, res) => {
                 console.log("no existe");
                 res.json({ fail: 1 });
             } else if (bcrypt.compareSync(password, data[0].PASSWORD) != 1) {
-                res.json({ fail: 2 })
+                res.json({ fail: 2 });
                 console.log("diferentes");
-            } else{
+            } else if (data[0].ACTIVO == false) {
+                res.json({ fail: 3 });
+                console.log("No activado");
+            } else {
                 console.log("correcto");
-                id_usuario = data[0].ID_USERS;
+                id_usuario = data[0].ID_PERSONA;
                 nombre = data[0].NOMBRE;
                 token = jwt.sign({id_usuario, nombre},config.secret, { expiresIn: 86400 })
                 res.json({ auth: true, token: token })
