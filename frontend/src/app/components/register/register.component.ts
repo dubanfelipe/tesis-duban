@@ -63,10 +63,12 @@ export class RegisterComponent implements OnInit {
 
   addRegister(form?, form2?, form3?){
     this.registerService.createRegisterPersona(form.value).subscribe((data) =>{
-      this.registerService.getRegisterByIdPersona(form.value.Cedula)
+      this.registerService.getRegisterByIdPersonaCedula(form.value.Cedula)
       .subscribe(
-        res => {          
-          form2.value.Persona_id_persona = res[0].ID_PERSONA; 
+        res => { 
+          console.log("OOOOO__ooooooo");    
+          console.log(res[0]);    
+          form2.value.Persona_id_persona = res[0].ID_PERSONA;
           this.registerService.createRegisterUsuario(form2.value).subscribe((data) =>{                  
             if (form.value.Rol_id_rol == 2) {            
               this.registerService.getRegisterByIdUsuario(form2.value.Celular)              

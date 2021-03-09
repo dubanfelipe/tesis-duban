@@ -64,9 +64,13 @@ export class LoginComponent implements OnInit {
       } else {
         localStorage.setItem('usuario', data['token']);        
         this.router.navigate(['usuarios']); 
-        this.tokenPayload = decode(data['token']); 
-        console.log("que es estoooooooo token",this.tokenPayload.nombre); 
-      } 
+        this.tokenPayload = decode(data['token']);
+        console.log("Id_Estudiante",this.tokenPayload.id_persona);  
+        console.log("Id_Estudiante",this.tokenPayload.cedula);  
+        console.log("Id_Estudiante",this.tokenPayload.nombre);  
+        console.log("Id_Estudiante",this.tokenPayload.id_usuario);  
+        console.log("Id_Estudiante",this.tokenPayload.celular);    
+        console.log("Id_Estudiante",this.tokenPayload.id_estudiante);         } 
     });
   }
 }

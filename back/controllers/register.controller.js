@@ -18,9 +18,9 @@ registerCtrl.getRegister = (req, res) => {
 
 //Persona
 
-registerCtrl.getRegisterByIdPersona = (req, res) => {   
+registerCtrl.getRegisterByIdPersonaCedula = (req, res) => {   
     let id = req.params.Cedula;
-    console.log("Estamosss aquiiiiiii",id);
+    console.log("Estamosss aquiiiiiii Cedulaaaa",id);
     db.query(`SELECT * FROM Persona WHERE Cedula='${id}'`, (err, data) => {
         if (err) {
             res.json({ error: err });
@@ -69,8 +69,7 @@ registerCtrl.deleteRegisterByIdPersona = (req, res) =>{
 registerCtrl.updateRegisterByIdPersona = (req, res) =>{
     const Id_update = req.params.id_persona;
     const update = req.body;
-    console.log(`dato 1 ${Id_update} id persona ${JSON.stringify(req.body)}`);
-    var query = `UPDATE Persona SET Nombre = '${update.Nombre}', Apellido ='${update.Apellido}', Correo ='${update.Correo}', Cedula ='${update.Cedula}', Activo ='${update.Activo}'  WHERE Id_persona = '${Id_update}'`;
+    var query = `UPDATE Persona SET Nombre = '${update.Nombre}', Apellido ='${update.Apellido}'  WHERE Id_persona = '${Id_update}'`;
     try {
         db.query(query, (err, data) => {
             if (err) {
@@ -130,8 +129,7 @@ registerCtrl.deleteRegisterByIdUsuario = (req, res) =>{
 registerCtrl.updateRegisterByIdUsuario = (req, res) =>{
     const Id_update = req.params.id_usuario;
     const update = req.body;
-    console.log(`dato 1 ${Id_update} id usuario ${JSON.stringify(req.body)}`);
-    var query = `UPDATE Usuario SET Celular = '${update.Celular}', Edad = '${update.Edad}', Estatura ='${update.Estatura}', Peso ='${update.Peso}', Rh ='${update.Rh}', Eps ='${update.Eps}', Dificultades_patologicas ='${update.Dificultades_patologicas}', Fecha_nacimiento ='${update.Fecha_nacimiento}', Nombre_Acompanante ='${update.Nombre_Acompanante}', Celular_Acompanante ='${update.Celular_Acompanante}', Parentesco_Acompanante ='${update.Parentesco_Acompanante}' WHERE Id_usuario = '${Id_update}'`;
+    var query = `UPDATE Usuario SET Edad = '${update.Edad}', Estatura ='${update.Estatura}', Peso ='${update.Peso}', Rh ='${update.Rh}', Eps ='${update.Eps}', Dificultades_patologicas ='${update.Dificultades_patologicas}', Fecha_nacimiento ='${update.Fecha_nacimiento}', Nombre_Acompanante ='${update.Nombre_Acompanante}', Celular_Acompanante ='${update.Celular_Acompanante}', Parentesco_Acompanante ='${update.Parentesco_Acompanante}' WHERE Id_usuario = '${Id_update}'`;
     try {
         db.query(query, (err, data) => {
             if (err) {
@@ -151,6 +149,7 @@ registerCtrl.updateRegisterByIdUsuario = (req, res) =>{
 
 registerCtrl.getRegisterByIdEstudiante = (req, res) => {   
     let id = req.params.id_estudiante;
+    console.log("llego a estudiante", id)
     db.query(`SELECT * FROM Estudiante WHERE Id_estudiante='${id}'`, (err, data) => {
         if (err) {
             res.json({ error: err });
@@ -190,7 +189,6 @@ registerCtrl.deleteRegisterByIdEstudiante = (req, res) =>{
 registerCtrl.updateRegisterByIdEstudiante = (req, res) =>{
     const Id_update = req.params.id_estudiante;
     const update = req.body;
-    console.log(`dato 1 ${Id_update} id estudiante ${JSON.stringify(req.body)}`);
     var query = `UPDATE Estudiante SET Codigo = '${update.Codigo}', Semestre ='${update.Semestre}'  WHERE Id_estudiante = '${Id_update}'`;
     try {
         db.query(query, (err, data) => {

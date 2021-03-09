@@ -31,15 +31,24 @@ export class RegisterService{
     }
 
     // Persona
-    getRegisterByIdPersona(Cedula:number){
+    getRegisterByIdPersonaId(user:number){
+        return this.http.get(this.API_URL+`/register/Persona/${user}`);
+    }
+    getRegisterByIdPersonaCedula(Cedula:number){
         return this.http.get(this.API_URL+`/register/Persona/${Cedula}`);
     }
     createRegisterPersona(user:Personas){
         console.log(this.API_URL+`/register/Persona/createRegisterPersona`);
         return this.http.post(this.API_URL+'/register/Persona/createRegisterPersona',user);
     }
+    updateRegisterByIdPersona(id:number, updateRegister: Personas) {
+        return this.http.put(this.API_URL+`/register/Persona/${id}`,updateRegister);
+    }
 
     // Usuario
+    getRegisterByIdUsuarioId(user:string){
+        return this.http.get(this.API_URL+`/register/Usuario/${user}`);
+    }
     getRegisterByIdUsuario(Celular:string){
         return this.http.get(this.API_URL+`/register/Usuario/${Celular}`);
     }
@@ -47,17 +56,27 @@ export class RegisterService{
         console.log(this.API_URL+`/register/Usuario/createRegisterUsuario`);
         return this.http.post(this.API_URL+'/register/Usuario/createRegisterUsuario',user);
     }
+    updateRegisterByIdUsuario(id:number, updateRegister: Usuarios) {
+        return this.http.put(this.API_URL+`/register/Usuario/${id}`,updateRegister);
+    }
 
     //Estudiante
     createRegisterEstudiante(user:Estudiante){
         console.log(this.API_URL+`/register/Estudiante/createRegisterEstudiante`);
         return this.http.post(this.API_URL+'/register/Estudiante/createRegisterEstudiante',user);
     }
+    getRegisterByIdEstudiante(user:string){
+        return this.http.get(this.API_URL+`/register/Estudiante/${user}`);
+    }
+    updateRegisterByIdEstudiante(id:number, updateRegister: Estudiante) {
+        return this.http.put(this.API_URL+`/register/Estudiante/${id}`,updateRegister);
+    }
 
     // Facultad
     getFacultades(){
         return this.http.get(this.API_URL+"/register/Facultades");
     }  
+
 
     // Roles
     getRoles(){

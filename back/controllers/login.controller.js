@@ -16,7 +16,6 @@ loginCtrl.logout = (req, res) => {
 loginCtrl.authentication = (req, res) => {
     let cedula = req.body.cedula;
     let password = req.body.password;
-    let id_usuario;
     db.query(`SELECT * FROM Persona WHERE cedula = '${cedula}'`, (err, data) => {
         if (err) { 
             res.send('Ocurrio un error en la busqueda' + err) 
@@ -33,10 +32,32 @@ loginCtrl.authentication = (req, res) => {
                 console.log("No activado");
             } else {
                 console.log("correcto");
-                id_usuario = data[0].ID_PERSONA;
-                nombre = data[0].NOMBRE;
-                token = jwt.sign({id_usuario, nombre},config.secret, { expiresIn: 86400 })
-                res.json({ auth: true, token: token })
+                id_persona = data[0].ID_PERSONA;
+                cedula = data[0].CEDULA
+                nombre = data[0].NOMBRE; 
+                rol = data[0].ROL_ID_ROL;              
+                db.query(`SELECT * FROM Usuario WHERE Persona_id_persona = '${id_persona}'`, (err, data) =>{
+                    if (err) {
+                        res.send('Ocurrio un error en la busqueda' + err)
+                    } else {
+                        id_usuario = data[0].ID_USUARIO;
+                        celular = data[0].CELULAR;
+                        if (rol == 2) {
+                            db.query(`SELECT * FROM Estudiante WHERE Usuario_id_usuario = '${id_usuario}'`, (err, data) =>{
+                            if (err) {
+                                res.send('Ocurrio un error en la busqueda' + err)
+                            } else {
+                                id_estudiante = data[0].ID_ESTUDIANTE;
+                                token = jwt.sign({id_persona, cedula, nombre, id_usuario, celular, id_estudiante, rol},config.secret, { expiresIn: 86400 })
+                                res.json({ auth: true, token: token })
+                            }
+                        });
+                        } else {
+                            token = jwt.sign({id_persona, cedula, nombre, id_usuario, celular, rol},config.secret, { expiresIn: 86400 })
+                            res.json({ auth: true, token: token })
+                        }                        
+                    }
+                });                  
             }
         }
     });

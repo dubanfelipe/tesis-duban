@@ -16,7 +16,7 @@ import { from } from 'rxjs';
 
 export class NavBarComponent implements OnInit {
 
-  nombre_Usuario: any;
+  nombre_Persona: any;
   
 
   constructor(private LoginService : loginService, private router:Router) {  }
@@ -34,8 +34,8 @@ export class NavBarComponent implements OnInit {
   getValidRol(){
     const token = localStorage.getItem('usuario');
     const tokenPayload: any = decode(token);     
-    this.nombre_Usuario = tokenPayload.nombre;
-    console.log(this.nombre_Usuario);
+    this.nombre_Persona = tokenPayload.nombre;
+    console.log(this.nombre_Persona);
   }
 
 }

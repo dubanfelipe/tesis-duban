@@ -1,9 +1,14 @@
-export interface Usuarios{
-    ID_USERS : number;
-    CEDULA : number;
-    NOMBRE: string;
-    CODIGO : number;
-    FACULTAD : string;
-    SEMESTRE : number;
-    OCUPACION : string;
+export interface USUARIO{
+    ID_USUARIO : number;    
+    CELULAR : string;
+    EDAD : number;
+    ESTATURA : number;
+    PESO : number;
+    RH : string;
+    EPS : string;
+    DIFICULTADES_PATOLOGICAS : string;
+    FECHA_NACIMIENTO: string;
+    NOMBRE_ACOMPANANTE: string;
+    CELULAR_ACOMPANANTE: string;
+    PARENTESCO_ACOMPANANTE: string;
 }

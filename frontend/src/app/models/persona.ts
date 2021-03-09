@@ -1,5 +1,5 @@
 export interface Personas{
-    Id_users : number;
+    Id_persona : number;
     Nombre : string;
     Apellido : string;
     Correo : string;

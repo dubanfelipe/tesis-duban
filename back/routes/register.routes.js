@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get('/', registerCtrl.getRegister);
 //Persona
-router.get('/Persona/:Cedula', registerCtrl.getRegisterByIdPersona);
+router.get('/Persona/:Cedula', registerCtrl.getRegisterByIdPersonaCedula);
 router.post('/Persona/createRegisterPersona', registerCtrl.createRegisterPersona);
 router.delete('/Persona/:id_persona', registerCtrl.deleteRegisterByIdPersona);
 router.put('/Persona/:id_persona', registerCtrl.updateRegisterByIdPersona);
