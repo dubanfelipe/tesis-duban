@@ -65,17 +65,14 @@ export class RegisterComponent implements OnInit {
     this.registerService.createRegisterPersona(form.value).subscribe((data) =>{
       this.registerService.getRegisterByIdPersonaCedula(form.value.Cedula)
       .subscribe(
-        res => { 
-          console.log("OOOOO__ooooooo");    
-          console.log(res[0]);    
+        res => {  
           form2.value.Persona_id_persona = res[0].ID_PERSONA;
           this.registerService.createRegisterUsuario(form2.value).subscribe((data) =>{                  
             if (form.value.Rol_id_rol == 2) {            
-              this.registerService.getRegisterByIdUsuario(form2.value.Celular)              
+              this.registerService.getRegisterByIdUsuarioCelular(form2.value.Celular)              
               .subscribe(
                   res => {
                     form3.value.Usuario_id_usuario = res[0].ID_USUARIO;
-                    console.log("me llegooo",form3.value.Usuario_id_usuario); 
                     this.registerService.createRegisterEstudiante(form3.value).subscribe((data) =>{
                       M.toast({
                       html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
@@ -116,14 +113,12 @@ export class RegisterComponent implements OnInit {
     this.registerService.getFacultades()
       .subscribe(res => {
         this.registerService.Facultad = res as facultades[];
-        console.log("HOLA",res as facultades[])
       })
   }
   getRoles(){
     this.registerService.getRoles()
     .subscribe(res =>{
       this.registerService.Rol = res as roles[];
-      console.log("Roles", res as roles[])
     })
   }
 

@@ -20,7 +20,6 @@ registerCtrl.getRegister = (req, res) => {
 
 registerCtrl.getRegisterByIdPersonaCedula = (req, res) => {   
     let id = req.params.Cedula;
-    console.log("Estamosss aquiiiiiii Cedulaaaa",id);
     db.query(`SELECT * FROM Persona WHERE Cedula='${id}'`, (err, data) => {
         if (err) {
             res.json({ error: err });
@@ -87,10 +86,21 @@ registerCtrl.updateRegisterByIdPersona = (req, res) =>{
 
 //Usuario
 
-registerCtrl.getRegisterByIdUsuario = (req, res) => {   
+registerCtrl.getRegisterByIdUsuarioCelular = (req, res) => {   
     let id = req.params.Celular;
-    console.log("Estamosss aquiiiiiii",id);
     db.query(`SELECT * FROM Usuario WHERE Celular='${id}'`, (err, data) => {
+        if (err) {
+            res.json({ error: err });
+            console.log("Hubo un error en la busqueda del Usuario" + err);
+        } else {
+            res.json(data);
+        }
+    });
+}
+
+registerCtrl.getRegisterByIdUsuario = (req, res) => {   
+    let id = req.params.Cedula;
+    db.query(`SELECT p.*, u.* FROM Persona AS p INNER JOIN Usuario AS u ON p.Id_persona = u.Persona_id_persona WHERE Cedula='${id}'`, (err, data) => {
         if (err) {
             res.json({ error: err });
             console.log("Hubo un error en la busqueda del Usuario" + err);
@@ -115,7 +125,7 @@ registerCtrl.createRegisterUsuario = async (req, res) => {
     });
 }
 
-registerCtrl.deleteRegisterByIdUsuario = (req, res) =>{
+registerCtrl.deleteRegisterByIdUsuario = (req, res) =>{i
     let id = req.params.id_usuario;
     db.query(`DELETE FROM Usuario WHERE Id_usuario= '${id}'`, (err, data) => {
         if (err) {
@@ -148,9 +158,8 @@ registerCtrl.updateRegisterByIdUsuario = (req, res) =>{
 //Estudiante
 
 registerCtrl.getRegisterByIdEstudiante = (req, res) => {   
-    let id = req.params.id_estudiante;
-    console.log("llego a estudiante", id)
-    db.query(`SELECT * FROM Estudiante WHERE Id_estudiante='${id}'`, (err, data) => {
+    let id = req.params.Cedula;
+    db.query(`SELECT p.*, u.*, e.* FROM Persona AS p INNER JOIN Usuario AS u ON p.Id_persona = u.Persona_id_persona INNER JOIN Estudiante AS e ON u.Id_usuario = e.Usuario_id_usuario WHERE Cedula='${id}'`, (err, data) => {
         if (err) {
             res.json({ error: err });
             console.log("Hubo un error en la busqueda del Estudiante" + err);

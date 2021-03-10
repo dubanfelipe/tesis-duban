@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
   login(form){
   this.LoginService.authentication(form.value)
     .subscribe((data) => {
-      console.log(data);
       if (data['fail'] == 1) {
         M.toast({
           html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
@@ -62,15 +61,16 @@ export class LoginComponent implements OnInit {
                <hr>
            </div>`});
       } else {
-        localStorage.setItem('usuario', data['token']);        
-        this.router.navigate(['usuarios']); 
-        this.tokenPayload = decode(data['token']);
-        console.log("Id_Estudiante",this.tokenPayload.id_persona);  
-        console.log("Id_Estudiante",this.tokenPayload.cedula);  
-        console.log("Id_Estudiante",this.tokenPayload.nombre);  
-        console.log("Id_Estudiante",this.tokenPayload.id_usuario);  
-        console.log("Id_Estudiante",this.tokenPayload.celular);    
-        console.log("Id_Estudiante",this.tokenPayload.id_estudiante);         } 
+        localStorage.setItem('usuario', data['token']);      
+        this.tokenPayload = decode(data['token']); 
+        console.log("ROl",this.tokenPayload.rol);
+        if (this.tokenPayload.rol == 1) {
+          this.router.navigate(['admin']);
+        } else {
+          this.router.navigate(['usuarios']);
+        }
+           
+      } 
     });
   }
 }

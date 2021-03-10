@@ -35,29 +35,10 @@ loginCtrl.authentication = (req, res) => {
                 id_persona = data[0].ID_PERSONA;
                 cedula = data[0].CEDULA
                 nombre = data[0].NOMBRE; 
-                rol = data[0].ROL_ID_ROL;              
-                db.query(`SELECT * FROM Usuario WHERE Persona_id_persona = '${id_persona}'`, (err, data) =>{
-                    if (err) {
-                        res.send('Ocurrio un error en la busqueda' + err)
-                    } else {
-                        id_usuario = data[0].ID_USUARIO;
-                        celular = data[0].CELULAR;
-                        if (rol == 2) {
-                            db.query(`SELECT * FROM Estudiante WHERE Usuario_id_usuario = '${id_usuario}'`, (err, data) =>{
-                            if (err) {
-                                res.send('Ocurrio un error en la busqueda' + err)
-                            } else {
-                                id_estudiante = data[0].ID_ESTUDIANTE;
-                                token = jwt.sign({id_persona, cedula, nombre, id_usuario, celular, id_estudiante, rol},config.secret, { expiresIn: 86400 })
-                                res.json({ auth: true, token: token })
-                            }
-                        });
-                        } else {
-                            token = jwt.sign({id_persona, cedula, nombre, id_usuario, celular, rol},config.secret, { expiresIn: 86400 })
-                            res.json({ auth: true, token: token })
-                        }                        
-                    }
-                });                  
+                rol = data[0].ROL_ID_ROL;     
+                token = jwt.sign({id_persona, cedula, nombre, rol},config.secret, { expiresIn: 86400 })
+                res.json({ auth: true, token: token })       
+                                  
             }
         }
     });

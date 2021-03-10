@@ -35,7 +35,17 @@ export class NavBarComponent implements OnInit {
     const token = localStorage.getItem('usuario');
     const tokenPayload: any = decode(token);     
     this.nombre_Persona = tokenPayload.nombre;
-    console.log(this.nombre_Persona);
+  }
+
+  estudianteCargo(){
+    const token = localStorage.getItem('usuario');
+    const tokenPayload: any = decode(token);     
+    this.nombre_Persona = tokenPayload.nombre;
+    if (tokenPayload.rol != 1) {
+      return true;
+    } else {
+      return false;
+    }    
   }
 
 }

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ValidatorFn, Validators, } from '@angular/forms';
 import { RegisterService } from '../../services/register.service';
 import { Router } from '@angular/router';
-import { PERSONA } from '../../models/PERSONAS';
 import { ESTUDIANTE } from '../../models/ESTUDIANTES';
 import { USUARIO } from '../../models/USUARIOS';
 import { facultades} from '../../models/Facultad';
@@ -19,15 +18,14 @@ let Valor_Rol: any;
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  personas: PERSONA = {
+
+  usuarios: USUARIO = {
     ID_PERSONA : 0,
     NOMBRE : '',
     APELLIDO : '',
     CORREO : '',
     CEDULA : 0, 
-    ROL_ID_ROL : 0, 
-  };
-  usuarios: USUARIO = {
+    ROL_ID_ROL : 0,
     ID_USUARIO : 0,    
     CELULAR : '',
     EDAD : 0,
@@ -42,6 +40,24 @@ export class ProfileComponent implements OnInit {
     PARENTESCO_ACOMPANANTE: '',
   };
   estudiantes: ESTUDIANTE = {
+    ID_PERSONA : 0,
+    NOMBRE : '',
+    APELLIDO : '',
+    CORREO : '',
+    CEDULA : 0, 
+    ROL_ID_ROL : 0,
+    ID_USUARIO : 0,    
+    CELULAR : '',
+    EDAD : 0,
+    ESTATURA : 0,
+    PESO : 0,
+    RH : '',
+    EPS : '',
+    DIFICULTADES_PATOLOGICAS : '',
+    FECHA_NACIMIENTO: '',
+    NOMBRE_ACOMPANANTE: '',
+    CELULAR_ACOMPANANTE: '',
+    PARENTESCO_ACOMPANANTE: '',
     ID_ESTUDIANTE: 0,
     CODIGO: 0,
     SEMESTRE: 0,
@@ -58,7 +74,6 @@ export class ProfileComponent implements OnInit {
   }
   buildForm(){
     this.registerForm = this.fb.group({
-      Id_persona: [''],
       Nombre: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-z A-Z ñ Ñ]*$/)])],
       Apellido: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-z A-Z ñ Ñ]*$/)])],
       Correo: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-z]*.[a-z]*@(usantotomas)[.](edu)[.](co)$/)])],
@@ -89,26 +104,17 @@ export class ProfileComponent implements OnInit {
     this.getRoles();
     this.getFacultades();
     const token = localStorage.getItem('usuario');
-    const tokenPayload: any = decode(token);     
-    this.registerService.getRegisterByIdPersonaCedula(tokenPayload.cedula)
-    .subscribe(
-      res => {        
-        this.personas = res[0] ; 
-        console.log("persona",res[0])
-        this.registerForm.patchValue({"Id_persona": this.personas.ID_PERSONA});
-        this.registerForm.patchValue({"Nombre": this.personas.NOMBRE});
-        this.registerForm.patchValue({"Apellido": this.personas.APELLIDO});  
-        this.registerForm.patchValue({"Correo": this.personas.CORREO});
-        this.registerForm.patchValue({"Cedula": this.personas.CEDULA}); 
-        this.registerForm.patchValue({"Rol_id_rol": this.personas.ROL_ID_ROL});
-        Cargando=true;
-      },
-      err=> console.log(err)
-    ) 
-    this.registerService.getRegisterByIdUsuario(tokenPayload.celular)  
+    const tokenPayload: any = decode(token); 
+    this.registerService.getRegisterByIdUsuario(tokenPayload.cedula)  
     .subscribe(
       res => {
         this.usuarios = res[0];
+        this.registerForm.patchValue({"Id_persona": this.usuarios.ID_PERSONA});
+        this.registerForm.patchValue({"Nombre": this.usuarios.NOMBRE});
+        this.registerForm.patchValue({"Apellido": this.usuarios.APELLIDO});  
+        this.registerForm.patchValue({"Correo": this.usuarios.CORREO});
+        this.registerForm.patchValue({"Cedula": this.usuarios.CEDULA}); 
+        this.registerForm.patchValue({"Rol_id_rol": this.usuarios.ROL_ID_ROL});
         this.registerUsuarioForm.patchValue({"Id_usuario": this.usuarios.ID_USUARIO});
         this.registerUsuarioForm.patchValue({"Celular": this.usuarios.CELULAR});
         this.registerUsuarioForm.patchValue({"Edad": this.usuarios.EDAD});
@@ -126,10 +132,28 @@ export class ProfileComponent implements OnInit {
       err=> console.log(err)
     )
     if (tokenPayload.rol == 2) {
-        this.registerService.getRegisterByIdEstudiante(tokenPayload.id_estudiante)
+        this.registerService.getRegisterByIdEstudiante(tokenPayload.cedula)
       .subscribe(
         res =>{
           this.estudiantes = res[0];
+          this.registerForm.patchValue({"Id_persona": this.estudiantes.ID_PERSONA});
+          this.registerForm.patchValue({"Nombre": this.estudiantes.NOMBRE});
+          this.registerForm.patchValue({"Apellido": this.estudiantes.APELLIDO});  
+          this.registerForm.patchValue({"Correo": this.estudiantes.CORREO});
+          this.registerForm.patchValue({"Cedula": this.estudiantes.CEDULA}); 
+          this.registerForm.patchValue({"Rol_id_rol": this.estudiantes.ROL_ID_ROL});
+          this.registerUsuarioForm.patchValue({"Id_usuario": this.estudiantes.ID_USUARIO});
+          this.registerUsuarioForm.patchValue({"Celular": this.estudiantes.CELULAR});
+          this.registerUsuarioForm.patchValue({"Edad": this.estudiantes.EDAD});
+          this.registerUsuarioForm.patchValue({"Estatura": this.estudiantes.ESTATURA});
+          this.registerUsuarioForm.patchValue({"Peso": this.estudiantes.PESO});
+          this.registerUsuarioForm.patchValue({"Rh": this.estudiantes.RH});
+          this.registerUsuarioForm.patchValue({"Eps": this.estudiantes.EPS});
+          this.registerUsuarioForm.patchValue({"Dificultades_patologicas": this.estudiantes.DIFICULTADES_PATOLOGICAS});
+          this.registerUsuarioForm.patchValue({"Fecha_nacimiento": this.estudiantes.FECHA_NACIMIENTO});
+          this.registerUsuarioForm.patchValue({"Nombre_Acompanante": this.estudiantes.NOMBRE_ACOMPANANTE});
+          this.registerUsuarioForm.patchValue({"Celular_Acompanante": this.estudiantes.CELULAR_ACOMPANANTE});
+          this.registerUsuarioForm.patchValue({"Parentesco_Acompanante": this.estudiantes.PARENTESCO_ACOMPANANTE});
           this.registerEstudianteForm.patchValue({"Id_estudiante": this.estudiantes.ID_ESTUDIANTE});
           this.registerEstudianteForm.patchValue({"Codigo": this.estudiantes.CODIGO});
           this.registerEstudianteForm.patchValue({"Semestre": this.estudiantes.SEMESTRE});
@@ -185,7 +209,6 @@ export class ProfileComponent implements OnInit {
     this.registerService.getFacultades()
       .subscribe(res => {
         this.registerService.Facultad = res as facultades[];
-        console.log("HOLA",res as facultades[])
       })
   }
   yaCargo() {

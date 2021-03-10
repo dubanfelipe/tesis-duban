@@ -38,7 +38,6 @@ export class RegisterService{
         return this.http.get(this.API_URL+`/register/Persona/${Cedula}`);
     }
     createRegisterPersona(user:Personas){
-        console.log(this.API_URL+`/register/Persona/createRegisterPersona`);
         return this.http.post(this.API_URL+'/register/Persona/createRegisterPersona',user);
     }
     updateRegisterByIdPersona(id:number, updateRegister: Personas) {
@@ -46,14 +45,13 @@ export class RegisterService{
     }
 
     // Usuario
-    getRegisterByIdUsuarioId(user:string){
-        return this.http.get(this.API_URL+`/register/Usuario/${user}`);
+    getRegisterByIdUsuarioCelular(Celular:string){
+        return this.http.get(this.API_URL+`/register/Usuario/Celular/${Celular}`);
     }
-    getRegisterByIdUsuario(Celular:string){
-        return this.http.get(this.API_URL+`/register/Usuario/${Celular}`);
+    getRegisterByIdUsuario(Cedula:string){
+        return this.http.get(this.API_URL+`/register/Usuario/${Cedula}`);
     }
     createRegisterUsuario(user:Usuarios){
-        console.log(this.API_URL+`/register/Usuario/createRegisterUsuario`);
         return this.http.post(this.API_URL+'/register/Usuario/createRegisterUsuario',user);
     }
     updateRegisterByIdUsuario(id:number, updateRegister: Usuarios) {
@@ -62,11 +60,10 @@ export class RegisterService{
 
     //Estudiante
     createRegisterEstudiante(user:Estudiante){
-        console.log(this.API_URL+`/register/Estudiante/createRegisterEstudiante`);
         return this.http.post(this.API_URL+'/register/Estudiante/createRegisterEstudiante',user);
     }
-    getRegisterByIdEstudiante(user:string){
-        return this.http.get(this.API_URL+`/register/Estudiante/${user}`);
+    getRegisterByIdEstudiante(Cedula:string){
+        return this.http.get(this.API_URL+`/register/Estudiante/${Cedula}`);
     }
     updateRegisterByIdEstudiante(id:number, updateRegister: Estudiante) {
         return this.http.put(this.API_URL+`/register/Estudiante/${id}`,updateRegister);

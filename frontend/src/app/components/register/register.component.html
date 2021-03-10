@@ -290,7 +290,7 @@
       
     </form>
     <div class="form-label-group">
-          <button [disabled]="!registerForm.valid || !registerUsuarioForm.valid" class="btn btn-block" id="btnLogin" (click)="addRegister(registerForm, registerUsuarioForm, registerEstudianteForm)"
+          <button [disabled]="(estudianteCargo(registerForm) && (!registerForm.valid || !registerUsuarioForm.valid || !registerEstudianteForm.valid)) || (!estudianteCargo(registerForm) && (!registerForm.valid || !registerUsuarioForm.valid))" class="btn btn-block" id="btnLogin" (click)="addRegister(registerForm, registerUsuarioForm, registerEstudianteForm)"
             type="button">Registrar</button>
     </div>
 </body>

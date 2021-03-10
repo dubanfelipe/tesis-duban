@@ -1,4 +1,10 @@
 export interface USUARIO{
+    ID_PERSONA : number;
+    NOMBRE : string;
+    APELLIDO : string;
+    CORREO : string;
+    CEDULA : number;   
+    ROL_ID_ROL : number;
     ID_USUARIO : number;    
     CELULAR : string;
     EDAD : number;

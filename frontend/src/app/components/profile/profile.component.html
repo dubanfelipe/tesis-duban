@@ -27,7 +27,7 @@
       </div> 
       <div class="form-label-group">
         <label for="ejemplo">Correo*</label>
-        <input type="email" class="form-control" name="Correo" placeholder="Ingrese su Correo" required formControlName="Correo">
+        <input type="email" class="form-control" name="Correo" placeholder="Ingrese su Correo" required formControlName="Correo" disabled>
         <div *ngIf="registerForm.get('Correo').errors" class="alert alert-danger">
           <div *ngIf="registerForm.get('Correo').errors['required']">
             Email requerido
@@ -39,7 +39,7 @@
       </div>
       <div class="form-label-group">
           <label for="ejemplo">Cedula*</label>
-          <input  type="text" class="form-control" name="Cedula" placeholder="Ingrese su Cedula" required formControlName="Cedula">
+          <input  type="text" class="form-control" name="Cedula" placeholder="Ingrese su Cedula" required formControlName="Cedula" disabled>
           <div *ngIf="registerForm.get('Cedula').errors" class="alert alert-danger">
               <div *ngIf="registerForm.get('Cedula').errors['required']">
                   Cedula requerida
@@ -57,7 +57,7 @@
       </div> 
       <div class="form-label-group">
         <label><label id="lbl"></label>Ocupacion*</label>
-          <select id="select" class="form-control" name="Rol_id_rol" formControlName="Rol_id_rol"> 
+          <select id="select" class="form-control" name="Rol_id_rol" formControlName="Rol_id_rol" disabled> 
             <option value="" disabled>Seleccione su Ocupacion</option>
             <option *ngFor="let roles of registerService.Rol | slice:1 " value={{roles.ID_ROL}}>
               {{roles.NOMBRE_ROL}}
@@ -73,7 +73,7 @@
   <form *ngIf="yaCargo()" [formGroup]="registerUsuarioForm" novalidate> 
     <div class="form-label-group">
       <label for="ejemplo">Celular*</label>
-      <input  type="text" class="form-control" name="Celular" placeholder="Ingrese su Celular" required formControlName="Celular">
+      <input  type="text" class="form-control" name="Celular" placeholder="Ingrese su Celular" required formControlName="Celular" disabled>
       <div *ngIf="registerUsuarioForm.get('Celular').errors" class="alert alert-danger">
           <div *ngIf="registerUsuarioForm.get('Celular').errors['required']">
             Celular requerido
@@ -219,7 +219,7 @@
   <form *ngIf="estudianteCargo(registerForm)" [formGroup]="registerEstudianteForm" novalidate>
     <div class="form-label-group">
       <label for="ejemplo">Codigo*</label>
-      <input  type="text" class="form-control" name="Codigo" placeholder="Ingrese su Codigo" required formControlName="Codigo">
+      <input  type="text" class="form-control" name="Codigo" placeholder="Ingrese su Codigo" required formControlName="Codigo" disabled>
       <div *ngIf="registerEstudianteForm.get('Codigo').errors" class="alert alert-danger">
           <div *ngIf="registerEstudianteForm.get('Codigo').errors['required']">
             Codigo requerido
