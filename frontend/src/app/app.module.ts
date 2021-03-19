@@ -6,6 +6,7 @@ import { FormsModule} from '@angular/forms'
 import { ReactiveFormsModule} from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Ng2SmartTableModule } from 'ng2-smart-table';  
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -18,6 +19,7 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
 import { RegisterService } from './services/register.service';
+import { DataUsersComponent } from './components/data-users/data-users.component';
 
 
 
@@ -32,12 +34,14 @@ import { RegisterService } from './services/register.service';
     FooterComponent,
     UsuariosComponent,
     ProfileComponent,
+    DataUsersComponent,
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    Ng2SmartTableModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     ReactiveFormsModule

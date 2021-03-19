@@ -11,7 +11,6 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 declare var M: any;
 let Cargando = false;
-let Valor_Rol: any;
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',

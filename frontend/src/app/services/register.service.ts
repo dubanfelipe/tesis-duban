@@ -5,12 +5,14 @@ import { Usuarios } from '../models/usuario';
 import { facultades } from '../models/Facultad';
 import { roles } from '../models/rol';
 import { Estudiante } from '../models/estudiante';
+import { PERSONA } from '../models/PERSONAS';
 
 @Injectable({
     providedIn: 'root'
 })
 export class RegisterService{
 
+    personas: PERSONA[];
     Facultad: facultades[];
     Rol: roles[];
 
@@ -19,21 +21,8 @@ export class RegisterService{
 
     getRegister(){
         return this.http.get(this.API_URL+"/register");
-    }    
-    getRegisterById(id:number){
-        return this.http.get(this.API_URL+`/register/${id}`);
-    }
-    deleteRegisterById(id:number){
-        return this.http.get(this.API_URL+`/register/${id}`);
-    }
-    updateRegisterById(id:number, updateRegister: Personas) {
-        return this.http.put(this.API_URL+`/register/${id}`,updateRegister);
-    }
-
+    } 
     // Persona
-    getRegisterByIdPersonaId(user:number){
-        return this.http.get(this.API_URL+`/register/Persona/${user}`);
-    }
     getRegisterByIdPersonaCedula(Cedula:number){
         return this.http.get(this.API_URL+`/register/Persona/${Cedula}`);
     }
@@ -43,7 +32,9 @@ export class RegisterService{
     updateRegisterByIdPersona(id:number, updateRegister: Personas) {
         return this.http.put(this.API_URL+`/register/Persona/${id}`,updateRegister);
     }
-
+    deleteRegisterByIdPersona(id:number){
+        return this.http.delete(this.API_URL+`/register/Persona/${id}`);
+    }
     // Usuario
     getRegisterByIdUsuarioCelular(Celular:string){
         return this.http.get(this.API_URL+`/register/Usuario/Celular/${Celular}`);
@@ -57,7 +48,9 @@ export class RegisterService{
     updateRegisterByIdUsuario(id:number, updateRegister: Usuarios) {
         return this.http.put(this.API_URL+`/register/Usuario/${id}`,updateRegister);
     }
-
+    deleteRegisterByIdUsuario(id:number){
+        return this.http.delete(this.API_URL+`/register/Usuario/${id}`);
+    }
     //Estudiante
     createRegisterEstudiante(user:Estudiante){
         return this.http.post(this.API_URL+'/register/Estudiante/createRegisterEstudiante',user);
@@ -68,13 +61,13 @@ export class RegisterService{
     updateRegisterByIdEstudiante(id:number, updateRegister: Estudiante) {
         return this.http.put(this.API_URL+`/register/Estudiante/${id}`,updateRegister);
     }
-
+    deleteRegisterByIdEstudiante(id:number){
+        return this.http.delete(this.API_URL+`/register/Estudiante/${id}`);
+    }
     // Facultad
     getFacultades(){
         return this.http.get(this.API_URL+"/register/Facultades");
     }  
-
-
     // Roles
     getRoles(){
         return this.http.get(this.API_URL+"/register/Roles");

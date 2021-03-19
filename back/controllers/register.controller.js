@@ -5,8 +5,9 @@ var bcrypt = require('bcryptjs');
 
 const registerCtrl = {};
 
-registerCtrl.getRegister = (req, res) => {
-    db.query(`SELECT * FROM Persona`, (err, data) => {
+registerCtrl.getRegister = (req, res) => {  
+    let id=1; 
+    db.query(`SELECT p.*, r.* FROM Persona AS p INNER JOIN Rol AS r ON p.Rol_id_rol = r.Id_rol`, (err, data) => {
         if (err) {
             res.json({ error: err });
             console.log("Hubo un error en la busqueda de Usuarios" + err);
@@ -17,7 +18,6 @@ registerCtrl.getRegister = (req, res) => {
 }
 
 //Persona
-
 registerCtrl.getRegisterByIdPersonaCedula = (req, res) => {   
     let id = req.params.Cedula;
     db.query(`SELECT * FROM Persona WHERE Cedula='${id}'`, (err, data) => {
@@ -29,7 +29,6 @@ registerCtrl.getRegisterByIdPersonaCedula = (req, res) => {
         }
     });
 }
-
 registerCtrl.createRegisterPersona = async (req, res) => {
     console.log("usuarios que llego :", req.body);
     usuarios = req.body;
@@ -53,7 +52,6 @@ registerCtrl.createRegisterPersona = async (req, res) => {
         });             
     });    
 }
-
 registerCtrl.deleteRegisterByIdPersona = (req, res) =>{
     let id = req.params.id_persona;
     db.query(`DELETE FROM Persona WHERE Id_persona= '${id}'`, (err, data) => {
@@ -61,6 +59,7 @@ registerCtrl.deleteRegisterByIdPersona = (req, res) =>{
             res.json({ error: err });
             console.log("Hubo un error ELIMINANDO Persona" + err);
         } else {
+            console.log("PERSONA ELIMINADAAAAAAAAA");
             res.json({message: 'Persona eliminada'});
         }
     });
@@ -85,7 +84,6 @@ registerCtrl.updateRegisterByIdPersona = (req, res) =>{
 }
 
 //Usuario
-
 registerCtrl.getRegisterByIdUsuarioCelular = (req, res) => {   
     let id = req.params.Celular;
     db.query(`SELECT * FROM Usuario WHERE Celular='${id}'`, (err, data) => {
@@ -97,7 +95,6 @@ registerCtrl.getRegisterByIdUsuarioCelular = (req, res) => {
         }
     });
 }
-
 registerCtrl.getRegisterByIdUsuario = (req, res) => {   
     let id = req.params.Cedula;
     db.query(`SELECT p.*, u.* FROM Persona AS p INNER JOIN Usuario AS u ON p.Id_persona = u.Persona_id_persona WHERE Cedula='${id}'`, (err, data) => {
@@ -109,7 +106,6 @@ registerCtrl.getRegisterByIdUsuario = (req, res) => {
         }
     });
 }
-
 registerCtrl.createRegisterUsuario = async (req, res) => {
     console.log("usuarios que llego :", req.body);
     usuarios = req.body;    
@@ -124,14 +120,15 @@ registerCtrl.createRegisterUsuario = async (req, res) => {
         }
     });
 }
-
-registerCtrl.deleteRegisterByIdUsuario = (req, res) =>{i
+registerCtrl.deleteRegisterByIdUsuario = (req, res) => {
     let id = req.params.id_usuario;
+    console.log("en el back llego",id)
     db.query(`DELETE FROM Usuario WHERE Id_usuario= '${id}'`, (err, data) => {
         if (err) {
             res.json({ error: err });
             console.log("Hubo un error ELIMINANDO Usuario" + err);
         } else {
+            console.log("USUARIO ELIMINADAAAAAAAAA");
             res.json({message: 'Usuario eliminado'});
         }
     });
@@ -156,7 +153,6 @@ registerCtrl.updateRegisterByIdUsuario = (req, res) =>{
 }
 
 //Estudiante
-
 registerCtrl.getRegisterByIdEstudiante = (req, res) => {   
     let id = req.params.Cedula;
     db.query(`SELECT p.*, u.*, e.* FROM Persona AS p INNER JOIN Usuario AS u ON p.Id_persona = u.Persona_id_persona INNER JOIN Estudiante AS e ON u.Id_usuario = e.Usuario_id_usuario WHERE Cedula='${id}'`, (err, data) => {
@@ -168,7 +164,6 @@ registerCtrl.getRegisterByIdEstudiante = (req, res) => {
         }
     });
 }
-
 registerCtrl.createRegisterEstudiante = async (req, res) => {
     console.log("usuarios que llego :", req.body);
     usuarios = req.body;    
@@ -183,7 +178,6 @@ registerCtrl.createRegisterEstudiante = async (req, res) => {
         }
     });
 }
-
 registerCtrl.deleteRegisterByIdEstudiante = (req, res) =>{
     let id = req.params.id_estudiante;
     db.query(`DELETE FROM Estudiante WHERE Id_estudiante= '${id}'`, (err, data) => {
@@ -191,6 +185,7 @@ registerCtrl.deleteRegisterByIdEstudiante = (req, res) =>{
             res.json({ error: err });
             console.log("Hubo un error ELIMINANDO Estudiante" + err);
         } else {
+            console.log("ESTUDIANTE ELIMINADAAAAAAAAA");
             res.json({message: 'Estudiante eliminado'});
         }
     });
@@ -215,7 +210,6 @@ registerCtrl.updateRegisterByIdEstudiante = (req, res) =>{
 }
 
 // Facultades
-
 registerCtrl.getFacultades = (req, res) => {
     db.query(`SELECT * FROM Facultad`, (err, data) => {
         if (err) {
@@ -228,7 +222,6 @@ registerCtrl.getFacultades = (req, res) => {
 }
 
 //Roles 
-
 registerCtrl.getRoles = (req, res) => {
     db.query(`SELECT * FROM Rol`, (err, data) => {
         if (err) {
@@ -239,4 +232,5 @@ registerCtrl.getRoles = (req, res) => {
         }
     });
 }
+
 module.exports = registerCtrl;

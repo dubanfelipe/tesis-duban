@@ -9,7 +9,6 @@ router.post('/Persona/createRegisterPersona', registerCtrl.createRegisterPersona
 router.delete('/Persona/:id_persona', registerCtrl.deleteRegisterByIdPersona);
 router.put('/Persona/:id_persona', registerCtrl.updateRegisterByIdPersona);
 //Usuario
-
 router.get('/Usuario/Celular/:Celular', registerCtrl.getRegisterByIdUsuarioCelular);
 router.get('/Usuario/:Cedula', registerCtrl.getRegisterByIdUsuario);
 router.post('/Usuario/createRegisterUsuario', registerCtrl.createRegisterUsuario);
