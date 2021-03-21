@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RegisterService } from '../../services/register.service';
 import { PERSONA } from '../../models/PERSONAS';
 import { Router } from '@angular/router';
+import { datosService } from '../../services/datos.service';
 
 declare var M: any;
 
@@ -12,7 +13,7 @@ declare var M: any;
 })
 export class DataUsersComponent implements OnInit {
 
-  constructor(public registerService:RegisterService, private router: Router) { }
+  constructor(public registerService:RegisterService, private router: Router, public DatosService:datosService) { }
   settings = {
     hideSubHeader: false,
     actions: {
@@ -54,8 +55,9 @@ export class DataUsersComponent implements OnInit {
   }
   onCustom(event) {
     if (event.action == "editAction") {
-      console.log("Editar");
-      console.log(event.data);
+      this.DatosService.Value_Cedula = event.data.CEDULA;
+      this.DatosService.Value_Rol = event.data.NOMBRE_ROL;
+      this.router.navigate(['admin/users/edit']);
     }
     if (event.action == "deleteAction") {
       var answer = confirm("Esta seguro de querer eliminar el Usuario del sistema");
