@@ -7,7 +7,8 @@ import { LoginComponent} from './components/login/login.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { GuardsGuard } from './shared/guards.guard';
 import { ProfileComponent } from './components/profile/profile.component';
-import { DataUsersComponent} from './components/data-users/data-users.component';
+import { DataUsersComponent } from './components/data-users/data-users.component';
+import { EditUsersComponent } from './components/edit-users/edit-users.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'admin', component: AdminComponent, canActivate: [GuardsGuard] },
   { path: 'admin/users', component: DataUsersComponent, canActivate: [GuardsGuard]},
+  { path: 'admin/users/edit', component: EditUsersComponent, canActivate: [GuardsGuard]},
   { path: 'usuarios', component: UsuariosComponent, canActivate: [GuardsGuard] },
   { path: 'usuarios/profile', component: ProfileComponent, canActivate: [GuardsGuard]},
   { path: '**', component: HomeComponent }

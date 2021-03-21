@@ -20,6 +20,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 import { RegisterService } from './services/register.service';
 import { DataUsersComponent } from './components/data-users/data-users.component';
+import { EditUsersComponent } from './components/edit-users/edit-users.component';
 
 
 
@@ -35,6 +36,7 @@ import { DataUsersComponent } from './components/data-users/data-users.component
     UsuariosComponent,
     ProfileComponent,
     DataUsersComponent,
+    EditUsersComponent,
   ],
   imports: [
     HttpClientModule,
