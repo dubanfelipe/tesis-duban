@@ -9,6 +9,8 @@ import { GuardsGuard } from './shared/guards.guard';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DataUsersComponent } from './components/data-users/data-users.component';
 import { EditUsersComponent } from './components/edit-users/edit-users.component';
+import { ActivateUsersComponent } from './components/activate-users/activate-users.component';
+import { ActivateComponent } from './components/activate/activate.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -17,6 +19,8 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent, canActivate: [GuardsGuard] },
   { path: 'admin/users', component: DataUsersComponent, canActivate: [GuardsGuard]},
   { path: 'admin/users/edit', component: EditUsersComponent, canActivate: [GuardsGuard]},
+  { path: 'admin/activate', component: ActivateUsersComponent, canActivate: [GuardsGuard]},
+  { path: 'admin/activate/users', component: ActivateComponent, canActivate: [GuardsGuard]},
   { path: 'usuarios', component: UsuariosComponent, canActivate: [GuardsGuard] },
   { path: 'usuarios/profile', component: ProfileComponent, canActivate: [GuardsGuard]},
   { path: '**', component: HomeComponent }

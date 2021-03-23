@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
       Apellido: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-z A-Z ñ Ñ]*$/)])],
       Correo: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-z A-Z ñ Ñ]*.[a-z A-Z ñ Ñ]*@(usantotomas)[.](edu)[.](co)$/)])],
       Cedula: ['', Validators.compose([Validators.required, Validators.min(100000), Validators.max(2000000000), Validators.pattern(/^[0-9]*$/)])],
-      Activo: [1],
+      Activo: [0],
       Rol_id_rol: ['', Validators.compose([Validators.required])],
       Password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
       PasswordConfirm: ['', Validators.compose([Validators.required, Validators.minLength(6)])],       
@@ -62,12 +62,14 @@ export class RegisterComponent implements OnInit {
   }  
 
   addRegister(form?, form2?, form3?){
-    this.registerService.createRegisterPersona(form.value).subscribe((data) =>{
+    this.registerService.createRegisterPersona(form.value)
+    .subscribe((data) =>{
       this.registerService.getRegisterByIdPersonaCedula(form.value.Cedula)
       .subscribe(
         res => {  
           form2.value.Persona_id_persona = res[0].ID_PERSONA;
-          this.registerService.createRegisterUsuario(form2.value).subscribe((data) =>{                  
+          this.registerService.createRegisterUsuario(form2.value)
+          .subscribe((data) =>{                  
             if (form.value.Rol_id_rol == 2) {            
               this.registerService.getRegisterByIdUsuarioCelular(form2.value.Celular)              
               .subscribe(

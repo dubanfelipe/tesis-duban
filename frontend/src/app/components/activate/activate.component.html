@@ -1,0 +1,63 @@
+<body>
+  <div class="container-separador">
+    <div class="row justify-content-center">
+      <div class="card" style="width: 700px">
+        <div class="card-body">
+          <h2 class="row justify-content-center">Activar usuarios</h2>
+            <hr>
+            <p>"Active el Usuario, para que pueda hacer uso del sistema"</p>
+            <hr>
+            <form usuarioForm="ngForm">
+              <div class="row">
+                <div class="col">
+                  <div class="form-label-group">
+                    <label><Strong>Nombre</Strong></label>
+                    <input class="form-control" id="input" type="text" name="nombre" #name="ngModel"
+                      [(ngModel)]="datospersona.NOMBRE" disabled>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-label-group">
+                    <label><Strong>Apellido</Strong></label>
+                    <input class="form-control" id="input" type="text" name="apellido" #name="ngModel"
+                      [(ngModel)]="datospersona.APELLIDO" disabled>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col">
+                  <div class="form-label-group">
+                    <label><Strong>Correo</Strong></label>
+                    <input class="form-control" id="input" type="text" name="correo" #name="ngModel"
+                      [(ngModel)]="datospersona.CORREO" disabled>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col">
+                  <div class="form-label-group">
+                    <label><Strong>Cedula</Strong></label>
+                    <input class="form-control" id="input" type="text" name="cedula" #name="ngModel"
+                      [(ngModel)]="datospersona.CEDULA" disabled>
+                  </div>
+                </div>
+                <div class="col">
+                  <label class="switch">
+                    <input #check type="checkbox" [checked]='datospersona.ACTIVO'
+                      (change)='this.changeStatus(datospersona.ID_PERSONA, check.checked)'>
+                    <span class="slider round">&nbsp;SI    NO</span>
+                  </label>
+                </div>
+              </div>
+            </form>                      
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+
+    
+  
+    

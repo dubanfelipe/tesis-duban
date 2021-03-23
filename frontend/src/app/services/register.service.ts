@@ -26,6 +26,9 @@ export class RegisterService{
     getRegisterByIdPersonaCedula(Cedula:number){
         return this.http.get(this.API_URL+`/register/Persona/${Cedula}`);
     }
+    getRegisterByIdPersonaActivo(Activo:number){
+        return this.http.get(this.API_URL+`/register/Persona/Activate/${Activo}`);
+    }
     createRegisterPersona(user:Personas){
         return this.http.post(this.API_URL+'/register/Persona/createRegisterPersona',user);
     }

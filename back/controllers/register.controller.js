@@ -29,6 +29,17 @@ registerCtrl.getRegisterByIdPersonaCedula = (req, res) => {
         }
     });
 }
+registerCtrl.getRegisterByIdPersonaActivo = (req, res) => {   
+    let id = req.params.Activo;
+    db.query(`SELECT * FROM Persona WHERE Activo='${id}'`, (err, data) => {
+        if (err) {
+            res.json({ error: err });
+            console.log("Hubo un error en la busqueda de usuarios Desactivados" + err);
+        } else {
+            res.json(data);
+        }
+    });
+}
 registerCtrl.createRegisterPersona = async (req, res) => {
     console.log("usuarios que llego :", req.body);
     usuarios = req.body;

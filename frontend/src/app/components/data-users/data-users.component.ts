@@ -19,6 +19,10 @@ export class DataUsersComponent implements OnInit {
     actions: {
       custom: [
         {
+          name: 'activateAction',
+          title: '<i class="material-icons">visibility</i>',
+        },
+        {
           name: 'editAction',
           title: '<i class="material-icons">edit</i>',
         },
@@ -33,9 +37,6 @@ export class DataUsersComponent implements OnInit {
       position: 'right',
     },
     columns: {
-      ID_PERSONA:{
-        title:'#',
-      },
       NOMBRE: {
         title: 'Nombre',
       },
@@ -59,9 +60,15 @@ export class DataUsersComponent implements OnInit {
       this.DatosService.Value_Rol = event.data.NOMBRE_ROL;
       this.router.navigate(['admin/users/edit']);
     }
+    if (event.action == "activateAction") {
+      this.DatosService.Value_Cedula = event.data.CEDULA;
+      this.DatosService.Value_Rol = event.data.NOMBRE_ROL;
+      this.router.navigate(['admin/activate/users']);
+    }
     if (event.action == "deleteAction") {
       var answer = confirm("Esta seguro de querer eliminar el Usuario del sistema");
-      if (answer) {
+      if (answer) 
+      {
         if (event.data.NOMBRE_ROL == "Estudiante") {
           this.registerService.getRegisterByIdEstudiante(event.data.CEDULA)
           .subscribe(res =>{
