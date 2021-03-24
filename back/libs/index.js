@@ -5,5 +5,7 @@ module.exports = [
     'cors',
     'register',
     'login',
-    'autenticarusuarios'
+    'autenticarusuarios',
+    'bodyParser',
+    'email'
 ]

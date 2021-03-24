@@ -5,6 +5,7 @@ export interface DatosPersona{
     CORREO : string;
     CEDULA : number;   
     ACTIVO: number;
-    PASSWORD: string,
-    ROL_ID_ROL: number,
+    PASSWORD: string;
+    ROL_ID_ROL: number;
+    TEXTO: string;
 }

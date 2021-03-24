@@ -4,6 +4,9 @@ import { DatosPersona } from '../../models/DATOSPERSONA';
 import { Router } from '@angular/router';
 import { datosService } from '../../services/datos.service';
 import { AutenticarusuariosService } from '../../services/autenticarusuarios.service';
+import { emailService } from '../../services/email.service';
+import { FormBuilder, FormGroup, ValidatorFn, Validators, } from '@angular/forms';
+import swal from 'sweetalert2';
 
 declare var M: any;
 
@@ -23,17 +26,40 @@ export class ActivateComponent implements OnInit {
     ACTIVO: 0,
     PASSWORD: '',
     ROL_ID_ROL: 0,
+    TEXTO: '',
   }
-  constructor(public registerService: RegisterService, private router: Router, public DatosService: datosService, public autenticarusuariosService: AutenticarusuariosService) { }
-
+  registerForm: FormGroup;
+  constructor(public registerService: RegisterService, private router: Router, public DatosService: datosService, 
+    public autenticarusuariosService: AutenticarusuariosService, public EmailService: emailService, private fb: FormBuilder) { 
+      this.buildForm();
+    }
+  buildForm(){
+    this.registerForm = this.fb.group({
+      Nombre: [''],
+      Apellido: [''],
+      Correo: [''],
+      Cedula: [''],  
+      Texto: ['', Validators.compose([Validators.required])],
+    })
+  }
   
   ngOnInit(): void {
-    this.getDatos();
+    if (this.DatosService.Value_Cedula == undefined) {
+      this.router.navigate(['admin/users']);
+    } else {
+      this.getDatos();
+    }
   }
   getDatos(){
     this.registerService.getRegisterByIdPersonaCedula(this.DatosService.Value_Cedula)
     .subscribe(res => {
-      this.datospersona = res[0] as DatosPersona;
+      console.log(res);
+      this.datospersona = res[0];
+      this.registerForm.patchValue({"Id_persona": this.datospersona.ID_PERSONA});
+      this.registerForm.patchValue({"Nombre": this.datospersona.NOMBRE});
+      this.registerForm.patchValue({"Apellido": this.datospersona.APELLIDO});  
+      this.registerForm.patchValue({"Correo": this.datospersona.CORREO});
+      this.registerForm.patchValue({"Cedula": this.datospersona.CEDULA});
     })
   }
   changeStatus(id_usuario:number, estado: any) 
@@ -64,5 +90,22 @@ export class ActivateComponent implements OnInit {
             </div>`});
       })
     }   
+  }
+  contactForm(form){
+    console.log(form.value);
+    this.EmailService.postFormulario(form.value)
+    .subscribe(() => {
+      swal.fire('Correo enviado!', 'Se le informa al usuario por medio de correo electronico!, Por favor eliminar el usuario del Sitema');
+      swal.update({
+        icon: 'success'
+      })
+    }); 
+  }
+  deleteUser(form){
+    var answer = confirm("Esta seguro de querer eliminar el Usuario del sistema");
+      if (answer) 
+      {
+        
+      }
   }
 }
