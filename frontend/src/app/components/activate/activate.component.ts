@@ -105,7 +105,80 @@ export class ActivateComponent implements OnInit {
     var answer = confirm("Esta seguro de querer eliminar el Usuario del sistema");
       if (answer) 
       {
-        
+        console.log(this.DatosService.Value_Cedula);
+        console.log(this.DatosService.Value_Rol);     
+        if (this.DatosService.Value_Rol == "Estudiante") {
+          this.registerService.getRegisterByIdEstudiante(this.DatosService.Value_Cedula)
+          .subscribe(res =>{
+            console.log(res);
+            let ESTUDIANTE = res[0].ID_ESTUDIANTE;
+            let USUARIO = res[0].ID_USUARIO;
+            let PERSONA = res[0].ID_PERSONA;
+            this.registerService.deleteRegisterByIdEstudiante(ESTUDIANTE)
+            .subscribe(res =>{              
+              console.log(res);
+              this.registerService.deleteRegisterByIdUsuario(USUARIO)
+              .subscribe(res =>{
+                console.log(res);
+                this.registerService.deleteRegisterByIdPersona(PERSONA)
+                .subscribe(res =>{
+                  console.log(res);
+                  M.toast({
+                    html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                        <h4 class="alert-heading">USUARIO ELIMINADO</h4>
+                        <hr>
+                    </div>`});
+                  window.location.reload();
+                }) 
+              }) 
+            })             
+          })
+        } else if (this.DatosService.Value_Rol == "Administrador") {
+          if (this.DatosService.Value_Id == 1) {
+            M.toast({
+              html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                  <h4 class="alert-heading">IMPOSIBLE ELIMINAR ESTE USUARIO</h4>
+                  <hr>
+              </div>`});      
+          } else {
+            this.registerService.getRegisterByIdPersonaCedula(this.DatosService.Value_Cedula)
+            .subscribe(res =>{
+              console.log(res);
+              let PERSONA = res[0].ID_PERSONA;
+              this.registerService.deleteRegisterByIdPersona(PERSONA)
+              .subscribe(res =>{
+                console.log(res);
+                M.toast({
+                  html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                      <h4 class="alert-heading">ADMINISTRADOR ELIMINADO</h4>
+                      <hr>
+                  </div>`});
+                window.location.reload();
+              }) 
+            }) 
+          }          
+        } else {
+          this.registerService.getRegisterByIdUsuario(this.DatosService.Value_Cedula)
+          .subscribe(res =>{
+            console.log(res);
+            let USUARIO = res[0].ID_USUARIO;
+            let PERSONA = res[0].ID_PERSONA;
+            this.registerService.deleteRegisterByIdUsuario(USUARIO)
+            .subscribe(res =>{
+              console.log(res);
+              this.registerService.deleteRegisterByIdPersona(PERSONA)
+              .subscribe(res =>{
+                console.log(res);
+                M.toast({
+                  html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                      <h4 class="alert-heading">USUARIO ELIMINADO</h4>
+                      <hr>
+                  </div>`});
+                window.location.reload();
+              }) 
+            }) 
+          })
+        }   
       }
   }
 }

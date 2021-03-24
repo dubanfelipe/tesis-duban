@@ -45,6 +45,7 @@ export class ActivateUsersComponent implements OnInit {
     if (event.action == "activateAction") {
       this.DatosService.Value_Cedula = event.data.CEDULA;
       this.DatosService.Value_Rol = event.data.NOMBRE_ROL;
+      this.DatosService.Value_Id = event.data.ID_PERSONA;
       this.router.navigate(['admin/activate/users']);
     }
   }

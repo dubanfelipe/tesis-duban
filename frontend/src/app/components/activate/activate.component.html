@@ -64,7 +64,8 @@
                   <div class="form-label-group">
                     <button [disabled]="!registerForm.valid" class="btn btn-block" id="btnLogin" (click)="contactForm(registerForm)"
                         type="button">Enviar</button>
-                    <button class="btn btn-block" id="btnLogin" (click)="deleteUser(registerForm)">Eliminar</button>
+                    <button [disabled]="!registerForm.valid" class="btn btn-block" id="btnLogin" (click)="deleteUser(registerForm)"
+                        type="button">Eliminar</button>
                   </div>
                 </div>
               </div>
