@@ -1,13 +1,23 @@
 var express = require('express');
 var db = require('../database');
 var bcrypt = require('bcryptjs');
-const nodemailer = require('nodemailer');
 var keygen = require("keygenerator");
 var config = require('../models/config');
 var jwt = require('jsonwebtoken');
 const login = require('../libs/login');
+const nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
 
 const loginCtrl = {};
+
+var transporter = nodemailer.createTransport(smtpTransport({
+    service: 'gmail',
+    auth: {
+        user: 'gimnasi.santotomas@gmail.com',
+        pass: 'Du123.-+85+HOLduf',
+        //Du123.-+85+HOLduf
+    }
+}));
 
 loginCtrl.logout = (req, res) => {
     res.status(200).send({ auth: false, token: null });
@@ -43,4 +53,83 @@ loginCtrl.authentication = (req, res) => {
         }
     });
 }
+
+loginCtrl.recoveryCode =  (req, res) => {
+    var correo = req.body.correo;
+    var key = keygen.password();
+    var nombre = '';
+    query = `SELECT * FROM Persona WHERE Correo = '${correo}'`;
+    query2 = `UPDATE Persona SET Recovery = '${key}' WHERE Correo='${correo}'`;
+    db.query(query, function(err, data) {
+        if (err) { res.json({ error: err }) } else {
+            if (data.length === 0) {
+                console.log('no esta registrado ese correo', data);
+                res.json({
+                    exito: true
+                })
+            } else {
+                console.log('se encontro este usuario', data[0].NOMBRE);
+                nombre = data[0].NOMBRE;
+                db.query(query2, function(err, data) {
+                    if (err) {
+                        res.json({ error: err });
+                    } else {
+                        const mailOptions = {
+                            from: 'gimnasiouniversidad.santotomas@gmail.com', 
+                            to: `${correo}`,  
+                            subject: 'CODIGO PARA RECUPERAR CONTRASEÑA PLATAFORMA DRSU',  
+                            html: `<h1>Solicitud cambio de contraseña</h1>
+                                    <p>Hola ${nombre} tu codigo para poder cambiar la contraseña es <b>${key}</b></p>
+                                    <p>Si no solicitaste este codigo , haz caso omiso a este mensaje.</p>` 
+                        };
+                        transporter.sendMail(mailOptions, function(err, info) {
+                            if (err) {
+                                console.log(err)
+                                res.json({ exito: false });
+                            } else {
+                                console.log(info);
+                                res.json({ exito: true });
+                            }
+                        });
+                    }
+                });
+            }
+        }
+    });
+}
+
+loginCtrl.recoveryPassword =  (req, res) => {
+    recovery = req.body;
+    console.log('llego esta info del recovery', recovery);
+    query = `SELECT Password,Recovery FROM Persona WHERE Correo = '${recovery.correo}'`;
+    db.query(query, function(err, data) {
+        if (err) { res.json({ error: err }) } else {
+            if (data.length === 0) {
+                console.log('no esta registrado ese correo', data);
+                res.json({
+                    exito: false,
+                    mensaje: `el correo o codigo de cambio de contraseña son incorrectos`
+                })
+            } else if (data[0].RECOVERY === recovery.key) {
+                console.log('se encontro este usuario', data);
+                var hashedPassword = bcrypt.hashSync(recovery.password, 8);
+                query2 = `UPDATE Persona SET Password='${hashedPassword}' WHERE Correo = '${recovery.correo}'`;
+                db.query(query2, function(err, data) {
+                    if (err) { res.json({ error: err }) } else {
+                        res.json({
+                            exito: true,
+                            mensaje: `Se actualizo correctamente la contraseña para el usuario ${recovery.correo}`
+                        })
+                    }
+                });
+            } else {
+                res.json({
+                    exito: false,
+                    mensaje: `El correo o codigo de cambio de contraseña son incorrectos`
+                });
+            }
+        }
+    });
+}
+
 module.exports = loginCtrl;

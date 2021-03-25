@@ -16,5 +16,11 @@ export class loginService{
     logout(){
         return this.http.get(this.API_URL+'/login/logout');
     }
+    recoveryPassword(recovery:any){    
+        return this.http.post(this.API_URL+'/login/recoveryPassword',recovery);
+      }
+      recoveryCode(correo:string){
+        return this.http.post(this.API_URL+'/login/recoveryCode',{correo});
+      }
 
 }

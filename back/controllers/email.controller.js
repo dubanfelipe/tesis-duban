@@ -10,15 +10,11 @@ const emailCtrl = {};
 var transporter = nodemailer.createTransport(smtpTransport({
     service: 'gmail',
     auth: {
-        user: 'gimnasiouniversidad.santotomas@gmail.com',
-        pass: 'gimnasio123456',
+        user: 'gimnasi.santotomas@gmail.com',
+        pass: 'Du123.-+85+HOLduf',
     }
 }));
 
-emailCtrl.getCorreoEmailById = (req, res) => { 
-    var correo = req.body.correo;
-    console.log(correo);
-};
 
 emailCtrl.postFormulario = (req, res) => {
     var correo = req.body.Correo;

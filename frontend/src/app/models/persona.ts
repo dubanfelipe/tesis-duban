@@ -5,6 +5,7 @@ export interface Personas{
     Correo : string;
     Cedula : number;    
     Activo: number;
+    Recovery: string;
     Password : string;
     Rol_id_rol: number;
 }

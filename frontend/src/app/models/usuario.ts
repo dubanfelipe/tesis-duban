@@ -7,10 +7,12 @@ export interface Usuarios{
     Rh : string;
     Eps : string;
     Ingreso : Boolean;
+    Hor: string;
     Dificultades_patologicas : string;
     Fecha_nacimiento: string;
     Nombre_Acompanante: string;
     Celular_Acompanante: string;
     Parentesco_Acompanante: string;
     Persona_id_persona: number;
+    Sede_id_sede: number;
 }

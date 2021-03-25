@@ -1,11 +1,109 @@
 <body>
+  <div class="text-center">
+    <div *ngIf="yaCargo2()" class="spinner-border text-primary" role="status"
+      style="width: 3rem; height: 3rem; position: fixed; top: 50%; right: 50%; z-index: 7000;">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+  <div class="modal fade" id="recoveryPassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content border-success">
+        <div class="modal-header">
+          <h5 id="titulomodal" class="modal-title" id="exampleModalLabel">
+            <Strong>¿Olvidaste tu contraseña?</Strong>
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="recovery" novalidate>
+
+            <p>Si el correo electronico especificado se encuentra registrado en el sistema se enviara un Email con un
+              codigo que permitira cambiar la contraseña.</p>
+            <div class="form-label-group">
+
+              <input formControlName="correoRecovery" maxlength="45" type="text" style="width: 400px"
+                class="form-control" placeholder="ejemplo@usantotomas.edu.co" id='correoRecuperar'>
+              <div style="width: 400px" *ngIf="recovery.get('correoRecovery').errors" class="alert alert-danger">
+                <div *ngIf="recovery.get('correoRecovery').errors['required']">
+                  Email requerido.
+                </div>
+                <div *ngIf="recovery.get('correoRecovery').errors['pattern']">
+                  Email incorrecto.
+                </div>
+              </div>
+            </div>
+
+            <br>
+            <button [disabled]="!recovery.valid" (click)="recoveryCode();" class=" btn btn-info">Enviar codigo</button>
+          </form>
+          <hr>
+          <h5><b> Cambiar contraseña</b> </h5>
+          <form [formGroup]="changePassword" novalidate>
+            <p>Si ya recibio un codigo para cambio de contraseña , llene los siguientes campos.</p>
+            <div class="col">
+              <div class="form-label-group">
+                <label><Strong><label id="lbl">*</label>Correo del usuario: </Strong>
+                </label>
+                <input formControlName="correo" maxlength="45" type="text" style="width: 400px" class="form-control"
+                  placeholder="ejemplo@usantotomas.edu.co" id='correoRecuperar2'>
+                <div style="width: 400px" *ngIf="changePassword.get('correo').errors" class="alert alert-danger">
+                  <div *ngIf="changePassword.get('correo').errors['required']">
+                    Email requerido.
+                  </div>
+                  <div *ngIf="changePassword.get('correo').errors['pattern']">
+                    Email incorrecto.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- -------------------------key------- -->
+            <div class="col">
+              <div class="form-label-group">
+                <label><Strong><label id="lbl">*</label>Codigo de cambio de contraseña: </Strong>
+                </label>
+                <input formControlName="key" maxlength="8" type="text" style="width: 400px" class="form-control"
+                  placeholder="xxxxxxxx" id='key'>
+                <div style="width: 400px" *ngIf="changePassword.get('key').errors" class="alert alert-danger">
+                  <div *ngIf="changePassword.get('key').errors['required']">
+                    Codigo requerido.
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <!-- --------- nueva contraseña ---------- -->
+            <div class="col">
+              <div class="form-label-group">
+                <label><Strong><label id="lbl">*</label>Nueva contraseña: </Strong>
+                </label>
+                <input formControlName="password" maxlength="45" type="password" style="width: 400px"
+                  class="form-control" placeholder="xxxxxxxx" id='password'>
+                <div style="width: 400px" *ngIf="changePassword.get('password').errors" class="alert alert-danger">
+                  <div *ngIf="changePassword.get('password').errors['required']">
+                    Nueva contraseña requerida.
+                  </div>
+                  <div *ngIf="changePassword.get('password').errors['minlength']">
+                    Contraseña insegura (minimo 6 caracteres).
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button [disabled]="!changePassword.valid" (click)="recoveryPassword(changePassword);"
+              class=" btn btn-info">Cambiar contraseña</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="container separador">
       <div class="row justify-content-center">
           <div class="card" style="width: 500px;">
             <div class="card-body">
               <h5 class="card-title">INGRESAR</h5>
-
-              <form [formGroup]="loginForm" novalidate>
+              <form *ngIf="yaCargo()" [formGroup]="loginForm" novalidate>
                   <div class="form-group">
                       <input type="text" class= "form-control" name="cedula" placeholder="Cedula" formControlName="cedula" autofocus>
                       <div *ngIf="loginForm.get('cedula').errors" class="alert alert-danger">
@@ -28,14 +126,24 @@
                           </div>
                       </div>  
                   </div>  
+                  <a href="#" (click)="$event.preventDefault();" data-toggle="modal"
+                    data-target="#recoveryPassword"><u>¿Olvidaste
+                      tu contraseña?</u> </a>
+                  <br>
+                  <br>
                   <div class="form-label-group">
-
                       <button [disabled]="!loginForm.valid" class="btn btn-block" id="btnLogin" (click)="login(loginForm)"
                         type="button">Login</button>
                       <button [routerLink]="['/register']" class="btn btn-block" id="btnRegister"
                         type="button">Registrarse</button>
                   </div>        
               </form>
+              <div class="text-center">
+                <div *ngIf="!yaCargo()" class="spinner-border text-primary" role="status"
+                  style="width: 3rem; height: 3rem;">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
             </div>
           </div>
       </div>

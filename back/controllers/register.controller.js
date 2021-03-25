@@ -50,8 +50,8 @@ registerCtrl.createRegisterPersona = async (req, res) => {
         }else{
             console.log("Hubo un error ENCRIPTANDOCLAVE" + err);
         }  
-        var query = `INSERT INTO Persona (Nombre,Apellido,Correo,Cedula,Activo,Password,Rol_id_rol)
-        VALUES ('${usuarios.Nombre}','${usuarios.Apellido}','${usuarios.Correo}','${usuarios.Cedula}','${usuarios.Activo}','${usuarios.Password}','${usuarios.Rol_id_rol}')`;
+        var query = `INSERT INTO Persona (Nombre,Apellido,Correo,Cedula,Activo,Recovery,Password,Rol_id_rol)
+        VALUES ('${usuarios.Nombre}','${usuarios.Apellido}','${usuarios.Correo}','${usuarios.Cedula}','${usuarios.Activo}','${usuarios.Recovery}','${usuarios.Password}','${usuarios.Rol_id_rol}')`;
         db.query(query, function(err, data) {
             if (err) {
                 res.json({ error: err });
