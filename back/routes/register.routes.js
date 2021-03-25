@@ -24,5 +24,7 @@ router.put('/Estudiante/:id_estudiante', registerCtrl.updateRegisterByIdEstudian
 router.get('/Facultades', registerCtrl.getFacultades);
 //Rol
 router.get('/Roles', registerCtrl.getRoles);
+//Sede
+router.get('/Sede', registerCtrl.getSede);
 
 module.exports = router;

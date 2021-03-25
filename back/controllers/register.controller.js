@@ -108,7 +108,7 @@ registerCtrl.getRegisterByIdUsuarioCelular = (req, res) => {
 }
 registerCtrl.getRegisterByIdUsuario = (req, res) => {   
     let id = req.params.Cedula;
-    db.query(`SELECT p.*, u.* FROM Persona AS p INNER JOIN Usuario AS u ON p.Id_persona = u.Persona_id_persona WHERE Cedula='${id}'`, (err, data) => {
+    db.query(`SELECT p.*, u.*, s.* FROM Persona AS p INNER JOIN Usuario AS u ON p.Id_persona = u.Persona_id_persona INNER JOIN Sede As s ON s.Id_sede = u.Sede_id_sede WHERE Cedula='${id}'`, (err, data) => {
         if (err) {
             res.json({ error: err });
             console.log("Hubo un error en la busqueda del Usuario" + err);
@@ -120,8 +120,8 @@ registerCtrl.getRegisterByIdUsuario = (req, res) => {
 registerCtrl.createRegisterUsuario = async (req, res) => {
     console.log("usuarios que llego :", req.body);
     usuarios = req.body;    
-    var query = `INSERT INTO Usuario (Celular,Edad,Estatura,Peso,Rh,Eps,Dificultades_patologicas,Fecha_nacimiento,Nombre_Acompanante,Celular_Acompanante,Parentesco_Acompanante,Persona_id_persona)
-    VALUES ('${usuarios.Celular}','${usuarios.Edad}','${usuarios.Estatura}','${usuarios.Peso}','${usuarios.Rh}','${usuarios.Eps}','${usuarios.Dificultades_patologicas}','${usuarios.Fecha_nacimiento}','${usuarios.Nombre_Acompanante}','${usuarios.Celular_Acompanante}','${usuarios.Parentesco_Acompanante}','${usuarios.Persona_id_persona}')`;
+    var query = `INSERT INTO Usuario (Celular,Edad,Estatura,Peso,Rh,Eps,Ingreso,Hora,Dificultades_patologicas,Fecha_nacimiento,Nombre_Acompanante,Celular_Acompanante,Parentesco_Acompanante,Persona_id_persona,Sede_id_sede)
+    VALUES ('${usuarios.Celular}','${usuarios.Edad}','${usuarios.Estatura}','${usuarios.Peso}','${usuarios.Rh}','${usuarios.Eps}','${usuarios.Ingreso}','${usuarios.Hora}','${usuarios.Dificultades_patologicas}','${usuarios.Fecha_nacimiento}','${usuarios.Nombre_Acompanante}','${usuarios.Celular_Acompanante}','${usuarios.Parentesco_Acompanante}','${usuarios.Persona_id_persona}','${usuarios.Sede_id_sede}')`;
     db.query(query, function(err, data) {
     if (err) {
             res.json({ error: err });
@@ -238,6 +238,18 @@ registerCtrl.getRoles = (req, res) => {
         if (err) {
             res.json({ error: err });
             console.log("Hubo un error en la busqueda de Rol" + err);
+        } else {
+            res.json(data);
+        }
+    });
+}
+
+//Sede
+registerCtrl.getSede = (req, res) => {
+    db.query(`SELECT * FROM Sede`, (err, data) => {
+        if (err) {
+            res.json({ error: err });
+            console.log("Hubo un error en la busqueda de Sedes" + err);
         } else {
             res.json(data);
         }

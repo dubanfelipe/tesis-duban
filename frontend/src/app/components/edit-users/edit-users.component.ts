@@ -85,6 +85,7 @@ export class EditUsersComponent implements OnInit {
         this.registerService.getRegisterByIdEstudiante(this.DatosService.Value_Cedula)
         .subscribe(
           res =>{
+            console.log(res[0]);
             this.estudiantes = res[0];
             this.registerForm.patchValue({"Id_persona": this.estudiantes.ID_PERSONA});
             this.registerForm.patchValue({"Nombre": this.estudiantes.NOMBRE});

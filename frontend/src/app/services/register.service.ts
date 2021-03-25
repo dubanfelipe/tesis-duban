@@ -6,6 +6,7 @@ import { facultades } from '../models/Facultad';
 import { roles } from '../models/rol';
 import { Estudiante } from '../models/estudiante';
 import { PERSONA } from '../models/PERSONAS';
+import { sedes} from '../models/sede';
 
 @Injectable({
     providedIn: 'root'
@@ -14,6 +15,7 @@ export class RegisterService{
 
     personas: PERSONA[];
     Facultad: facultades[];
+    sede: sedes[];
     Rol: roles[];
 
     API_URL = 'http://localhost:3000/api';
@@ -75,5 +77,9 @@ export class RegisterService{
     getRoles(){
         return this.http.get(this.API_URL+"/register/Roles");
     } 
+    // Sede
+    getSede(){
+        return this.http.get(this.API_URL+"/register/Sede");
+    }
 
 }

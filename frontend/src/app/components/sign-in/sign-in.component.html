@@ -1,0 +1,42 @@
+<body>
+    <div class="container separador">
+        <div class="row justify-content-center">
+            <div class="card" style="width: 500px;">
+              <div class="card-body">
+                <h5 class="card-title">INGRESAR</h5>  
+                <form [formGroup]="loginForm" novalidate>
+                    <div class="form-group">
+                        <input type="text" class= "form-control" name="cedula" placeholder="Cedula" formControlName="cedula" autofocus>
+                        <div *ngIf="loginForm.get('cedula').errors" class="alert alert-danger">
+                            <div *ngIf="loginForm.get('cedula').errors['required']">
+                              Cedula requerida
+                            </div>
+                            <div *ngIf="loginForm.get('cedula').errors['pattern']">
+                              Cedula requerida
+                            </div>
+                        </div>  
+                    </div> 
+                    <div class="form-group">
+                          <select id="select" class="form-control" name="Sede_id_sede" formControlName="Sede_id_sede"> 
+                            <option value="" disabled>Seleccione la Sede</option>
+                            <option *ngFor="let sedes of registerService.sede | slice:1" value={{sedes.ID_SEDE}}>
+                              {{sedes.NOMBRE_SEDE}}
+                            </option>
+                          </select>
+                          <div *ngIf="loginForm.get('Sede_id_sede').errors" class="alert alert-danger">
+                              <div *ngIf="loginForm.get('Sede_id_sede').errors['required']">
+                                Sede requerida
+                              </div>
+                            </div>
+                      </div>
+                    <div class="form-label-group">  
+                        <button [disabled]="!loginForm.valid" class="btn btn-block" id="btnLogin" (click)="sigin(loginForm)"
+                          type="button">Ingresar</button>                        
+                    </div>        
+                </form>
+              </div>
+            </div>
+        </div>
+    </div>
+  </body>
+  <ng2-smart-table [settings]="settings" [source]="registerService.personas"></ng2-smart-table>

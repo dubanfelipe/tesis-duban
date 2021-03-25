@@ -7,5 +7,6 @@ module.exports = [
     'login',
     'autenticarusuarios',
     'bodyParser',
-    'email'
+    'email',
+    'signin'
 ]

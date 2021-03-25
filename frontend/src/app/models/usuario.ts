@@ -6,6 +6,7 @@ export interface Usuarios{
     Peso : number;
     Rh : string;
     Eps : string;
+    Ingreso : Boolean;
     Dificultades_patologicas : string;
     Fecha_nacimiento: string;
     Nombre_Acompanante: string;

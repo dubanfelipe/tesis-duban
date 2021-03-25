@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
       <div class="card" style="width: 700px">
         <div class="card-body">
-          <h2 class="row justify-content-center">Activar usuarios</h2>
+          <h2 class="row justify-content-center">Activar o inactivar usuarios</h2>
             <hr>
             <p>"Active el Usuario, para que pueda hacer uso del sistema"</p>
             <hr>
@@ -39,8 +39,9 @@
                     <input  type="text" class="form-control" name="Cedula" formControlName="Cedula" disabled>
                   </div>
                 </div>
+                <label for="ejemplo">Active o inactive</label>
                 <div class="col">
-                  <label class="switch">
+                  <label class="switch">                    
                     <input #check type="checkbox" [checked]='datospersona.ACTIVO'
                       (change)='this.changeStatus(datospersona.ID_PERSONA, check.checked)'>
                     <span class="slider round">&nbsp;SI    NO</span>
@@ -51,7 +52,7 @@
               <div class="row">
                 <div class="col">
                   <div class="form-label-group">
-                    <label for="ejemplo">Campo para informarle al usuario por que no puede ser Activado en la plataforma</label>
+                    <label for="ejemplo">*Campo para informarle al usuario por que no puede ser Activado en la plataforma*</label>
                     <label for="ejemplo"></label>
                     <input  type="text" class="form-control" name="Texto" formControlName="Texto" >
                     <div *ngIf="registerForm.get('Texto').errors">
