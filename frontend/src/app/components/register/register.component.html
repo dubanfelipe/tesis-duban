@@ -76,7 +76,7 @@
                   Contraseña requerida
                 </div>
                 <div *ngIf="registerForm.get('Password').errors['minlength']">
-                  Contraseña incorrecta minimo 6 caracteres
+                  Contraseña insegura minimo 6 caracteres
                 </div>
             </div>              
         </div>  
@@ -88,7 +88,7 @@
                   Contraseña requerida
                 </div>
                 <div *ngIf="registerForm.get('PasswordConfirm').errors['minlength']">
-                  Contraseña incorrecta minimo 6 caracteres
+                  Contraseña insegura minimo 6 caracteres
                 </div>
             </div>    
             <div *ngIf="verifyPasswordConfirm() && !registerForm.get('PasswordConfirm').errors" class="alert alert-danger">

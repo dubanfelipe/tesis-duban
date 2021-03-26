@@ -1,0 +1,74 @@
+<body>
+    <form [formGroup]="registerForm" novalidate>
+        <div class="form-label-group">
+          <label for="ejemplo">Nombre*</label>
+          <input  type="text" class="form-control" name="Nombre" placeholder="Ingrese su Nombre" autofocus required formControlName="Nombre">
+          <div *ngIf="registerForm.get('Nombre').errors" class="alert alert-danger">
+              <div *ngIf="registerForm.get('Nombre').errors['required']">
+                Nombre requerido
+              </div>
+              <div *ngIf="registerForm.get('Nombre').errors['pattern']">
+                Nombre incorrecto
+              </div>
+          </div>
+        </div> 
+        <div class="form-label-group">
+          <label for="ejemplo">Apellido*</label>
+          <input  type="text" class="form-control" name="Apellido" placeholder="Ingrese su Apellido" required formControlName="Apellido">
+          <div *ngIf="registerForm.get('Apellido').errors" class="alert alert-danger">
+              <div *ngIf="registerForm.get('Apellido').errors['required']">
+                Apellido requerido
+              </div>
+              <div *ngIf="registerForm.get('Apellido').errors['pattern']">
+                Apellido incorrecto
+              </div>
+          </div>
+        </div> 
+        <div class="form-label-group">
+          <label for="ejemplo">Correo*</label>
+          <input type="email" class="form-control" name="Correo" placeholder="Ingrese su Correo" required formControlName="Correo">
+          <div *ngIf="registerForm.get('Correo').errors" class="alert alert-danger">
+            <div *ngIf="registerForm.get('Correo').errors['required']">
+              Email requerido
+            </div>
+            <div *ngIf="registerForm.get('Correo').errors['pattern']">
+              Email incorrecto
+            </div>
+          </div>
+        </div>
+        <div class="form-label-group">
+            <label for="ejemplo">Cedula*</label>
+            <input  type="text" class="form-control" name="Cedula" placeholder="Ingrese su Cedula" required formControlName="Cedula">
+            <div *ngIf="registerForm.get('Cedula').errors" class="alert alert-danger">
+                <div *ngIf="registerForm.get('Cedula').errors['required']">
+                    Cedula requerida
+                </div>
+                <div *ngIf="registerForm.get('Cedula').errors['pattern']">
+                    Cedula requerida
+                </div>
+                <div *ngIf="registerForm.get('Cedula').errors['min'] && !registerForm.get('Cedula').errors['pattern']">
+                    Cedula incorrecto
+                  </div>
+                <div *ngIf="registerForm.get('Cedula').errors['max'] && !registerForm.get('Cedula').errors['pattern']">
+                    Cedula incorrecto
+                </div>
+            </div>
+        </div>       
+        <div class="form-label-group">
+            <label for="ejemplo">Contraseña*</label>
+            <input type="Password" class= "form-control" name="Password" placeholder="Ingrese su Contraseña" formControlName= "Password">
+            <div *ngIf="registerForm.get('Password').errors" class="alert alert-danger">
+                <div *ngIf="registerForm.get('Password').errors['required']">
+                  Contraseña requerida
+                </div>
+                <div *ngIf="registerForm.get('Password').errors['minlength']">
+                  Contraseña insegura minimo 6 caracteres
+                </div>
+            </div>              
+        </div> 
+    </form>
+    <div class="form-label-group">
+        <button [disabled]="!registerForm.valid" class="btn btn-block" id="btnLogin" (click)="addRegister(registerForm)"
+          type="button">Registrar</button>
+  </div>
+</body>

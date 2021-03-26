@@ -26,16 +26,17 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.fb.group({
       cedula: ['', Validators.compose([Validators.required, Validators.pattern(/^[0-9]/)])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
-    });
-    this.recovery = this.fb.group({
-      correoRecovery: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-z]*.[a-z]*@(usantotomas)[.](edu)[.](co)$/)])]
-    });
+    })    
     this.changePassword = this.fb.group({
       correo: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-z]*.[a-z]*@(usantotomas)[.](edu)[.](co)$/)])],
       key: ['', Validators.compose([Validators.required])],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
-    });
-  }
+      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+      PasswordConfirm: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+    })
+    this.recovery = this.fb.group({
+      correoRecovery: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-z]*.[a-z]*@(usantotomas)[.](edu)[.](co)$/)])]
+    })
+  };
 
   ngOnInit(): void {
     this.LoginService.logout()

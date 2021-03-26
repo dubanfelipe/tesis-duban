@@ -90,7 +90,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div>            
             <button [disabled]="!changePassword.valid" (click)="recoveryPassword(changePassword);"
               class=" btn btn-info">Cambiar contraseña</button>
           </form>
@@ -122,7 +122,7 @@
                             Contraseña requerido
                           </div>
                           <div *ngIf="loginForm.get('password').errors['minlength']">
-                            Contraseña incorrecta minimo 6 caracteres
+                            Contraseña insegura (minimo 6 caracteres).
                           </div>
                       </div>  
                   </div>  

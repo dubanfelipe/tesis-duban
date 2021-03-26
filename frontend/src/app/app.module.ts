@@ -24,6 +24,7 @@ import { EditUsersComponent } from './components/edit-users/edit-users.component
 import { ActivateUsersComponent } from './components/activate-users/activate-users.component';
 import { ActivateComponent } from './components/activate/activate.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
+import { RegisterAdminComponent } from './components/register-admin/register-admin.component';
 
 
 
@@ -43,6 +44,7 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
     ActivateUsersComponent,
     ActivateComponent,
     SignInComponent,
+    RegisterAdminComponent,
   ],
   imports: [
     HttpClientModule,
