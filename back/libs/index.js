@@ -8,5 +8,6 @@ module.exports = [
     'autenticarusuarios',
     'bodyParser',
     'email',
-    'signin'
+    'signin',
+    'rutina'
 ]
