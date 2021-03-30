@@ -8,7 +8,7 @@ const RutinaCtrl = {};
 RutinaCtrl.createEjercicio = (req, res) => {
     ejercicio = req.body;    
     var query = `INSERT INTO Ejercicio (Nombre,Serie,Repeticion,Tiempo_descanso)
-    VALUES ('${ejercicio.Nombre}','${ejercicio.Serie}','${ejercicio.Repeticion}','${ejercicio.Tiempo_descanso}')`;
+    VALUES ('${ejercicio.NOMBRE}','${ejercicio.SERIE}','${ejercicio.REPETICION}','${ejercicio.TIEMPO_DESCANSO}')`;
     db.query(query, function(err, data) {
     if (err) {
             res.json({ error: err });
@@ -32,7 +32,7 @@ RutinaCtrl.deleteEjercicio = (req, res) => {
 RutinaCtrl.updateEjercicio = (req, res) => {
     const Id_update = req.params.Id_ejercicio;
     const update = req.body;
-    var query = `UPDATE Ejercicio SET Nombre = '${update.Nombre}', Serie ='${update.Serie}', Repeticion ='${update.Repeticion}', Tiempo_descanso ='${update.Tiempo_descanso}'  WHERE Id_ejercicio = '${Id_update}'`;
+    var query = `UPDATE Ejercicio SET Nombre = '${update.NOMBRE}', Serie ='${update.SERIE}', Repeticion ='${update.REPETICION}', Tiempo_descanso ='${update.TIEMPO_DESCANSO}'  WHERE Id_ejercicio = '${Id_update}'`;
     try {
         db.query(query, (err, data) => {
             if (err) {
@@ -44,7 +44,7 @@ RutinaCtrl.updateEjercicio = (req, res) => {
         });
     } catch (E) {
         console.log('error', E);
-        res.json({message: 'error en el servidor actualizando el ejercicio' })
+        res.json({message: 'error en el servidor actualizando el ejercicio' })  
     }
 }
 RutinaCtrl.getEjercicioById = (req, res) => {

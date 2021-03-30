@@ -18,9 +18,8 @@ export class loginService{
     }
     recoveryPassword(recovery:any){    
         return this.http.post(this.API_URL+'/login/recoveryPassword',recovery);
-      }
-      recoveryCode(correo:string){
+    }
+    recoveryCode(correo:string){
         return this.http.post(this.API_URL+'/login/recoveryCode',{correo});
-      }
-
+    }
 }

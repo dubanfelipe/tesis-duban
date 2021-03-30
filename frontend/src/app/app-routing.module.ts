@@ -13,6 +13,7 @@ import { ActivateUsersComponent } from './components/activate-users/activate-use
 import { ActivateComponent } from './components/activate/activate.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { RegisterAdminComponent } from './components/register-admin/register-admin.component';
+import { RutinasComponent } from './components/rutinas/rutinas.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'admin/activate/users', component: ActivateComponent, canActivate: [GuardsGuard]},
   { path: 'admin/sign_in', component: SignInComponent, canActivate: [GuardsGuard]},
   { path: 'admin/register', component: RegisterAdminComponent, canActivate: [GuardsGuard]},
+  { path: 'admin/rutinas', component: RutinasComponent, canActivate: [GuardsGuard]},
   { path: 'usuarios', component: UsuariosComponent, canActivate: [GuardsGuard] },
   { path: 'usuarios/profile', component: ProfileComponent, canActivate: [GuardsGuard]},
   { path: '**', component: HomeComponent }

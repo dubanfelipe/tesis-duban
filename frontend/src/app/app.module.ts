@@ -25,6 +25,7 @@ import { ActivateUsersComponent } from './components/activate-users/activate-use
 import { ActivateComponent } from './components/activate/activate.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { RegisterAdminComponent } from './components/register-admin/register-admin.component';
+import { RutinasComponent } from './components/rutinas/rutinas.component';
 
 
 
@@ -45,6 +46,7 @@ import { RegisterAdminComponent } from './components/register-admin/register-adm
     ActivateComponent,
     SignInComponent,
     RegisterAdminComponent,
+    RutinasComponent,
   ],
   imports: [
     HttpClientModule,
