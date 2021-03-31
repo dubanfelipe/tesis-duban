@@ -77,7 +77,7 @@ loginCtrl.recoveryCode =  (req, res) => {
                         const mailOptions = {
                             from: 'gimnasiouniversidad.santotomas@gmail.com', 
                             to: `${correo}`,  
-                            subject: 'CODIGO PARA RECUPERAR CONTRASEÑA PLATAFORMA DRSU',  
+                            subject: 'CODIGO PARA RECUPERAR CONTRASEÑA PLATAFORMA GIMNASIO',  
                             html: `<h1>Solicitud cambio de contraseña</h1>
                                     <p>Hola ${nombre} tu codigo para poder cambiar la contraseña es <b>${key}</b></p>
                                     <p>Si no solicitaste este codigo , haz caso omiso a este mensaje.</p>` 

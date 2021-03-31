@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { EJERCICIO } from '../models/EJERCICIOS';
+import { musculos } from '../models/musculo';
 
 @Injectable({
     providedIn: 'root'
 })
 export class rutinaService{
-
     ejercicios: EJERCICIO[];
+    musculo: musculos[];
     API_URL = 'http://localhost:3000/api/rutina';
     constructor(private http: HttpClient) {}
     getEjercicio(){
@@ -21,5 +22,8 @@ export class rutinaService{
     }
     deleteEjercicio(id:number){
         return this.http.delete(this.API_URL+`/Ejercicio/${id}`);
+    }
+    getMusculos(){
+        return this.http.get(this.API_URL+"/Musculos");
     }
 }

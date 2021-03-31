@@ -16,4 +16,7 @@ router.put('/Rutina/:Id_rutina', RutinaCtrl.updateRutina);
 router.get('/Rutina/:Id_rutina', RutinaCtrl.getRutinaById);
 router.get('/Rutina', RutinaCtrl.getRutina);
 
+//Musculos
+router.get('/Musculos', RutinaCtrl.getMusculos);
+
 module.exports = router;
