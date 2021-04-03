@@ -44,11 +44,11 @@ export class RutinasComponent implements OnInit {
       Id:8,
       Ejercicios:[]
     },
-    MúsculosAntebrazo:{
+    Antebrazo:{
       Id:9,
       Ejercicios:[]
     },
-    MúsculosCuello:{
+    Cuello:{
       Id:10,
       Ejercicios:[]
     },
@@ -70,8 +70,13 @@ export class RutinasComponent implements OnInit {
     this.RutinaService.getEjercicio()
     .subscribe(res =>{   
       listaEjercicio = res;
-      Object.keys(this.Musculos).forEach(musculo => this.Musculos[musculo].Ejercicios = listaEjercicio.filter(Ejercicios => Ejercicios.MUSCULOS_ID_MUSCULOS === this.Musculos[musculo].Id));
-      console.log(this.Musculos);      
+      Object.keys(this.Musculos).forEach(musculo => this.Musculos[musculo].Ejercicios = listaEjercicio.filter(Ejercicios => Ejercicios.MUSCULOS_ID_MUSCULOS === this.Musculos[musculo].Id));     
+      console.log(listaEjercicio);
     })
   }
+  ejercicioSeleccionado(ejercicio,checkbox,estado){
+    console.log(ejercicio);
+    console.log(checkbox);
+    console.log(estado);
+  }        
 }
