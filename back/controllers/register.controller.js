@@ -231,6 +231,19 @@ registerCtrl.getFacultades = (req, res) => {
         }
     });
 }
+registerCtrl.createFacultades = (req, res) => {
+    id = req.body.Id_facultad;
+    facultad = req.body.Nombre_facultad;
+    var query = `INSERT INTO Facultad (Id_facultad,Nombre_facultad)
+    VALUES ('${id}','${facultad}')`;
+    db.query(query, function(err, data) {
+    if (err) {
+            res.json({ error: err });
+        } else {
+            res.json(data);                
+        }
+    });
+}
 
 //Roles 
 registerCtrl.getRoles = (req, res) => {

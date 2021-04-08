@@ -22,6 +22,7 @@ router.delete('/Estudiante/:id_estudiante', registerCtrl.deleteRegisterByIdEstud
 router.put('/Estudiante/:id_estudiante', registerCtrl.updateRegisterByIdEstudiante);
 //Facultades
 router.get('/Facultades', registerCtrl.getFacultades);
+router.post('/Facultades/createRegisterFacultades', registerCtrl.createFacultades);
 //Rol
 router.get('/Roles', registerCtrl.getRoles);
 //Sede

@@ -72,15 +72,27 @@ RutinaCtrl.getEjercicio = (req, res) => {
 
 //Rutina
 RutinaCtrl.createRutina = (req, res) => {
-    rutina = req.body;    
-    var query = `INSERT INTO Rutina (Nombre,Dia_rutina,Persona_id_persona)
-    VALUES ('${rutina.Nombre}','${rutina.Dia_rutina}','${rutina.Persona_id_persona}')`;
+    rutina = req.body;
+    let listaRutina = [];    
+    var query = `INSERT INTO Rutina (Nombre,Dia_rutina)
+    VALUES ('${rutina.Nombre}','${rutina.Dia_rutina}')`;
     db.query(query, function(err, data) {
     if (err) {
             res.json({ error: err });
             console.log("Hubo un error INSERTANDO RUTINAS" + err);
         } else {
-            res.json(data);                
+            db.query(`SELECT * FROM Rutina WHERE Nombre='${rutina.Nombre}'`, (err, data) => {
+                if (err) {
+                    res.json({ error: err });
+                    console.log("Hubo un error en la busqueda de Rutina" + err);
+                } else {
+                    listaRutinas=data;
+                    for (let index = 0; index < listaRutinas.length; index++) {
+                        listaRutina[0] = listaRutinas[index];                        
+                    }
+                    res.json(listaRutina[0].ID_RUTINA);
+                }
+            });               
         }
     });
 }
@@ -146,5 +158,56 @@ RutinaCtrl.getMusculos = (req, res) => {
         }
     });
 }
+RutinaCtrl.createMusculos = (req, res) => {
+    id = req.body.Id_musculos;
+    musculos = req.body.Nombre_musculos;
+    var query = `INSERT INTO Musculos (Id_musculos,Nombre_musculos)
+    VALUES ('${id}','${musculos}')`;
+    db.query(query, function(err, data) {
+    if (err) {
+            res.json({ error: err });
+        } else {
+            res.json(data);                
+        }
+    });
+}
 
+//Ejercicio has Rutina
+RutinaCtrl.createEjercicioHasRutina = (req, res) => {
+    id_ejercicio = req.body.Id_ejercicio;
+    id_rutina = req.body.Id_rutina;
+    var query = `INSERT INTO Ejercicio_has_rutina (Ejercicio_id_ejercicio, Rutina_id_rutina)
+    VALUES ('${id_ejercicio}','${id_rutina}')`;
+    db.query(query, function(err, data) {
+    if (err) {
+            res.json({ error: err });
+            console.log("Hubo un error INSERTANDO HAS" + err);
+        } else {
+            res.json(data);                
+        }
+    });
+}
+RutinaCtrl.deleteEjercicioHasRutina = (req, res) => { 
+    id_ejercicio = req.params.Id_ejercicio;
+    id_rutina = req.params.Id_rutina;
+    db.query(`DELETE FROM Ejercicio_has_rutina WHERE (Ejercicio_id_ejercicio= '${id_ejercicio}') AND (Rutina_id_rutina= '${id_rutina}')`, (err, data) => {
+        if (err) {
+            res.json({ error: err });
+            console.log("Hubo un error ELIMINANDO Rutina" + err);
+        } else {
+            res.json({message: 'Conexion eliminada'});
+        }
+    });
+}
+RutinaCtrl.getEjercicioHasRutina = (req, res) => { 
+    let id_rutina = req.params.Id_rutina;
+    db.query(`SELECT e.*, h.*, m.* FROM Ejercicio_has_rutina AS h INNER JOIN Ejercicio AS e ON h.Ejercicio_id_ejercicio = e.Id_ejercicio INNER JOIN Musculos AS m ON e.Musculos_id_musculos = m.Id_musculos WHERE Rutina_id_rutina= '${id_rutina}'`, (err, data) => {
+        if (err) {
+            res.json({ error: err });
+            console.log("Hubo un error en la busqueda de Rutina" + err);
+        } else {
+            res.json(data);
+        }
+    });
+}
 module.exports = RutinaCtrl;

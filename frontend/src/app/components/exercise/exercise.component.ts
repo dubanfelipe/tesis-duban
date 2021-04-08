@@ -75,6 +75,7 @@ export class ExerciseComponent implements OnInit {
     },    
   };
   onCreateConfirm(event) {
+    console.log(event.newData);
     if (event.newData.SERIE >= 0 && event.newData.SERIE <= 99) {
       if (event.newData.REPETICION >= 0 && event.newData.REPETICION <= 99){
         if (event.newData.TIEMPO_DESCANSO >= 0 && event.newData.TIEMPO_DESCANSO <= 300){
@@ -138,13 +139,13 @@ export class ExerciseComponent implements OnInit {
   }
   getEjercicios(){
     this.RutinaService.getEjercicio()
-    .subscribe(res =>{
+    .subscribe(res =>{      
       this.RutinaService.ejercicios = res as EJERCICIO[];
     })
   }
   getMusculos(){    
     this.RutinaService.getMusculos()
-    .subscribe(res =>{      
+    .subscribe(res =>{ 
       listaMusculos = res;
       for (let turnoMusculo = 0; turnoMusculo < listaMusculos.length; turnoMusculo++) {
         this.objeto = new Object();

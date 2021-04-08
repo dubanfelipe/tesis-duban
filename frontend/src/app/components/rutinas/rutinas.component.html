@@ -1,3 +1,73 @@
+<body>
+    <div *ngIf= "rutinaCheck">
+        <form [formGroup]="rutinaForm" novalidate>
+            <div class="form-label-group">
+              <label for="ejemplo"><h4>Nombre de la rutina*</h4></label>
+              <input  type="text" class="form-control" name="Nombre" placeholder="Ingrese su Nombre" autofocus required formControlName="Nombre">
+              <div *ngIf="rutinaForm.get('Nombre').errors" class="alert alert-danger">
+                  <div *ngIf="rutinaForm.get('Nombre').errors['required']">
+                    Nombre requerido
+                  </div>
+                  <div *ngIf="rutinaForm.get('Nombre').errors['pattern']">
+                    Nombre incorrecto
+                  </div>
+              </div>
+            </div> 
+        </form>
+        <div class="form-label-group">
+            <button [disabled]="!rutinaForm.valid" class="btn btn-block" id="btnLogin" (click)="saveRutina(rutinaForm)" type="button">Guardar</button>
+        </div>
+    </div>  
+    <div *ngIf= "!rutinaCheck">
+        <form [formGroup]="rutinaForm" novalidate>
+            <div class="form-label-group">
+              <label for="ejemplo"><h4>Nombre de la rutina*</h4></label>
+              <input  type="text" class="form-control" name="Nombre" formControlName="Nombre" disabled>
+            </div> 
+        </form>
+    </div>  
+    <br>
+    <div>
+        <div *ngIf= "!rutinaCheck">
+            <h4>LUNES</h4>
+            <p>Porfavor seleccione los ejercicios que desea asignar en el dia lunes de esta rutina; si desea que usuaruio descanse este dia dar la opcion siguiente</p>
+            <table  *ngIf="yaCargo" class="default">
+                <tr>
+                    <th>Nombre ejercicio</th>
+                    <th>Series</th>
+                    <th>Repeticiones</th>
+                    <th>Descanso</th>
+                    <th>Musculo</th>
+                </tr>
+                <td><p *ngFor="let item of ejercicio">{{item.NOMBRE}}</p></td>
+                <td><p *ngFor="let item of ejercicio">{{item.SERIE}}</p></td>
+                <td><p *ngFor="let item of ejercicio">{{item.REPETICION}}</p></td>
+                <td><p *ngFor="let item of ejercicio">{{item.TIEMPO_DESCANSO}}</p></td>
+                <td><p *ngFor="let item of ejercicio">{{item.NOMBRE_MUSCULOS}}</p></td>
+            </table>            
+        </div>
+        <div *ngIf= "!rutinaCheck">
+            <h4>MARTES</h4>
+            <p>Porfavor seleccione los ejercicios que desea asignar en el dia lunes de esta rutina; si desea que usuaruio descanse este dia dar la opcion siguiente</p>
+            <table  *ngIf="yaCargo" class="default">
+                <tr>
+                    <th>Nombre ejercicio</th>
+                    <th>Series</th>
+                    <th>Repeticiones</th>
+                    <th>Descanso</th>
+                    <th>Musculo</th>
+                </tr>
+                <td><p *ngFor="let item of ejercicio">{{item.NOMBRE}}</p></td>
+                <td><p *ngFor="let item of ejercicio">{{item.SERIE}}</p></td>
+                <td><p *ngFor="let item of ejercicio">{{item.REPETICION}}</p></td>
+                <td><p *ngFor="let item of ejercicio">{{item.TIEMPO_DESCANSO}}</p></td>
+                <td><p *ngFor="let item of ejercicio">{{item.NOMBRE_MUSCULOS}}</p></td>
+            </table>            
+        </div>
+        <tr><button class="btn btn-block" id="btnLogin" (click)="saveRutina(rutinaForm)">SIGUIENTE</button></tr>
+    </div>
+    
+</body>
 <table class="default">
     <tr>
         <th>ABDOMINAL</th> 
@@ -7,12 +77,12 @@
         <th>GEMELOS</th>
         <th>GLUTEOS</th>
     </tr>  
-    <td><p *ngFor="let item of Musculos.Abdominales.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [checked]="test" (change)="ejercicioSeleccionado(item.MUSCULOS_ID_MUSCULOS,indice,check.checked)"></p></td> 
-    <td><p *ngFor="let item of Musculos.Biceps.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [checked]="test" (change)="ejercicioSeleccionado(item.MUSCULOS_ID_MUSCULOS,indice,check.checked)"></p></td>  
-    <td><p *ngFor="let item of Musculos.Cuadriceps.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [checked]="test" (change)="ejercicioSeleccionado(item.MUSCULOS_ID_MUSCULOS,indice,check.checked)"></p></td> 
-    <td><p *ngFor="let item of Musculos.Dorsal.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [checked]="test" (change)="ejercicioSeleccionado(item.MUSCULOS_ID_MUSCULOS,indice,check.checked)"></p></td> 
-    <td><p *ngFor="let item of Musculos.Gemelos.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [checked]="test" (change)="ejercicioSeleccionado(item.MUSCULOS_ID_MUSCULOS,indice,check.checked)"></p></td> 
-    <td><p *ngFor="let item of Musculos.Gluteos.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [checked]="test" (change)="ejercicioSeleccionado(item.MUSCULOS_ID_MUSCULOS,indice,check.checked)"></p></td> 
+    <td><p *ngFor="let item of Musculos.Abdominales.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [checked]="test" (change)="ejercicioSeleccionado(item.ID_EJERCICIO,indice,check.checked)"></p></td> 
+    <td><p *ngFor="let item of Musculos.Biceps.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [checked]="test" (change)="ejercicioSeleccionado(item.ID_EJERCICIO,indice,check.checked)"></p></td>  
+    <td><p *ngFor="let item of Musculos.Cuadriceps.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [checked]="test" (change)="ejercicioSeleccionado(item.ID_EJERCICIO,indice,check.checked)"></p></td> 
+    <td><p *ngFor="let item of Musculos.Dorsal.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [checked]="test" (change)="ejercicioSeleccionado(item.ID_EJERCICIO,indice,check.checked)"></p></td> 
+    <td><p *ngFor="let item of Musculos.Gemelos.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [checked]="test" (change)="ejercicioSeleccionado(item.ID_EJERCICIO,indice,check.checked)"></p></td> 
+    <td><p *ngFor="let item of Musculos.Gluteos.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [checked]="test" (change)="ejercicioSeleccionado(item.ID_EJERCICIO,indice,check.checked)"></p></td> 
     <tr>
         <th>HOMBROS</th> 
         <th>ISQUIOS</th>
@@ -21,10 +91,10 @@
         <th>PECTORAL</th>
         <th>TRICEPS</th>
     </tr>  
-    <td><p *ngFor="let item of Musculos.Hombros.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [checked]="test" (change)="ejercicioSeleccionado(item.MUSCULOS_ID_MUSCULOS,indice,check.checked)"></p></td> 
-    <td><p *ngFor="let item of Musculos.Isquios.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [checked]="test" (change)="ejercicioSeleccionado(item.MUSCULOS_ID_MUSCULOS,indice,check.checked)"></p></td> 
-    <td><p *ngFor="let item of Musculos.Antebrazo.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [checked]="test" (change)="ejercicioSeleccionado(item.MUSCULOS_ID_MUSCULOS,indice,check.checked)"></p></td> 
-    <td><p *ngFor="let item of Musculos.Cuello.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [checked]="test" (change)="ejercicioSeleccionado(item.MUSCULOS_ID_MUSCULOS,indice,check.checked)"></p></td> 
-    <td><p *ngFor="let item of Musculos.Pectoral.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [checked]="test" (change)="ejercicioSeleccionado(item.MUSCULOS_ID_MUSCULOS,indice,check.checked)"></p></td> 
-    <td><p *ngFor="let item of Musculos.Triceps.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [checked]="test" (change)="ejercicioSeleccionado(item.MUSCULOS_ID_MUSCULOS,indice,check.checked)"></p></td> 
+    <td><p *ngFor="let item of Musculos.Hombros.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [checked]="test" (change)="ejercicioSeleccionado(item.ID_EJERCICIO,indice,check.checked)"></p></td> 
+    <td><p *ngFor="let item of Musculos.Isquios.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [checked]="test" (change)="ejercicioSeleccionado(item.ID_EJERCICIO,indice,check.checked)"></p></td> 
+    <td><p *ngFor="let item of Musculos.Antebrazo.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [checked]="test" (change)="ejercicioSeleccionado(item.ID_EJERCICIO,indice,check.checked)"></p></td> 
+    <td><p *ngFor="let item of Musculos.Cuello.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [checked]="test" (change)="ejercicioSeleccionado(item.ID_EJERCICIO,indice,check.checked)"></p></td> 
+    <td><p *ngFor="let item of Musculos.Pectoral.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [checked]="test" (change)="ejercicioSeleccionado(item.ID_EJERCICIO,indice,check.checked)"></p></td> 
+    <td><p *ngFor="let item of Musculos.Triceps.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [checked]="test" (change)="ejercicioSeleccionado(item.ID_EJERCICIO,indice,check.checked)"></p></td> 
 </table>

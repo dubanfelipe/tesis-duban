@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { EJERCICIO } from '../models/EJERCICIOS';
 import { musculos } from '../models/musculo';
+import { rutinas } from '../models/rutina';
+import { has } from '../models/ejerciciohasrutina';
 
 @Injectable({
     providedIn: 'root'
@@ -23,7 +25,25 @@ export class rutinaService{
     deleteEjercicio(id:number){
         return this.http.delete(this.API_URL+`/Ejercicio/${id}`);
     }
+    getEjercicioById(id:number){
+        return this.http.get(this.API_URL+`/Ejercicio/${id}`);
+    }
     getMusculos(){
         return this.http.get(this.API_URL+"/Musculos");
     }
+    createMusculos(musculos:musculos){
+        return this.http.post(this.API_URL+'/Musculos/createMusculos',musculos);
+    }
+    createRutina(rutina:rutinas){
+        return this.http.post(this.API_URL+'/Rutina/createRutina',rutina);
+    }
+    createEjercicioHasRutina(Has:has){
+        return this.http.post(this.API_URL+'/EjercicioHasRutina/create',Has);
+    }
+    deleteEjercicioHasRutina(Has:has){
+        return this.http.delete(this.API_URL+`/EjercicioHasRutina/delete/${Has.Id_ejercicio}/${Has.Id_rutina}`);
+    } 
+    getEjercicioHasRutina(Id:number){
+        return this.http.get(this.API_URL+`/EjercicioHasRutina/${Id}`);
+    }    
 }

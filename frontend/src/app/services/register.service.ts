@@ -73,6 +73,10 @@ export class RegisterService{
     getFacultades(){
         return this.http.get(this.API_URL+"/register/Facultades");
     }  
+    createFacultades(facultad:facultades)
+    {
+        return this.http.post(this.API_URL+'/register/Facultades/createRegisterFacultades',facultad);
+    }
     // Roles
     getRoles(){
         return this.http.get(this.API_URL+"/register/Roles");

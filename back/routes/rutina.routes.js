@@ -18,5 +18,11 @@ router.get('/Rutina', RutinaCtrl.getRutina);
 
 //Musculos
 router.get('/Musculos', RutinaCtrl.getMusculos);
+router.post('/Musculos/createMusculos', RutinaCtrl.createMusculos);
+
+//Ejercicio has Rutina
+router.post('/EjercicioHasRutina/create', RutinaCtrl.createEjercicioHasRutina);
+router.delete('/EjercicioHasRutina/delete/:Id_ejercicio/:Id_rutina',RutinaCtrl.deleteEjercicioHasRutina);
+router.get('/EjercicioHasRutina/:Id_rutina', RutinaCtrl.getEjercicioHasRutina);
 
 module.exports = router;
