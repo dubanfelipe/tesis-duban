@@ -4,6 +4,7 @@ import { EJERCICIO } from '../models/EJERCICIOS';
 import { musculos } from '../models/musculo';
 import { rutinas } from '../models/rutina';
 import { has } from '../models/ejerciciohasrutina';
+import { RutinaCompleta } from '../models/rutinaCompleta';
 
 @Injectable({
     providedIn: 'root'
@@ -45,5 +46,8 @@ export class rutinaService{
     } 
     getEjercicioHasRutina(Id:number){
         return this.http.get(this.API_URL+`/EjercicioHasRutina/${Id}`);
-    }    
+    } 
+    createRutinacompleta(rutina:RutinaCompleta){
+        return this.http.post(this.API_URL+'/Rutinacompleta/create',rutina);
+    }   
 }

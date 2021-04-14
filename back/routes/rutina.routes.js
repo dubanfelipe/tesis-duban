@@ -25,4 +25,7 @@ router.post('/EjercicioHasRutina/create', RutinaCtrl.createEjercicioHasRutina);
 router.delete('/EjercicioHasRutina/delete/:Id_ejercicio/:Id_rutina',RutinaCtrl.deleteEjercicioHasRutina);
 router.get('/EjercicioHasRutina/:Id_rutina', RutinaCtrl.getEjercicioHasRutina);
 
+//Rutina completa
+router.post('/Rutinacompleta/create', RutinaCtrl.createRutinacompleta);
+
 module.exports = router;

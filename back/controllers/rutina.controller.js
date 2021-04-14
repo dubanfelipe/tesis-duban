@@ -210,4 +210,20 @@ RutinaCtrl.getEjercicioHasRutina = (req, res) => {
         }
     });
 }
+
+//Rutina completa
+RutinaCtrl.createRutinacompleta = (req, res) => { 
+    console.log(req.body);
+    rutina = req.body;
+    var query = `INSERT INTO Rutina_completa (Id_rutinalunes,Id_rutinamartes,Id_rutinamiercoles,Id_rutinajueves,Id_rutinaviernes,Id_rutinasabado)
+    VALUES ('${rutina.Id_rutinalunes}','${rutina.Id_rutinamartes}','${rutina.Id_rutinamiercoles}','${rutina.Id_rutinajueves}','${rutina.Id_rutinaviernes}','${rutina.Id_rutinasabado}')`;
+    db.query(query, function(err, data) {
+    if (err) {
+            res.json({ error: err });
+            console.log("Hubo un error INSERTANDO RUTINACOMPLETA" + err);
+        } else {
+            res.json(data);                
+        }
+    });
+}
 module.exports = RutinaCtrl;
