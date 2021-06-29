@@ -18,6 +18,9 @@ declare var M: any;
 export class RutinasComponent implements OnInit {
 
   yacargoLunes; yacargoMartes; yacargoMiercoles; yacargoJueves; yacargoViernes; yacargoSabado;
+  diaSelecDia;
+  diaSeleccionado;
+  banderaParaEditar;
   isSelected = false;
   idrutina_Actual = 0;  
   conteRutina = 0; 
@@ -30,6 +33,7 @@ export class RutinasComponent implements OnInit {
   Jueves=false;
   Viernes=false;
   Sabado=false;
+  Domingo=false;
   diaRutina = [
     'Lunes',
     'Martes',
@@ -39,6 +43,7 @@ export class RutinasComponent implements OnInit {
     'Sabado'
   ]
   rutinacompleta : RutinaCompleta ={
+    Nombre_Rutina: '',
     Id_rutinacompleta: 0,
     Id_rutinalunes: 0,
     Id_rutinamartes: 0,
@@ -188,64 +193,95 @@ export class RutinasComponent implements OnInit {
   }
   ngOnInit(): void {
     
-  }  
-  getEjercicios(){
-    this.RutinaService.getEjercicio()
-    .subscribe(res =>{   
-      listaEjercicio = res;
-      for (let index = 0; index < listaEjercicio.length; index++) {
-        listaEjercicio[index].isSelected = false;
-      }
-      Object.keys(this.Musculos).forEach(musculo => this.Musculos[musculo].Ejercicios = listaEjercicio.filter(Ejercicios => Ejercicios.MUSCULOS_ID_MUSCULOS === this.Musculos[musculo].Id));     
-    })
-    this.yaCargo = true;
-    this.yaCargo2 = true;
-  }
+  } 
   getEjerciciosById(){
+    console.log("este es el Has para ir al get",this.HAS);
     this.RutinaService.getEjercicioHasRutina(this.HAS.Id_rutina)
     .subscribe(res =>{
-      if (this.conteRutina == 1) { 
-        this.Dia.lunes.EJERCICIO = res as EJERCICIO; 
-        this.yacargoLunes = false;
-        if (this.Dia.lunes.EJERCICIO[0] === undefined) { this.yacargoLunes = false;
-        }else { this.yacargoLunes= true;}
-      }      
-      if (this.conteRutina == 2) { 
-        this.Dia.Martes.EJERCICIO = res as EJERCICIO; 
-        this.yacargoMartes = false;
-        if (this.Dia.Martes.EJERCICIO[0] === undefined) { this.yacargoMartes = false;
-        }else { this.yacargoMartes = true;}
-      } 
-      if (this.conteRutina == 3) { 
-        this.Dia.Miercoles.EJERCICIO = res as EJERCICIO;
-        this.yacargoMiercoles = false;
-        if (this.Dia.Miercoles.EJERCICIO[0] === undefined) { this.yacargoMiercoles = false;
-        }else { this.yacargoMiercoles = true;}
-      } 
-      if (this.conteRutina == 4) { 
-        this.Dia.Jueves.EJERCICIO = res as EJERCICIO; 
-        this.yacargoJueves = false;
-        if (this.Dia.Jueves.EJERCICIO[0] === undefined) { this.yacargoJueves = false;
-        }else { this.yacargoJueves = true;}
-      } 
-      if (this.conteRutina == 5) { 
-        this.Dia.Viernes.EJERCICIO = res as EJERCICIO; 
-        this.yacargoViernes = false;
-        if (this.Dia.Viernes.EJERCICIO[0] === undefined) { this.yacargoViernes = false;
-        }else { this.yacargoViernes = true;}
-      } 
-      if (this.conteRutina == 6) { 
-        this.Dia.Sabado.EJERCICIO = res as EJERCICIO; 
-        this.yacargoSabado = false;
-        if (this.Dia.Sabado.EJERCICIO[0] === undefined) { this.yacargoSabado = false;
-        }else { this.yacargoSabado = true;}
-      } 
+      if (this.banderaParaEditar == true) {
+        if (this.diaSelecDia == 0) { 
+          this.Dia.lunes.EJERCICIO = res as EJERCICIO; 
+          this.yacargoLunes = false;
+          if (this.Dia.lunes.EJERCICIO[0] === undefined) { this.yacargoLunes = false;
+          }else { this.yacargoLunes= true;}
+        }
+        if (this.diaSelecDia == 1) { 
+          this.Dia.Martes.EJERCICIO = res as EJERCICIO; 
+          this.yacargoMartes = false;
+          if (this.Dia.Martes.EJERCICIO[0] === undefined) { this.yacargoMartes = false;
+          }else { this.yacargoMartes = true;}
+        } 
+        if (this.diaSelecDia == 2) { 
+          this.Dia.Miercoles.EJERCICIO = res as EJERCICIO;
+          this.yacargoMiercoles = false;
+          if (this.Dia.Miercoles.EJERCICIO[0] === undefined) { this.yacargoMiercoles = false;
+          }else { this.yacargoMiercoles = true;}
+        } 
+        if (this.diaSelecDia == 3) { 
+          this.Dia.Jueves.EJERCICIO = res as EJERCICIO; 
+          this.yacargoJueves = false;
+          if (this.Dia.Jueves.EJERCICIO[0] === undefined) { this.yacargoJueves = false;
+          }else { this.yacargoJueves = true;}
+        } 
+        if (this.diaSelecDia == 4) { 
+          this.Dia.Viernes.EJERCICIO = res as EJERCICIO; 
+          this.yacargoViernes = false;
+          if (this.Dia.Viernes.EJERCICIO[0] === undefined) { this.yacargoViernes = false;
+          }else { this.yacargoViernes = true;}
+        } 
+        if (this.diaSelecDia == 5) { 
+          this.Dia.Sabado.EJERCICIO = res as EJERCICIO; 
+          this.yacargoSabado = false;
+          if (this.Dia.Sabado.EJERCICIO[0] === undefined) { this.yacargoSabado = false;
+          }else { this.yacargoSabado = true;}
+        }   
+      }else{
+        if (this.conteRutina == 1) { 
+          this.Dia.lunes.EJERCICIO = res as EJERCICIO; 
+          this.yacargoLunes = false;
+          if (this.Dia.lunes.EJERCICIO[0] === undefined) { this.yacargoLunes = false;
+          }else { this.yacargoLunes= true;}
+        }      
+        if (this.conteRutina == 2) { 
+          this.Dia.Martes.EJERCICIO = res as EJERCICIO; 
+          this.yacargoMartes = false;
+          if (this.Dia.Martes.EJERCICIO[0] === undefined) { this.yacargoMartes = false;
+          }else { this.yacargoMartes = true;}
+        } 
+        if (this.conteRutina == 3) { 
+          this.Dia.Miercoles.EJERCICIO = res as EJERCICIO;
+          this.yacargoMiercoles = false;
+          if (this.Dia.Miercoles.EJERCICIO[0] === undefined) { this.yacargoMiercoles = false;
+          }else { this.yacargoMiercoles = true;}
+        } 
+        if (this.conteRutina == 4) { 
+          this.Dia.Jueves.EJERCICIO = res as EJERCICIO; 
+          this.yacargoJueves = false;
+          if (this.Dia.Jueves.EJERCICIO[0] === undefined) { this.yacargoJueves = false;
+          }else { this.yacargoJueves = true;}
+        } 
+        if (this.conteRutina == 5) { 
+          this.Dia.Viernes.EJERCICIO = res as EJERCICIO; 
+          this.yacargoViernes = false;
+          if (this.Dia.Viernes.EJERCICIO[0] === undefined) { this.yacargoViernes = false;
+          }else { this.yacargoViernes = true;}
+        } 
+        if (this.conteRutina == 6) { 
+          this.Dia.Sabado.EJERCICIO = res as EJERCICIO; 
+          this.yacargoSabado = false;
+          if (this.Dia.Sabado.EJERCICIO[0] === undefined) { this.yacargoSabado = false;
+          }else { this.yacargoSabado = true;}
+        } 
+      }
     })
   }
   ejercicioSeleccionado(idEjercicio,checkbox,estado){  
-    console.log(idEjercicio,checkbox,estado);
     this.HAS.Id_ejercicio=idEjercicio; 
-    this.HAS.Id_rutina=idRutina;   
+    if(this.banderaParaEditar == true){   
+      this.HAS.Id_rutina=this.diaSeleccionado;
+    }else{      
+      this.HAS.Id_rutina=idRutina; 
+    }  
     if(estado === true){            
       this.RutinaService.createEjercicioHasRutina(this.HAS)
       .subscribe(res =>{    
@@ -259,26 +295,14 @@ export class RutinasComponent implements OnInit {
     }
   } 
   saveRutina(form){
-    this.getEjercicios();
     this.rutinaCheck=false;
-    this.RUTINAS.Nombre = form.value.Nombre;
+    this.RUTINAS.Nombre = form.value.Nombre;    
+    this.rutinacompleta.Nombre_Rutina = form.value.Nombre; 
     this.RUTINAS.Dia_rutina = this.diaRutina[this.conteRutina];
     this.RutinaService.createRutina(this.RUTINAS)
     .subscribe(res =>{
       idRutina = res;      
-      this.idrutina_Actual = this.idrutina_Actual +1;  
-      if (this.Sabado === true) {
-        this.RutinaService.createRutinacompleta(this.rutinacompleta)
-        .subscribe(res =>{
-          M.toast({
-            html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
-                      <h4 class="alert-heading">RUTINA CREADA</h4>
-                      <p>Se ha creado la rutina satisfactoriamente</p>
-                      <hr>
-                  </div>`});
-          this.router.navigate(['admin']);
-        })
-      }
+      this.idrutina_Actual = this.idrutina_Actual +1;        
       if (this.conteRutina === 0) { 
         this.Lunes = true;
         this.rutinacompleta.Id_rutinalunes = idRutina;
@@ -303,7 +327,73 @@ export class RutinasComponent implements OnInit {
         this.Sabado = true;
         this.rutinacompleta.Id_rutinasabado = idRutina; 
       }
-      this.conteRutina = this.conteRutina + 1;
+      if (this.conteRutina === 6){
+        this.Domingo = true;
+      }
+      this.SelectDia(this.conteRutina,0);
+      this.conteRutina = this.conteRutina + 1;      
     })    
   }  
+  update(){
+    let nuevoConteoRutina = this.conteRutina - 1;
+    this.banderaParaEditar = false;
+    this.SelectDia(nuevoConteoRutina,0);
+  }
+  SelectDia(dia, SaveOUpdate){  
+    this.diaSelecDia = dia; 
+    let listaEjerciciosSeleccionados;
+    let bandera;
+    if(SaveOUpdate === 1) {this.banderaParaEditar = true;}
+    if(dia == 0){
+      this.diaSeleccionado = this.rutinacompleta.Id_rutinalunes;
+    }else if(dia == 1){
+      this.diaSeleccionado = this.rutinacompleta.Id_rutinamartes;
+    }else if(dia == 2){
+      this.diaSeleccionado = this.rutinacompleta.Id_rutinamiercoles;
+    }else if(dia == 3){
+      this.diaSeleccionado = this.rutinacompleta.Id_rutinajueves;
+    }else if(dia == 4){
+      this.diaSeleccionado = this.rutinacompleta.Id_rutinaviernes;
+    }else if(dia == 5){
+      this.diaSeleccionado = this.rutinacompleta.Id_rutinasabado;
+    }this.RutinaService.getEjercicioHasRutina(this.diaSeleccionado)
+    .subscribe(res =>{
+      listaEjerciciosSeleccionados = res;
+      console.log("Estos son todos los ejercicios seleccionados",listaEjerciciosSeleccionados);
+      this.RutinaService.getEjercicio()
+      .subscribe(res =>{
+        console.log("Estos son todos los ejercicios",res);
+        listaEjercicio = res;
+        for (let contador1 = 0; contador1 < listaEjercicio.length; contador1++) {
+          bandera = false;
+          for(let contador2 = 0; contador2 < listaEjerciciosSeleccionados.length; contador2++)
+          {            
+            if(listaEjercicio[contador1].ID_EJERCICIO === listaEjerciciosSeleccionados[contador2].ID_EJERCICIO){
+              listaEjercicio[contador1].isSelected = true;
+              bandera = true;
+            }
+          }
+          if (bandera == false) {
+            listaEjercicio[contador1].isSelected = false;
+          }          
+        }
+        Object.keys(this.Musculos).forEach(musculo => this.Musculos[musculo].Ejercicios = listaEjercicio.filter(Ejercicios => Ejercicios.MUSCULOS_ID_MUSCULOS === this.Musculos[musculo].Id));     
+      })
+    })
+    this.yaCargo = true;
+    this.yaCargo2 = true;
+  }
+
+  GuardarRutina(){
+    this.RutinaService.createRutinacompleta(this.rutinacompleta)
+    .subscribe(res =>{
+      M.toast({
+        html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+              <h4 class="alert-heading">RUTINA CREADA</h4>
+              <p>Se ha creado la rutina satisfactoriamente</p>
+              <hr>
+              </div>`});
+        this.router.navigate(['admin']);
+    })
+  }
 }

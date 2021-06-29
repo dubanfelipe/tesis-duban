@@ -6,8 +6,18 @@ var bcrypt = require('bcryptjs');
 const registerCtrl = {};
 
 registerCtrl.getRegister = (req, res) => {  
-    let id=1; 
     db.query(`SELECT p.*, r.* FROM Persona AS p INNER JOIN Rol AS r ON p.Rol_id_rol = r.Id_rol`, (err, data) => {
+        if (err) {
+            res.json({ error: err });
+            console.log("Hubo un error en la busqueda de Usuarios" + err);
+        } else {
+            res.json(data);
+        }
+    });
+}
+
+registerCtrl.getRegisterRol = (req, res) => {  
+    db.query(`SELECT p.*, r.* FROM Persona AS p INNER JOIN Rol AS r ON p.Rol_id_rol = r.Id_rol AND r.Id_rol > 1`, (err, data) => {
         if (err) {
             res.json({ error: err });
             console.log("Hubo un error en la busqueda de Usuarios" + err);
@@ -50,8 +60,8 @@ registerCtrl.createRegisterPersona = async (req, res) => {
         }else{
             console.log("Hubo un error ENCRIPTANDOCLAVE" + err);
         }  
-        var query = `INSERT INTO Persona (Nombre,Apellido,Correo,Cedula,Activo,Recovery,Password,Rol_id_rol)
-        VALUES ('${usuarios.Nombre}','${usuarios.Apellido}','${usuarios.Correo}','${usuarios.Cedula}','${usuarios.Activo}','${usuarios.Recovery}','${usuarios.Password}','${usuarios.Rol_id_rol}')`;
+        var query = `INSERT INTO Persona (Nombre,Apellido,Correo,Cedula,Activo,Recovery,Rutina_asignada,Password,Rol_id_rol)
+        VALUES ('${usuarios.Nombre}','${usuarios.Apellido}','${usuarios.Correo}','${usuarios.Cedula}','${usuarios.Activo}','${usuarios.Recovery}','${usuarios.Rutina_asignada}','${usuarios.Password}','${usuarios.Rol_id_rol}')`;
         db.query(query, function(err, data) {
             if (err) {
                 res.json({ error: err });
@@ -79,6 +89,26 @@ registerCtrl.updateRegisterByIdPersona = (req, res) =>{
     const Id_update = req.params.id_persona;
     const update = req.body;
     var query = `UPDATE Persona SET Nombre = '${update.Nombre}', Apellido ='${update.Apellido}'  WHERE Id_persona = '${Id_update}'`;
+    try {
+        db.query(query, (err, data) => {
+            if (err) {
+                res.json({ error: err });
+                console.log("Hubo un error actualizando el usuario" + err);
+            } else {
+                res.json(data);
+            }
+        });
+    } catch (E) {
+        console.log('error', E);
+        res.json({message: 'error en el servidor actualizando el usuario' })
+    }
+}
+
+registerCtrl.updateRegisterRutinaAsignadaByIdPersona = (req, res) =>{
+    const Id_update = req.params.id_persona;
+    const update = req.body.RUTINA_ASIGNADA;
+    console.log("update", req.body.RUTINA_ASIGNADA);
+    var query = `UPDATE Persona SET Rutina_asignada = '${req.body.RUTINA_ASIGNADA}'  WHERE Id_persona = '${Id_update}'`;
     try {
         db.query(query, (err, data) => {
             if (err) {

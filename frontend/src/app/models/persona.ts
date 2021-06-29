@@ -6,6 +6,7 @@ export interface Personas{
     Cedula : number;    
     Activo: number;
     Recovery: string;
+    Rutina_asignada: string;
     Password : string;
     Rol_id_rol: number;
 }

@@ -11,3 +11,12 @@ td, th {
 th {
     text-align: center;
 }
+.btn-circle {
+    color:rgb(0, 68, 255);
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    font-size: 12px;
+    line-height: 1.42857;
+}

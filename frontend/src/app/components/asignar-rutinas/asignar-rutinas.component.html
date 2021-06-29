@@ -1,0 +1,43 @@
+<div style="display: flex; justify-content: space-around;">
+    <ng2-smart-table [settings]="settingsRutina" [source]="RutinaService.rutina" (custom)="onCustom($event)">
+    </ng2-smart-table>
+    <ng2-smart-table [settings]="settings" [source]="registerService.personas" (userRowSelect)="onRowSelect($event)">
+    </ng2-smart-table>
+</div>
+<a
+    id="prueba" 
+    href="#" 
+    data-toggle="modal" 
+    data-target="#openModal" 
+    mat-raised-button class="btn btn--success" >
+</a>
+<div class="form-modal">
+    <div class="modal fade" id="openModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content border-success">
+                <div class="modal-header">
+                    <div class="alert-dialog-w">
+                        <div style="padding-bottom: 15px; text-align: center;">
+                            Holaaaa
+                        </div>
+                        <div style="text-align: center;">
+                            Seguro desea asociar esta rutina a esos usuarios
+                        </div>
+                        <br>
+                        <div>
+                            <div style="display: flex; justify-content: space-around;">
+                                <div style="text-align: left;">
+                                    <button class="btn btn--success" data-dismiss="modal">Aceptar</button>
+                                </div>
+                                <div style="text-align: right;">
+                                    <button class="btn btn--danger" data-dismiss="modal">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

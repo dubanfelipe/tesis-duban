@@ -15,6 +15,7 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { RegisterAdminComponent } from './components/register-admin/register-admin.component';
 import { RutinasComponent } from './components/rutinas/rutinas.component';
 import { ExerciseComponent } from './components/exercise/exercise.component';
+import { AsignarRutinasComponent } from './components/asignar-rutinas/asignar-rutinas.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -28,7 +29,8 @@ const routes: Routes = [
   { path: 'admin/sign_in', component: SignInComponent, canActivate: [GuardsGuard]},
   { path: 'admin/register', component: RegisterAdminComponent, canActivate: [GuardsGuard]},
   { path: 'admin/exercise', component: ExerciseComponent, canActivate: [GuardsGuard]},
-  { path: 'admin/rutina', component: RutinasComponent, canActivate: [GuardsGuard]},
+  { path: 'admin/routines', component: RutinasComponent, canActivate: [GuardsGuard]},
+  { path: 'admin/assignRoutines', component: AsignarRutinasComponent, canActivate: [GuardsGuard]},
   { path: 'usuarios', component: UsuariosComponent, canActivate: [GuardsGuard] },
   { path: 'usuarios/profile', component: ProfileComponent, canActivate: [GuardsGuard]},
   { path: '**', component: HomeComponent }

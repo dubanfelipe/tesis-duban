@@ -5,4 +5,5 @@ export interface PERSONA{
     CORREO : string;
     CEDULA : number;   
     NOMBRE_ROL: string;
+    RUTINA_ASIGANADA: string;
 }

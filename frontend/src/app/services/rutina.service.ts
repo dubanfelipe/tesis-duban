@@ -5,6 +5,7 @@ import { musculos } from '../models/musculo';
 import { rutinas } from '../models/rutina';
 import { has } from '../models/ejerciciohasrutina';
 import { RutinaCompleta } from '../models/rutinaCompleta';
+import { RutinaCompletahasPersona } from '../models/rutinaCompletaHasPersona';
 
 @Injectable({
     providedIn: 'root'
@@ -12,6 +13,7 @@ import { RutinaCompleta } from '../models/rutinaCompleta';
 export class rutinaService{
     ejercicios: EJERCICIO[];
     musculo: musculos[];
+    rutina: RutinaCompleta[];
     API_URL = 'http://localhost:3000/api/rutina';
     constructor(private http: HttpClient) {}
     getEjercicio(){
@@ -39,6 +41,7 @@ export class rutinaService{
         return this.http.post(this.API_URL+'/Rutina/createRutina',rutina);
     }
     createEjercicioHasRutina(Has:has){
+        console.log("este es el Has",Has);
         return this.http.post(this.API_URL+'/EjercicioHasRutina/create',Has);
     }
     deleteEjercicioHasRutina(Has:has){
@@ -50,4 +53,11 @@ export class rutinaService{
     createRutinacompleta(rutina:RutinaCompleta){
         return this.http.post(this.API_URL+'/Rutinacompleta/create',rutina);
     }   
+    getRutinacompleta(){
+        return this.http.get(this.API_URL+'/Rutinacompleta/get');
+    }
+    createRutinacompletaHasPersona(Has:RutinaCompletahasPersona){
+        return this.http.post(this.API_URL+'/RutinaCompletaHasPersona/create',Has);
+    }
+
 }

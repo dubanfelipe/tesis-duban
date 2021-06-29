@@ -24,6 +24,9 @@ export class RegisterService{
     getRegister(){
         return this.http.get(this.API_URL+"/register");
     } 
+    getRegisterRol(){
+        return this.http.get(this.API_URL+"/register/Rol");
+    } 
     // Persona
     getRegisterByIdPersonaCedula(Cedula:number){
         return this.http.get(this.API_URL+`/register/Persona/${Cedula}`);
@@ -37,6 +40,10 @@ export class RegisterService{
     updateRegisterByIdPersona(id:number, updateRegister: Personas) {
         return this.http.put(this.API_URL+`/register/Persona/${id}`,updateRegister);
     }
+    updateRegisterRutinaAsignadaByIdPersona(id:number, updateRegister: Personas) {
+        console.log("esto llega al servicio",updateRegister);
+        return this.http.put(this.API_URL+`/register/Persona/RutinaAsignada/${id}`,updateRegister);
+    }    
     deleteRegisterByIdPersona(id:number){
         return this.http.delete(this.API_URL+`/register/Persona/${id}`);
     }

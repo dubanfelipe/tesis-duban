@@ -24,6 +24,7 @@ export class RegisterAdminComponent implements OnInit {
       Cedula: ['', Validators.compose([Validators.required, Validators.min(100000), Validators.max(2000000000), Validators.pattern(/^[0-9]*$/)])],
       Activo: [1],
       Recovery: [''],
+      Rutina_asignada: ['NO'],
       Rol_id_rol: [1],
       Password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],      
     })

@@ -3,11 +3,13 @@ const registerCtrl = require('../controllers/register.controller');
 const router = express.Router();
 
 router.get('/', registerCtrl.getRegister);
+router.get('/Rol', registerCtrl.getRegisterRol);
 //Persona
 router.get('/Persona/:Cedula', registerCtrl.getRegisterByIdPersonaCedula);
 router.post('/Persona/createRegisterPersona', registerCtrl.createRegisterPersona);
 router.delete('/Persona/:id_persona', registerCtrl.deleteRegisterByIdPersona);
 router.put('/Persona/:id_persona', registerCtrl.updateRegisterByIdPersona);
+router.put('/Persona/RutinaAsignada/:id_persona', registerCtrl.updateRegisterRutinaAsignadaByIdPersona);
 router.get('/Persona/Activate/:Activo', registerCtrl.getRegisterByIdPersonaActivo);
 //Usuario
 router.get('/Usuario/Celular/:Celular', registerCtrl.getRegisterByIdUsuarioCelular);

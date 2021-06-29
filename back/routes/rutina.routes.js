@@ -27,5 +27,9 @@ router.get('/EjercicioHasRutina/:Id_rutina', RutinaCtrl.getEjercicioHasRutina);
 
 //Rutina completa
 router.post('/Rutinacompleta/create', RutinaCtrl.createRutinacompleta);
+router.get('/Rutinacompleta/get', RutinaCtrl.getRutinaCompleta);
+
+//RutinaCompleta has Persona
+router.post('/RutinaCompletaHasPersona/create', RutinaCtrl.createRutinacompletaHasPersona);
 
 module.exports = router;

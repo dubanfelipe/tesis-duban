@@ -200,6 +200,7 @@ RutinaCtrl.deleteEjercicioHasRutina = (req, res) => {
     });
 }
 RutinaCtrl.getEjercicioHasRutina = (req, res) => { 
+    console.log(req.params);
     let id_rutina = req.params.Id_rutina;
     db.query(`SELECT e.*, h.*, m.* FROM Ejercicio_has_rutina AS h INNER JOIN Ejercicio AS e ON h.Ejercicio_id_ejercicio = e.Id_ejercicio INNER JOIN Musculos AS m ON e.Musculos_id_musculos = m.Id_musculos WHERE Rutina_id_rutina= '${id_rutina}'`, (err, data) => {
         if (err) {
@@ -215,12 +216,40 @@ RutinaCtrl.getEjercicioHasRutina = (req, res) => {
 RutinaCtrl.createRutinacompleta = (req, res) => { 
     console.log(req.body);
     rutina = req.body;
-    var query = `INSERT INTO Rutina_completa (Id_rutinalunes,Id_rutinamartes,Id_rutinamiercoles,Id_rutinajueves,Id_rutinaviernes,Id_rutinasabado)
-    VALUES ('${rutina.Id_rutinalunes}','${rutina.Id_rutinamartes}','${rutina.Id_rutinamiercoles}','${rutina.Id_rutinajueves}','${rutina.Id_rutinaviernes}','${rutina.Id_rutinasabado}')`;
+    var query = `INSERT INTO Rutina_completa (Nombre_Rutina,Id_rutinalunes,Id_rutinamartes,Id_rutinamiercoles,Id_rutinajueves,Id_rutinaviernes,Id_rutinasabado)
+    VALUES ('${rutina.Nombre_Rutina}','${rutina.Id_rutinalunes}','${rutina.Id_rutinamartes}','${rutina.Id_rutinamiercoles}','${rutina.Id_rutinajueves}','${rutina.Id_rutinaviernes}','${rutina.Id_rutinasabado}')`;
     db.query(query, function(err, data) {
     if (err) {
             res.json({ error: err });
             console.log("Hubo un error INSERTANDO RUTINACOMPLETA" + err);
+        } else {
+            res.json(data);                
+        }
+    });
+}
+
+RutinaCtrl.getRutinaCompleta = (req, res) => {
+    db.query(`SELECT * FROM Rutina_completa`, (err, data) => {
+        if (err) {
+            res.json({ error: err });
+            console.log("Hubo un error en la busqueda de Musculos" + err);
+        } else {
+            res.json(data);
+        }
+    });
+}
+
+//Rutinacompleta Has Persona
+RutinaCtrl.createRutinacompletaHasPersona = (req, res) => {
+    console.log("el req.body", req.body);
+    id_rutinaCompleta = req.body.Id_rutinacompleta;
+    id_persona = req.body.Id_persona;
+    var query = `INSERT INTO RutinaCompleta_has_persona (RutinaCompleta_id_rutinacompleta, Persona_id_persona)
+    VALUES ('${id_rutinaCompleta}','${id_persona}')`;
+    db.query(query, function(err, data) {
+    if (err) {
+            res.json({ error: err });
+            console.log("Hubo un error INSERTANDO HAS" + err);
         } else {
             res.json(data);                
         }
