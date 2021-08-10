@@ -29,6 +29,7 @@ const routes: Routes = [
   { path: 'admin/sign_in', component: SignInComponent, canActivate: [GuardsGuard]},
   { path: 'admin/register', component: RegisterAdminComponent, canActivate: [GuardsGuard]},
   { path: 'admin/exercise', component: ExerciseComponent, canActivate: [GuardsGuard]},
+  { path: 'admin/routines/:id', component: RutinasComponent, canActivate: [GuardsGuard]},
   { path: 'admin/routines', component: RutinasComponent, canActivate: [GuardsGuard]},
   { path: 'admin/assignRoutines', component: AsignarRutinasComponent, canActivate: [GuardsGuard]},
   { path: 'usuarios', component: UsuariosComponent, canActivate: [GuardsGuard] },

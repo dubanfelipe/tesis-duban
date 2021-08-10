@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { rutinaService } from '../../services/rutina.service';
 import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
 import { EJERCICIO } from '../../models/EJERCICIOS';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { rutinas } from '../../models/rutina';
 import { has } from '../../models/ejerciciohasrutina';
 import { RutinaCompleta } from '../../models/rutinaCompleta';
+import { async } from '@angular/core/testing';
 
 let listaEjercicio;
 let idRutina;
@@ -183,7 +184,51 @@ export class RutinasComponent implements OnInit {
   }
 
   rutinaForm: FormGroup;
-  constructor(public RutinaService:rutinaService, private router: Router, private fb: FormBuilder) {
+  Boleean: boolean;
+  constructor(public RutinaService:rutinaService, private route:ActivatedRoute, private router: Router, private fb: FormBuilder) {
+    this.route.params.subscribe( params => {
+      if(params.id)
+      {
+        this.RutinaService.getRutinacompletaById(params.id)
+        .subscribe(res =>{
+          this.rutinacompleta.Id_rutinacompleta = res[0].ID_RUTINACOMPLETA;
+          this.rutinacompleta.Id_rutinalunes = res[0].ID_RUTINALUNES;
+          this.rutinacompleta.Id_rutinamartes = res[0].ID_RUTINAMARTES;
+          this.rutinacompleta.Id_rutinamiercoles = res[0].ID_RUTINAMIERCOLES;
+          this.rutinacompleta.Id_rutinajueves = res[0].ID_RUTINAJUEVES;
+          this.rutinacompleta.Id_rutinaviernes = res[0].ID_RUTINAVIERNES;
+          this.rutinacompleta.Id_rutinasabado = res[0].ID_RUTINASABADO;
+          this.rutinacompleta.Nombre_Rutina = res[0].NOMBRE_RUTINA;
+          this.rutinaForm.patchValue({"Nombre": this.rutinacompleta.Nombre_Rutina});
+          for (let index = 0; index < 6; index++) {
+            this.Domingo = true;
+            this.diaSelecDia = index;                  
+            this.banderaParaEditar = true;              
+            this.rutinaCheck = false;
+            if (index == 0){ 
+              this.HAS.Id_rutina = this.rutinacompleta.Id_rutinalunes;   
+              this.Lunes = true;                                    
+            }else if(index == 1){
+              this.HAS.Id_rutina = this.rutinacompleta.Id_rutinamartes;   
+              this.Martes = true; 
+            }else if(index == 2){
+              this.HAS.Id_rutina = this.rutinacompleta.Id_rutinamiercoles;   
+              this.Miercoles = true;  
+            }else if(index == 3){
+              this.HAS.Id_rutina = this.rutinacompleta.Id_rutinajueves;   
+              this.Jueves = true;  
+            }else if(index == 4){
+              this.HAS.Id_rutina = this.rutinacompleta.Id_rutinaviernes;   
+              this.Viernes = true;  
+            }else if(index == 5){
+              this.HAS.Id_rutina = this.rutinacompleta.Id_rutinasabado;   
+              this.Sabado = true;  
+            }  
+            this.getEjerciciosById()                                                
+          }
+        })
+      }
+    })
     this.buildForm();
   }
   buildForm(){
@@ -191,84 +236,71 @@ export class RutinasComponent implements OnInit {
       Nombre: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-z A-Z ñ Ñ 0-9]*$/)])],
     })
   }
-  ngOnInit(): void {
-    
+  ngOnInit(): void { 
+
   } 
   getEjerciciosById(){
-    console.log("este es el Has para ir al get",this.HAS);
     this.RutinaService.getEjercicioHasRutina(this.HAS.Id_rutina)
     .subscribe(res =>{
       if (this.banderaParaEditar == true) {
         if (this.diaSelecDia == 0) { 
-          this.Dia.lunes.EJERCICIO = res as EJERCICIO; 
-          this.yacargoLunes = false;
+          this.Dia.lunes.EJERCICIO = res as EJERCICIO;
           if (this.Dia.lunes.EJERCICIO[0] === undefined) { this.yacargoLunes = false;
-          }else { this.yacargoLunes= true;}
+          }else { this.yacargoLunes = true;}
         }
         if (this.diaSelecDia == 1) { 
-          this.Dia.Martes.EJERCICIO = res as EJERCICIO; 
-          this.yacargoMartes = false;
+          this.Dia.Martes.EJERCICIO = res as EJERCICIO;
           if (this.Dia.Martes.EJERCICIO[0] === undefined) { this.yacargoMartes = false;
           }else { this.yacargoMartes = true;}
         } 
         if (this.diaSelecDia == 2) { 
           this.Dia.Miercoles.EJERCICIO = res as EJERCICIO;
-          this.yacargoMiercoles = false;
           if (this.Dia.Miercoles.EJERCICIO[0] === undefined) { this.yacargoMiercoles = false;
           }else { this.yacargoMiercoles = true;}
         } 
         if (this.diaSelecDia == 3) { 
           this.Dia.Jueves.EJERCICIO = res as EJERCICIO; 
-          this.yacargoJueves = false;
           if (this.Dia.Jueves.EJERCICIO[0] === undefined) { this.yacargoJueves = false;
           }else { this.yacargoJueves = true;}
         } 
         if (this.diaSelecDia == 4) { 
-          this.Dia.Viernes.EJERCICIO = res as EJERCICIO; 
-          this.yacargoViernes = false;
+          this.Dia.Viernes.EJERCICIO = res as EJERCICIO;
           if (this.Dia.Viernes.EJERCICIO[0] === undefined) { this.yacargoViernes = false;
           }else { this.yacargoViernes = true;}
         } 
         if (this.diaSelecDia == 5) { 
           this.Dia.Sabado.EJERCICIO = res as EJERCICIO; 
-          this.yacargoSabado = false;
           if (this.Dia.Sabado.EJERCICIO[0] === undefined) { this.yacargoSabado = false;
           }else { this.yacargoSabado = true;}
         }   
       }else{
         if (this.conteRutina == 1) { 
           this.Dia.lunes.EJERCICIO = res as EJERCICIO; 
-          this.yacargoLunes = false;
           if (this.Dia.lunes.EJERCICIO[0] === undefined) { this.yacargoLunes = false;
           }else { this.yacargoLunes= true;}
         }      
         if (this.conteRutina == 2) { 
           this.Dia.Martes.EJERCICIO = res as EJERCICIO; 
-          this.yacargoMartes = false;
           if (this.Dia.Martes.EJERCICIO[0] === undefined) { this.yacargoMartes = false;
           }else { this.yacargoMartes = true;}
         } 
         if (this.conteRutina == 3) { 
           this.Dia.Miercoles.EJERCICIO = res as EJERCICIO;
-          this.yacargoMiercoles = false;
           if (this.Dia.Miercoles.EJERCICIO[0] === undefined) { this.yacargoMiercoles = false;
           }else { this.yacargoMiercoles = true;}
         } 
         if (this.conteRutina == 4) { 
           this.Dia.Jueves.EJERCICIO = res as EJERCICIO; 
-          this.yacargoJueves = false;
           if (this.Dia.Jueves.EJERCICIO[0] === undefined) { this.yacargoJueves = false;
           }else { this.yacargoJueves = true;}
         } 
         if (this.conteRutina == 5) { 
-          this.Dia.Viernes.EJERCICIO = res as EJERCICIO; 
-          this.yacargoViernes = false;
+          this.Dia.Viernes.EJERCICIO = res as EJERCICIO;
           if (this.Dia.Viernes.EJERCICIO[0] === undefined) { this.yacargoViernes = false;
           }else { this.yacargoViernes = true;}
         } 
         if (this.conteRutina == 6) { 
           this.Dia.Sabado.EJERCICIO = res as EJERCICIO; 
-          this.yacargoSabado = false;
           if (this.Dia.Sabado.EJERCICIO[0] === undefined) { this.yacargoSabado = false;
           }else { this.yacargoSabado = true;}
         } 
@@ -337,6 +369,7 @@ export class RutinasComponent implements OnInit {
   update(){
     let nuevoConteoRutina = this.conteRutina - 1;
     this.banderaParaEditar = false;
+    this.Domingo = false;
     this.SelectDia(nuevoConteoRutina,0);
   }
   SelectDia(dia, SaveOUpdate){  
@@ -356,13 +389,12 @@ export class RutinasComponent implements OnInit {
       this.diaSeleccionado = this.rutinacompleta.Id_rutinaviernes;
     }else if(dia == 5){
       this.diaSeleccionado = this.rutinacompleta.Id_rutinasabado;
-    }this.RutinaService.getEjercicioHasRutina(this.diaSeleccionado)
+    }
+    this.RutinaService.getEjercicioHasRutina(this.diaSeleccionado)
     .subscribe(res =>{
       listaEjerciciosSeleccionados = res;
-      console.log("Estos son todos los ejercicios seleccionados",listaEjerciciosSeleccionados);
       this.RutinaService.getEjercicio()
       .subscribe(res =>{
-        console.log("Estos son todos los ejercicios",res);
         listaEjercicio = res;
         for (let contador1 = 0; contador1 < listaEjercicio.length; contador1++) {
           bandera = false;
@@ -383,7 +415,6 @@ export class RutinasComponent implements OnInit {
     this.yaCargo = true;
     this.yaCargo2 = true;
   }
-
   GuardarRutina(){
     this.RutinaService.createRutinacompleta(this.rutinacompleta)
     .subscribe(res =>{

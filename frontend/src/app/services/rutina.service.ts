@@ -11,6 +11,7 @@ import { RutinaCompletahasPersona } from '../models/rutinaCompletaHasPersona';
     providedIn: 'root'
 })
 export class rutinaService{
+    idRutinaCompleta;
     ejercicios: EJERCICIO[];
     musculo: musculos[];
     rutina: RutinaCompleta[];
@@ -56,8 +57,10 @@ export class rutinaService{
     getRutinacompleta(){
         return this.http.get(this.API_URL+'/Rutinacompleta/get');
     }
+    getRutinacompletaById(Id:number){
+        return this.http.get(this.API_URL+`/Rutinacompleta/getById/${Id}`);
+    }
     createRutinacompletaHasPersona(Has:RutinaCompletahasPersona){
         return this.http.post(this.API_URL+'/RutinaCompletaHasPersona/create',Has);
     }
-
 }

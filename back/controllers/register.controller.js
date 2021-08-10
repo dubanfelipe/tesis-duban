@@ -72,6 +72,10 @@ registerCtrl.createRegisterPersona = async (req, res) => {
             }
         });             
     });    
+    for (let index = 0; index < array.length; index++) {
+        const element = array[index];
+        
+    }
 }
 registerCtrl.deleteRegisterByIdPersona = (req, res) =>{
     let id = req.params.id_persona;

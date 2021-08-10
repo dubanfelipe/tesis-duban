@@ -197,7 +197,7 @@
         <button *ngIf="yaCargo2 && !banderaParaEditar && !Domingo" class="btn btn-block" id="btnLogin" (click)="saveRutina(rutinaForm)">
             SIGUIENTE
         </button>
-        <button class="btn btn-block" (click)="GuardarRutina()" *ngIf="Domingo">
+        <button class="btn btn-block" (click)="GuardarRutina()" *ngIf="Domingo && !banderaParaEditar">
             GUARDAR RUTINA
         </button>
         </tr>

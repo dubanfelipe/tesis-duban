@@ -58,6 +58,10 @@ export class AsignarRutinasComponent implements OnInit {
           name: 'assignmentRoutines',
           title: '<i class="material-icons">check_box_outline_blank</i>',
         },
+        {
+          name: 'editRoutines',
+          title: '<i class="material-icons">open_in_new</i>',
+        },
       ],
       add: false,
       edit: false,
@@ -93,9 +97,13 @@ export class AsignarRutinasComponent implements OnInit {
           html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
               <h4 class="alert-heading">RUTINAS ASIGNADAS</h4>
               <hr>
-          </div>`});   
-        window.location.reload();
+          </div>`});  
+          window.location.reload();
       }
+    }
+    if (event.action == "editRoutines"){
+      this.RutinaService.idRutinaCompleta = event.data.ID_RUTINACOMPLETA;
+      this.router.navigate(['/admin/routines/'+event.data.ID_RUTINACOMPLETA]);
     }
   }
   ngOnInit(): void {

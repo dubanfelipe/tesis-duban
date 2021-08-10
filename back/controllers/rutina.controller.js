@@ -239,6 +239,19 @@ RutinaCtrl.getRutinaCompleta = (req, res) => {
     });
 }
 
+RutinaCtrl.getRutinaCompletaById = (req, res) => {
+    console.log(req.params);
+    let id_rutina = req.params.Id_rutina;
+    db.query(`SELECT * FROM Rutina_completa WHERE Id_rutinacompleta='${id_rutina}'`,(err, data) => {
+        if (err) {
+            res.json({ error: err });
+            console.log("Hubo un error en la busqueda de RutinaCompleta" + err);
+        } else {
+            res.json(data);
+        }
+    });
+}
+
 //Rutinacompleta Has Persona
 RutinaCtrl.createRutinacompletaHasPersona = (req, res) => {
     console.log("el req.body", req.body);
