@@ -22,16 +22,39 @@ export class LoginComponent implements OnInit {
     this.buildForm();
   }
 
+  get cedula() {
+    return this.loginForm.get("cedula");
+  }
+
+  get password() {
+    return this.loginForm.get("password");
+  }
+
+  get correoRecovery(){
+    return this.recovery.get("correoRecovery");
+  }
+
+  get correo(){
+    return this.changePassword.get("correo");
+  }
+
+  get key(){
+    return this.changePassword.get("key");
+  }
+
+  get passwordNew(){
+    return this.changePassword.get("password");
+  }
+
   buildForm() {
     this.loginForm = this.fb.group({
       cedula: ['', Validators.compose([Validators.required, Validators.pattern(/^[0-9]/)])],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
+      password: ['', Validators.compose([Validators.required])]
     })    
     this.changePassword = this.fb.group({
       correo: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-z]*.[a-z]*@(usantotomas)[.](edu)[.](co)$/)])],
       key: ['', Validators.compose([Validators.required])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
-      PasswordConfirm: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
     })
     this.recovery = this.fb.group({
       correoRecovery: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-z]*.[a-z]*@(usantotomas)[.](edu)[.](co)$/)])]
@@ -54,7 +77,7 @@ export class LoginComponent implements OnInit {
         M.toast({
           html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
                  <h4 class="alert-heading">FALLO AUTENTICACIÓN</h4>
-                 <p>Correo y/o contraseña incorrecta</p>
+                 <p>Documento y/o contraseña incorrecta</p>
                  <hr>
             </div>`});
       }
@@ -63,7 +86,7 @@ export class LoginComponent implements OnInit {
         M.toast({          
           html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
                  <h4 class="alert-heading">FALLO AUTENTICACIÓN</h4>
-                 <p>Correo y/o contraseña incorrecta</p>
+                 <p>Documento y/o contraseña incorrecta</p>
                  <hr>
             </div>`});
       }else if (data['fail'] == 3) {

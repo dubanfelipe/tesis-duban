@@ -1,152 +1,152 @@
 <body>
-  <div class="text-center">
-    <div *ngIf="yaCargo2()" class="spinner-border text-primary" role="status"
-      style="width: 3rem; height: 3rem; position: fixed; top: 50%; right: 50%; z-index: 7000;">
-      <span class="sr-only">Loading...</span>
+  <div class="menu">
+    <div class="container">
+      <nav class="nav-main">
+        <img style="width: 500px" src="https://facultadderecho.usta.edu.co/images/Logo-USTA-19.png" alt="TechNews Logo">
+        <ul style="flex: 1; margin-left: 200px;">
+          <li><a class="hover" style="color: white" href="#" routerLink="/register">Registro</a></li>
+        </ul>
+      </nav>
     </div>
   </div>
-  <div class="modal fade" id="recoveryPassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content border-success">
-        <div class="modal-header">
-          <h5 id="titulomodal" class="modal-title" id="exampleModalLabel">
-            <Strong>¿Olvidaste tu contraseña?</Strong>
-          </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+  <div style="position: relative;">
+    <img class="Imag1" src="../../../assets/Imag2.png" alt="Imag1">
+    <div style="position: absolute; transform: translate(-50%, -50%); top: 50%; left: 50%;">
+      <div style="display: flex;">
+        <div>
+          <h2 class="Bienvenido">Bienvenido</h2>
+          <div class="texto1">
+            <h2 class="al">al</h2>
+            <h2 class="gimnasio">gimnasio</h2>
+            <h2 class="usta">USTA</h2>
+          </div>
         </div>
-        <div class="modal-body">
-          <form [formGroup]="recovery" novalidate>
-
-            <p>Si el correo electronico especificado se encuentra registrado en el sistema se enviara un Email con un
-              codigo que permitira cambiar la contraseña.</p>
-            <div class="form-label-group">
-
-              <input formControlName="correoRecovery" maxlength="45" type="text" style="width: 400px"
-                class="form-control" placeholder="ejemplo@usantotomas.edu.co" id='correoRecuperar'>
-              <div style="width: 400px" *ngIf="recovery.get('correoRecovery').errors" class="alert alert-danger">
-                <div *ngIf="recovery.get('correoRecovery').errors['required']">
-                  Email requerido.
-                </div>
-                <div *ngIf="recovery.get('correoRecovery').errors['pattern']">
-                  Email incorrecto.
+        <div class="card" style="width: 280px;">
+          <div>
+            <h5 class="card-title">INGRESAR</h5>
+            <form [formGroup]="loginForm" autocomplete="off">
+              <div class="section-flex">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Documento</mat-label>
+                    <input matInput formControlName="cedula" type="text" autocomplete="off" required placeholder="Digita # de Documento" />
+                    <mat-error *ngIf="cedula.errors?.pattern">Documento incorrecto</mat-error>
+                    <mat-error *ngIf="cedula.errors?.required">Documento requerido</mat-error>
+                  </mat-form-field>
                 </div>
               </div>
-            </div>
-
+              <div class="section-flex">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput formControlName="password" autocomplete="off" type="password" placeholder="Digita la contraseña"
+                      required />
+                    <mat-error *ngIf="password.errors?.required">Contraseña requerida</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <a href="#" (click)="$event.preventDefault();" data-toggle="modal" data-target="#recoveryPassword"
+                style="margin-left: 10%; margin-right: 10%;">
+                <u>¿Olvidaste tu contraseña?</u>
+              </a>
+              <br>
+              <br>
+              <div style="display: flex; justify-content: space-around;">
+                <div>
+                  <button [disabled]="!loginForm.valid" class="btn btn-block" id="btnLogin" (click)="login(loginForm)"
+                    type="button">Login</button>
+                </div>
+                <div>
+                  <button [routerLink]="['/register']" class="btn btn-block" id="btnRegister"
+                    type="button">Registrarse</button>
+                </div>
+              </div>
+            </form>
             <br>
-            <button [disabled]="!recovery.valid" (click)="recoveryCode();" class=" btn btn-info">Enviar codigo</button>
-          </form>
-          <hr>
-          <h5><b> Cambiar contraseña</b> </h5>
-          <form [formGroup]="changePassword" novalidate>
-            <p>Si ya recibio un codigo para cambio de contraseña , llene los siguientes campos.</p>
-            <div class="col">
-              <div class="form-label-group">
-                <label><Strong><label id="lbl">*</label>Correo del usuario: </Strong>
-                </label>
-                <input formControlName="correo" maxlength="45" type="text" style="width: 400px" class="form-control"
-                  placeholder="ejemplo@usantotomas.edu.co" id='correoRecuperar2'>
-                <div style="width: 400px" *ngIf="changePassword.get('correo').errors" class="alert alert-danger">
-                  <div *ngIf="changePassword.get('correo').errors['required']">
-                    Email requerido.
-                  </div>
-                  <div *ngIf="changePassword.get('correo').errors['pattern']">
-                    Email incorrecto.
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- -------------------------key------- -->
-            <div class="col">
-              <div class="form-label-group">
-                <label><Strong><label id="lbl">*</label>Codigo de cambio de contraseña: </Strong>
-                </label>
-                <input formControlName="key" maxlength="8" type="text" style="width: 400px" class="form-control"
-                  placeholder="xxxxxxxx" id='key'>
-                <div style="width: 400px" *ngIf="changePassword.get('key').errors" class="alert alert-danger">
-                  <div *ngIf="changePassword.get('key').errors['required']">
-                    Codigo requerido.
-                  </div>
-
-                </div>
-              </div>
-            </div>
-            <!-- --------- nueva contraseña ---------- -->
-            <div class="col">
-              <div class="form-label-group">
-                <label><Strong><label id="lbl">*</label>Nueva contraseña: </Strong>
-                </label>
-                <input formControlName="password" maxlength="45" type="password" style="width: 400px"
-                  class="form-control" placeholder="xxxxxxxx" id='password'>
-                <div style="width: 400px" *ngIf="changePassword.get('password').errors" class="alert alert-danger">
-                  <div *ngIf="changePassword.get('password').errors['required']">
-                    Nueva contraseña requerida.
-                  </div>
-                  <div *ngIf="changePassword.get('password').errors['minlength']">
-                    Contraseña insegura (minimo 6 caracteres).
-                  </div>
-                </div>
-              </div>
-            </div>            
-            <button [disabled]="!changePassword.valid" (click)="recoveryPassword(changePassword);"
-              class=" btn btn-info">Cambiar contraseña</button>
-          </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="container separador">
-      <div class="row justify-content-center">
-          <div class="card" style="width: 500px;">
-            <div class="card-body">
-              <h5 class="card-title">INGRESAR</h5>
-              <form *ngIf="yaCargo()" [formGroup]="loginForm" novalidate>
-                  <div class="form-group">
-                      <input type="text" class= "form-control" name="cedula" placeholder="Cedula" formControlName="cedula" autofocus>
-                      <div *ngIf="loginForm.get('cedula').errors" class="alert alert-danger">
-                          <div *ngIf="loginForm.get('cedula').errors['required']">
-                            Cedula requerida
-                          </div>
-                          <div *ngIf="loginForm.get('cedula').errors['pattern']">
-                            Cedula requerida
-                          </div>
-                      </div>  
-                  </div> 
-                  <div class="form-group">
-                      <input type="password" class= "form-control" name="password" placeholder="Contraseña" (keyup.enter)="login(loginForm)" formControlName= "password">
-                      <div *ngIf="loginForm.get('password').errors" class="alert alert-danger">
-                          <div *ngIf="loginForm.get('password').errors['required']">
-                            Contraseña requerido
-                          </div>
-                          <div *ngIf="loginForm.get('password').errors['minlength']">
-                            Contraseña insegura (minimo 6 caracteres).
-                          </div>
-                      </div>  
-                  </div>  
-                  <a href="#" (click)="$event.preventDefault();" data-toggle="modal"
-                    data-target="#recoveryPassword"><u>¿Olvidaste
-                      tu contraseña?</u> </a>
-                  <br>
-                  <br>
-                  <div class="form-label-group">
-                      <button [disabled]="!loginForm.valid" class="btn btn-block" id="btnLogin" (click)="login(loginForm)"
-                        type="button">Login</button>
-                      <button [routerLink]="['/register']" class="btn btn-block" id="btnRegister"
-                        type="button">Registrarse</button>
-                  </div>        
-              </form>
-              <div class="text-center">
-                <div *ngIf="!yaCargo()" class="spinner-border text-primary" role="status"
-                  style="width: 3rem; height: 3rem;">
-                  <span class="sr-only">Loading...</span>
+    <div class="form-modal">
+      <div class="modal fade" id="recoveryPassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content border-success">
+            <div class="modal-header">
+              <h5 id="titulomodal" class="modal-title" id="exampleModalLabel">
+                <Strong>¿Olvidaste tu contraseña?</Strong>
+              </h5>
+              <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form [formGroup]="recovery">
+                <div class="section-flex">
+                  <p>Si el correo electronico especificado se encuentra registrado en el sistema se enviara un Email con un codigo que
+                  permitira cambiar la contraseña.</p>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Correo institucional</mat-label>
+                    <input matInput formControlName="correoRecovery" type="text" autocomplete="off"
+                      placeholder="Digita el correo institucional" required />
+                    <mat-error *ngIf="correoRecovery.errors?.pattern">Correo institucional incorrecto</mat-error>
+                    <mat-error *ngIf="correoRecovery.errors?.required">Correo institucional requerido</mat-error>
+                  </mat-form-field>
+                  <div>
+                    <button style="float: right;" [disabled]="!recovery.valid" (click)="recoveryCode();" class=" btn btn-info" type="button">
+                      Enviar codigo
+                    </button>
+                  </div>
                 </div>
-              </div>
+              </form>
+              <br>
+              <hr>
+              <h5><b> Cambiar contraseña</b> </h5>
+              <form [formGroup]="changePassword">
+                <p>Si ya recibio un codigo para cambio de contraseña, llene los siguientes campos.</p>
+                <div class="row mt-5">
+                  <div class="col-md-4 col-sm-12" style="text-align: initial;">
+                    <div class="section-flex">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Correo institucional</mat-label>
+                        <input matInput formControlName="correo" type="text" autocomplete="off"
+                          placeholder="Digita el correo institucional" required />
+                        <mat-error *ngIf="correo.errors?.pattern">Correo institucional incorrecto</mat-error>
+                        <mat-error *ngIf="correo.errors?.required">Correo institucional requerido</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>                  
+                  <!-- -------------------------key------- -->
+                  <div class="col-md-4 col-sm-12">
+                    <div class="section-flex">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Codigo cambio contraseña</mat-label>
+                        <input matInput formControlName="key" type="text" autocomplete="off"
+                          placeholder="Digita el codigo" required />
+                        <mat-error *ngIf="key.errors?.required">Codigo requerido</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>                  
+                  <!-- --------- nueva contraseña ---------- -->
+                  <div class="col-md-4 col-sm-12">
+                    <div class="section-flex">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Nueva contraseña</mat-label>
+                        <input matInput formControlName="password" type="password" autocomplete="off"
+                          placeholder="Digita la nueva contraseña" required />
+                        <mat-error *ngIf="passwordNew.errors?.pattern">Contraseña corta o insegura</mat-error>
+                        <mat-error *ngIf="passwordNew.errors?.required">Contraseña requerida</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>                  
+                </div>
+                <button style="float: right;" [disabled]="!changePassword.valid" (click)="recoveryPassword(changePassword);"
+                  class=" btn btn-info" type="button">Cambiar contraseña</button>
+              </form>
             </div>
           </div>
+        </div>
       </div>
+    </div>
   </div>
 </body>
-

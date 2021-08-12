@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent} from './components/home/home.component';
 import { AdminComponent} from './components/admin/admin.component';
 import { RegisterComponent} from './components/register/register.component';
 import { LoginComponent} from './components/login/login.component';
@@ -18,7 +17,6 @@ import { ExerciseComponent } from './components/exercise/exercise.component';
 import { AsignarRutinasComponent } from './components/asignar-rutinas/asignar-rutinas.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'admin', component: AdminComponent, canActivate: [GuardsGuard] },
@@ -34,7 +32,7 @@ const routes: Routes = [
   { path: 'admin/assignRoutines', component: AsignarRutinasComponent, canActivate: [GuardsGuard]},
   { path: 'usuarios', component: UsuariosComponent, canActivate: [GuardsGuard] },
   { path: 'usuarios/profile', component: ProfileComponent, canActivate: [GuardsGuard]},
-  { path: '**', component: HomeComponent }
+  { path: '**', component: LoginComponent }
 ];
 
 @NgModule({

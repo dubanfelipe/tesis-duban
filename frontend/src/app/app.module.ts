@@ -29,7 +29,7 @@ import { RutinasComponent } from './components/rutinas/rutinas.component';
 import { ExerciseComponent } from './components/exercise/exercise.component';
 import { AsignarRutinasComponent } from './components/asignar-rutinas/asignar-rutinas.component';
 
-
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -60,7 +60,8 @@ import { AsignarRutinasComponent } from './components/asignar-rutinas/asignar-ru
     Ng2SmartTableModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ],
   providers: [RegisterService],
   bootstrap: [AppComponent]
