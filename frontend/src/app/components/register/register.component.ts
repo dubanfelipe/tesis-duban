@@ -24,6 +24,71 @@ export class RegisterComponent implements OnInit {
   constructor(public registerService: RegisterService, private router: Router, private fb: FormBuilder) {
     this.buildForm();
   }
+
+  get nombre(){
+    return this.registerForm.get("Nombre");
+  }
+  get apellido(){
+    return this.registerForm.get("Apellido");
+  }
+  get correo(){
+    return this.registerForm.get("Correo");
+  }
+  get cedula(){
+    return this.registerForm.get("Cedula");
+  }
+  get rol(){
+    return this.registerForm.get("Rol_id_rol");
+  }
+  get password(){
+    return this.registerForm.get("Password");
+  }
+  get passwordConfirm(){
+    return this.registerForm.get("PasswordConfirm");
+  }
+  get celular(){
+    return this.registerUsuarioForm.get("Celular");
+  }
+  get edad(){
+    return this.registerUsuarioForm.get("Edad");
+  }
+  get estatura(){
+    return this.registerUsuarioForm.get("Estatura");
+  }
+  get peso(){
+    return this.registerUsuarioForm.get("Peso");
+  }
+  get rh(){
+    return this.registerUsuarioForm.get("Rh");
+  }
+  get eps(){
+    return this.registerUsuarioForm.get("Eps");
+  }
+  get dificultades_patologicas(){
+    return this.registerUsuarioForm.get("Dificultades_patologicas");
+  }
+  get fecha_nacimiento(){
+    return this.registerUsuarioForm.get("Fecha_nacimiento");
+  }
+  get nombre_Acompanante(){
+    return this.registerUsuarioForm.get("Nombre_Acompanante");
+  }
+  get celular_Acompanante(){
+    return this.registerUsuarioForm.get("Celular_Acompanante");
+  }
+  get parentesco_Acompanante(){
+    return this.registerUsuarioForm.get("Parentesco_Acompanante");
+  }
+  get codigo(){
+    return this.registerEstudianteForm.get("Codigo");
+  }
+  get semestre(){
+    return this.registerEstudianteForm.get("Semestre");
+  }
+  get facultad(){
+    return this.registerEstudianteForm.get("Facultad_id_facultad");
+  }
+
   buildForm(){
     this.registerForm = this.fb.group({
       Nombre: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-z A-Z ñ Ñ]*$/)])],

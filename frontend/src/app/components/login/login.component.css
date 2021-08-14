@@ -53,11 +53,8 @@ li{
 }
 .Imag1{
   width: 100%;
-  height: 400px;
+  height: 419px;
   opacity: 0.9;
-}
-.texto1{  
-  display: flex;
 }
 .Bienvenido{
   font-family: 'Righteous', cursive;
@@ -85,7 +82,7 @@ li{
 }
 
 #recoveryPassword{
-  top: 10%;
+  top: 5%;
   align-items: center;
   width: 100%;
 }

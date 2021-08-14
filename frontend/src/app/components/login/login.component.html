@@ -85,7 +85,7 @@
                 <div class="section-flex">
                   <p>Si el correo electronico especificado se encuentra registrado en el sistema se enviara un Email con un codigo que
                   permitira cambiar la contraseña.</p>
-                  <mat-form-field appearance="outline">
+                  <mat-form-field appearance="outline" style="width:400px !important">
                     <mat-label>Correo institucional</mat-label>
                     <input matInput formControlName="correoRecovery" type="text" autocomplete="off"
                       placeholder="Digita el correo institucional" required />
@@ -134,7 +134,7 @@
                         <mat-label>Nueva contraseña</mat-label>
                         <input matInput formControlName="password" type="password" autocomplete="off"
                           placeholder="Digita la nueva contraseña" required />
-                        <mat-error *ngIf="passwordNew.errors?.pattern">Contraseña corta o insegura</mat-error>
+                        <mat-error *ngIf="passwordNew.errors?.minlength">Contraseña corta o insegura</mat-error>
                         <mat-error *ngIf="passwordNew.errors?.required">Contraseña requerida</mat-error>
                       </mat-form-field>
                     </div>
