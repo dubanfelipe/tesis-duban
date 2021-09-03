@@ -7,7 +7,10 @@ export interface Usuarios{
     Rh : string;
     Eps : string;
     Ingreso : Boolean;
-    Hor: string;
+    Hora: string;
+    Deportista: string;
+    Facultad_id_facultad: number;
+    EscalaPeso: string;
     Dificultades_patologicas : string;
     Fecha_nacimiento: string;
     Nombre_Acompanante: string;

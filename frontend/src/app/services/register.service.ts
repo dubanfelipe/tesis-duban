@@ -31,6 +31,9 @@ export class RegisterService{
     getRegisterByIdPersonaCedula(Cedula:number){
         return this.http.get(this.API_URL+`/register/Persona/${Cedula}`);
     }
+    getRegisterByIdPersonaCorreo(Correo:number){
+        return this.http.get(this.API_URL+`/register//Persona/Correo/${Correo}`);
+    }
     getRegisterByIdPersonaActivo(Activo:number){
         return this.http.get(this.API_URL+`/register/Persona/Activate/${Activo}`);
     }
@@ -69,6 +72,9 @@ export class RegisterService{
     }
     getRegisterByIdEstudiante(Cedula:string){
         return this.http.get(this.API_URL+`/register/Estudiante/${Cedula}`);
+    }
+    getRegisterByIdEstudianteCodigo(Codigo:string){
+        return this.http.get(this.API_URL+`/register/Estudiante/Codigo/${Codigo}`);
     }
     updateRegisterByIdEstudiante(id:number, updateRegister: Estudiante) {
         return this.http.put(this.API_URL+`/register/Estudiante/${id}`,updateRegister);

@@ -30,6 +30,9 @@ import { ExerciseComponent } from './components/exercise/exercise.component';
 import { AsignarRutinasComponent } from './components/asignar-rutinas/asignar-rutinas.component';
 
 import { MaterialModule } from './material/material.module';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -61,7 +64,9 @@ import { MaterialModule } from './material/material.module';
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule
   ],
   providers: [RegisterService],
   bootstrap: [AppComponent]

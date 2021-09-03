@@ -39,6 +39,19 @@ registerCtrl.getRegisterByIdPersonaCedula = (req, res) => {
         }
     });
 }
+
+registerCtrl.getRegisterByIdPersonaCorreo = (req, res) => {   
+    let id = req.params.Correo;
+    db.query(`SELECT * FROM Persona WHERE Correo='${id}'`, (err, data) => {
+        if (err) {
+            res.json({ error: err });
+            console.log("Hubo un error en la busqueda del Persona" + err);
+        } else {
+            res.json(data);
+        }
+    });
+}
+
 registerCtrl.getRegisterByIdPersonaActivo = (req, res) => {   
     let id = req.params.Activo;
     db.query(`SELECT * FROM Persona WHERE Activo='${id}'`, (err, data) => {
@@ -71,11 +84,7 @@ registerCtrl.createRegisterPersona = async (req, res) => {
                 res.json(data);
             }
         });             
-    });    
-    for (let index = 0; index < array.length; index++) {
-        const element = array[index];
-        
-    }
+    });
 }
 registerCtrl.deleteRegisterByIdPersona = (req, res) =>{
     let id = req.params.id_persona;
@@ -154,8 +163,8 @@ registerCtrl.getRegisterByIdUsuario = (req, res) => {
 registerCtrl.createRegisterUsuario = async (req, res) => {
     console.log("usuarios que llego :", req.body);
     usuarios = req.body;    
-    var query = `INSERT INTO Usuario (Celular,Edad,Estatura,Peso,Rh,Eps,Ingreso,Hora,Dificultades_patologicas,Fecha_nacimiento,Nombre_Acompanante,Celular_Acompanante,Parentesco_Acompanante,Persona_id_persona,Sede_id_sede)
-    VALUES ('${usuarios.Celular}','${usuarios.Edad}','${usuarios.Estatura}','${usuarios.Peso}','${usuarios.Rh}','${usuarios.Eps}','${usuarios.Ingreso}','${usuarios.Hora}','${usuarios.Dificultades_patologicas}','${usuarios.Fecha_nacimiento}','${usuarios.Nombre_Acompanante}','${usuarios.Celular_Acompanante}','${usuarios.Parentesco_Acompanante}','${usuarios.Persona_id_persona}','${usuarios.Sede_id_sede}')`;
+    var query = `INSERT INTO Usuario (Celular,Edad,Estatura,Peso,Rh,Eps,Ingreso,Hora,Deportista,Facultad_id_facultad,EscalaPeso,Dificultades_patologicas,Fecha_nacimiento,Nombre_Acompanante,Celular_Acompanante,Parentesco_Acompanante,Persona_id_persona,Sede_id_sede)
+    VALUES ('${usuarios.Celular}','${usuarios.Edad}','${usuarios.Estatura}','${usuarios.Peso}','${usuarios.Rh}','${usuarios.Eps}','${usuarios.Ingreso}','${usuarios.Hora}','${usuarios.Deportista}','${usuarios.Facultad_id_facultad}','${usuarios.EscalaPeso}','${usuarios.Dificultades_patologicas}','${usuarios.Fecha_nacimiento}','${usuarios.Nombre_Acompanante}','${usuarios.Celular_Acompanante}','${usuarios.Parentesco_Acompanante}','${usuarios.Persona_id_persona}','${usuarios.Sede_id_sede}')`;
     db.query(query, function(err, data) {
     if (err) {
             res.json({ error: err });
@@ -181,7 +190,7 @@ registerCtrl.deleteRegisterByIdUsuario = (req, res) => {
 registerCtrl.updateRegisterByIdUsuario = (req, res) =>{
     const Id_update = req.params.id_usuario;
     const update = req.body;
-    var query = `UPDATE Usuario SET Edad = '${update.Edad}', Estatura ='${update.Estatura}', Peso ='${update.Peso}', Rh ='${update.Rh}', Eps ='${update.Eps}', Dificultades_patologicas ='${update.Dificultades_patologicas}', Fecha_nacimiento ='${update.Fecha_nacimiento}', Nombre_Acompanante ='${update.Nombre_Acompanante}', Celular_Acompanante ='${update.Celular_Acompanante}', Parentesco_Acompanante ='${update.Parentesco_Acompanante}' WHERE Id_usuario = '${Id_update}'`;
+    var query = `UPDATE Usuario SET Edad = '${update.Edad}', Estatura ='${update.Estatura}', Peso ='${update.Peso}', Rh ='${update.Rh}', Eps ='${update.Eps}', Deportista ='${update.Deportista}', Facultad_id_facultad = '${update.Facultad_id_facultad}', EscalaPeso = '${update.EscalaPeso}', Dificultades_patologicas ='${update.Dificultades_patologicas}', Fecha_nacimiento ='${update.Fecha_nacimiento}', Nombre_Acompanante ='${update.Nombre_Acompanante}', Celular_Acompanante ='${update.Celular_Acompanante}', Parentesco_Acompanante ='${update.Parentesco_Acompanante}' WHERE Id_usuario = '${Id_update}'`;
     try {
         db.query(query, (err, data) => {
             if (err) {
@@ -198,6 +207,18 @@ registerCtrl.updateRegisterByIdUsuario = (req, res) =>{
 }
 
 //Estudiante
+registerCtrl.getRegisterByIdEstudianteCodigo = (req, res) => {   
+    let id = req.params.Codigo;
+    db.query(`SELECT * FROM Estudiante WHERE Codigo='${id}'`, (err, data) => {
+        if (err) {
+            res.json({ error: err });
+            console.log("Hubo un error en la busqueda del Persona" + err);
+        } else {
+            res.json(data);
+        }
+    });
+}
+
 registerCtrl.getRegisterByIdEstudiante = (req, res) => {   
     let id = req.params.Cedula;
     db.query(`SELECT p.*, u.*, e.* FROM Persona AS p INNER JOIN Usuario AS u ON p.Id_persona = u.Persona_id_persona INNER JOIN Estudiante AS e ON u.Id_usuario = e.Usuario_id_usuario WHERE Cedula='${id}'`, (err, data) => {
@@ -212,8 +233,8 @@ registerCtrl.getRegisterByIdEstudiante = (req, res) => {
 registerCtrl.createRegisterEstudiante = async (req, res) => {
     console.log("usuarios que llego :", req.body);
     usuarios = req.body;    
-    var query = `INSERT INTO Estudiante (Codigo,Semestre,Usuario_id_usuario,Facultad_id_facultad)
-    VALUES ('${usuarios.Codigo}','${usuarios.Semestre}','${usuarios.Usuario_id_usuario}','${usuarios.Facultad_id_facultad}')`;
+    var query = `INSERT INTO Estudiante (Codigo,Semestre,Usuario_id_usuario)
+    VALUES ('${usuarios.Codigo}','${usuarios.Semestre}','${usuarios.Usuario_id_usuario}')`;
     db.query(query, function(err, data) {
     if (err) {
             res.json({ error: err });

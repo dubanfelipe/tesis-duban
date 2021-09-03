@@ -12,6 +12,9 @@ export interface USUARIO{
     PESO : number;
     RH : string;
     EPS : string;
+    DEPORTISTA : string;
+    FACULTAD_ID_FACULTAD: number;
+    ESCALAPESO : string;
     DIFICULTADES_PATOLOGICAS : string;
     FECHA_NACIMIENTO: string;
     NOMBRE_ACOMPANANTE: string;

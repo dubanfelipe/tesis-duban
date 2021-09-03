@@ -131,10 +131,49 @@
                   &nbsp;&nbsp;
                   <mat-form-field appearance="outline">
                     <mat-label>Rh</mat-label>
-                    <input matInput formControlName="Rh" type="text" autocomplete="off" required
-                      placeholder="Digite su Rh" />
-                    <mat-error *ngIf="rh.errors?.pattern">No cumple los parametros</mat-error>
+                    <mat-select matInput autocomplete="off" required placeholder="Seleccione su Rh"
+                      formControlName="Rh">
+                      <mat-option *ngFor="let Rh of tipoSangre" value={{Rh}}>
+                        {{Rh}}
+                      </mat-option>
+                    </mat-select>
                     <mat-error *ngIf="rh.errors?.required">Rh requerido</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="section-flex">
+                <div class="form-group">
+                  <mat-form-field appearance="outline" style="width:350px !important">
+                    <mat-label>Facultad</mat-label>
+                    <mat-select matInput autocomplete="off" required placeholder="Seleccione su Facultad"
+                      formControlName="Facultad_id_facultad">
+                      <mat-option *ngFor="let facultades of registerService.Facultad" value={{facultades.ID_FACULTAD}}>
+                        {{facultades.NOMBRE_FACULTAD}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="facultad.errors?.required">Facultad requerida</mat-error>
+                  </mat-form-field>
+                  &nbsp;&nbsp;
+                  <mat-form-field appearance="outline" style="width:350px !important">
+                    <mat-label>Deportista de alto rendimiento</mat-label>
+                    <mat-select matInput autocomplete="off" required placeholder="Seleccione su deporte"
+                      formControlName="Deportista">
+                      <mat-option *ngFor="let Deportista of listDeportista" value={{Deportista}}>
+                        {{Deportista}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="deportista.errors?.required">Campo requerido</mat-error>
+                  </mat-form-field>
+                  &nbsp;&nbsp;
+                  <mat-form-field appearance="outline" style="width:350px !important">
+                    <mat-label>Escala de peso</mat-label>
+                    <mat-select matInput autocomplete="off" required placeholder="Seleccione su escala"
+                      formControlName="EscalaPeso">
+                      <mat-option *ngFor="let EscalaPeso of pesoEscala" value={{EscalaPeso}}>
+                        {{EscalaPeso}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="deportista.errors?.required">Campo requerido</mat-error>
                   </mat-form-field>
                 </div>
               </div>
@@ -158,7 +197,7 @@
                   &nbsp;&nbsp;&nbsp;
                   <mat-form-field appearance="outline" style="width:250px !important">
                     <mat-label>Fecha de nacimiento</mat-label>
-                    <input matInput formControlName="Fecha_nacimiento" type="text" autocomplete="off" required
+                    <input matInput formControlName="Fecha_nacimiento" type="date" autocomplete="off" required
                       placeholder="Digite su fecha de nacimiento" />
                     <mat-error *ngIf="fecha_nacimiento.errors?.pattern">No cumple los parametros</mat-error>
                     <mat-error *ngIf="fecha_nacimiento.errors?.required">Fecha requerida</mat-error>
@@ -213,27 +252,76 @@
                     <mat-error *ngIf="semestre.errors?.min">No cumple los parametros</mat-error>
                     <mat-error *ngIf="semestre.errors?.max">No cumple los parametros</mat-error>
                   </mat-form-field>
-                  &nbsp;&nbsp;&nbsp;
-                  <mat-form-field appearance="outline" style="width:350px !important">
-                    <mat-label>Facultad</mat-label>
-                    <mat-select matInput autocomplete="off" required placeholder="Seleccione su Facultad"
-                      formControlName="Facultad_id_facultad">
-                      <mat-option *ngFor="let facultades of registerService.Facultad" value={{facultades.ID_FACULTAD}}>
-                        {{facultades.NOMBRE_FACULTAD}}
-                      </mat-option>
-                    </mat-select>
-                    <mat-error *ngIf="facultad.errors?.required">Facultad requerida</mat-error>
+                </div>
+              </div>
+            </form>
+            <form [formGroup]="DocumentosForm">
+              <div class="section-flex">
+                <div class="form-group">
+                  <mat-form-field appearance="outline" style="width:400px !important">
+                    <mat-label>Carnet Universitario</mat-label>
+                    <input matInput type="text" placeholder="Carnet Universitario" formControlName="CarnetDocument" />
                   </mat-form-field>
+                  &nbsp;&nbsp;
+                  <label [attr.for]="'file-upload'" matTooltip="Subir Archivo">
+                    <mat-icon class="mat-icon--action">backup</mat-icon>
+                  </label>
+                  <input [attr.id]="'file-upload'" type="file" (change)="handleInputChange($event)"
+                    style="display: none;" />
+                  &nbsp;&nbsp;&nbsp;
+                  <mat-form-field appearance="outline" style="width:400px !important">
+                    <mat-label>Certificado Enfermeria</mat-label>
+                    <input matInput type="text" placeholder="Certificado Enfermeria"
+                      formControlName="TamizajeDocument" />
+                  </mat-form-field>
+                  &nbsp;&nbsp;
+                  <label [attr.for]="'file-uploadd'" matTooltip="Subir Archivo">
+                    <mat-icon class="mat-icon--action">backup</mat-icon>
+                  </label>
+                  <input [attr.id]="'file-uploadd'" type="file" (change)="handleInputChangee($event)"
+                    style="display: none;" />
                 </div>
               </div>
             </form>
             <button
-            [disabled]="(estudianteCargo(registerForm) && (!registerForm.valid || !registerUsuarioForm.valid || !registerEstudianteForm.valid)) || (!estudianteCargo(registerForm) && (!registerForm.valid || !registerUsuarioForm.valid))"
-            mat-raised-button class="btn" id="btnRegister" type="button"
-            (click)="addRegister(registerForm, registerUsuarioForm, registerEstudianteForm)">
-            Registrar</button>            
-          </div>   
-          <br>       
+              [disabled]="(estudianteCargo(registerForm) && (!registerForm.valid || !registerUsuarioForm.valid || !registerEstudianteForm.valid)) || (!estudianteCargo(registerForm) && (!registerForm.valid || !registerUsuarioForm.valid))"
+              mat-raised-button class="btn" id="btnRegister" type="button"
+              (click)="addRegister(registerForm, registerUsuarioForm, registerEstudianteForm, DocumentosForm)">
+              Registrar</button>
+          </div>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a id="modalDate" href="#" data-toggle="modal" data-target="#openModal"></a>
+  <div class="form-modal">
+    <div class="modal fade" id="openModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content border-success">
+          <div class="modal-header">
+            <div class="alert-dialog-w">
+              <div style="padding-bottom: 15px; text-align: center;">
+                <img style="width: 300px" src="https://facultadderecho.usta.edu.co/images/Logo-USTA-19.png"
+                  alt="TechNews Logo">
+              </div>
+              <div style="text-align: center;">
+                Aun no ha subido los archivos solicitados.
+              </div>
+              <div style="text-align: center;">
+                Por favor realizar esta tarea
+              </div>
+              <br>
+              <div>
+                <div style="display: flex; justify-content: space-around;">
+                  <div style="text-align: right;">
+                    <button class="btn btn-danger" type="button" data-dismiss="modal">Aceptar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

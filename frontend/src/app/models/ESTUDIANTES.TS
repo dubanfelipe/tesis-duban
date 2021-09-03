@@ -12,7 +12,9 @@ export interface ESTUDIANTE{
     PESO : number;
     RH : string;
     EPS : string;
+    DEPORTISTA : string;
     DIFICULTADES_PATOLOGICAS : string;
+    ESCALAPESO : string;
     FECHA_NACIMIENTO: string;
     NOMBRE_ACOMPANANTE: string;
     CELULAR_ACOMPANANTE: string;

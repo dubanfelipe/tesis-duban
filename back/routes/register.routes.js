@@ -6,6 +6,7 @@ router.get('/', registerCtrl.getRegister);
 router.get('/Rol', registerCtrl.getRegisterRol);
 //Persona
 router.get('/Persona/:Cedula', registerCtrl.getRegisterByIdPersonaCedula);
+router.get('/Persona/Correo/:Correo', registerCtrl.getRegisterByIdPersonaCorreo);
 router.post('/Persona/createRegisterPersona', registerCtrl.createRegisterPersona);
 router.delete('/Persona/:id_persona', registerCtrl.deleteRegisterByIdPersona);
 router.put('/Persona/:id_persona', registerCtrl.updateRegisterByIdPersona);
@@ -19,6 +20,7 @@ router.delete('/Usuario/:id_usuario', registerCtrl.deleteRegisterByIdUsuario);
 router.put('/Usuario/:id_usuario', registerCtrl.updateRegisterByIdUsuario);
 //Estudiante
 router.get('/Estudiante/:Cedula', registerCtrl.getRegisterByIdEstudiante);
+router.get('/Estudiante/Codigo/:Codigo', registerCtrl.getRegisterByIdEstudianteCodigo);
 router.post('/Estudiante/createRegisterEstudiante', registerCtrl.createRegisterEstudiante);
 router.delete('/Estudiante/:id_estudiante', registerCtrl.deleteRegisterByIdEstudiante);
 router.put('/Estudiante/:id_estudiante', registerCtrl.updateRegisterByIdEstudiante);

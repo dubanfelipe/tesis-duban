@@ -200,32 +200,45 @@ export class RutinasComponent implements OnInit {
           this.rutinacompleta.Id_rutinasabado = res[0].ID_RUTINASABADO;
           this.rutinacompleta.Nombre_Rutina = res[0].NOMBRE_RUTINA;
           this.rutinaForm.patchValue({"Nombre": this.rutinacompleta.Nombre_Rutina});
-          for (let index = 0; index < 6; index++) {
-            this.Domingo = true;
-            this.diaSelecDia = index;                  
-            this.banderaParaEditar = true;              
-            this.rutinaCheck = false;
-            if (index == 0){ 
-              this.HAS.Id_rutina = this.rutinacompleta.Id_rutinalunes;   
-              this.Lunes = true;                                    
-            }else if(index == 1){
-              this.HAS.Id_rutina = this.rutinacompleta.Id_rutinamartes;   
-              this.Martes = true; 
-            }else if(index == 2){
-              this.HAS.Id_rutina = this.rutinacompleta.Id_rutinamiercoles;   
-              this.Miercoles = true;  
-            }else if(index == 3){
-              this.HAS.Id_rutina = this.rutinacompleta.Id_rutinajueves;   
-              this.Jueves = true;  
-            }else if(index == 4){
-              this.HAS.Id_rutina = this.rutinacompleta.Id_rutinaviernes;   
-              this.Viernes = true;  
-            }else if(index == 5){
-              this.HAS.Id_rutina = this.rutinacompleta.Id_rutinasabado;   
-              this.Sabado = true;  
-            }  
-            this.getEjerciciosById()                                                
-          }
+          this.Domingo = true;                  
+          this.banderaParaEditar = true;              
+          this.rutinaCheck = false;
+          this.RutinaService.getEjercicioHasRutina(this.rutinacompleta.Id_rutinalunes)
+          .subscribe(res =>{
+            this.Dia.lunes.EJERCICIO = res as EJERCICIO; 
+            this.yacargoLunes = true;
+            this.Lunes = true;
+            this.RutinaService.getEjercicioHasRutina(this.rutinacompleta.Id_rutinamartes)
+            .subscribe(res =>{
+              this.Dia.Martes.EJERCICIO = res as EJERCICIO;
+              this.yacargoMartes = true;
+              this.Martes = true;
+              this.RutinaService.getEjercicioHasRutina(this.rutinacompleta.Id_rutinamiercoles)
+              .subscribe(res =>{
+                this.Dia.Miercoles.EJERCICIO = res as EJERCICIO;
+                this.yacargoMiercoles = true;
+                this.Miercoles = true;
+                this.RutinaService.getEjercicioHasRutina(this.rutinacompleta.Id_rutinajueves)
+                .subscribe(res =>{
+                  this.Dia.Jueves.EJERCICIO = res as EJERCICIO;
+                  this.yacargoJueves = true;
+                  this.Jueves = true;
+                  this.RutinaService.getEjercicioHasRutina(this.rutinacompleta.Id_rutinaviernes)
+                  .subscribe(res =>{
+                    this.Dia.Viernes.EJERCICIO = res as EJERCICIO;
+                    this.yacargoViernes = true;
+                    this.Viernes = true;
+                    this.RutinaService.getEjercicioHasRutina(this.rutinacompleta.Id_rutinasabado)
+                    .subscribe(res =>{
+                      this.Dia.Sabado.EJERCICIO = res as EJERCICIO;
+                      this.yacargoSabado = true;
+                      this.Sabado = true;
+                    })
+                  })
+                })
+              })
+            })
+          })
         })
       }
     })
