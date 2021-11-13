@@ -1,9 +1,9 @@
 export interface PERSONA{
-    ID_PERSONA : number;
-    NOMBRE : string;
-    APELLIDO : string;
-    CORREO : string;
-    CEDULA : number;   
-    NOMBRE_ROL: string;
-    RUTINA_ASIGANADA: string;
+    Id_persona : number;
+    Nombre : string;
+    Apellido : string;
+    Correo : string;
+    Cedula : number;   
+    Nombre_rol: string;
+    Rutina_asignada: string;
 }

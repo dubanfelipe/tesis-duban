@@ -34,19 +34,19 @@ export class AsignarRutinasComponent implements OnInit {
       position: 'right',
     },
     columns: {
-      NOMBRE: {
+      Nombre: {
         title: 'Nombre',
       },
-      APELLIDO: {
+      Apellido: {
         title: 'Apellido',
       },
-      CEDULA: {
+      Cedula: {
         title: 'Cedula',
       },
-      NOMBRE_ROL: {
+      Nombre_rol: {
         title: 'Ocupacion',
       },   
-      RUTINA_ASIGNADA:{
+      Rutina_asignada:{
         title: 'Rutina Asignada',
       } 
     },
@@ -69,7 +69,7 @@ export class AsignarRutinasComponent implements OnInit {
       position: 'right',
     },
     columns: {
-      NOMBRE_RUTINA: {
+      Nombre_rutina: {
         title: 'Nombre Rutina',
       },        
     },
@@ -83,9 +83,9 @@ export class AsignarRutinasComponent implements OnInit {
       }else{        
         //document.getElementById("prueba").click();
         for (let index = 0; index < this.selectedRows.length; index++) {    
-          this.HAS.Id_persona = this.selectedRows[index].ID_PERSONA;
-          this.HAS.Id_rutinacompleta = event.data.ID_RUTINACOMPLETA;
-          this.selectedRows[index].RUTINA_ASIGNADA = event.data.NOMBRE_RUTINA;
+          this.HAS.Id_persona = this.selectedRows[index].Id_persona;
+          this.HAS.Id_rutinacompleta = event.data.Id_rutinacompleta;
+          this.selectedRows[index].Rutina_asignada = event.data.Nombre_rutina;
           this.RutinaService.createRutinacompletaHasPersona(this.HAS)
           .subscribe(res => {              
           })   
@@ -102,8 +102,8 @@ export class AsignarRutinasComponent implements OnInit {
       }
     }
     if (event.action == "editRoutines"){
-      this.RutinaService.idRutinaCompleta = event.data.ID_RUTINACOMPLETA;
-      this.router.navigate(['/admin/routines/'+event.data.ID_RUTINACOMPLETA]);
+      this.RutinaService.idRutinaCompleta = event.data.Id_rutinacompleta;
+      this.router.navigate(['/admin/routines/'+event.data.Id_rutinacompleta]);
     }
   }
   ngOnInit(): void {

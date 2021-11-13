@@ -90,7 +90,7 @@ RutinaCtrl.createRutina = (req, res) => {
                     for (let index = 0; index < listaRutinas.length; index++) {
                         listaRutina[0] = listaRutinas[index];                        
                     }
-                    res.json(listaRutina[0].ID_RUTINA);
+                    res.json(listaRutina[0].Id_rutina);
                 }
             });               
         }

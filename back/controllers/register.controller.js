@@ -101,7 +101,7 @@ registerCtrl.deleteRegisterByIdPersona = (req, res) =>{
 registerCtrl.updateRegisterByIdPersona = (req, res) =>{
     const Id_update = req.params.id_persona;
     const update = req.body;
-    var query = `UPDATE Persona SET Nombre = '${update.Nombre}', Apellido ='${update.Apellido}'  WHERE Id_persona = '${Id_update}'`;
+    var query = `UPDATE Persona SET Nombre = '${update.Nombre}', Apellido ='${update.Apellido}', Correo ='${update.Correo}', Cedula ='${update.Cedula}'  WHERE Id_persona = '${Id_update}'`;
     try {
         db.query(query, (err, data) => {
             if (err) {
@@ -190,7 +190,7 @@ registerCtrl.deleteRegisterByIdUsuario = (req, res) => {
 registerCtrl.updateRegisterByIdUsuario = (req, res) =>{
     const Id_update = req.params.id_usuario;
     const update = req.body;
-    var query = `UPDATE Usuario SET Edad = '${update.Edad}', Estatura ='${update.Estatura}', Peso ='${update.Peso}', Rh ='${update.Rh}', Eps ='${update.Eps}', Deportista ='${update.Deportista}', Facultad_id_facultad = '${update.Facultad_id_facultad}', EscalaPeso = '${update.EscalaPeso}', Dificultades_patologicas ='${update.Dificultades_patologicas}', Fecha_nacimiento ='${update.Fecha_nacimiento}', Nombre_Acompanante ='${update.Nombre_Acompanante}', Celular_Acompanante ='${update.Celular_Acompanante}', Parentesco_Acompanante ='${update.Parentesco_Acompanante}' WHERE Id_usuario = '${Id_update}'`;
+    var query = `UPDATE Usuario SET Celular='${update.Celular}', Edad = '${update.Edad}', Estatura ='${update.Estatura}', Peso ='${update.Peso}', Rh ='${update.Rh}', Eps ='${update.Eps}', Deportista ='${update.Deportista}', Facultad_id_facultad = '${update.Facultad_id_facultad}', EscalaPeso = '${update.EscalaPeso}', Dificultades_patologicas ='${update.Dificultades_patologicas}', Fecha_nacimiento ='${update.Fecha_nacimiento}', Nombre_Acompanante ='${update.Nombre_Acompanante}', Celular_Acompanante ='${update.Celular_Acompanante}', Parentesco_Acompanante ='${update.Parentesco_Acompanante}' WHERE Id_usuario = '${Id_update}'`;
     try {
         db.query(query, (err, data) => {
             if (err) {

@@ -19,54 +19,55 @@ let Cargando = false;
 export class ProfileComponent implements OnInit {
 
   usuarios: USUARIO = {
-    ID_PERSONA : 0,
-    NOMBRE : '',
-    APELLIDO : '',
-    CORREO : '',
-    CEDULA : 0, 
-    ROL_ID_ROL : 0,
-    ID_USUARIO : 0,    
-    CELULAR : '',
-    EDAD : 0,
-    ESTATURA : 0,
-    PESO : 0,
-    RH : '',
-    EPS : '',
-    DEPORTISTA : '',
-    FACULTAD_ID_FACULTAD: 0,
-    ESCALAPESO : '',
-    DIFICULTADES_PATOLOGICAS : '',
-    FECHA_NACIMIENTO: '',
-    NOMBRE_ACOMPANANTE: '',
-    CELULAR_ACOMPANANTE: '',
-    PARENTESCO_ACOMPANANTE: '',
+    Id_persona : 0,
+    Nombre : '',
+    Apellido : '',
+    Correo : '',
+    Cedula : 0, 
+    Rol_id_rol : 0,
+    Id_usuario : 0,    
+    Celular : '',
+    Edad : 0,
+    Estatura : 0,
+    Peso : 0,
+    Rh : '',
+    Eps : '',
+    Deportista : '',
+    Facultdad_id_facultad: 0,
+    EscalaPeso : '',
+    Dificultades_patologicas : '',
+    Fecha_nacimiento: '',
+    Nombre_Acompanante: '',
+    Celular_Acompanante: '',
+    Parentesco_Acompanante: '',
   };
   estudiantes: ESTUDIANTE = {
-    ID_PERSONA : 0,
-    NOMBRE : '',
-    APELLIDO : '',
-    CORREO : '',
-    CEDULA : 0, 
-    ROL_ID_ROL : 0,
-    ID_USUARIO : 0,    
-    CELULAR : '',
-    EDAD : 0,
-    ESTATURA : 0,
-    PESO : 0,
-    RH : '',
-    EPS : '',
-    DEPORTISTA : '',
-    DIFICULTADES_PATOLOGICAS : '',
-    ESCALAPESO : '',
-    FECHA_NACIMIENTO: '',
-    NOMBRE_ACOMPANANTE: '',
-    CELULAR_ACOMPANANTE: '',
-    PARENTESCO_ACOMPANANTE: '',
-    ID_ESTUDIANTE: 0,
-    CODIGO: 0,
-    SEMESTRE: 0,
-    UUSUARIO_ID_USUARIO: 0,
-    FACULTAD_ID_FACULTAD: 0,
+    Id_persona : 0,
+    Nombre : '',
+    Apellido : '',
+    Correo : '',
+    Cedula : 0, 
+    Rutina_asignada: '',
+    Rol_id_rol : 0,
+    Id_usuario : 0,    
+    Celular : '',
+    Edad : 0,
+    Estatura : 0,
+    Peso : 0,
+    Rh : '',
+    Eps : '',
+    Deportista : '',
+    Dificultades_patologicas : '',
+    EscalaPeso : '',
+    Fecha_nacimiento: '',
+    Nombre_Acompanante: '',
+    Celular_Acompanante: '',
+    Parentesco_Acompanante: '',
+    Id_estudiante: 0,
+    Codigo: 0,
+    Semestre: 0,
+    Usuario_id_usuario: 0,
+    Facultad_id_facultad: 0,
   };
 
   editForm: FormGroup;
@@ -113,24 +114,24 @@ export class ProfileComponent implements OnInit {
     .subscribe(
       res => {
         this.usuarios = res[0];
-        this.registerForm.patchValue({"Id_persona": this.usuarios.ID_PERSONA});
-        this.registerForm.patchValue({"Nombre": this.usuarios.NOMBRE});
-        this.registerForm.patchValue({"Apellido": this.usuarios.APELLIDO});  
-        this.registerForm.patchValue({"Correo": this.usuarios.CORREO});
-        this.registerForm.patchValue({"Cedula": this.usuarios.CEDULA}); 
-        this.registerForm.patchValue({"Rol_id_rol": this.usuarios.ROL_ID_ROL});
-        this.registerUsuarioForm.patchValue({"Id_usuario": this.usuarios.ID_USUARIO});
-        this.registerUsuarioForm.patchValue({"Celular": this.usuarios.CELULAR});
-        this.registerUsuarioForm.patchValue({"Edad": this.usuarios.EDAD});
-        this.registerUsuarioForm.patchValue({"Estatura": this.usuarios.ESTATURA});
-        this.registerUsuarioForm.patchValue({"Peso": this.usuarios.PESO});
-        this.registerUsuarioForm.patchValue({"Rh": this.usuarios.RH});
-        this.registerUsuarioForm.patchValue({"Eps": this.usuarios.EPS});
-        this.registerUsuarioForm.patchValue({"Dificultades_patologicas": this.usuarios.DIFICULTADES_PATOLOGICAS});
-        this.registerUsuarioForm.patchValue({"Fecha_nacimiento": this.usuarios.FECHA_NACIMIENTO});
-        this.registerUsuarioForm.patchValue({"Nombre_Acompanante": this.usuarios.NOMBRE_ACOMPANANTE});
-        this.registerUsuarioForm.patchValue({"Celular_Acompanante": this.usuarios.CELULAR_ACOMPANANTE});
-        this.registerUsuarioForm.patchValue({"Parentesco_Acompanante": this.usuarios.PARENTESCO_ACOMPANANTE});
+        this.registerForm.patchValue({"Id_persona": this.usuarios.Id_persona});
+        this.registerForm.patchValue({"Nombre": this.usuarios.Nombre});
+        this.registerForm.patchValue({"Apellido": this.usuarios.Apellido});  
+        this.registerForm.patchValue({"Correo": this.usuarios.Correo});
+        this.registerForm.patchValue({"Cedula": this.usuarios.Cedula}); 
+        this.registerForm.patchValue({"Rol_id_rol": this.usuarios.Rol_id_rol});
+        this.registerUsuarioForm.patchValue({"Id_usuario": this.usuarios.Id_usuario});
+        this.registerUsuarioForm.patchValue({"Celular": this.usuarios.Celular});
+        this.registerUsuarioForm.patchValue({"Edad": this.usuarios.Edad});
+        this.registerUsuarioForm.patchValue({"Estatura": this.usuarios.Estatura});
+        this.registerUsuarioForm.patchValue({"Peso": this.usuarios.Peso});
+        this.registerUsuarioForm.patchValue({"Rh": this.usuarios.Rh});
+        this.registerUsuarioForm.patchValue({"Eps": this.usuarios.Eps});
+        this.registerUsuarioForm.patchValue({"Dificultades_patologicas": this.usuarios.Dificultades_patologicas});
+        this.registerUsuarioForm.patchValue({"Fecha_nacimiento": this.usuarios.Fecha_nacimiento});
+        this.registerUsuarioForm.patchValue({"Nombre_Acompanante": this.usuarios.Nombre_Acompanante});
+        this.registerUsuarioForm.patchValue({"Celular_Acompanante": this.usuarios.Celular_Acompanante});
+        this.registerUsuarioForm.patchValue({"Parentesco_Acompanante": this.usuarios.Parentesco_Acompanante});
         Cargando=true;
       },
       err=> console.log(err)
@@ -140,28 +141,28 @@ export class ProfileComponent implements OnInit {
       .subscribe(
         res =>{
           this.estudiantes = res[0];
-          this.registerForm.patchValue({"Id_persona": this.estudiantes.ID_PERSONA});
-          this.registerForm.patchValue({"Nombre": this.estudiantes.NOMBRE});
-          this.registerForm.patchValue({"Apellido": this.estudiantes.APELLIDO});  
-          this.registerForm.patchValue({"Correo": this.estudiantes.CORREO});
-          this.registerForm.patchValue({"Cedula": this.estudiantes.CEDULA}); 
-          this.registerForm.patchValue({"Rol_id_rol": this.estudiantes.ROL_ID_ROL});
-          this.registerUsuarioForm.patchValue({"Id_usuario": this.estudiantes.ID_USUARIO});
-          this.registerUsuarioForm.patchValue({"Celular": this.estudiantes.CELULAR});
-          this.registerUsuarioForm.patchValue({"Edad": this.estudiantes.EDAD});
-          this.registerUsuarioForm.patchValue({"Estatura": this.estudiantes.ESTATURA});
-          this.registerUsuarioForm.patchValue({"Peso": this.estudiantes.PESO});
-          this.registerUsuarioForm.patchValue({"Rh": this.estudiantes.RH});
-          this.registerUsuarioForm.patchValue({"Eps": this.estudiantes.EPS});
-          this.registerUsuarioForm.patchValue({"Dificultades_patologicas": this.estudiantes.DIFICULTADES_PATOLOGICAS});
-          this.registerUsuarioForm.patchValue({"Fecha_nacimiento": this.estudiantes.FECHA_NACIMIENTO});
-          this.registerUsuarioForm.patchValue({"Nombre_Acompanante": this.estudiantes.NOMBRE_ACOMPANANTE});
-          this.registerUsuarioForm.patchValue({"Celular_Acompanante": this.estudiantes.CELULAR_ACOMPANANTE});
-          this.registerUsuarioForm.patchValue({"Parentesco_Acompanante": this.estudiantes.PARENTESCO_ACOMPANANTE});
-          this.registerEstudianteForm.patchValue({"Id_estudiante": this.estudiantes.ID_ESTUDIANTE});
-          this.registerEstudianteForm.patchValue({"Codigo": this.estudiantes.CODIGO});
-          this.registerEstudianteForm.patchValue({"Semestre": this.estudiantes.SEMESTRE});
-          this.registerEstudianteForm.patchValue({"Facultad_id_facultad": this.estudiantes.FACULTAD_ID_FACULTAD});
+          this.registerForm.patchValue({"Id_persona": this.usuarios.Id_persona});
+          this.registerForm.patchValue({"Nombre": this.usuarios.Nombre});
+          this.registerForm.patchValue({"Apellido": this.usuarios.Apellido});  
+          this.registerForm.patchValue({"Correo": this.usuarios.Correo});
+          this.registerForm.patchValue({"Cedula": this.usuarios.Cedula}); 
+          this.registerForm.patchValue({"Rol_id_rol": this.usuarios.Rol_id_rol});
+          this.registerUsuarioForm.patchValue({"Id_usuario": this.usuarios.Id_usuario});
+          this.registerUsuarioForm.patchValue({"Celular": this.usuarios.Celular});
+          this.registerUsuarioForm.patchValue({"Edad": this.usuarios.Edad});
+          this.registerUsuarioForm.patchValue({"Estatura": this.usuarios.Estatura});
+          this.registerUsuarioForm.patchValue({"Peso": this.usuarios.Peso});
+          this.registerUsuarioForm.patchValue({"Rh": this.usuarios.Rh});
+          this.registerUsuarioForm.patchValue({"Eps": this.usuarios.Eps});
+          this.registerUsuarioForm.patchValue({"Dificultades_patologicas": this.usuarios.Dificultades_patologicas});
+          this.registerUsuarioForm.patchValue({"Fecha_nacimiento": this.usuarios.Fecha_nacimiento});
+          this.registerUsuarioForm.patchValue({"Nombre_Acompanante": this.usuarios.Nombre_Acompanante});
+          this.registerUsuarioForm.patchValue({"Celular_Acompanante": this.usuarios.Celular_Acompanante});
+          this.registerUsuarioForm.patchValue({"Parentesco_Acompanante": this.usuarios.Parentesco_Acompanante});
+          this.registerEstudianteForm.patchValue({"Id_estudiante": this.estudiantes.Id_estudiante});
+          this.registerEstudianteForm.patchValue({"Codigo": this.estudiantes.Codigo});
+          this.registerEstudianteForm.patchValue({"Semestre": this.estudiantes.Semestre});
+          this.registerEstudianteForm.patchValue({"Facultad_id_facultad": this.estudiantes.Facultad_id_facultad});
           Cargando=true; 
         },
         err=> console.log(err)

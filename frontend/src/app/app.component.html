@@ -1,2 +1,40 @@
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+<div *ngIf="isAdminSign_in">
+    <app-nav-bar class="menu-fixed"></app-nav-bar>
+    <div>
+        <app-admin class="style-admin"></app-admin>
+        <div class="style-router">
+            <router-outlet></router-outlet>
+        </div>
+    </div>        
+</div>
+<div *ngIf="isAdminUsers">
+    <app-nav-bar class="menu-fixed"></app-nav-bar>
+    <div>
+        <app-admin class="style-admin"></app-admin>
+        <div class="style-router">
+            <router-outlet></router-outlet>
+        </div>
+    </div>        
+</div>
+<div *ngIf="isAdminUsersEdit">
+    <app-nav-bar class="menu-fixed"></app-nav-bar>
+    <div>
+        <app-admin class="style-admin"></app-admin>
+        <div class="style-router">
+            <router-outlet></router-outlet>
+        </div>
+    </div>        
+</div>
+<div *ngIf="isAdminActivateUsers">
+    <app-nav-bar class="menu-fixed"></app-nav-bar>
+    <div>
+        <app-admin class="style-admin"></app-admin>
+        <div class="style-router">
+            <router-outlet></router-outlet>
+        </div>
+    </div> 
+</div>
+<div *ngIf="!isAdminSign_in && !isAdminUsers && !isAdminUsersEdit && !isAdminActivateUsers">
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+</div>

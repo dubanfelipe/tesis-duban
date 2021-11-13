@@ -227,7 +227,7 @@ export class RegisterComponent implements OnInit {
                   M.toast({
                     html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
                           <h4 class="alert-heading">REGISTRO INCOMPLETO</h4>
-                          <p>Ya existe un usuario registrado con este cedula ${form.value.Cedula}</p>
+                          <p>Ya existe un usuario registrado con este documento ${form.value.Cedula}</p>
                           <hr>
                       </div>`});
                 } else {
@@ -257,13 +257,13 @@ export class RegisterComponent implements OnInit {
                                     this.registerService.getRegisterByIdPersonaCedula(form.value.Cedula)
                                       .subscribe(
                                         res => {
-                                          form2.value.Persona_id_persona = res[0].ID_PERSONA;
+                                          form2.value.Persona_id_persona = res[0].Id_persona;
                                           this.registerService.createRegisterUsuario(form2.value)
                                             .subscribe((data) => {
                                               this.registerService.getRegisterByIdUsuarioCelular(form2.value.Celular)
                                                 .subscribe(
                                                   res => {
-                                                    form3.value.Usuario_id_usuario = res[0].ID_USUARIO;
+                                                    form3.value.Usuario_id_usuario = res[0].Id_usuario;
                                                     this.registerService.createRegisterEstudiante(form3.value).subscribe((data) => {
                                                       let archivo = this.datosFormulario.get('archivo');
                                                       let nombreArchivo = form.value.Cedula + "_Carnet";
@@ -301,7 +301,7 @@ export class RegisterComponent implements OnInit {
                               this.registerService.getRegisterByIdPersonaCedula(form.value.Cedula)
                                 .subscribe(
                                   res => {
-                                    form2.value.Persona_id_persona = res[0].ID_PERSONA;
+                                    form2.value.Persona_id_persona = res[0].Id_persona;
                                     this.registerService.createRegisterUsuario(form2.value)
                                       .subscribe((data) => {
                                         this.registerService.getRegisterByIdUsuarioCelular(form2.value.Celular)

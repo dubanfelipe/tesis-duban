@@ -101,7 +101,8 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('usuario', data['token']);      
         this.tokenPayload = decode(data['token']); 
         if (this.tokenPayload.rol == 1) {
-          this.router.navigate(['admin']);
+          console.log("entre aca");
+          this.router.navigate(['admin/sign_in']);
         } else {
           this.router.navigate(['usuarios']);
         }           

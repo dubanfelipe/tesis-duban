@@ -30,19 +30,26 @@ export class SignInComponent implements OnInit {
       position: 'right',
     },
     columns: {
-      NOMBRE: {
+      Nombre: {
         title: 'Nombre',
       },
-      CEDULA: {
+      Cedula: {
         title: 'Cedula',
       },
-      NOMBRE_SEDE: {
+      Nombre_sede: {
         title: 'Sede',
       },
-      HORA: {
+      Hora: {
         title: 'Ingreso',
       }
     },
+  }
+  get cedula() {
+    return this.loginForm.get("cedula");
+  }
+
+  get sede() {
+    return this.loginForm.get("Sede_id_sede");
   }
   buildForm() {
     this.loginForm = this.fb.group({
@@ -65,13 +72,13 @@ export class SignInComponent implements OnInit {
                  <p>Cedula no registrada</p>
                  <hr>
           </div>`});
-      } else if (res[0].INGRESO == 0){       
+      } else if (res[0].Ingreso == 0){       
         let estudiantes = "true";
         let hora = moment().format('MMMM Do YYYY, h:mm:ss a');
         this.loginForm.patchValue({"Ingreso": estudiantes});
         this.loginForm.patchValue({"Hora": hora});
         console.log(form.value);
-        this.SigninService.updateEstadoByIdUsuario(res[0].ID_USUARIO, form.value)
+        this.SigninService.updateEstadoByIdUsuario(res[0].Id_usuario, form.value)
         .subscribe((data) =>{
           M.toast({
             html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
@@ -86,7 +93,7 @@ export class SignInComponent implements OnInit {
         this.loginForm.patchValue({"Ingreso": estudiantes});
         this.loginForm.patchValue({"Hora": hora});
         console.log(form.value);
-        this.SigninService.updateEstadoByIdUsuario(res[0].ID_USUARIO, form.value)
+        this.SigninService.updateEstadoByIdUsuario(res[0].Id_usuario, form.value)
         .subscribe((data) =>{
           M.toast({
             html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">

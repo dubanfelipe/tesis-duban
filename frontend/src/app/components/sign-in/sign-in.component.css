@@ -2,56 +2,54 @@ body {
     background: linear-gradient(to right, #ffffff, #ffffff);
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     width:90%;
-    margin: 0 auto;
-    min-width:600px;
-    max-width:2000px;
-  }
+    margin: 0 auto;  
+    padding-top: 16%; 
+    margin-left: 8%;
+}
   
-  .card{
+.card{
     border-radius: 1rem;
     box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);    
-    min-width:100px;
-    max-width:500px;
-  }
+    padding-top: 7px;
+}
   
-  .card-title{
+.card-title{
     margin-bottom: 2rem;
     font-size: 2rem;
     text-align: center;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+#btnLogin {
+    background-color: #00468f;
+    padding: 8px 40px;
+    width: 60%;
+    color: white;    
+    margin-left: 22%;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-  }
-  
-  .card-body{
-    padding: 2rem;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-  }
-  
-  #btnLogin{
-    background-color: #07b0e4;
+}
+
+#btnLogin:hover, #btnRegister:hover {
     color: white;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-  }
-  #btnRegister{
-    background-color: #07b0e4;
-    color: white;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-  }
-  #btnlogin:hover{
-    color: white;
-    border-radius: 10rem;
-  }
-  
-  .form-label-group {   
-    margin-left: 30%;
-    margin-right: 30%;
-  }
-  
-  .separador{
-    padding-top: 114px;
-    padding-bottom: 114px;
-  }
-  .form-group{
-    margin-left: 20%;
-    margin-right: 20%;
-  }
+    border-radius: 8rem;
+}
+
+.form-group{
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.table{
+    padding-top: 12%;  
+    width: 2500px; 
+    margin-right: 5%;
+}
+ 
+:host/deep/ng2-smart-table thead > tr > th  { 
+    background-color:#00468f;  
+}
+
+:host/deep/ng2-smart-table-title> a {
+    color: white; 
+}
   

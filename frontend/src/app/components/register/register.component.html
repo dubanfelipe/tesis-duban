@@ -61,8 +61,8 @@
                     <mat-label>Ocupacion</mat-label>
                     <mat-select matInput autocomplete="off" required placeholder="Seleccione su ocupacion"
                       formControlName="Rol_id_rol">
-                      <mat-option *ngFor="let roles of registerService.Rol | slice:1 " value={{roles.ID_ROL}}>
-                        {{roles.NOMBRE_ROL}}
+                      <mat-option *ngFor="let roles of registerService.Rol | slice:1 " value={{roles.Id_rol}}>
+                        {{roles.Nombre_rol}}
                       </mat-option>
                     </mat-select>
                     <mat-error *ngIf="rol.errors?.required">Ocupacion requerida</mat-error>
@@ -147,8 +147,8 @@
                     <mat-label>Facultad</mat-label>
                     <mat-select matInput autocomplete="off" required placeholder="Seleccione su Facultad"
                       formControlName="Facultad_id_facultad">
-                      <mat-option *ngFor="let facultades of registerService.Facultad" value={{facultades.ID_FACULTAD}}>
-                        {{facultades.NOMBRE_FACULTAD}}
+                      <mat-option *ngFor="let facultades of registerService.Facultad" value={{facultades.Id_facultad}}>
+                        {{facultades.Nombre_facultad}}
                       </mat-option>
                     </mat-select>
                     <mat-error *ngIf="facultad.errors?.required">Facultad requerida</mat-error>

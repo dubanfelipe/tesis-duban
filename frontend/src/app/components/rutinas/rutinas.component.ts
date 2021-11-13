@@ -67,65 +67,65 @@ export class RutinasComponent implements OnInit {
     Id_rutina: 0
   }
   Dia = { lunes : {
-    EJERCICIO : {
-      NOMBRE : '',
-      SERIE : 0,
-      REPETICION : 0,
-      TIEMPO_DESCANSO : 0,
-      MUSCULOS_ID_MUSCULOS : 0,
-      NOMBRE_MUSCULOS : "", 
+    Ejercicio : {
+      Nombre : '',
+      Serie : 0,
+      Repeticion : 0,
+      Tiempo_descanso : 0,
+      Musculos_id_musculos : 0,
+      Nombre_musculo : "", 
       }
     },
     Martes : {
-      EJERCICIO : {
-        NOMBRE : '',
-        SERIE : 0,
-        REPETICION : 0,
-        TIEMPO_DESCANSO : 0,
-        MUSCULOS_ID_MUSCULOS : 0,
-        NOMBRE_MUSCULOS : "", 
-      }
-    },
+      Ejercicio : {
+        Nombre : '',
+        Serie : 0,
+        Repeticion : 0,
+        Tiempo_descanso : 0,
+        Musculos_id_musculos : 0,
+        Nombre_musculo : "", 
+        }
+      },
     Miercoles : {
-      EJERCICIO : {
-        NOMBRE : '',
-        SERIE : 0,
-        REPETICION : 0,
-        TIEMPO_DESCANSO : 0,
-        MUSCULOS_ID_MUSCULOS : 0,
-        NOMBRE_MUSCULOS : "", 
-      }
-    },
+      Ejercicio : {
+        Nombre : '',
+        Serie : 0,
+        Repeticion : 0,
+        Tiempo_descanso : 0,
+        Musculos_id_musculos : 0,
+        Nombre_musculo : "", 
+        }
+      },
     Jueves : {
-      EJERCICIO : {
-        NOMBRE : '',
-        SERIE : 0,
-        REPETICION : 0,
-        TIEMPO_DESCANSO : 0,
-        MUSCULOS_ID_MUSCULOS : 0,
-        NOMBRE_MUSCULOS : "", 
-      }
-    },
+      Ejercicio : {
+        Nombre : '',
+        Serie : 0,
+        Repeticion : 0,
+        Tiempo_descanso : 0,
+        Musculos_id_musculos : 0,
+        Nombre_musculo : "", 
+        }
+      },
     Viernes : {
-      EJERCICIO : {
-        NOMBRE : '',
-        SERIE : 0,
-        REPETICION : 0,
-        TIEMPO_DESCANSO : 0,
-        MUSCULOS_ID_MUSCULOS : 0,
-        NOMBRE_MUSCULOS : "", 
-      }
-    },
+      Ejercicio : {
+        Nombre : '',
+        Serie : 0,
+        Repeticion : 0,
+        Tiempo_descanso : 0,
+        Musculos_id_musculos : 0,
+        Nombre_musculo : "", 
+        }
+      },
     Sabado : {
-      EJERCICIO : {
-        NOMBRE : '',
-        SERIE : 0,
-        REPETICION : 0,
-        TIEMPO_DESCANSO : 0,
-        MUSCULOS_ID_MUSCULOS : 0,
-        NOMBRE_MUSCULOS : "", 
-      }
-    }    
+      Ejercicio : {
+        Nombre : '',
+        Serie : 0,
+        Repeticion : 0,
+        Tiempo_descanso : 0,
+        Musculos_id_musculos : 0,
+        Nombre_musculo : "", 
+        }
+      },
   }
   conteoEjercicios = [{
     musculo: 0,
@@ -191,46 +191,46 @@ export class RutinasComponent implements OnInit {
       {
         this.RutinaService.getRutinacompletaById(params.id)
         .subscribe(res =>{
-          this.rutinacompleta.Id_rutinacompleta = res[0].ID_RUTINACOMPLETA;
-          this.rutinacompleta.Id_rutinalunes = res[0].ID_RUTINALUNES;
-          this.rutinacompleta.Id_rutinamartes = res[0].ID_RUTINAMARTES;
-          this.rutinacompleta.Id_rutinamiercoles = res[0].ID_RUTINAMIERCOLES;
-          this.rutinacompleta.Id_rutinajueves = res[0].ID_RUTINAJUEVES;
-          this.rutinacompleta.Id_rutinaviernes = res[0].ID_RUTINAVIERNES;
-          this.rutinacompleta.Id_rutinasabado = res[0].ID_RUTINASABADO;
-          this.rutinacompleta.Nombre_Rutina = res[0].NOMBRE_RUTINA;
+          this.rutinacompleta.Id_rutinacompleta = res[0].Id_rutinacompleta;
+          this.rutinacompleta.Id_rutinalunes = res[0].Id_rutinalunes;
+          this.rutinacompleta.Id_rutinamartes = res[0].Id_rutinamartes;
+          this.rutinacompleta.Id_rutinamiercoles = res[0].Id_rutinamiercoles;
+          this.rutinacompleta.Id_rutinajueves = res[0].Id_rutinajueves;
+          this.rutinacompleta.Id_rutinaviernes = res[0].Id_rutinaviernes;
+          this.rutinacompleta.Id_rutinasabado = res[0].Id_rutinasabado;
+          this.rutinacompleta.Nombre_Rutina = res[0].Nombre_Rutina;
           this.rutinaForm.patchValue({"Nombre": this.rutinacompleta.Nombre_Rutina});
           this.Domingo = true;                  
           this.banderaParaEditar = true;              
           this.rutinaCheck = false;
           this.RutinaService.getEjercicioHasRutina(this.rutinacompleta.Id_rutinalunes)
           .subscribe(res =>{
-            this.Dia.lunes.EJERCICIO = res as EJERCICIO; 
+            this.Dia.lunes.Ejercicio = res as EJERCICIO; 
             this.yacargoLunes = true;
             this.Lunes = true;
             this.RutinaService.getEjercicioHasRutina(this.rutinacompleta.Id_rutinamartes)
             .subscribe(res =>{
-              this.Dia.Martes.EJERCICIO = res as EJERCICIO;
+              this.Dia.Martes.Ejercicio = res as EJERCICIO;
               this.yacargoMartes = true;
               this.Martes = true;
               this.RutinaService.getEjercicioHasRutina(this.rutinacompleta.Id_rutinamiercoles)
               .subscribe(res =>{
-                this.Dia.Miercoles.EJERCICIO = res as EJERCICIO;
+                this.Dia.Miercoles.Ejercicio = res as EJERCICIO;
                 this.yacargoMiercoles = true;
                 this.Miercoles = true;
                 this.RutinaService.getEjercicioHasRutina(this.rutinacompleta.Id_rutinajueves)
                 .subscribe(res =>{
-                  this.Dia.Jueves.EJERCICIO = res as EJERCICIO;
+                  this.Dia.Jueves.Ejercicio = res as EJERCICIO;
                   this.yacargoJueves = true;
                   this.Jueves = true;
                   this.RutinaService.getEjercicioHasRutina(this.rutinacompleta.Id_rutinaviernes)
                   .subscribe(res =>{
-                    this.Dia.Viernes.EJERCICIO = res as EJERCICIO;
+                    this.Dia.Viernes.Ejercicio = res as EJERCICIO;
                     this.yacargoViernes = true;
                     this.Viernes = true;
                     this.RutinaService.getEjercicioHasRutina(this.rutinacompleta.Id_rutinasabado)
                     .subscribe(res =>{
-                      this.Dia.Sabado.EJERCICIO = res as EJERCICIO;
+                      this.Dia.Sabado.Ejercicio = res as EJERCICIO;
                       this.yacargoSabado = true;
                       this.Sabado = true;
                     })
@@ -257,64 +257,64 @@ export class RutinasComponent implements OnInit {
     .subscribe(res =>{
       if (this.banderaParaEditar == true) {
         if (this.diaSelecDia == 0) { 
-          this.Dia.lunes.EJERCICIO = res as EJERCICIO;
-          if (this.Dia.lunes.EJERCICIO[0] === undefined) { this.yacargoLunes = false;
+          this.Dia.lunes.Ejercicio = res as EJERCICIO;
+          if (this.Dia.lunes.Ejercicio[0] === undefined) { this.yacargoLunes = false;
           }else { this.yacargoLunes = true;}
         }
         if (this.diaSelecDia == 1) { 
-          this.Dia.Martes.EJERCICIO = res as EJERCICIO;
-          if (this.Dia.Martes.EJERCICIO[0] === undefined) { this.yacargoMartes = false;
+          this.Dia.Martes.Ejercicio = res as EJERCICIO;
+          if (this.Dia.Martes.Ejercicio[0] === undefined) { this.yacargoMartes = false;
           }else { this.yacargoMartes = true;}
         } 
         if (this.diaSelecDia == 2) { 
-          this.Dia.Miercoles.EJERCICIO = res as EJERCICIO;
-          if (this.Dia.Miercoles.EJERCICIO[0] === undefined) { this.yacargoMiercoles = false;
+          this.Dia.Miercoles.Ejercicio = res as EJERCICIO;
+          if (this.Dia.Miercoles.Ejercicio[0] === undefined) { this.yacargoMiercoles = false;
           }else { this.yacargoMiercoles = true;}
         } 
         if (this.diaSelecDia == 3) { 
-          this.Dia.Jueves.EJERCICIO = res as EJERCICIO; 
-          if (this.Dia.Jueves.EJERCICIO[0] === undefined) { this.yacargoJueves = false;
+          this.Dia.Jueves.Ejercicio = res as EJERCICIO; 
+          if (this.Dia.Jueves.Ejercicio[0] === undefined) { this.yacargoJueves = false;
           }else { this.yacargoJueves = true;}
         } 
         if (this.diaSelecDia == 4) { 
-          this.Dia.Viernes.EJERCICIO = res as EJERCICIO;
-          if (this.Dia.Viernes.EJERCICIO[0] === undefined) { this.yacargoViernes = false;
+          this.Dia.Viernes.Ejercicio = res as EJERCICIO;
+          if (this.Dia.Viernes.Ejercicio[0] === undefined) { this.yacargoViernes = false;
           }else { this.yacargoViernes = true;}
         } 
         if (this.diaSelecDia == 5) { 
-          this.Dia.Sabado.EJERCICIO = res as EJERCICIO; 
-          if (this.Dia.Sabado.EJERCICIO[0] === undefined) { this.yacargoSabado = false;
+          this.Dia.Sabado.Ejercicio = res as EJERCICIO; 
+          if (this.Dia.Sabado.Ejercicio[0] === undefined) { this.yacargoSabado = false;
           }else { this.yacargoSabado = true;}
         }   
       }else{
         if (this.conteRutina == 1) { 
-          this.Dia.lunes.EJERCICIO = res as EJERCICIO; 
-          if (this.Dia.lunes.EJERCICIO[0] === undefined) { this.yacargoLunes = false;
+          this.Dia.lunes.Ejercicio = res as EJERCICIO; 
+          if (this.Dia.lunes.Ejercicio[0] === undefined) { this.yacargoLunes = false;
           }else { this.yacargoLunes= true;}
         }      
         if (this.conteRutina == 2) { 
-          this.Dia.Martes.EJERCICIO = res as EJERCICIO; 
-          if (this.Dia.Martes.EJERCICIO[0] === undefined) { this.yacargoMartes = false;
+          this.Dia.Martes.Ejercicio = res as EJERCICIO; 
+          if (this.Dia.Martes.Ejercicio[0] === undefined) { this.yacargoMartes = false;
           }else { this.yacargoMartes = true;}
         } 
         if (this.conteRutina == 3) { 
-          this.Dia.Miercoles.EJERCICIO = res as EJERCICIO;
-          if (this.Dia.Miercoles.EJERCICIO[0] === undefined) { this.yacargoMiercoles = false;
+          this.Dia.Miercoles.Ejercicio = res as EJERCICIO;
+          if (this.Dia.Miercoles.Ejercicio[0] === undefined) { this.yacargoMiercoles = false;
           }else { this.yacargoMiercoles = true;}
         } 
         if (this.conteRutina == 4) { 
-          this.Dia.Jueves.EJERCICIO = res as EJERCICIO; 
-          if (this.Dia.Jueves.EJERCICIO[0] === undefined) { this.yacargoJueves = false;
+          this.Dia.Jueves.Ejercicio = res as EJERCICIO; 
+          if (this.Dia.Jueves.Ejercicio[0] === undefined) { this.yacargoJueves = false;
           }else { this.yacargoJueves = true;}
         } 
         if (this.conteRutina == 5) { 
-          this.Dia.Viernes.EJERCICIO = res as EJERCICIO;
-          if (this.Dia.Viernes.EJERCICIO[0] === undefined) { this.yacargoViernes = false;
+          this.Dia.Viernes.Ejercicio = res as EJERCICIO;
+          if (this.Dia.Viernes.Ejercicio[0] === undefined) { this.yacargoViernes = false;
           }else { this.yacargoViernes = true;}
         } 
         if (this.conteRutina == 6) { 
-          this.Dia.Sabado.EJERCICIO = res as EJERCICIO; 
-          if (this.Dia.Sabado.EJERCICIO[0] === undefined) { this.yacargoSabado = false;
+          this.Dia.Sabado.Ejercicio = res as EJERCICIO; 
+          if (this.Dia.Sabado.Ejercicio[0] === undefined) { this.yacargoSabado = false;
           }else { this.yacargoSabado = true;}
         } 
       }
@@ -413,7 +413,7 @@ export class RutinasComponent implements OnInit {
           bandera = false;
           for(let contador2 = 0; contador2 < listaEjerciciosSeleccionados.length; contador2++)
           {            
-            if(listaEjercicio[contador1].ID_EJERCICIO === listaEjerciciosSeleccionados[contador2].ID_EJERCICIO){
+            if(listaEjercicio[contador1].Id_ejercicio === listaEjerciciosSeleccionados[contador2].Id_ejercicio){
               listaEjercicio[contador1].isSelected = true;
               bandera = true;
             }
@@ -422,7 +422,7 @@ export class RutinasComponent implements OnInit {
             listaEjercicio[contador1].isSelected = false;
           }          
         }
-        Object.keys(this.Musculos).forEach(musculo => this.Musculos[musculo].Ejercicios = listaEjercicio.filter(Ejercicios => Ejercicios.MUSCULOS_ID_MUSCULOS === this.Musculos[musculo].Id));     
+        Object.keys(this.Musculos).forEach(musculo => this.Musculos[musculo].Ejercicios = listaEjercicio.filter(Ejercicios => Ejercicios.Musculos_id_musculos === this.Musculos[musculo].Id));     
       })
     })
     this.yaCargo = true;

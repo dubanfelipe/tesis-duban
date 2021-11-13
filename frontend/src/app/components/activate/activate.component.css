@@ -25,7 +25,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: red;
     -webkit-transition: .4s;
     transition: .4s;
 }
@@ -35,17 +35,17 @@
     content: "";
     height: 25px;
     width: 25px;
-    background-color: #00468f;
+    background-color: black;
     -webkit-transition: .4s;
     transition: .4s;
 }
 
 input:checked+.slider {
-    background-color: #2196F3;
+    background-color: green;
 }
 
 input:focus+.slider {
-    box-shadow: 0 0 1px #2196F3;
+    box-shadow: 0 0 1px green;
 }
 
 input:checked+.slider:before {
@@ -65,16 +65,17 @@ input:checked+.slider:before {
     border-radius: 50%;
 }
 
-#btnRegister {
-    font-size: 1rem;
-    border-radius: 5rem;
-    letter-spacing: .1rem;
-    font-weight: bold;
-    padding: 1rem;
-    transition: all 0.2s;
+#btnEnviar {
     background-color: #00468f;
+    padding: 8px 40px;
     color: white;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
+
+#btnEnviar:hover{
+    color: white;
+    border-radius: 8rem;
+  }
 
 #btnBack {
     font-size: 1rem;

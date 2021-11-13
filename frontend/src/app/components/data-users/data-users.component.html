@@ -1,1 +1,34 @@
-<ng2-smart-table [settings]="settings" [source]="registerService.personas" (custom)="onCustom($event)"></ng2-smart-table>
+<div class="table">
+    <ng2-smart-table [settings]="settings" [source]="registerService.personas" (custom)="onCustom($event)">
+    </ng2-smart-table>
+</div>
+<a id="modalNotificacion" href="#" data-toggle="modal" data-target="#openModal" mat-raised-button
+  class="btn btn--success">
+</a>
+<div class="form-modal">
+  <div class="modal fade" id="openModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content border-success">
+        <div class="modal-header">
+          <div class="alert-dialog-w">
+            <div style="padding-bottom: 15px; text-align: center;">
+              <img src="https://facultadderecho.usta.edu.co/images/Logo-USTA-19.png" style="width: 500px" />
+            </div>
+            <br>
+            <div style="text-align: center;">
+              Esta seguro de querer eliminar el Usuario del sistema
+            </div>
+            <br>
+            <div>
+              <div style="display: flex; justify-content: space-around;">
+                <button id="btnAceptar" data-dismiss="modal" (click)="DeleteUser()">Aceptar</button>
+                <button id="btnCancelar"  data-dismiss="modal">Cancelar</button>                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

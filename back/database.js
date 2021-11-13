@@ -1,13 +1,17 @@
-var ibmdb = require("ibm_db")
-connStr = "DATABASE=BLUDB;HOSTNAME=dashdb-txn-sbox-yp-dal09-11.services.dal.bluemix.net;PORT=50000;PROTOCOL=TCPIP;UID=kqm49262;PWD=hbj^5k46gxdlbsvf;";
+var mysql = require("mysql")
 
-try {
-    var option = { connectTimeout: 60, systemNaming: true};
-    var conn = ibmdb.openSync(connStr, option);
-    console.log("Se conecto correctamente a la DB");
+var conexion = mysql.createConnection({
+    host: 'bsvm7srfgdzmrt53rbai-mysql.services.clever-cloud.com',
+    database: 'bsvm7srfgdzmrt53rbai',
+    user: 'uqziwl7lsyewovmz',
+    password:'73mZN20pzYbQ0cUIe7Ss', 
+});
 
-} catch (e) {
-    console.log(e.message);
-}
+conexion.connect(function(error){
+    if(error)
+        throw error;
+    else
+        console.log("Se conecto correctamente a la DB");
+});
 
-module.exports = conn;
+module.exports = conexion;

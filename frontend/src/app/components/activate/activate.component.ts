@@ -6,6 +6,7 @@ import { datosService } from '../../services/datos.service';
 import { AutenticarusuariosService } from '../../services/autenticarusuarios.service';
 import { emailService } from '../../services/email.service';
 import { FormBuilder, FormGroup, ValidatorFn, Validators, } from '@angular/forms';
+import { subirArchivosService } from '../../services/subirArchivos.service';
 import swal from 'sweetalert2';
 
 declare var M: any;
@@ -17,20 +18,30 @@ declare var M: any;
 })
 export class ActivateComponent implements OnInit {
 
+  public rolPrincipial: boolean = false;
+  archivoCarnet;
+  archivoTamizaje;
+  NombreUsuario : string = '';
+  ApellidoUsuario : string = '';
+  URLS: string[] = [];
+  Documentos: string[] = [];
   datospersona : DatosPersona = {
-    ID_PERSONA : 0,
-    NOMBRE : '',
-    APELLIDO : '',
-    CORREO : '',
-    CEDULA : 0,  
-    ACTIVO: 0,
-    PASSWORD: '',
-    ROL_ID_ROL: 0,
-    TEXTO: '',
+    Id_persona : 0,
+    Nombre : '',
+    Apellido : '',
+    Correo : '',
+    Cedula : 0,  
+    Activo : 0,
+    Password : '',
+    Rol_id_rol: 0,
+    Texto: '',
   }
   registerForm: FormGroup;
+  DocumentosForm: FormGroup;
+  TextoForm:FormGroup;
+  datosFormulario = new FormData();
   constructor(public registerService: RegisterService, private router: Router, public DatosService: datosService, 
-    public autenticarusuariosService: AutenticarusuariosService, public EmailService: emailService, private fb: FormBuilder) { 
+    public autenticarusuariosService: AutenticarusuariosService, public EmailService: emailService, private fb: FormBuilder, public subirarchivosServico: subirArchivosService) { 
       this.buildForm();
     }
   buildForm(){
@@ -39,7 +50,14 @@ export class ActivateComponent implements OnInit {
       Apellido: [''],
       Correo: [''],
       Cedula: [''],  
+      Texto: [''], 
+    })
+    this.TextoForm = this.fb.group({
       Texto: ['', Validators.compose([Validators.required])],
+    })
+    this.DocumentosForm = this.fb.group({
+      CarnetDocument: [{ value: '', disabled: true }, Validators.required],
+      TamizajeDocument: [{ value: '', disabled: true }, Validators.required],
     })
   }
   
@@ -55,13 +73,28 @@ export class ActivateComponent implements OnInit {
     .subscribe(res => {
       console.log(res);
       this.datospersona = res[0];
-      this.registerForm.patchValue({"Id_persona": this.datospersona.ID_PERSONA});
-      this.registerForm.patchValue({"Nombre": this.datospersona.NOMBRE});
-      this.registerForm.patchValue({"Apellido": this.datospersona.APELLIDO});  
-      this.registerForm.patchValue({"Correo": this.datospersona.CORREO});
-      this.registerForm.patchValue({"Cedula": this.datospersona.CEDULA});
+      if (this.datospersona.Id_persona === 1) {
+        this.rolPrincipial = true;
+      }
+      this.NombreUsuario = this.datospersona.Nombre;
+      this.ApellidoUsuario = this.datospersona.Apellido;
+      this.registerForm.patchValue({"Id_persona": this.datospersona.Id_persona});
+      this.registerForm.patchValue({"Nombre": this.datospersona.Nombre});
+      this.registerForm.patchValue({"Apellido": this.datospersona.Apellido});  
+      this.registerForm.patchValue({"Correo": this.datospersona.Correo});
+      this.registerForm.patchValue({"Cedula": this.datospersona.Cedula});
+      this.Documentos[0] = this.datospersona.Cedula+"_Carnet";
+      this.Documentos[1] = this.datospersona.Cedula+"_Tamizaje";
+      this.DocumentosForm.patchValue({
+        CarnetDocument: this.Documentos[0],
+        TamizajeDocument: this.Documentos[1],
+      })
+      for (let index = 0; index < this.Documentos.length; index++) {        
+        this.handleInputChange(this.Documentos[index], index);
+      }
     })
   }
+
   changeStatus(id_usuario:number, estado: any) 
   {    
     if(estado == true)
@@ -91,94 +124,25 @@ export class ActivateComponent implements OnInit {
       })
     }   
   }
-  contactForm(form){
+
+  public handleInputChange(nombreArchivo: string, i:number) {
+    let referencia = this.subirarchivosServico.getUrlArchivo(nombreArchivo);
+    referencia.getDownloadURL().subscribe((URL) => {    
+      this.URLS[i] = URL;
+    },(error) => {
+        console.log(error)  
+    });  
+  }
+
+  contactForm(form, form2){
+    form.value.Texto = form2.value.Texto;    
     console.log(form.value);
     this.EmailService.postFormulario(form.value)
     .subscribe(() => {
-      swal.fire('Correo enviado!', 'Se le informa al usuario por medio de correo electronico!, Por favor eliminar el usuario del Sitema');
+      swal.fire('Correo enviado!', 'Se le informa al usuario por medio de correo electronico!');
       swal.update({
         icon: 'success'
       })
-    }); 
-  }
-  deleteUser(form){
-    var answer = confirm("Esta seguro de querer eliminar el Usuario del sistema");
-      if (answer) 
-      {
-        console.log(this.DatosService.Value_Cedula);
-        console.log(this.DatosService.Value_Rol);     
-        if (this.DatosService.Value_Rol == "Estudiante") {
-          this.registerService.getRegisterByIdEstudiante(this.DatosService.Value_Cedula)
-          .subscribe(res =>{
-            console.log(res);
-            let ESTUDIANTE = res[0].ID_ESTUDIANTE;
-            let USUARIO = res[0].ID_USUARIO;
-            let PERSONA = res[0].ID_PERSONA;
-            this.registerService.deleteRegisterByIdEstudiante(ESTUDIANTE)
-            .subscribe(res =>{              
-              console.log(res);
-              this.registerService.deleteRegisterByIdUsuario(USUARIO)
-              .subscribe(res =>{
-                console.log(res);
-                this.registerService.deleteRegisterByIdPersona(PERSONA)
-                .subscribe(res =>{
-                  console.log(res);
-                  M.toast({
-                    html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
-                        <h4 class="alert-heading">USUARIO ELIMINADO</h4>
-                        <hr>
-                    </div>`});
-                  window.location.reload();
-                }) 
-              }) 
-            })             
-          })
-        } else if (this.DatosService.Value_Rol == "Administrador") {
-          if (this.DatosService.Value_Id == 1) {
-            M.toast({
-              html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
-                  <h4 class="alert-heading">IMPOSIBLE ELIMINAR ESTE USUARIO</h4>
-                  <hr>
-              </div>`});      
-          } else {
-            this.registerService.getRegisterByIdPersonaCedula(this.DatosService.Value_Cedula)
-            .subscribe(res =>{
-              console.log(res);
-              let PERSONA = res[0].ID_PERSONA;
-              this.registerService.deleteRegisterByIdPersona(PERSONA)
-              .subscribe(res =>{
-                console.log(res);
-                M.toast({
-                  html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
-                      <h4 class="alert-heading">ADMINISTRADOR ELIMINADO</h4>
-                      <hr>
-                  </div>`});
-                window.location.reload();
-              }) 
-            }) 
-          }          
-        } else {
-          this.registerService.getRegisterByIdUsuario(this.DatosService.Value_Cedula)
-          .subscribe(res =>{
-            console.log(res);
-            let USUARIO = res[0].ID_USUARIO;
-            let PERSONA = res[0].ID_PERSONA;
-            this.registerService.deleteRegisterByIdUsuario(USUARIO)
-            .subscribe(res =>{
-              console.log(res);
-              this.registerService.deleteRegisterByIdPersona(PERSONA)
-              .subscribe(res =>{
-                console.log(res);
-                M.toast({
-                  html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
-                      <h4 class="alert-heading">USUARIO ELIMINADO</h4>
-                      <hr>
-                  </div>`});
-                window.location.reload();
-              }) 
-            }) 
-          })
-        }   
-      }
+    });  
   }
 }

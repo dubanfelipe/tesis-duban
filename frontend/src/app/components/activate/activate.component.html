@@ -1,82 +1,105 @@
-<body>
+<body style="padding-top: 130px;">
   <div class="container-separador">
     <div class="row justify-content-center">
       <div class="card" style="width: 700px">
         <div class="card-body">
-          <h2 class="row justify-content-center">Activar o inactivar usuarios</h2>
-            <hr>
-            <p>"Active el Usuario, para que pueda hacer uso del sistema"</p>
-            <hr>
-            <form [formGroup]="registerForm" novalidate>
-              <div class="row">
-                <div class="col">
-                  <div class="form-label-group">
-                    <label for="ejemplo">Nombre</label>
-                    <input  type="text" class="form-control" name="Nombre" formControlName="Nombre" disabled>                    
-                  </div>
+          <h2 class="row justify-content-center">Activar o inactivar usuario {{NombreUsuario}} {{ApellidoUsuario}} </h2>
+          <hr>
+          <p>"Active el Usuario, para que pueda hacer uso del sistema"</p>
+          <hr>
+          <form [formGroup]="registerForm" novalidate>
+            <div class="row">
+              <div class="col">
+                <div class="form-label-group">
+                  <label for="ejemplo">Nombre</label>
+                  <input type="text" class="form-control" name="Nombre" formControlName="Nombre" disabled>
                 </div>
-                <div class="col">
-                  <div class="form-label-group">
-                    <label for="ejemplo">Apellido</label>
-                    <input  type="text" class="form-control" name="Apellido" formControlName="Apellido" disabled>
+              </div>
+              <div class="col">
+                <div class="form-label-group">
+                  <label for="ejemplo">Apellido</label>
+                  <input type="text" class="form-control" name="Apellido" formControlName="Apellido" disabled>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col">
+                <div class="form-label-group">
+                  <label for="ejemplo">Correo</label>
+                  <input type="text" class="form-control" name="Correo" formControlName="Correo" disabled>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col">
+                <div class="form-label-group">
+                  <label for="ejemplo">Cedula</label>
+                  <input type="text" class="form-control" name="Cedula" formControlName="Cedula" disabled>
+                </div>
+              </div>
+              <label for="ejemplo">Active o inactive</label>
+              <div class="col">
+                <label class="switch">
+                  <input #check type="checkbox" [checked]='datospersona.Activo'
+                    (change)='this.changeStatus(datospersona.Id_persona, check.checked)'>
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
+          </form>
+          <br>
+          <form [formGroup]="DocumentosForm">
+            <div class="section-flex">
+              <div class="form-group">
+                <mat-form-field appearance="outline" style="width:270px !important">
+                  <mat-label>Carnet Universitario</mat-label>
+                  <input matInput type="text" placeholder="Carnet Universitario" formControlName="CarnetDocument" />
+                </mat-form-field>
+                &nbsp;&nbsp;
+                <label matTooltip="Descargar Documento">
+                  <a target="_blank" href="{{URLS[0]}}">
+                    <mat-icon class="mat-icon--action">cloud_download</mat-icon>
+                  </a>
+                </label>
+                &nbsp;&nbsp;&nbsp;
+                <mat-form-field appearance="outline" style="width:270px !important">
+                  <mat-label>Certificado Enfermeria</mat-label>
+                  <input matInput type="text" placeholder="Certificado Enfermeria" formControlName="TamizajeDocument" />
+                </mat-form-field>
+                &nbsp;&nbsp;
+                <label matTooltip="Descargar Certificado">
+                  <a target="_blank" href="{{URLS[1]}}">
+                    <mat-icon class="mat-icon--action">cloud_download</mat-icon>
+                  </a>
+                </label>
+              </div>
+            </div>
+          </form>
+          <form [formGroup]="TextoForm">
+            <div class="row">
+              <div class="col">
+                <div class="form-label-group">
+                  <label for="ejemplo">*Campo para informarle al usuario por que no puede ser Activado en la
+                    plataforma*</label>
+                  <label for="ejemplo"></label>
+                  <input type="text" class="form-control" name="Texto" formControlName="Texto">
+                  <div *ngIf="TextoForm.get('Texto').errors">
                   </div>
                 </div>
               </div>
-              <br>
-              <div class="row">
-                <div class="col">
-                  <div class="form-label-group">
-                    <label for="ejemplo">Correo</label>
-                    <input  type="text" class="form-control" name="Correo" formControlName="Correo" disabled>
-                  </div>
-                </div>
-              </div>
-              <br>
-              <div class="row">
-                <div class="col">
-                  <div class="form-label-group">
-                    <label for="ejemplo">Cedula</label>
-                    <input  type="text" class="form-control" name="Cedula" formControlName="Cedula" disabled>
-                  </div>
-                </div>
-                <label for="ejemplo">Active o inactive</label>
-                <div class="col">
-                  <label class="switch">                    
-                    <input #check type="checkbox" [checked]='datospersona.ACTIVO'
-                      (change)='this.changeStatus(datospersona.ID_PERSONA, check.checked)'>
-                    <span class="slider round">&nbsp;SI    NO</span>
-                  </label>
-                </div>                
-              </div>
-              <br>
-              <div class="row">
-                <div class="col">
-                  <div class="form-label-group">
-                    <label for="ejemplo">*Campo para informarle al usuario por que no puede ser Activado en la plataforma*</label>
-                    <label for="ejemplo"></label>
-                    <input  type="text" class="form-control" name="Texto" formControlName="Texto" >
-                    <div *ngIf="registerForm.get('Texto').errors">
-                  </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <div class="form-label-group">
-                    <button [disabled]="!registerForm.valid" class="btn btn-block" id="btnLogin" (click)="contactForm(registerForm)"
-                        type="button">Enviar</button>
-                    <button [disabled]="!registerForm.valid" class="btn btn-block" id="btnLogin" (click)="deleteUser(registerForm)"
-                        type="button">Eliminar</button>
-                  </div>
-                </div>
-              </div>
-            </form>                      
+            </div>
+          </form>
+          <br>
+          <div style="display: flex; justify-content: space-around;">
+            <div>
+              <button [disabled]="!TextoForm.valid" class="btn btn-block" id="btnEnviar"
+                (click)="contactForm(registerForm, TextoForm)" type="button">Enviar</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 </body>
-
-    
-  
-    

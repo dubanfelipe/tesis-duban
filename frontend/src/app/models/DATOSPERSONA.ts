@@ -1,11 +1,11 @@
 export interface DatosPersona{
-    ID_PERSONA : number;
-    NOMBRE : string;
-    APELLIDO : string;
-    CORREO : string;
-    CEDULA : number;   
-    ACTIVO: number;
-    PASSWORD: string;
-    ROL_ID_ROL: number;
-    TEXTO: string;
+    Id_persona: number;
+    Nombre : string;
+    Apellido : string;
+    Correo : string;
+    Cedula : number;   
+    Activo : number;
+    Password: string;
+    Rol_id_rol: number;
+    Texto: string;
 }

@@ -31,21 +31,22 @@ loginCtrl.authentication = (req, res) => {
             res.send('Ocurrio un error en la busqueda' + err) 
         } 
         else {
+            console.log(data[0].Password);
             if (data.length == 0) {
                 console.log("no existe");
                 res.json({ fail: 1 });
-            } else if (bcrypt.compareSync(password, data[0].PASSWORD) != 1) {
+            } else if (bcrypt.compareSync(password, data[0].Password) != 1) {
                 res.json({ fail: 2 });
                 console.log("diferentes");
-            } else if (data[0].ACTIVO == false) {
+            } else if (data[0].Activo == false) {
                 res.json({ fail: 3 });
                 console.log("No activado");
             } else {
                 console.log("correcto");
-                id_persona = data[0].ID_PERSONA;
-                cedula = data[0].CEDULA
-                nombre = data[0].NOMBRE; 
-                rol = data[0].ROL_ID_ROL;     
+                id_persona = data[0].Id_persona;
+                cedula = data[0].Cedula;
+                nombre = data[0].Nombre; 
+                rol = data[0].Rol_id_rol;     
                 token = jwt.sign({id_persona, cedula, nombre, rol},config.secret, { expiresIn: 86400 })
                 res.json({ auth: true, token: token })       
                                   
@@ -68,8 +69,8 @@ loginCtrl.recoveryCode =  (req, res) => {
                     exito: true
                 })
             } else {
-                console.log('se encontro este usuario', data[0].NOMBRE);
-                nombre = data[0].NOMBRE;
+                console.log('se encontro este usuario', data[0].Nombre);
+                nombre = data[0].Nombre;
                 db.query(query2, function(err, data) {
                     if (err) {
                         res.json({ error: err });
@@ -110,7 +111,7 @@ loginCtrl.recoveryPassword =  (req, res) => {
                     exito: false,
                     mensaje: `el correo o codigo de cambio de contraseña son incorrectos`
                 })
-            } else if (data[0].RECOVERY === recovery.key) {
+            } else if (data[0].Recovery === recovery.key) {
                 console.log('se encontro este usuario', data);
                 var hashedPassword = bcrypt.hashSync(recovery.password, 8);
                 query2 = `UPDATE Persona SET Password='${hashedPassword}' WHERE Correo = '${recovery.correo}'`;
