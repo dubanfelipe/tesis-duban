@@ -64,7 +64,7 @@ export class SignInComponent implements OnInit {
     this.registerService.getRegisterByIdUsuario(form.value.cedula)
     .subscribe(
       res => {  
-      console.log(res[0]);
+      console.log("eyyy", res[0]);
       if (res[0] == undefined) {
         M.toast({
           html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
@@ -72,7 +72,14 @@ export class SignInComponent implements OnInit {
                  <p>Cedula no registrada</p>
                  <hr>
           </div>`});
-      } else if (res[0].Ingreso == 0){       
+      } else if(res[0].Activo == 0){
+        M.toast({
+          html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                 <h4 class="alert-heading">ERROR DE INGRESO</h4>
+                 <p>Usuario se encuentra inactivo</p>
+                 <hr>
+          </div>`});
+      }else if (res[0].Ingreso == "false"){       
         let estudiantes = "true";
         let hora = moment().format('MMMM Do YYYY, h:mm:ss a');
         this.loginForm.patchValue({"Ingreso": estudiantes});
@@ -85,7 +92,7 @@ export class SignInComponent implements OnInit {
               <h4 class="alert-heading">INGRESO EXITOSO</h4>
               <hr>
           </div>`});
-          window.location.reload();
+          this.getIngreso();
         })  
       } else {
         let estudiantes = "false";
@@ -100,7 +107,7 @@ export class SignInComponent implements OnInit {
               <h4 class="alert-heading">SALIDA EXITOSA</h4>
               <hr>
           </div>`});
-          window.location.reload();
+          this.getIngreso();
         })  
       }       
     });
@@ -116,7 +123,7 @@ export class SignInComponent implements OnInit {
       })
   }
   getIngreso(){
-    let Ingreso = 1;
+    let Ingreso = "true";
     this.SigninService.getRegisterByIdUsuarioIngreso(Ingreso).
     subscribe(res =>{
       console.log("datos", res[0])

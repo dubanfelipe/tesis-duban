@@ -1,22 +1,52 @@
+body{
+    padding-top: 12%; 
+}
+.table{ 
+    width: 99%; 
+}
+:host/deep/ng2-smart-table thead > tr > th  { 
+    background-color:#00468f;  
+}
+
+:host/deep/ng2-smart-table th.ng2-smart-actions  { 
+    color: white;  
+}
+
+:host/deep/ng2-smart-table _nghost-ner-c87 a  { 
+    background-color:black;  
+}
+
+:host/deep/ng2-smart-table-title> a {
+    color: white; 
+}
 table {
     border-collapse: collapse;
-    border: 2px solid rgb(200,200,200);
-    letter-spacing: 1px;
-    font-size: 0.8rem;
-}
-td, th {
-    border: 1px solid rgb(190,190,190);
-    padding: 10px 20px;
-}
-th {
+    border: 1px solid #ccc;
+  }
+  td,
+  th {
+    padding: 10px;
+  }
+  th {
+    background: #00468f;
+    color: #fff;
+    text-transform: uppercase;
+  }
+  td {
     text-align: center;
+    border-bottom: 2px solid #111;
+    color: #333;
+    font-size: 18px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+#btnRegister {
+    background-color: #00468f;
+    color: white;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; 
+    text-align:center;  
 }
-.btn-circle {
-    color:rgb(0, 68, 255);
-    width: 30px;
-    height: 30px;
-    padding: 6px 0px;
-    border-radius: 15px;
-    font-size: 12px;
-    line-height: 1.42857;
+
+#btnRegister:hover {
+    color: white;
+    border-radius: 8rem;
 }

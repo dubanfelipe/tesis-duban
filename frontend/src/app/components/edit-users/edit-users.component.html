@@ -56,7 +56,7 @@
                     <mat-error *ngIf="rol.errors?.required">Ocupacion requerida</mat-error>
                   </mat-form-field>
                   &nbsp;&nbsp;&nbsp;
-                  <mat-form-field appearance="outline" style="width:400px !important">
+                  <mat-form-field *ngIf="!rolAdministrador" appearance="outline" style="width:400px !important">
                     <mat-label>Rutina asignada</mat-label>
                     <input matInput formControlName="Rutina_asignada" type="text" autocomplete="off" />
                   </mat-form-field>

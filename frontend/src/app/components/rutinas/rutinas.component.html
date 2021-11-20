@@ -1,235 +1,270 @@
 <body>
-    <div *ngIf= "rutinaCheck">
-        <form [formGroup]="rutinaForm" novalidate>
-            <div class="form-label-group">
-              <label for="ejemplo"><h4>Nombre de la rutina*</h4></label>
-              <input  type="text" class="form-control" name="Nombre" placeholder="Ingrese su Nombre" autofocus required formControlName="Nombre">
-              <div *ngIf="rutinaForm.get('Nombre').errors" class="alert alert-danger">
-                  <div *ngIf="rutinaForm.get('Nombre').errors['required']">
-                    Nombre requerido
-                  </div>
-                  <div *ngIf="rutinaForm.get('Nombre').errors['pattern']">
-                    Nombre incorrecto
-                  </div>
-              </div>
-            </div> 
-        </form>
-        <div class="form-label-group">
-            <button [disabled]="!rutinaForm.valid" class="btn btn-block" id="btnLogin" (click)="saveRutina(rutinaForm)" type="button">Guardar</button>
-        </div>
-    </div>  
-    <div *ngIf= "!rutinaCheck">
-        <form [formGroup]="rutinaForm" novalidate>
-            <div class="form-label-group">
-              <label for="ejemplo"><h4>Nombre de la rutina*</h4></label>
-              <input  type="text" class="form-control" name="Nombre" formControlName="Nombre" disabled>
-            </div> 
-        </form>
-    </div>  
-    <br>
-    <div>
-        <div *ngIf= "!rutinaCheck && Lunes">
-            <div style="display: flex; justify-content: flex-start;">
-                <h4>LUNES</h4>
-                <button
-                  type="button" 
-                  class="btn btn-primary btn-circle"
-                  (click)="SelectDia(0,1)"
-                  *ngIf="Martes">
-                  <i class="material-icons" style="color: rgb(255, 255, 255) !important; cursor: pointer; text-align: center;">open_in_new</i>
-                </button>
-            </div>            
-            <p>Porfavor seleccione los ejercicios que desea asignar en el dia lunes de esta rutina; si desea que se descanse este dia dar la opcion siguiente</p>
-            <table  *ngIf="yacargoLunes && Lunes" class="default">
-                <tr>
-                    <th>Nombre ejercicio</th>
-                    <th>Series</th>
-                    <th>Repeticiones</th>
-                    <th>Descanso</th>
-                    <th>Musculo</th>
-                </tr>
-                <td><p *ngFor="let item of Dia.lunes.EJERCICIO">{{item.NOMBRE}}</p></td>
-                <td><p *ngFor="let item of Dia.lunes.EJERCICIO">{{item.SERIE}}</p></td>
-                <td><p *ngFor="let item of Dia.lunes.EJERCICIO">{{item.REPETICION}}</p></td>
-                <td><p *ngFor="let item of Dia.lunes.EJERCICIO">{{item.TIEMPO_DESCANSO}}</p></td>
-                <td><p *ngFor="let item of Dia.lunes.EJERCICIO">{{item.NOMBRE_MUSCULOS}}</p></td>
-            </table>                       
-        </div>
-        <div *ngIf= "!rutinaCheck && Martes">
-            <div style="display: flex; justify-content: flex-start;">
-                <h4>MARTES</h4>
-                <button
-                  type="button" 
-                  class="btn btn-primary btn-circle"
-                  (click)="SelectDia(1,1)"
-                  *ngIf="Miercoles">
-                  <i class="material-icons" style="color: rgb(255, 255, 255) !important; cursor: pointer; text-align: center;">open_in_new</i>
-                </button>
-            </div> 
-            <p>Porfavor seleccione los ejercicios que desea asignar en el dia Martes de esta rutina; si desea que se descanse este dia dar la opcion siguiente</p>
-            <table  *ngIf="yacargoMartes && Martes" class="default">
-                <tr>
-                    <th>Nombre ejercicio</th>
-                    <th>Series</th>
-                    <th>Repeticiones</th>
-                    <th>Descanso</th>
-                    <th>Musculo</th>
-                </tr>
-                <td><p *ngFor="let item of Dia.Martes.EJERCICIO">{{item.NOMBRE}}</p></td>
-                <td><p *ngFor="let item of Dia.Martes.EJERCICIO">{{item.SERIE}}</p></td>
-                <td><p *ngFor="let item of Dia.Martes.EJERCICIO">{{item.REPETICION}}</p></td>
-                <td><p *ngFor="let item of Dia.Martes.EJERCICIO">{{item.TIEMPO_DESCANSO}}</p></td>
-                <td><p *ngFor="let item of Dia.Martes.EJERCICIO">{{item.NOMBRE_MUSCULOS}}</p></td>
-            </table>            
-        </div>
-        <div *ngIf= "!rutinaCheck && Miercoles">
-            <div style="display: flex; justify-content: flex-start;">
-                <h4>MIERCOLES</h4>
-                <button
-                  type="button" 
-                  class="btn btn-primary btn-circle"
-                  (click)="SelectDia(2,1)"
-                  *ngIf="Jueves">
-                  <i class="material-icons" style="color: rgb(255, 255, 255) !important; cursor: pointer; text-align: center;">open_in_new</i>
-                </button>
-            </div> 
-            <p>Porfavor seleccione los ejercicios que desea asignar en el dia Miercoles de esta rutina; si desea que se descanse este dia dar la opcion siguiente</p>
-            <table  *ngIf="yacargoMiercoles && Miercoles" class="default">
-                <tr>
-                    <th>Nombre ejercicio</th>
-                    <th>Series</th>
-                    <th>Repeticiones</th>
-                    <th>Descanso</th>
-                    <th>Musculo</th>
-                </tr>
-                <td><p *ngFor="let item of Dia.Miercoles.EJERCICIO">{{item.NOMBRE}}</p></td>
-                <td><p *ngFor="let item of Dia.Miercoles.EJERCICIO">{{item.SERIE}}</p></td>
-                <td><p *ngFor="let item of Dia.Miercoles.EJERCICIO">{{item.REPETICION}}</p></td>
-                <td><p *ngFor="let item of Dia.Miercoles.EJERCICIO">{{item.TIEMPO_DESCANSO}}</p></td>
-                <td><p *ngFor="let item of Dia.Miercoles.EJERCICIO">{{item.NOMBRE_MUSCULOS}}</p></td>
-            </table>            
-        </div>
-        <div *ngIf= "!rutinaCheck && Jueves">
-            <div style="display: flex; justify-content: flex-start;">
-                <h4>JUEVES</h4>
-                <button
-                  type="button" 
-                  class="btn btn-primary btn-circle"
-                  (click)="SelectDia(3,1)"
-                  *ngIf="Viernes">
-                  <i class="material-icons" style="color: rgb(255, 255, 255) !important; cursor: pointer; text-align: center;">open_in_new</i>
-                </button>
-            </div> 
-            <p>Porfavor seleccione los ejercicios que desea asignar en el dia Jueves de esta rutina; si desea que se descanse este dia dar la opcion siguiente</p>
-            <table  *ngIf="yacargoJueves && Jueves" class="default">
-                <tr>
-                    <th>Nombre ejercicio</th>
-                    <th>Series</th>
-                    <th>Repeticiones</th>
-                    <th>Descanso</th>
-                    <th>Musculo</th>
-                </tr>
-                <td><p *ngFor="let item of Dia.Jueves.EJERCICIO">{{item.NOMBRE}}</p></td>
-                <td><p *ngFor="let item of Dia.Jueves.EJERCICIO">{{item.SERIE}}</p></td>
-                <td><p *ngFor="let item of Dia.Jueves.EJERCICIO">{{item.REPETICION}}</p></td>
-                <td><p *ngFor="let item of Dia.Jueves.EJERCICIO">{{item.TIEMPO_DESCANSO}}</p></td>
-                <td><p *ngFor="let item of Dia.Jueves.EJERCICIO">{{item.NOMBRE_MUSCULOS}}</p></td>
-            </table>            
-        </div>
-        <div *ngIf= "!rutinaCheck && Viernes">
-            <div style="display: flex; justify-content: flex-start;">
-                <h4>VIERNES</h4>
-                <button
-                  type="button" 
-                  class="btn btn-primary btn-circle"
-                  (click)="SelectDia(4,1)"
-                  *ngIf="Sabado">
-                  <i class="material-icons" style="color: rgb(255, 255, 255) !important; cursor: pointer; text-align: center;">open_in_new</i>
-                </button>
+    <div style="position: absolute; top: 20%; left: 5%">
+        <div style="display: flex;">
+            <div class="card" style="width: 1270px;">
+                <div style="text-align: center;">
+                    <br>
+                    <h5 class="card-title">CREAR RUTINA</h5>
+                    <form [formGroup]="rutinaForm">
+                        <div class="section-flex">
+                            <div class="form-group">
+                                <mat-form-field appearance="outline" style="width:600px !important">
+                                    <mat-label>Nombre rutina</mat-label>
+                                    <input [disabled]="rutinaCheck" matInput formControlName="Nombre" type="text"
+                                        autocomplete="off" required placeholder="Digite el nombre de la rutina" />
+                                    <mat-error *ngIf="nombre.errors?.pattern">No cumple los parametros</mat-error>
+                                    <mat-error *ngIf="nombre.errors?.required">Nombre requerido</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="form-label-group">
+                            <button *ngIf="!rutinaCheck" [disabled]="!rutinaForm.valid" mat-raised-button class="btn"
+                                id="btnRegister" (click)="saveRutina(rutinaForm)" type="button">Guardar</button>
+                        </div>
+                    </form>
+                    <div style="display: flex; justify-content: space-around;">
+                        <div *ngIf="rutinaCheck && Lunes">
+                            <div style="display: flex; justify-content: flex-start;">
+                                <h4>LUNES</h4>
+                                <i class="material-icons" (click)="SelectDia(0,1)" *ngIf="Martes"
+                                    style="color: black !important; cursor: pointer;">edit</i>
+                            </div>                        
+                            <div class="table" style="margin: 0 auto;" *ngIf="yacargoLunes && Lunes">
+                                <ng2-smart-table [settings]="settings" [source]="Dia.lunes.Ejercicio" (custom)="onCustom($event)"></ng2-smart-table>
+                            </div>
+                        </div>
+                        <div *ngIf="rutinaCheck && Martes">
+                            <div style="display: flex; justify-content: flex-start;">
+                                <h4>MARTES</h4>
+                                <i class="material-icons" (click)="SelectDia(1,1)" *ngIf="Miercoles"
+                                    style="color: black !important; cursor: pointer;">edit</i>
+                            </div>
+                            <div class="table" style="margin: 0 auto;" *ngIf="yacargoMartes && Martes">
+                                <ng2-smart-table [settings]="settings" [source]="Dia.Martes.Ejercicio" (custom)="onCustom($event)"></ng2-smart-table>
+                            </div>
+                        </div>
+                    </div>  
+                    <div style="display: flex; justify-content: space-around;">
+                        <div *ngIf="rutinaCheck && Miercoles">
+                            <div style="display: flex; justify-content: flex-start;">
+                                <h4>MIERCOLES</h4>
+                                <i class="material-icons" (click)="SelectDia(2,1)" *ngIf="Jueves"
+                                    style="color: black !important; cursor: pointer;">edit</i>
+                            </div>
+                            <div class="table" *ngIf="yacargoMiercoles && Miercoles" class="default">
+                                <ng2-smart-table [settings]="settings" [source]="Dia.Miercoles.Ejercicio" (custom)="onCustom($event)"></ng2-smart-table>
+                            </div>
+                        </div>
+                        <div *ngIf="rutinaCheck && Jueves">
+                            <div style="display: flex; justify-content: flex-start;">
+                                <h4>JUEVES</h4>
+                                <i class="material-icons"(click)="SelectDia(3,1)" *ngIf="Viernes"
+                                    style="color: black !important; cursor: pointer;">edit</i>
+                            </div>
+                            <div class="table" *ngIf="yacargoJueves && Jueves" class="default">
+                                <ng2-smart-table [settings]="settings" [source]="Dia.Jueves.Ejercicio" (custom)="onCustom($event)"></ng2-smart-table>
+                            </div>
+                        </div>
+                    </div>                  
+                    <div style="display: flex; justify-content: space-around;">
+                        <div *ngIf="rutinaCheck && Viernes">
+                            <div style="display: flex; justify-content: flex-start;">
+                                <h4>VIERNES</h4>
+                                <i class="material-icons" (click)="SelectDia(4,1)" *ngIf="Sabado"
+                                    style="color: black !important; cursor: pointer;">edit</i>
+                            </div>
+                            <div class="table" *ngIf="yacargoViernes && Viernes" class="default">
+                                <ng2-smart-table [settings]="settings" [source]="Dia.Viernes.Ejercicio" (custom)="onCustom($event)"></ng2-smart-table>
+                            </div>
+                        </div>
+                        <div *ngIf="rutinaCheck && Sabado">
+                            <div style="display: flex; justify-content: flex-start;">
+                                <h4>SABADO</h4>
+                                <i class="material-icons" (click)="SelectDia(5,1)" *ngIf="Domingo"
+                                    style="color: black !important; cursor: pointer;">edit</i>
+                            </div>
+                            <div class="table" *ngIf="yacargoSabado && Sabado" class="default">
+                                <ng2-smart-table [settings]="settings" [source]="Dia.Sabado.Ejercicio" (custom)="onCustom($event)"></ng2-smart-table>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div *ngIf="yaCargo" style="text-align: center; aling-items: center">
+                        <p>Por favor seleccione los ejercicios que desea asignar para este dia</p>
+                        <div>
+                                <button mat-raised-button class="btn" id="btnRegister" (click)="update()" *ngIf="banderaParaEditar && !Domingo">
+                                    ACTUALIZAR
+                                </button>
+                                <button mat-raised-button class="btn" id="btnRegister" (click)="saveRutina(rutinaForm)" *ngIf="yaCargo2 && !banderaParaEditar && !Domingo">
+                                    SIGUIENTE
+                                </button>
+                                <button mat-raised-button class="btn" id="btnRegister" (click)="GuardarRutina()" *ngIf="Domingo && !banderaParaEditar">
+                                    GUARDAR RUTINA
+                                </button>
+                        </div>        
+                        <br>                 
+                        <table style="margin: 0 auto;">
+                            <tr>
+                                <th>ABDOMINAL</th>
+                                <th>BICEPS</th>
+                                <th>CUADRICEPS</th>
+                                <th>DORSAL</th>
+                                <th>GEMELOS</th>
+                                <th>GLUTEOS</th>
+                            </tr>
+                            <td>
+                                <p *ngFor="let item of Musculos.Abdominales.Ejercicios;let indice=index">
+                                    {{item.Nombre}}&nbsp;<input #check type="checkbox"
+                                        [(ngModel)]="item.isSelected"
+                                        (change)="ejercicioSeleccionado(item.Id_ejercicio,indice,item.isSelected)"></p>
+                            </td>
+                            <td>
+                                <p *ngFor="let item of Musculos.Biceps.Ejercicios;let indice=index">
+                                    {{item.Nombre}}&nbsp;<input #check type="checkbox"
+                                        [(ngModel)]="item.isSelected"
+                                        (change)="ejercicioSeleccionado(item.Id_ejercicio,indice,item.isSelected)"></p>
+                            </td>
+                            <td>
+                                <p *ngFor="let item of Musculos.Cuadriceps.Ejercicios;let indice=index">
+                                    {{item.Nombre}}&nbsp;<input #check type="checkbox"
+                                        [(ngModel)]="item.isSelected"
+                                        (change)="ejercicioSeleccionado(item.Id_ejercicio,indice,item.isSelected)"></p>
+                            </td>
+                            <td>
+                                <p *ngFor="let item of Musculos.Dorsal.Ejercicios;let indice=index">
+                                    {{item.Nombre}}&nbsp;<input #check type="checkbox"
+                                        [(ngModel)]="item.isSelected"
+                                        (change)="ejercicioSeleccionado(item.Id_ejercicio,indice,item.isSelected)"></p>
+                            </td>
+                            <td>
+                                <p *ngFor="let item of Musculos.Gemelos.Ejercicios;let indice=index">
+                                    {{item.Nombre}}&nbsp;<input #check type="checkbox"
+                                        [(ngModel)]="item.isSelected"
+                                        (change)="ejercicioSeleccionado(item.Id_ejercicio,indice,item.isSelected)"></p>
+                            </td>
+                            <td>
+                                <p *ngFor="let item of Musculos.Gluteos.Ejercicios;let indice=index">
+                                    {{item.Nombre}}&nbsp;<input #check type="checkbox"
+                                        [(ngModel)]="item.isSelected"
+                                        (change)="ejercicioSeleccionado(item.Id_ejercicio,indice,item.isSelected)"></p>
+                            </td>
+                            <tr>
+                                <th>HOMBROS</th>
+                                <th>ISQUIOS</th>
+                                <th>ANTEBRAZO</th>
+                                <th>CUELLO</th>
+                                <th>PECTORAL</th>
+                                <th>TRICEPS</th>
+                            </tr>
+                            <td>
+                                <p *ngFor="let item of Musculos.Hombros.Ejercicios;let indice=index">
+                                    {{item.Nombre}}&nbsp;<input #check type="checkbox"
+                                        [(ngModel)]="item.isSelected"
+                                        (change)="ejercicioSeleccionado(item.Id_ejercicio,indice,item.isSelected)"></p>
+                            </td>
+                            <td>
+                                <p *ngFor="let item of Musculos.Isquios.Ejercicios;let indice=index">
+                                    {{item.Nombre}}&nbsp;<input #check type="checkbox"
+                                        [(ngModel)]="item.isSelected"
+                                        (change)="ejercicioSeleccionado(item.Id_ejercicio,indice,item.isSelected)"></p>
+                            </td>
+                            <td>
+                                <p *ngFor="let item of Musculos.Antebrazo.Ejercicios;let indice=index">
+                                    {{item.Nombre}}&nbsp;<input #check type="checkbox"
+                                        [(ngModel)]="item.isSelected"
+                                        (change)="ejercicioSeleccionado(item.Id_ejercicio,indice,item.isSelected)"></p>
+                            </td>
+                            <td>
+                                <p *ngFor="let item of Musculos.Cuello.Ejercicios;let indice=index">
+                                    {{item.Nombre}}&nbsp;<input #check type="checkbox"
+                                        [(ngModel)]="item.isSelected"
+                                        (change)="ejercicioSeleccionado(item.Id_ejercicio,indice,item.isSelected)"></p>
+                            </td>
+                            <td>
+                                <p *ngFor="let item of Musculos.Pectoral.Ejercicios;let indice=index">
+                                    {{item.Nombre}}&nbsp;<input #check type="checkbox"
+                                        [(ngModel)]="item.isSelected"
+                                        (change)="ejercicioSeleccionado(item.Id_ejercicio,indice,item.isSelected)"></p>
+                            </td>
+                            <td>
+                                <p *ngFor="let item of Musculos.Triceps.Ejercicios;let indice=index">
+                                    {{item.Nombre}}&nbsp;<input #check type="checkbox"
+                                        [(ngModel)]="item.isSelected"
+                                        (change)="ejercicioSeleccionado(item.Id_ejercicio,indice,item.isSelected)"></p>
+                            </td>
+                        </table>
+                    </div>
+                </div>
             </div>
-            <p>Porfavor seleccione los ejercicios que desea asignar en el dia Viernes de esta rutina; si desea que se descanse este dia dar la opcion siguiente</p>
-            <table  *ngIf="yacargoViernes && Viernes" class="default">
-                <tr>
-                    <th>Nombre ejercicio</th>
-                    <th>Series</th>
-                    <th>Repeticiones</th>
-                    <th>Descanso</th>
-                    <th>Musculo</th>
-                </tr>
-                <td><p *ngFor="let item of Dia.Viernes.EJERCICIO">{{item.NOMBRE}}</p></td>
-                <td><p *ngFor="let item of Dia.Viernes.EJERCICIO">{{item.SERIE}}</p></td>
-                <td><p *ngFor="let item of Dia.Viernes.EJERCICIO">{{item.REPETICION}}</p></td>
-                <td><p *ngFor="let item of Dia.Viernes.EJERCICIO">{{item.TIEMPO_DESCANSO}}</p></td>
-                <td><p *ngFor="let item of Dia.Viernes.EJERCICIO">{{item.NOMBRE_MUSCULOS}}</p></td>
-            </table>            
         </div>
-        <div *ngIf= "!rutinaCheck && Sabado">
-            <div style="display: flex; justify-content: flex-start;">
-                <h4>SABADO</h4>
-                <button
-                  type="button" 
-                  class="btn btn-primary btn-circle"
-                  (click)="SelectDia(5,1)"
-                  *ngIf="Domingo">
-                  <i class="material-icons" style="color: rgb(255, 255, 255) !important; cursor: pointer; text-align: center;">open_in_new</i>
-                </button>
-            </div>
-            <p>Porfavor seleccione los ejercicios que desea asignar en el dia Sabado de esta rutina; si desea que se descanse este dia dar la opcion siguiente</p>
-            <table  *ngIf="yacargoSabado && Sabado" class="default">
-                <tr>
-                    <th>Nombre ejercicio</th>
-                    <th>Series</th>
-                    <th>Repeticiones</th>
-                    <th>Descanso</th>
-                    <th>Musculo</th>
-                </tr>
-                <td><p *ngFor="let item of Dia.Sabado.EJERCICIO">{{item.NOMBRE}}</p></td>
-                <td><p *ngFor="let item of Dia.Sabado.EJERCICIO">{{item.SERIE}}</p></td>
-                <td><p *ngFor="let item of Dia.Sabado.EJERCICIO">{{item.REPETICION}}</p></td>
-                <td><p *ngFor="let item of Dia.Sabado.EJERCICIO">{{item.TIEMPO_DESCANSO}}</p></td>
-                <td><p *ngFor="let item of Dia.Sabado.EJERCICIO">{{item.NOMBRE_MUSCULOS}}</p></td>
-            </table>            
-        </div>
-        <tr>
-        <button class="btn btn-block" (click)="update()" *ngIf="banderaParaEditar && !Domingo">
-            ACTUALIZAR
-        </button>
-        <button *ngIf="yaCargo2 && !banderaParaEditar && !Domingo" class="btn btn-block" id="btnLogin" (click)="saveRutina(rutinaForm)">
-            SIGUIENTE
-        </button>
-        <button class="btn btn-block" (click)="GuardarRutina()" *ngIf="Domingo && !banderaParaEditar">
-            GUARDAR RUTINA
-        </button>
-        </tr>
-    </div>    
+    </div>
 </body>
-<table *ngIf="yaCargo" class="default">
-    <tr>
-        <th>ABDOMINAL</th> 
-        <th>BICEPS</th>
-        <th>CUADRICEPS</th>
-        <th>DORSAL</th>
-        <th>GEMELOS</th>
-        <th>GLUTEOS</th>
-    </tr>  
-    <td><p *ngFor="let item of Musculos.Abdominales.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [(ngModel)]="item.isSelected" (change)="ejercicioSeleccionado(item.ID_EJERCICIO,indice,item.isSelected)"></p></td> 
-    <td><p *ngFor="let item of Musculos.Biceps.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [(ngModel)]="item.isSelected" (change)="ejercicioSeleccionado(item.ID_EJERCICIO,indice,item.isSelected)"></p></td>  
-    <td><p *ngFor="let item of Musculos.Cuadriceps.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [(ngModel)]="item.isSelected" (change)="ejercicioSeleccionado(item.ID_EJERCICIO,indice,item.isSelected)"></p></td> 
-    <td><p *ngFor="let item of Musculos.Dorsal.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [(ngModel)]="item.isSelected" (change)="ejercicioSeleccionado(item.ID_EJERCICIO,indice,item.isSelected)"></p></td> 
-    <td><p *ngFor="let item of Musculos.Gemelos.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [(ngModel)]="item.isSelected" (change)="ejercicioSeleccionado(item.ID_EJERCICIO,indice,item.isSelected)"></p></td> 
-    <td><p *ngFor="let item of Musculos.Gluteos.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [(ngModel)]="item.isSelected" (change)="ejercicioSeleccionado(item.ID_EJERCICIO,indice,item.isSelected)"></p></td> 
-    <tr>
-        <th>HOMBROS</th> 
-        <th>ISQUIOS</th>
-        <th>ANTEBRAZO</th>
-        <th>CUELLO</th>
-        <th>PECTORAL</th>
-        <th>TRICEPS</th>
-    </tr>  
-    <td><p *ngFor="let item of Musculos.Hombros.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [(ngModel)]="item.isSelected" (change)="ejercicioSeleccionado(item.ID_EJERCICIO,indice,item.isSelected)"></p></td> 
-    <td><p *ngFor="let item of Musculos.Isquios.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [(ngModel)]="item.isSelected" (change)="ejercicioSeleccionado(item.ID_EJERCICIO,indice,item.isSelected)"></p></td> 
-    <td><p *ngFor="let item of Musculos.Antebrazo.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [(ngModel)]="item.isSelected" (change)="ejercicioSeleccionado(item.ID_EJERCICIO,indice,item.isSelected)"></p></td> 
-    <td><p *ngFor="let item of Musculos.Cuello.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [(ngModel)]="item.isSelected" (change)="ejercicioSeleccionado(item.ID_EJERCICIO,indice,item.isSelected)"></p></td> 
-    <td><p *ngFor="let item of Musculos.Pectoral.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [(ngModel)]="item.isSelected" (change)="ejercicioSeleccionado(item.ID_EJERCICIO,indice,item.isSelected)"></p></td> 
-    <td><p *ngFor="let item of Musculos.Triceps.Ejercicios;let indice=index">{{indice+1}}.{{item.NOMBRE}}<input #check type="checkbox" [(ngModel)]="item.isSelected" (change)="ejercicioSeleccionado(item.ID_EJERCICIO,indice,item.isSelected)"></p></td> 
-</table>
+<a id="modalVisibility" href="#" data-toggle="modal" data-target="#openModalVisibility" mat-raised-button
+  class="btn btn--success">
+</a>
+<div class="form-modal">
+  <div class="modal fade" id="openModalVisibility" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content border-success">
+        <div class="modal-header">
+          <div class="alert-dialog-w">
+            <div style="padding-bottom: 15px; text-align: center;">
+              <img src="https://facultadderecho.usta.edu.co/images/Logo-USTA-19.png" style="width: 500px" />
+            </div>
+            <hr style="border: 1px solid #00468f">
+            <h4 style="text-align: center;">Informacion del ejercicio {{NombreEjercicio}}</h4>
+            <br>
+            <div style="display: flex; justify-content: space-between;">
+              <div>
+                <div style="padding-bottom: 15px; text-align: center;">
+                  <img src="{{URL}}" width="400" height="300" />
+                </div>
+              </div>
+              <div style="margin-left: 40px;">                
+                <div style="text-align: center;">
+                  <form [formGroup]="EjerciciosForm">
+                    <div class="section-flex">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" style="width:250px !important">
+                          <mat-label>Nombre del ejercicio</mat-label>
+                          <input matInput type="text" formControlName="Nombre" />
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="section-flex">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" style="width:120px !important">
+                          <mat-label>No de series</mat-label>
+                          <input matInput type="text" formControlName="Series" />
+                        </mat-form-field>
+                        &nbsp;&nbsp;
+                        <mat-form-field appearance="outline" style="width:120px !important">
+                          <mat-label>No de repeticiones</mat-label>
+                          <input matInput type="text" formControlName="Repeticiones" />
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="section-flex">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" style="width:120px !important">
+                          <mat-label>Tiempo de descanso</mat-label>
+                          <input matInput type="text" formControlName="tiempoDescanso" />
+                        </mat-form-field>
+                        &nbsp;&nbsp;
+                        <mat-form-field appearance="outline" style="width:120px !important">
+                          <mat-label>Musculo</mat-label>
+                          <input matInput type="text" formControlName="Musculo" />
+                        </mat-form-field>
+                      </div>
+                    </div>                    
+                  </form>
+                </div>                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

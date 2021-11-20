@@ -14,7 +14,7 @@ export class signinService{
         console.log(id,datos);
         return this.http.put(this.API_URL+`/ingreso/${id}`,datos);
     }
-    getRegisterByIdUsuarioIngreso(Ingreso:number){
+    getRegisterByIdUsuarioIngreso(Ingreso: string){
         return this.http.get(this.API_URL+`/ingreso/Activate/${Ingreso}`);
     }
 }

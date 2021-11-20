@@ -16,6 +16,23 @@ export class RegisterAdminComponent implements OnInit {
   constructor(public registerService: RegisterService, private router: Router, private fb: FormBuilder) {
     this.buildForm();
   }
+
+  get nombre() {
+    return this.registerForm.get("Nombre");
+  }
+  get apellido() {
+    return this.registerForm.get("Apellido");
+  }
+  get correo() {
+    return this.registerForm.get("Correo");
+  }
+  get cedula() {
+    return this.registerForm.get("Cedula");
+  }
+  get password() {
+    return this.registerForm.get("Password");
+  }
+
   buildForm(){
     this.registerForm = this.fb.group({
       Nombre: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-z A-Z ñ Ñ]*$/)])],
@@ -40,7 +57,7 @@ export class RegisterAdminComponent implements OnInit {
               <p>El administrador se ha registrado correctamente</p>
               <hr>
               </div>`});
-      this.router.navigate(['admin']);
+      this.router.navigate(['admin/sign_in']);
     })
   }
 }

@@ -20,8 +20,8 @@
               <mat-label>Sede</mat-label>
               <mat-select matInput autocomplete="off" required placeholder="Seleccione su sede"
                 formControlName="Sede_id_sede">
-                <mat-option *ngFor="let sedes of registerService.sede | slice:1" value={{sedes.ID_SEDE}}>
-                  {{sedes.NOMBRE_SEDE}}
+                <mat-option *ngFor="let sedes of registerService.sede | slice:1" value={{sedes.Id_sede}}>
+                  {{sedes.Nombre_sede}}
                 </mat-option>
               </mat-select>
               <mat-error *ngIf="sede.errors?.required">Sede requerida</mat-error>

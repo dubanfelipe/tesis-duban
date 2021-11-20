@@ -1,1 +1,246 @@
-<ng2-smart-table *ngIf= "yaCargo"[settings]="settings" [source]="RutinaService.ejercicios" (createConfirm)="onCreateConfirm($event)" (editConfirm)="onSaveConfirm($event)" (deleteConfirm)="onDeleteConfirm($event)"></ng2-smart-table>
+<div class="table">
+  <ng2-smart-table *ngIf="yaCargo" [settings]="settings" [source]="RutinaService.ejercicios" (custom)="onCustom($event)"
+    (createConfirm)="onCreateConfirm($event)" (editConfirm)="onSaveConfirm($event)"
+    (deleteConfirm)="onDeleteConfirm($event)"></ng2-smart-table>
+</div>
+<a id="modalNotificacion" href="#" data-toggle="modal" data-target="#openModal" mat-raised-button
+  class="btn btn--success">
+</a>
+<div class="form-modal">
+  <div class="modal fade" id="openModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content border-success">
+        <div class="modal-header">
+          <div class="alert-dialog-w">
+            <div style="padding-bottom: 15px; text-align: center;">
+              <img src="https://facultadderecho.usta.edu.co/images/Logo-USTA-19.png" style="width: 500px" />
+            </div>
+            <hr style="border: 1px solid #00468f">
+            <br>
+            <div style="text-align: center;">
+              Por favor, subir la imagen respectiva al ejercicio creado.
+            </div>
+            <br>
+            <form [formGroup]="DocumentosForm">
+              <div class="section-flex">
+                <div class="form-group">
+                  <mat-form-field appearance="outline" style="width:400px !important">
+                    <mat-label>Imagen del ejercicio</mat-label>
+                    <input matInput type="text" placeholder="Imagen del ejercicio" formControlName="EjercicioImagen" />
+                  </mat-form-field>
+                  &nbsp;&nbsp;
+                  <label href="#" [attr.for]="'file-upload'" matTooltip="Subir Archivo">
+                    <mat-icon class="mat-icon--action">backup</mat-icon>
+                  </label>
+                  <input [attr.id]="'file-upload'" accept="image/*" type="file" (change)="handleInputChange($event)"
+                    style="display: none;" />
+                </div>
+              </div>
+            </form>
+            <br>
+            <div>
+              <div style="display: flex; justify-content: space-around;">
+                <button id="btnAceptar" data-dismiss="modal" (click)="subirImagen()">Aceptar</button>
+                <button id="btnCancelar" data-dismiss="modal">Cancelar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<a id="modalImagen" href="#" data-toggle="modal" data-target="#openModalImagen" mat-raised-button
+  class="btn btn--success">
+</a>
+<div class="form-modal">
+  <div class="modal fade" id="openModalImagen" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content border-success">
+        <div class="modal-header">
+          <div class="alert-dialog-w">
+            <div style="padding-bottom: 15px; text-align: center;">
+              <img src="https://facultadderecho.usta.edu.co/images/Logo-USTA-19.png" style="width: 500px" />
+            </div>
+            <hr style="border: 1px solid #00468f">
+            <div style="display: flex; justify-content: space-between;">
+              <div>
+                <div style="text-align: center;">
+                  Imagen subida con el ejercicio.
+                </div>
+                <br>
+                <div style="padding-bottom: 15px; text-align: center;">
+                  <img src="{{URL}}" width="400" height="300" />
+                </div>
+              </div>
+              <div style="margin-top: 100px; margin-left: 40px;">
+                <div style="text-align: center;">
+                  Campo para editar imagen.
+                </div>
+                <br>
+                <div style="text-align: center;">
+                  <form [formGroup]="DocumentosForm">
+                    <div class="section-flex">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" style="width:250px !important">
+                          <mat-label>Imagen del ejercicio</mat-label>
+                          <input matInput type="text" placeholder="Imagen del ejercicio"
+                            formControlName="EjercicioImagen" />
+                        </mat-form-field>
+                        &nbsp;&nbsp;
+                        <label href="#" [attr.for]="'file-upload'" matTooltip="Subir Archivo">
+                          <mat-icon class="mat-icon--action">backup</mat-icon>
+                        </label>
+                        <input [attr.id]="'file-upload'" accept="image/*" type="file"
+                          (change)="handleInputChange($event)" style="display: none;" />
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div>
+                  <div style="display: flex; justify-content: space-around; top: -10px;">
+                    <button id="btnAceptar" data-dismiss="modal" (click)="EditEjercicio()">Aceptar</button>
+                    <button id="btnCancelar" data-dismiss="modal">Cancelar</button>
+                  </div>
+                  <br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<a id="modalDelete" href="#" data-toggle="modal" data-target="#openModalDelete" mat-raised-button
+  class="btn btn--success">
+</a>
+<div class="form-modal">
+  <div class="modal fade" id="openModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content border-success">
+        <div class="modal-header">
+          <div class="alert-dialog-w">
+            <div style="padding-bottom: 15px; text-align: center;">
+              <img src="https://facultadderecho.usta.edu.co/images/Logo-USTA-19.png" style="width: 500px" />
+            </div>
+            <hr style="border: 1px solid #00468f">
+            <br>
+            <div style="text-align: center;">
+              Esta seguro de querer eliminar el ejercicio del sistema
+            </div>
+            <br>
+            <div>
+              <div style="display: flex; justify-content: space-around;">
+                <button id="btnAceptar" data-dismiss="modal" (click)="DeleteEjercicio()">Aceptar</button>
+                <button id="btnCancelar" data-dismiss="modal">Cancelar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<a id="modalEdit" href="#" data-toggle="modal" data-target="#openModalEdit" mat-raised-button class="btn btn--success">
+</a>
+<div class="form-modal">
+  <div class="modal fade" id="openModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content border-success">
+        <div class="modal-header">
+          <div class="alert-dialog-w">
+            <div style="padding-bottom: 15px; text-align: center;">
+              <img src="https://facultadderecho.usta.edu.co/images/Logo-USTA-19.png" style="width: 500px" />
+            </div>
+            <hr style="border: 1px solid #00468f">
+            <br>
+            <div style="text-align: center;">
+              Esta seguro de querer editar el ejercicio del sistema
+            </div>
+            <br>
+            <div>
+              <div style="display: flex; justify-content: space-around;">
+                <button id="btnAceptar" data-dismiss="modal" (click)="EditarImagen()">Aceptar</button>
+                <button id="btnCancelar" data-dismiss="modal">Cancelar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<a id="modalVisibility" href="#" data-toggle="modal" data-target="#openModalVisibility" mat-raised-button
+  class="btn btn--success">
+</a>
+<div class="form-modal">
+  <div class="modal fade" id="openModalVisibility" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content border-success">
+        <div class="modal-header">
+          <div class="alert-dialog-w">
+            <div style="padding-bottom: 15px; text-align: center;">
+              <img src="https://facultadderecho.usta.edu.co/images/Logo-USTA-19.png" style="width: 500px" />
+            </div>
+            <hr style="border: 1px solid #00468f">
+            <h4 style="text-align: center;">Informacion del ejercicio {{NombreEjercicio}}</h4>
+            <br>
+            <div style="display: flex; justify-content: space-between;">
+              <div>
+                <div style="padding-bottom: 15px; text-align: center;">
+                  <img src="{{URL}}" width="400" height="300" />
+                </div>
+              </div>
+              <div style="margin-left: 40px;">                
+                <div style="text-align: center;">
+                  <form [formGroup]="EjerciciosForm">
+                    <div class="section-flex">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" style="width:250px !important">
+                          <mat-label>Nombre del ejercicio</mat-label>
+                          <input matInput type="text" formControlName="Nombre" />
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="section-flex">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" style="width:120px !important">
+                          <mat-label>No de series</mat-label>
+                          <input matInput type="text" formControlName="Series" />
+                        </mat-form-field>
+                        &nbsp;&nbsp;
+                        <mat-form-field appearance="outline" style="width:120px !important">
+                          <mat-label>No de repeticiones</mat-label>
+                          <input matInput type="text" formControlName="Repeticiones" />
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="section-flex">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" style="width:120px !important">
+                          <mat-label>Tiempo de descanso</mat-label>
+                          <input matInput type="text" formControlName="tiempoDescanso" />
+                        </mat-form-field>
+                        &nbsp;&nbsp;
+                        <mat-form-field appearance="outline" style="width:120px !important">
+                          <mat-label>Musculo</mat-label>
+                          <input matInput type="text" formControlName="Musculo" />
+                        </mat-form-field>
+                      </div>
+                    </div>                    
+                  </form>
+                </div>                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

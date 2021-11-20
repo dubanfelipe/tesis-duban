@@ -1,5 +1,5 @@
 export interface estados{
-    Ingreso: boolean;
+    Ingreso: string;
     Sede_id_sede: number;
     Hora: string;
 }

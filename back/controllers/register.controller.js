@@ -119,9 +119,9 @@ registerCtrl.updateRegisterByIdPersona = (req, res) =>{
 
 registerCtrl.updateRegisterRutinaAsignadaByIdPersona = (req, res) =>{
     const Id_update = req.params.id_persona;
-    const update = req.body.RUTINA_ASIGNADA;
-    console.log("update", req.body.RUTINA_ASIGNADA);
-    var query = `UPDATE Persona SET Rutina_asignada = '${req.body.RUTINA_ASIGNADA}'  WHERE Id_persona = '${Id_update}'`;
+    const update = req.body.Rutina_asignada;
+    console.log("update", req.body.Rutina_asignada);
+    var query = `UPDATE Persona SET Rutina_asignada = '${req.body.Rutina_asignada}'  WHERE Id_persona = '${Id_update}'`;
     try {
         db.query(query, (err, data) => {
             if (err) {

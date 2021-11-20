@@ -1,74 +1,64 @@
 <body>
-    <form [formGroup]="registerForm" novalidate>
-        <div class="form-label-group">
-          <label for="ejemplo">Nombre*</label>
-          <input  type="text" class="form-control" name="Nombre" placeholder="Ingrese su Nombre" autofocus required formControlName="Nombre">
-          <div *ngIf="registerForm.get('Nombre').errors" class="alert alert-danger">
-              <div *ngIf="registerForm.get('Nombre').errors['required']">
-                Nombre requerido
+  <div style="position: absolute; top: 20%; left: 10%">
+    <div style="display: flex;">
+      <div class="card" style="width: 1200px;">
+        <div style="text-align: center;">
+          <br>
+          <h5 class="card-title">Formulario registro de Administradores</h5>
+          <form [formGroup]="registerForm">
+            <div class="section-flex">
+              <div class="form-group">
+                <mat-form-field appearance="outline" style="width:325px !important">
+                  <mat-label>Nombre</mat-label>
+                  <input matInput formControlName="Nombre" type="text" autocomplete="off" required
+                    placeholder="Digite sus nombres" />
+                  <mat-error *ngIf="nombre.errors?.pattern">No cumple los parametros</mat-error>
+                  <mat-error *ngIf="nombre.errors?.required">Nombre requerido</mat-error>
+                </mat-form-field>
+                &nbsp;&nbsp;&nbsp;
+                <mat-form-field appearance="outline" style="width:325px !important">
+                  <mat-label>Apellido</mat-label>
+                  <input matInput formControlName="Apellido" type="text" autocomplete="off" required
+                    placeholder="Digite sus Apellidos" />
+                  <mat-error *ngIf="apellido.errors?.pattern">No cumple los parametros</mat-error>
+                  <mat-error *ngIf="apellido.errors?.required">Apellido requerido</mat-error>
+                </mat-form-field>
+                &nbsp;&nbsp;&nbsp;
+                <mat-form-field appearance="outline" style="width:400px !important">
+                  <mat-label>Correo institucional</mat-label>
+                  <input matInput formControlName="Correo" type="text" autocomplete="off" required
+                    placeholder="Digite su correo institucional" />
+                  <mat-error *ngIf="correo.errors?.pattern">No cumple los parametros</mat-error>
+                  <mat-error *ngIf="correo.errors?.required">Correo requerido</mat-error>
+                </mat-form-field>
               </div>
-              <div *ngIf="registerForm.get('Nombre').errors['pattern']">
-                Nombre incorrecto
-              </div>
-          </div>
-        </div> 
-        <div class="form-label-group">
-          <label for="ejemplo">Apellido*</label>
-          <input  type="text" class="form-control" name="Apellido" placeholder="Ingrese su Apellido" required formControlName="Apellido">
-          <div *ngIf="registerForm.get('Apellido').errors" class="alert alert-danger">
-              <div *ngIf="registerForm.get('Apellido').errors['required']">
-                Apellido requerido
-              </div>
-              <div *ngIf="registerForm.get('Apellido').errors['pattern']">
-                Apellido incorrecto
-              </div>
-          </div>
-        </div> 
-        <div class="form-label-group">
-          <label for="ejemplo">Correo*</label>
-          <input type="email" class="form-control" name="Correo" placeholder="Ingrese su Correo" required formControlName="Correo">
-          <div *ngIf="registerForm.get('Correo').errors" class="alert alert-danger">
-            <div *ngIf="registerForm.get('Correo').errors['required']">
-              Email requerido
             </div>
-            <div *ngIf="registerForm.get('Correo').errors['pattern']">
-              Email incorrecto
+            <div class="section-flex">
+              <div class="form-group">
+                <mat-form-field appearance="outline" style="width:260px !important">
+                  <mat-label>Numero de identificación</mat-label>
+                  <input matInput formControlName="Cedula" type="text" autocomplete="off" required
+                    placeholder="Digite su numero de identificación" />
+                  <mat-error *ngIf="cedula.errors?.pattern">No cumple los parametros</mat-error>
+                  <mat-error *ngIf="cedula.errors?.required">Documento requerido</mat-error>
+                  <mat-error *ngIf="cedula.errors?.min">Documento demasiado corto</mat-error>
+                  <mat-error *ngIf="cedula.errors?.max">Documento demasiado extenso</mat-error>
+                </mat-form-field>
+                &nbsp;&nbsp;&nbsp;
+                <mat-form-field appearance="outline" style="width:255px !important">
+                  <mat-label>Contraseña</mat-label>
+                  <input matInput formControlName="Password" type="password" autocomplete="off" required
+                    placeholder="Digite su contraseña" />
+                  <mat-error *ngIf="password.errors?.minlength">Contraseña corta o insegura</mat-error>
+                  <mat-error *ngIf="password.errors?.required">Contraseña requerida</mat-error>
+                </mat-form-field>
+              </div>
             </div>
-          </div>
+          </form>
+          <button [disabled]="!registerForm.valid" mat-raised-button class="btn" 
+          id="btnRegister" (click)="addRegister(registerForm)" type="button">Registrar</button>
         </div>
-        <div class="form-label-group">
-            <label for="ejemplo">Cedula*</label>
-            <input  type="text" class="form-control" name="Cedula" placeholder="Ingrese su Cedula" required formControlName="Cedula">
-            <div *ngIf="registerForm.get('Cedula').errors" class="alert alert-danger">
-                <div *ngIf="registerForm.get('Cedula').errors['required']">
-                    Cedula requerida
-                </div>
-                <div *ngIf="registerForm.get('Cedula').errors['pattern']">
-                    Cedula requerida
-                </div>
-                <div *ngIf="registerForm.get('Cedula').errors['min'] && !registerForm.get('Cedula').errors['pattern']">
-                    Cedula incorrecto
-                  </div>
-                <div *ngIf="registerForm.get('Cedula').errors['max'] && !registerForm.get('Cedula').errors['pattern']">
-                    Cedula incorrecto
-                </div>
-            </div>
-        </div>       
-        <div class="form-label-group">
-            <label for="ejemplo">Contraseña*</label>
-            <input type="Password" class= "form-control" name="Password" placeholder="Ingrese su Contraseña" formControlName= "Password">
-            <div *ngIf="registerForm.get('Password').errors" class="alert alert-danger">
-                <div *ngIf="registerForm.get('Password').errors['required']">
-                  Contraseña requerida
-                </div>
-                <div *ngIf="registerForm.get('Password').errors['minlength']">
-                  Contraseña insegura minimo 6 caracteres
-                </div>
-            </div>              
-        </div> 
-    </form>
-    <div class="form-label-group">
-        <button [disabled]="!registerForm.valid" class="btn btn-block" id="btnLogin" (click)="addRegister(registerForm)"
-          type="button">Registrar</button>
+      </div>
+    </div>
   </div>
 </body>

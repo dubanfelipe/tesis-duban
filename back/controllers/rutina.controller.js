@@ -6,16 +6,28 @@ const RutinaCtrl = {};
 
 //Ejercicio
 RutinaCtrl.createEjercicio = (req, res) => {
-    console.log(req.body);
-    ejercicio = req.body;    
+    console.log("llego", req.body);
+    ejercicio = req.body; 
+    let listaEjercicio = [];    
     var query = `INSERT INTO Ejercicio (Nombre,Serie,Repeticion,Tiempo_descanso,Musculos_id_musculos)
-    VALUES ('${ejercicio.NOMBRE}','${ejercicio.SERIE}','${ejercicio.REPETICION}','${ejercicio.TIEMPO_DESCANSO}','${ejercicio.NOMBRE_MUSCULOS}')`;
+    VALUES ('${ejercicio.Nombre}','${ejercicio.Serie}','${ejercicio.Repeticion}','${ejercicio.Tiempo_descanso}','${ejercicio.Nombre_musculos}')`;
     db.query(query, function(err, data) {
     if (err) {
             res.json({ error: err });
             console.log("Hubo un error INSERTANDO EJERCICIO" + err);
         } else {
-            res.json(data);                
+            db.query(`SELECT * FROM Ejercicio WHERE Nombre='${ejercicio.Nombre}'`, (err, data) => {
+                if (err) {
+                    res.json({ error: err });
+                    console.log("Hubo un error en la busqueda de Rutina" + err);
+                } else {
+                    listaEjercicios=data;
+                    for (let index = 0; index < listaEjercicios.length; index++) {
+                        listaEjercicio[0] = listaEjercicios[index];                        
+                    }
+                    res.json(listaEjercicio[0].Id_ejercicio);
+                }
+            });                  
         }
     });
 }
@@ -33,7 +45,7 @@ RutinaCtrl.deleteEjercicio = (req, res) => {
 RutinaCtrl.updateEjercicio = (req, res) => {
     const Id_update = req.params.Id_ejercicio;
     const update = req.body;
-    var query = `UPDATE Ejercicio SET Nombre = '${update.NOMBRE}', Serie ='${update.SERIE}', Repeticion ='${update.REPETICION}', Tiempo_descanso ='${update.TIEMPO_DESCANSO}', Musculos_id_musculos ='${update.NOMBRE_MUSCULOS}'  WHERE Id_ejercicio = '${Id_update}'`;
+    var query = `UPDATE Ejercicio SET Nombre = '${update.Nombre}', Serie ='${update.Serie}', Repeticion ='${update.Repeticion}', Tiempo_descanso ='${update.Tiempo_descanso}', Musculos_id_musculos ='${update.Nombre_musculos}'  WHERE Id_ejercicio = '${Id_update}'`;
     try {
         db.query(query, (err, data) => {
             if (err) {

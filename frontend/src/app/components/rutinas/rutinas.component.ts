@@ -7,6 +7,7 @@ import { rutinas } from '../../models/rutina';
 import { has } from '../../models/ejerciciohasrutina';
 import { RutinaCompleta } from '../../models/rutinaCompleta';
 import { async } from '@angular/core/testing';
+import { subirArchivosService } from '../../services/subirArchivos.service';
 
 let listaEjercicio;
 let idRutina;
@@ -18,6 +19,7 @@ declare var M: any;
 })
 export class RutinasComponent implements OnInit {
 
+  public URL;
   yacargoLunes; yacargoMartes; yacargoMiercoles; yacargoJueves; yacargoViernes; yacargoSabado;
   diaSelecDia;
   diaSeleccionado;
@@ -25,7 +27,7 @@ export class RutinasComponent implements OnInit {
   isSelected = false;
   idrutina_Actual = 0;  
   conteRutina = 0; 
-  rutinaCheck=true;  
+  rutinaCheck=false;  
   yaCargo=false;
   yaCargo2=false;
   Lunes=false;
@@ -184,8 +186,11 @@ export class RutinasComponent implements OnInit {
   }
 
   rutinaForm: FormGroup;
+  EjerciciosForm: FormGroup;
   Boleean: boolean;
-  constructor(public RutinaService:rutinaService, private route:ActivatedRoute, private router: Router, private fb: FormBuilder) {
+  NombreEjercicio;
+  constructor(public RutinaService:rutinaService, private route:ActivatedRoute, private router: Router, private fb: FormBuilder, public subirarchivosServico: subirArchivosService) {
+    this.buildForm();
     this.route.params.subscribe( params => {
       if(params.id)
       {
@@ -202,7 +207,7 @@ export class RutinasComponent implements OnInit {
           this.rutinaForm.patchValue({"Nombre": this.rutinacompleta.Nombre_Rutina});
           this.Domingo = true;                  
           this.banderaParaEditar = true;              
-          this.rutinaCheck = false;
+          this.rutinaCheck = true;
           this.RutinaService.getEjercicioHasRutina(this.rutinacompleta.Id_rutinalunes)
           .subscribe(res =>{
             this.Dia.lunes.Ejercicio = res as EJERCICIO; 
@@ -244,9 +249,73 @@ export class RutinasComponent implements OnInit {
     })
     this.buildForm();
   }
+  settings = {
+    hideSubHeader: true,
+    actions: {
+      custom: [
+        {
+          name: 'activateAction',
+          title: '<i class="material-icons">visibility</i>',
+        },
+      ],
+      add: false,
+      edit: false,
+      delete: false,
+      position: 'right',
+    },
+    columns: {
+      Nombre: {
+        title: 'Nombre',
+      },
+      Serie: {
+        title: 'Serie',
+      },
+      Repeticion: {
+        title: 'Repeticion',
+      },
+      Tiempo_descanso: {
+        title: 'Tiempo_descanso',
+      },
+      Nombre_musculos: {
+        title: 'Nombre_musculo',
+      },
+    },
+  }
+  onCustom(event) {
+    if (event.action == "activateAction") {
+      this.NombreEjercicio = event.data.Nombre;
+      let nombreArchivo = event.data.Id_ejercicio + "_ImagenEjercicio";
+      let referencia = this.subirarchivosServico.getUrlArchivo(nombreArchivo);
+      referencia.getDownloadURL().subscribe((URL) => {
+        this.URL = URL;
+        this.EjerciciosForm.patchValue({
+          Nombre: event.data.Nombre,
+          Series: event.data.Serie,
+          Repeticiones: event.data.Repeticion,
+          tiempoDescanso: event.data.Tiempo_descanso,
+          Musculo: event.data.Nombre_musculos,
+        });
+        document.getElementById("modalVisibility").click();
+      }, (error) => {
+        console.log(error)
+      });    
+    }
+  }
+
+  get nombre() {
+    return this.rutinaForm.get("Nombre");
+  }
+
   buildForm(){
     this.rutinaForm = this.fb.group({
-      Nombre: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-z A-Z ñ Ñ 0-9]*$/)])],
+      Nombre: [{ value: '', disabled: this.rutinaCheck }, Validators.compose([Validators.required, Validators.pattern(/^[a-z A-Z ñ Ñ 0-9]*$/)])],
+    })
+    this.EjerciciosForm = this.fb.group({
+      Nombre: [{ value: null, disabled: true }, Validators.required],
+      Series: [{ value: null, disabled: true }, Validators.required],
+      Repeticiones: [{ value: null, disabled: true }, Validators.required],
+      tiempoDescanso: [{ value: null, disabled: true }, Validators.required],
+      Musculo: [{ value: null, disabled: true }, Validators.required],
     })
   }
   ngOnInit(): void { 
@@ -290,7 +359,9 @@ export class RutinasComponent implements OnInit {
         if (this.conteRutina == 1) { 
           this.Dia.lunes.Ejercicio = res as EJERCICIO; 
           if (this.Dia.lunes.Ejercicio[0] === undefined) { this.yacargoLunes = false;
-          }else { this.yacargoLunes= true;}
+          }else { 
+            this.yacargoLunes= true;
+          }
         }      
         if (this.conteRutina == 2) { 
           this.Dia.Martes.Ejercicio = res as EJERCICIO; 
@@ -320,14 +391,14 @@ export class RutinasComponent implements OnInit {
       }
     })
   }
-  ejercicioSeleccionado(idEjercicio,checkbox,estado){  
+  ejercicioSeleccionado(idEjercicio,checkbox,estado){    
     this.HAS.Id_ejercicio=idEjercicio; 
     if(this.banderaParaEditar == true){   
       this.HAS.Id_rutina=this.diaSeleccionado;
     }else{      
       this.HAS.Id_rutina=idRutina; 
     }  
-    if(estado === true){            
+    if(estado === true){           
       this.RutinaService.createEjercicioHasRutina(this.HAS)
       .subscribe(res =>{    
         this.getEjerciciosById();    
@@ -340,10 +411,14 @@ export class RutinasComponent implements OnInit {
     }
   } 
   saveRutina(form){
-    this.rutinaCheck=false;
+    this.rutinaCheck=true;
     this.RUTINAS.Nombre = form.value.Nombre;    
     this.rutinacompleta.Nombre_Rutina = form.value.Nombre; 
     this.RUTINAS.Dia_rutina = this.diaRutina[this.conteRutina];
+    this.buildForm();
+    this.rutinaForm.patchValue({
+      Nombre : form.value.Nombre
+    })
     this.RutinaService.createRutina(this.RUTINAS)
     .subscribe(res =>{
       idRutina = res;      
@@ -437,7 +512,7 @@ export class RutinasComponent implements OnInit {
               <p>Se ha creado la rutina satisfactoriamente</p>
               <hr>
               </div>`});
-        this.router.navigate(['admin']);
+        this.router.navigate(['admin/sign_in']);
     })
   }
 }

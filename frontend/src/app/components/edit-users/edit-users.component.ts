@@ -49,6 +49,7 @@ export class EditUsersComponent implements OnInit {
   roles = [];
   facultadArray = [];
   rolEstudiante : boolean = false;
+  rolAdministrador : boolean = false;
   rolOtro : boolean = false;
   NombreUsuario : string = '';
   ApellidoUsuario : string = '';
@@ -212,8 +213,8 @@ export class EditUsersComponent implements OnInit {
         this.registerService.getRegisterByIdPersonaCedula(this.DatosService.Value_Cedula) 
         .subscribe(
           res => {
-            this.estudiantes = res[0];      
-            console.log("esto que es", this.roles[0][this.estudiantes.Rol_id_rol-1].Nombre_rol);        
+            this.estudiantes = res[0];    
+            this.rolAdministrador = true;  
             this.NombreUsuario = this.estudiantes.Nombre;
             this.ApellidoUsuario = this.estudiantes.Apellido;
             this.registerForm.patchValue({"Id_persona": this.estudiantes.Id_persona});

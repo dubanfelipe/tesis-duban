@@ -18,7 +18,8 @@ declare var M: any;
 })
 export class ActivateComponent implements OnInit {
 
-  public rolPrincipial: boolean = false;
+  public rolAdministrador: boolean = false;
+  public Cargo: boolean = false;
   archivoCarnet;
   archivoTamizaje;
   NombreUsuario : string = '';
@@ -73,8 +74,8 @@ export class ActivateComponent implements OnInit {
     .subscribe(res => {
       console.log(res);
       this.datospersona = res[0];
-      if (this.datospersona.Id_persona === 1) {
-        this.rolPrincipial = true;
+      if (this.datospersona.Rol_id_rol === 1) {
+        this.rolAdministrador = true;
       }
       this.NombreUsuario = this.datospersona.Nombre;
       this.ApellidoUsuario = this.datospersona.Apellido;
@@ -92,6 +93,7 @@ export class ActivateComponent implements OnInit {
       for (let index = 0; index < this.Documentos.length; index++) {        
         this.handleInputChange(this.Documentos[index], index);
       }
+      this.Cargo = true;
     })
   }
 

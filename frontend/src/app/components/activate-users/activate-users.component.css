@@ -1,0 +1,20 @@
+.table{
+    padding-top: 10%;  
+    width: 99%; 
+}
+
+:host/deep/ng2-smart-table thead > tr > th  { 
+    background-color:#00468f;  
+}
+
+:host/deep/ng2-smart-table th.ng2-smart-actions  { 
+    color: white;  
+}
+
+:host/deep/ng2-smart-table _nghost-ner-c87 a  { 
+    background-color:black;  
+}
+
+:host/deep/ng2-smart-table-title> a {
+    color: white; 
+}

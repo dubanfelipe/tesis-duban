@@ -6,7 +6,7 @@ export interface Usuarios{
     Peso : number;
     Rh : string;
     Eps : string;
-    Ingreso : Boolean;
+    Ingreso : string;
     Hora: string;
     Deportista: string;
     Facultad_id_facultad: number;

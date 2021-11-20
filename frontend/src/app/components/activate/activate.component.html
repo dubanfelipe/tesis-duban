@@ -1,4 +1,4 @@
-<body style="padding-top: 130px;">
+<body style="padding-top: 130px;" *ngIf="Cargo">
   <div class="container-separador">
     <div class="row justify-content-center">
       <div class="card" style="width: 700px">
@@ -39,8 +39,8 @@
                   <input type="text" class="form-control" name="Cedula" formControlName="Cedula" disabled>
                 </div>
               </div>
-              <label for="ejemplo">Active o inactive</label>
-              <div class="col">
+              <label *ngIf="!rolAdministrador" for="ejemplo">Active o inactive</label>
+              <div class="col" *ngIf="!rolAdministrador">
                 <label class="switch">
                   <input #check type="checkbox" [checked]='datospersona.Activo'
                     (change)='this.changeStatus(datospersona.Id_persona, check.checked)'>
@@ -50,7 +50,7 @@
             </div>
           </form>
           <br>
-          <form [formGroup]="DocumentosForm">
+          <form [formGroup]="DocumentosForm" *ngIf="!rolAdministrador">
             <div class="section-flex">
               <div class="form-group">
                 <mat-form-field appearance="outline" style="width:270px !important">
@@ -77,7 +77,7 @@
               </div>
             </div>
           </form>
-          <form [formGroup]="TextoForm">
+          <form [formGroup]="TextoForm" *ngIf="!rolAdministrador">
             <div class="row">
               <div class="col">
                 <div class="form-label-group">
@@ -94,7 +94,7 @@
           <br>
           <div style="display: flex; justify-content: space-around;">
             <div>
-              <button [disabled]="!TextoForm.valid" class="btn btn-block" id="btnEnviar"
+              <button *ngIf="!rolAdministrador" [disabled]="!TextoForm.valid" class="btn btn-block" id="btnEnviar"
                 (click)="contactForm(registerForm, TextoForm)" type="button">Enviar</button>
             </div>
           </div>

@@ -34,7 +34,43 @@
         </div>
     </div> 
 </div>
-<div *ngIf="!isAdminSign_in && !isAdminUsers && !isAdminUsersEdit && !isAdminActivateUsers">
+<div *ngIf="isAdminActivate">
+    <app-nav-bar class="menu-fixed"></app-nav-bar>
+    <div>
+        <app-admin class="style-admin"></app-admin>
+        <div class="style-router">
+            <router-outlet></router-outlet>
+        </div>
+    </div> 
+</div>
+<div *ngIf="isAdminRegister">
+    <app-nav-bar class="menu-fixed"></app-nav-bar>
+    <div>
+        <app-admin class="style-admin"></app-admin>
+        <div class="style-router">
+            <router-outlet></router-outlet>
+        </div>
+    </div> 
+</div>
+<div *ngIf="isAdminExercise">
+    <app-nav-bar class="menu-fixed"></app-nav-bar>
+    <div>
+        <app-admin class="style-admin"></app-admin>
+        <div class="style-router">
+            <router-outlet></router-outlet>
+        </div>
+    </div> 
+</div>
+<div *ngIf="isAdminRutina">
+    <app-nav-bar class="menu-fixed"></app-nav-bar>
+    <div>
+        <app-admin class="style-admin"></app-admin>
+        <div class="style-router">
+            <router-outlet></router-outlet>
+        </div>
+    </div> 
+</div>
+<div *ngIf="!isAdminSign_in && !isAdminUsers && !isAdminUsersEdit && !isAdminActivateUsers && !isAdminActivate && !isAdminRegister && !isAdminExercise && !isAdminRutina">
     <router-outlet></router-outlet>
     <app-footer></app-footer>
 </div>

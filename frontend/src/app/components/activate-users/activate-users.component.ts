@@ -27,16 +27,16 @@ export class ActivateUsersComponent implements OnInit {
       position: 'right',
     },
     columns: {
-      NOMBRE: {
+      Nombre: {
         title: 'Nombre',
       },
-      APELLIDO: {
+      Apellido: {
         title: 'Apellido',
       },
-      CORREO: {
+      Correo: {
         title: 'Correo',
       },
-      CEDULA: {
+      Cedula: {
         title: 'Cedula',
       },
     },
