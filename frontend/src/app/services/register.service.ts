@@ -44,11 +44,14 @@ export class RegisterService{
         return this.http.put(this.API_URL+`/register/Persona/${id}`,updateRegister);
     }
     updateRegisterRutinaAsignadaByIdPersona(id:number, updateRegister: Personas) {
-        console.log("esto llega al servicio",updateRegister);
         return this.http.put(this.API_URL+`/register/Persona/RutinaAsignada/${id}`,updateRegister);
     }    
     deleteRegisterByIdPersona(id:number){
         return this.http.delete(this.API_URL+`/register/Persona/${id}`);
+    }
+    updateRegisterRutinaAsignadaByRutinaAsignada(Rutina_asignada: string, RutinaNo: string){
+        console.log(Rutina_asignada, RutinaNo);
+        return this.http.put(this.API_URL+`/register/Persona/RutinaAsignada/Persona/${Rutina_asignada}`,RutinaNo);
     }
     // Usuario
     getRegisterByIdUsuarioCelular(Celular:string){

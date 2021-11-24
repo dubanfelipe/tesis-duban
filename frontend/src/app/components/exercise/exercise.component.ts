@@ -267,7 +267,9 @@ export class ExerciseComponent implements OnInit {
   }
 
   DeleteEjercicio() {
-    this.RutinaService.deleteEjercicio(this.datosEjercicio.Id_ejercicio)
+    this.RutinaService.deleteEjercicioHas(this.datosEjercicio.Id_ejercicio)
+    .subscribe(res =>{
+      this.RutinaService.deleteEjercicio(this.datosEjercicio.Id_ejercicio)
       .subscribe(res => {
         M.toast({
           html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
@@ -276,8 +278,10 @@ export class ExerciseComponent implements OnInit {
         </div>`});
         this.getEjercicios();
         this.getMusculos();
-      })
+      }) 
+    })    
   }
+
   EditEjercicio() {
     document.getElementById("modalEdit").click();
   }

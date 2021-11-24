@@ -1,0 +1,60 @@
+.table{
+    padding-top: 10%; 
+}
+
+#openModalDelete{
+    top: 30%;
+    justify-content: center;
+    align-items: center;
+    width: 550px;
+    left: 35%;      
+}
+
+#openModalConfirm{
+    top: 30%;
+    justify-content: center;
+    align-items: center;
+    width: 550px;
+    left: 35%;      
+}
+
+#openModalUsers{
+    top: 30%;
+    justify-content: center;
+    align-items: center;
+    width: 550px;
+    left: 35%;      
+}
+
+#btnAceptar {
+    background-color: green;
+    padding: 8px 15px;
+    color: white;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    border-radius: 5rem;
+}
+
+#btnCancelar {
+    background-color: red;
+    padding: 8px 15px;
+    color: white;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    border-radius: 5rem;
+}
+
+:host/deep/ng2-smart-table thead > tr > th  { 
+    background-color:#00468f;      
+}
+
+:host/deep/ng2-smart-table th.ng2-smart-actions  { 
+    color: white;  
+}
+
+:host/deep/ng2-smart-table _nghost-ner-c87 a  { 
+    background-color:black;  
+}
+
+:host/deep/ng2-smart-table-title> a {
+    color: white; 
+    width: 150px;
+}

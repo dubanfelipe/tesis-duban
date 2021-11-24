@@ -17,6 +17,7 @@ declare var M: any;
 export class AsignarRutinasComponent implements OnInit {
 
   selectedRows: any;
+  RutinaSeleccionada;
   bandera = false;
   HAS: RutinaCompletahasPersona = {
     Id_rutinacompleta: 0,
@@ -35,16 +36,20 @@ export class AsignarRutinasComponent implements OnInit {
     },
     columns: {
       Nombre: {
-        title: 'Nombre',
+        title: 'Nombre',        
+        width: '150px',
       },
       Apellido: {
-        title: 'Apellido',
+        title: 'Apellido',        
+        width: '150px',
       },
       Cedula: {
-        title: 'Cedula',
+        title: 'Cedula',  
+        width: '150px',
       },
       Nombre_rol: {
         title: 'Ocupacion',
+        width: '150px',
       },   
       Rutina_asignada:{
         title: 'Rutina Asignada',
@@ -62,6 +67,10 @@ export class AsignarRutinasComponent implements OnInit {
           name: 'editRoutines',
           title: '<i class="material-icons">open_in_new</i>',
         },
+        {
+          name: 'deleteAction',
+          title: '<i class="material-icons">delete</i>',
+        },
       ],
       add: false,
       edit: false,
@@ -69,43 +78,29 @@ export class AsignarRutinasComponent implements OnInit {
       position: 'right',
     },
     columns: {
-      Nombre_rutina: {
-        title: 'Nombre Rutina',
+      Nombre_Rutina: {
+        title: 'Rutina',
       },        
     },
   }
   onCustom(event) {
-    if (event.action == "assignmentRoutines") {      
+    if (event.action == "assignmentRoutines") { 
+      this.RutinaSeleccionada = event.data;     
       if(this.selectedRows === undefined){
-        console.log("pailas");
+        document.getElementById("modalUsers").click();
       }else if(this.selectedRows.length === 0){
-        console.log("pailas Nuevo");   
+        document.getElementById("modalUsers").click();   
       }else{        
-        //document.getElementById("prueba").click();
-        for (let index = 0; index < this.selectedRows.length; index++) {    
-          this.HAS.Id_persona = this.selectedRows[index].Id_persona;
-          this.HAS.Id_rutinacompleta = event.data.Id_rutinacompleta;
-          this.selectedRows[index].Rutina_asignada = event.data.Nombre_rutina;
-          this.RutinaService.createRutinacompletaHasPersona(this.HAS)
-          .subscribe(res => {              
-          })   
-          this.registerService.updateRegisterRutinaAsignadaByIdPersona(this.HAS.Id_persona, this.selectedRows[index])
-          .subscribe(res => {              
-          })       
-        }   
-        M.toast({
-          html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
-              <h4 class="alert-heading">RUTINAS ASIGNADAS</h4>
-              <hr>
-          </div>`});  
-          window.location.reload();
+        document.getElementById("modalConfirm").click();         
       }
-    }
-    if (event.action == "editRoutines"){
+    } else if (event.action == "editRoutines"){
       this.RutinaService.idRutinaCompleta = event.data.Id_rutinacompleta;
       this.router.navigate(['/admin/routines/'+event.data.Id_rutinacompleta]);
-    }
+    } else if (event.action == "deleteAction"){
+      document.getElementById("modalDelete").click();      
+    }    
   }
+
   ngOnInit(): void {
     this.getUsuarios();
     this.getRutinas();
@@ -120,10 +115,50 @@ export class AsignarRutinasComponent implements OnInit {
   getRutinas(){
     this.RutinaService.getRutinacompleta()
     .subscribe(res =>{
+      console.log(res);
       this.RutinaService.rutina = res as RutinaCompleta[];
     })
   }
   onRowSelect(event) {
     this.selectedRows = event.selected;
+  }
+  DeleteRutina(){
+    let RutinaNo = "No";
+    this.registerService.updateRegisterRutinaAsignadaByRutinaAsignada(this.RutinaSeleccionada.Nombre_Rutina, RutinaNo)
+    .subscribe(res =>{
+      this.RutinaService.deleteRutinaCompletaHasPersona(this.RutinaSeleccionada.Id_rutinacompleta)
+      .subscribe(res =>{
+        this.RutinaService.deleteRutinacompleta(this.RutinaSeleccionada.Id_rutinacompleta)
+        .subscribe(res =>{ 
+          M.toast({
+            html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                <h4 class="alert-heading">RUTINAS ELIMINADAS</h4>
+                <hr>
+            </div>`}); 
+          this.getRutinas();
+          this.getUsuarios();
+        })
+      })
+    })
+  }
+
+  ConfirmRutina(){
+    for (let index = 0; index < this.selectedRows.length; index++) {    
+      this.HAS.Id_persona = this.selectedRows[index].Id_persona;
+      this.HAS.Id_rutinacompleta = this.RutinaSeleccionada.Id_rutinacompleta;
+      this.selectedRows[index].Rutina_asignada = this.RutinaSeleccionada.Nombre_Rutina;
+      this.RutinaService.createRutinacompletaHasPersona(this.HAS)
+      .subscribe(res => {                 
+        this.registerService.updateRegisterRutinaAsignadaByIdPersona(this.HAS.Id_persona, this.selectedRows[index])
+        .subscribe(res => {              
+        })            
+      })      
+    }   
+    M.toast({
+      html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+          <h4 class="alert-heading">RUTINAS ASIGNADAS</h4>
+          <hr>
+      </div>`});  
+      this.getUsuarios();
   }
 }

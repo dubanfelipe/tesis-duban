@@ -211,6 +211,18 @@ RutinaCtrl.deleteEjercicioHasRutina = (req, res) => {
         }
     });
 }
+RutinaCtrl.deleteEjercicioHas = (req, res) => { 
+    console.log("eyyyyyyy",req.params.Id_ejercicio);
+    id_ejercicio = req.params.Id_ejercicio;
+    db.query(`DELETE FROM Ejercicio_has_rutina WHERE (Ejercicio_id_ejercicio = '${id_ejercicio}')`, (err, data) => {
+        if (err) {
+            res.json({ error: err });
+            console.log("Hubo un error ELIMINANDO Rutina" + err);
+        } else {
+            res.json({message: 'Conexion eliminada'});
+        }
+    });
+}
 RutinaCtrl.getEjercicioHasRutina = (req, res) => { 
     console.log(req.params);
     let id_rutina = req.params.Id_rutina;
@@ -264,6 +276,19 @@ RutinaCtrl.getRutinaCompletaById = (req, res) => {
     });
 }
 
+RutinaCtrl.deleteRutinacompleta = (req, res) => {
+    console.log("buenas id", req.params);
+    let id = req.params.Id_rutina;
+    db.query(`DELETE FROM Rutina_completa WHERE Id_rutinacompleta= '${id}'`, (err, data) => {
+        if (err) {
+            res.json({ error: err });
+            console.log("Hubo un error ELIMINANDO Rutina" + err);
+        } else {
+            res.json({message: 'Rutina eliminada'});
+        }
+    });
+}
+
 //Rutinacompleta Has Persona
 RutinaCtrl.createRutinacompletaHasPersona = (req, res) => {
     console.log("el req.body", req.body);
@@ -277,6 +302,19 @@ RutinaCtrl.createRutinacompletaHasPersona = (req, res) => {
             console.log("Hubo un error INSERTANDO HAS" + err);
         } else {
             res.json(data);                
+        }
+    });
+}
+
+RutinaCtrl.deleteRutinaCompletaHasPersona = (req, res) => { 
+    console.log("buenas id has", req.params);
+    let id_rutina = req.params.Id_rutina;
+    db.query(`DELETE FROM RutinaCompleta_has_persona WHERE (RutinaCompleta_id_rutinacompleta = '${id_rutina}')`, (err, data) => {
+        if (err) {
+            res.json({ error: err });
+            console.log("Hubo un error ELIMINANDO Rutina" + err);
+        } else {
+            res.json({message: 'Conexion eliminada'});
         }
     });
 }

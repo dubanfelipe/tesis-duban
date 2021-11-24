@@ -48,6 +48,10 @@ export class rutinaService{
     deleteEjercicioHasRutina(Has:has){
         return this.http.delete(this.API_URL+`/EjercicioHasRutina/delete/${Has.Id_ejercicio}/${Has.Id_rutina}`);
     } 
+    deleteEjercicioHas(id: number){
+        console.log("llego id", id);
+        return this.http.delete(this.API_URL+`/EjercicioHasRutina/Ejercicio/delete/${id}`);
+    }
     getEjercicioHasRutina(Id:number){
         return this.http.get(this.API_URL+`/EjercicioHasRutina/${Id}`);
     } 
@@ -60,7 +64,13 @@ export class rutinaService{
     getRutinacompletaById(Id:number){
         return this.http.get(this.API_URL+`/Rutinacompleta/getById/${Id}`);
     }
+    deleteRutinacompleta(Id:number){
+        return this.http.delete(this.API_URL+`/Rutinacompleta/delete/${Id}`);
+    }
     createRutinacompletaHasPersona(Has:RutinaCompletahasPersona){
         return this.http.post(this.API_URL+'/RutinaCompletaHasPersona/create',Has);
+    }
+    deleteRutinaCompletaHasPersona(id: number){
+        return this.http.delete(this.API_URL+`/RutinaCompletaHasPersona/delete/${id}`);
     }
 }

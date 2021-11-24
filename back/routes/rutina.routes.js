@@ -24,13 +24,16 @@ router.post('/Musculos/createMusculos', RutinaCtrl.createMusculos);
 router.post('/EjercicioHasRutina/create', RutinaCtrl.createEjercicioHasRutina);
 router.delete('/EjercicioHasRutina/delete/:Id_ejercicio/:Id_rutina',RutinaCtrl.deleteEjercicioHasRutina);
 router.get('/EjercicioHasRutina/:Id_rutina', RutinaCtrl.getEjercicioHasRutina);
+router.delete('/EjercicioHasRutina/Ejercicio/delete/:Id_ejercicio',RutinaCtrl.deleteEjercicioHas);
 
 //Rutina completa
 router.post('/Rutinacompleta/create', RutinaCtrl.createRutinacompleta);
 router.get('/Rutinacompleta/get', RutinaCtrl.getRutinaCompleta);
 router.get('/Rutinacompleta/getById/:Id_rutina', RutinaCtrl.getRutinaCompletaById);
+router.delete('/Rutinacompleta/delete/:Id_rutina', RutinaCtrl.deleteRutinacompleta);
 
 //RutinaCompleta has Persona
 router.post('/RutinaCompletaHasPersona/create', RutinaCtrl.createRutinacompletaHasPersona);
+router.delete('/RutinaCompletaHasPersona/delete/:Id_rutina',RutinaCtrl.deleteRutinaCompletaHasPersona);
 
 module.exports = router;

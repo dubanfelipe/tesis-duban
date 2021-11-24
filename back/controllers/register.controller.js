@@ -137,6 +137,25 @@ registerCtrl.updateRegisterRutinaAsignadaByIdPersona = (req, res) =>{
     }
 }
 
+registerCtrl.updateRegisterRutinaAsignadaByRutinaAsignada = (req, res) =>{
+    const RutinaNo = "NO";
+    const Id_update = req.params.Rutina_asignada;
+    var query = `UPDATE Persona SET Rutina_asignada = '${RutinaNo}'  WHERE Rutina_asignada = '${Id_update}'`;
+    try {
+        db.query(query, (err, data) => {
+            if (err) {
+                res.json({ error: err });
+                console.log("Hubo un error actualizando el usuario" + err);
+            } else {
+                res.json(data);
+            }
+        });
+    } catch (E) {
+        console.log('error', E);
+        res.json({message: 'error en el servidor actualizando el usuario' })
+    }
+}
+
 //Usuario
 registerCtrl.getRegisterByIdUsuarioCelular = (req, res) => {   
     let id = req.params.Celular;
