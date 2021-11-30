@@ -5,6 +5,8 @@ import { RegisterService } from '../../services/register.service';
 import { sedes } from '../../models/sede';
 import { signinService } from '../../services/sign-in.service';
 import { PERSONA } from '../../models/PERSONAS';
+import { Estadisticas} from '../../models/Estadisticas';
+import { EstadisticasService } from '../../services/estadisticas.service';
 import { from } from 'rxjs';
 import * as moment from 'moment';
 
@@ -18,7 +20,15 @@ declare var M: any;
 export class SignInComponent implements OnInit {
 
   loginForm: FormGroup;
-  constructor(public registerService: RegisterService, private fb: FormBuilder, private router: Router, public SigninService: signinService) { 
+  estadisticas : Estadisticas ={
+    diaNumero : 0,
+    diaLetra : '',
+    mes : '',
+    sede : '',
+    ano : '',
+    hora : '',
+  }
+  constructor(public registerService: RegisterService, private fb: FormBuilder, private router: Router, public SigninService: signinService, public estadisticasService : EstadisticasService) { 
     this.buildForm();
   }
   settings = {
@@ -60,11 +70,22 @@ export class SignInComponent implements OnInit {
     });
   }
   sigin(form){
-    console.log(form.value.cedula);
+    var sede = this.registerService.sede[form.value.Sede_id_sede];
+    var dateDay = new Date().getDay();
+    var DIALETRA = this.getDia(dateDay);
+    var DIANUMERO = new Date().getDate();
+    var AÑO = moment(new Date()).format('YYYY');
+    var MES = moment(new Date()).format('MMMM');
+    var HORA = moment(new Date()).format('HH');
+    this.estadisticas.ano = AÑO;
+    this.estadisticas.diaLetra = DIALETRA;
+    this.estadisticas.diaNumero = DIANUMERO;
+    this.estadisticas.mes = MES;
+    this.estadisticas.sede = sede.Nombre_sede;
+    this.estadisticas.hora = HORA;
     this.registerService.getRegisterByIdUsuario(form.value.cedula)
     .subscribe(
       res => {  
-      console.log("eyyy", res[0]);
       if (res[0] == undefined) {
         M.toast({
           html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
@@ -87,12 +108,15 @@ export class SignInComponent implements OnInit {
         console.log(form.value);
         this.SigninService.updateEstadoByIdUsuario(res[0].Id_usuario, form.value)
         .subscribe((data) =>{
-          M.toast({
-            html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
-              <h4 class="alert-heading">INGRESO EXITOSO</h4>
-              <hr>
-          </div>`});
-          this.getIngreso();
+          this.estadisticasService.createEstadisticas(this.estadisticas)
+          .subscribe((data) => {
+            M.toast({
+              html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                <h4 class="alert-heading">INGRESO EXITOSO</h4>
+                <hr>
+            </div>`});
+            this.getIngreso();
+          })          
         })  
       } else {
         let estudiantes = "false";
@@ -129,5 +153,16 @@ export class SignInComponent implements OnInit {
       console.log("datos", res[0])
       this.registerService.personas = res as PERSONA[];
     }) 
+  }
+  getDia(index){
+    var dia = new Array(7);
+    dia[0] = "Domingo";
+    dia[1] = "Lunes";
+    dia[2] = "Martes";
+    dia[3] = "Miércoles";
+    dia[4] = "Jueves";
+    dia[5] = "Viernes";
+    dia[6] = "Sábado";
+    return dia[index];
   }
 }

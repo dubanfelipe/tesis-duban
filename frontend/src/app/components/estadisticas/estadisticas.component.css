@@ -1,0 +1,25 @@
+.home{
+    padding-top: 11%;       
+}
+.graph-container{
+    background-color: #00468f;
+    width: 45%;
+    height: 440px;
+}
+canvas{
+    margin: auto;
+    position: relative;
+    margin-top: 3%;
+    height: 400px;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: white!important;
+    opacity: 2!important;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: white!important;
+}

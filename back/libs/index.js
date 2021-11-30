@@ -9,5 +9,6 @@ module.exports = [
     'bodyParser',
     'email',
     'signin',
-    'rutina'
+    'rutina', 
+    'estadisticas'
 ]

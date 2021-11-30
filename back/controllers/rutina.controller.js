@@ -318,4 +318,16 @@ RutinaCtrl.deleteRutinaCompletaHasPersona = (req, res) => {
         }
     });
 }
+
+RutinaCtrl.deleteRutinaCompletaHas = (req, res) => { 
+    let id_persona = req.params.Id_persona;
+    db.query(`DELETE FROM RutinaCompleta_has_persona WHERE (Persona_id_persona = '${id_persona}')`, (err, data) => {
+        if (err) {
+            res.json({ error: err });
+            console.log("Hubo un error ELIMINANDO Rutina" + err);
+        } else {
+            res.json({message: 'Conexion eliminada'});
+        }
+    });
+}
 module.exports = RutinaCtrl;

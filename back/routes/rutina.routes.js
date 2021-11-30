@@ -35,5 +35,6 @@ router.delete('/Rutinacompleta/delete/:Id_rutina', RutinaCtrl.deleteRutinacomple
 //RutinaCompleta has Persona
 router.post('/RutinaCompletaHasPersona/create', RutinaCtrl.createRutinacompletaHasPersona);
 router.delete('/RutinaCompletaHasPersona/delete/:Id_rutina',RutinaCtrl.deleteRutinaCompletaHasPersona);
+router.delete('/RutinaCompletaHas/delete/:Id_persona',RutinaCtrl.deleteRutinaCompletaHas)
 
 module.exports = router;

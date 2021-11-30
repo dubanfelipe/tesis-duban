@@ -6,17 +6,25 @@ import { rutinas } from '../models/rutina';
 import { has } from '../models/ejerciciohasrutina';
 import { RutinaCompleta } from '../models/rutinaCompleta';
 import { RutinaCompletahasPersona } from '../models/rutinaCompletaHasPersona';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class rutinaService{
+    private messageSource = new BehaviorSubject('default message');
+    currentMessage = this.messageSource.asObservable();
     idRutinaCompleta;
     ejercicios: EJERCICIO[];
     musculo: musculos[];
     rutina: RutinaCompleta[];
     API_URL = 'http://localhost:3000/api/rutina';
     constructor(private http: HttpClient) {}
+
+    changeMessage(message: string) {
+        this.messageSource.next(message)
+    }
+
     getEjercicio(){
         return this.http.get(this.API_URL+"/Ejercicio");
     }
@@ -72,5 +80,8 @@ export class rutinaService{
     }
     deleteRutinaCompletaHasPersona(id: number){
         return this.http.delete(this.API_URL+`/RutinaCompletaHasPersona/delete/${id}`);
+    }
+    deleteRutinaCompletaHas(id: number){
+        return this.http.delete(this.API_URL+`/RutinaCompletaHas/delete/${id}`);
     }
 }

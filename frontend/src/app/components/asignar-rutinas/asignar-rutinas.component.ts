@@ -6,6 +6,7 @@ import { RutinaCompleta } from '../../models/rutinaCompleta';
 import { Router } from '@angular/router';
 import { datosService } from '../../services/datos.service';
 import { RutinaCompletahasPersona } from '../../models/rutinaCompletaHasPersona';
+import { Subscription } from 'rxjs';
 
 declare var M: any;
 
@@ -18,6 +19,8 @@ export class AsignarRutinasComponent implements OnInit {
 
   selectedRows: any;
   RutinaSeleccionada;
+  message: string;
+  subscription: Subscription;
   bandera = false;
   HAS: RutinaCompletahasPersona = {
     Id_rutinacompleta: 0,
@@ -95,6 +98,8 @@ export class AsignarRutinasComponent implements OnInit {
       }
     } else if (event.action == "editRoutines"){
       this.RutinaService.idRutinaCompleta = event.data.Id_rutinacompleta;
+      this.subscription = this.RutinaService.currentMessage.subscribe(message => this.message = message);
+      this.RutinaService.changeMessage(event.data.Id_rutinacompleta);
       this.router.navigate(['/admin/routines/'+event.data.Id_rutinacompleta]);
     } else if (event.action == "deleteAction"){
       document.getElementById("modalDelete").click();      
@@ -147,18 +152,21 @@ export class AsignarRutinasComponent implements OnInit {
       this.HAS.Id_persona = this.selectedRows[index].Id_persona;
       this.HAS.Id_rutinacompleta = this.RutinaSeleccionada.Id_rutinacompleta;
       this.selectedRows[index].Rutina_asignada = this.RutinaSeleccionada.Nombre_Rutina;
-      this.RutinaService.createRutinacompletaHasPersona(this.HAS)
-      .subscribe(res => {                 
-        this.registerService.updateRegisterRutinaAsignadaByIdPersona(this.HAS.Id_persona, this.selectedRows[index])
-        .subscribe(res => {              
-        })            
-      })      
-    }   
-    M.toast({
-      html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
-          <h4 class="alert-heading">RUTINAS ASIGNADAS</h4>
-          <hr>
-      </div>`});  
-      this.getUsuarios();
+      this.RutinaService.deleteRutinaCompletaHas(this.HAS.Id_persona)
+      .subscribe(res =>{
+        this.RutinaService.createRutinacompletaHasPersona(this.HAS)
+        .subscribe(res => {                 
+          this.registerService.updateRegisterRutinaAsignadaByIdPersona(this.HAS.Id_persona, this.selectedRows[index])
+          .subscribe(res => {  
+            M.toast({
+              html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                  <h4 class="alert-heading">RUTINAS ASIGNADAS</h4>
+                  <hr>
+              </div>`});  
+              this.getUsuarios();            
+          })            
+        }) 
+      })           
+    }       
   }
 }

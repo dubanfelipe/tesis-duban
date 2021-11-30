@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { rutinaService } from '../app/services/rutina.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   isAdminSign_in: boolean = false;
   isAdminUsers: boolean = false;
   isAdminUsersEdit: boolean = false;
@@ -17,8 +19,12 @@ export class AppComponent implements OnInit {
   isAdminExercise: boolean = false;
   isAdminRutina: boolean = false;
   isAdminAssignRoutines: boolean = false;
+  isAdminEstadisticas: boolean  = false;
+  subscription : Subscription;
+  message: string;
   numero: any;
-  constructor(private router: Router, private _activeRouter: ActivatedRoute) {
+  constructor(private router: Router, private RutinaService: rutinaService) {  
+    this.subscription = this.RutinaService.currentMessage.subscribe(message => this.message = message) 
     this.routeEvent(this.router);    
   }
 
@@ -34,6 +40,7 @@ export class AppComponent implements OnInit {
         this.isAdminExercise = false;
         this.isAdminRutina = false;
         this.isAdminAssignRoutines = false;
+        this.isAdminEstadisticas = false;
         if (e.url === '/admin/sign_in') {
           this.isAdminSign_in = true;
           this.isAdminUsers = false;
@@ -44,8 +51,8 @@ export class AppComponent implements OnInit {
           this.isAdminExercise = false;
           this.isAdminRutina = false;
           this.isAdminAssignRoutines = false;
-        }
-        else if (e.url === '/admin/users') {
+          this.isAdminEstadisticas = false;
+        } else if (e.url === '/admin/users') {
           this.isAdminSign_in = false;
           this.isAdminUsers = true;
           this.isAdminUsersEdit = false;
@@ -55,6 +62,7 @@ export class AppComponent implements OnInit {
           this.isAdminExercise = false;
           this.isAdminRutina = false;
           this.isAdminAssignRoutines = false;
+          this.isAdminEstadisticas = false;
         } else if (e.url === '/admin/users/edit') {          
           this.isAdminSign_in = false;
           this.isAdminUsers = false;
@@ -65,6 +73,7 @@ export class AppComponent implements OnInit {
           this.isAdminExercise = false;
           this.isAdminRutina = false;
           this.isAdminAssignRoutines = false;
+          this.isAdminEstadisticas = false;
         } else if (e.url === '/admin/activate/users'){
           this.isAdminSign_in = false;
           this.isAdminUsers = false;
@@ -75,6 +84,7 @@ export class AppComponent implements OnInit {
           this.isAdminExercise = false;
           this.isAdminRutina = false;
           this.isAdminAssignRoutines = false;
+          this.isAdminEstadisticas = false;
         } else if (e.url === '/admin/activate'){          
           this.isAdminSign_in = false;
           this.isAdminUsers = false;
@@ -85,6 +95,7 @@ export class AppComponent implements OnInit {
           this.isAdminExercise = false;
           this.isAdminRutina = false;
           this.isAdminAssignRoutines = false;
+          this.isAdminEstadisticas = false;
         }else if(e.url === '/admin/register'){
           this.isAdminSign_in = false;
           this.isAdminUsers = false;
@@ -95,6 +106,7 @@ export class AppComponent implements OnInit {
           this.isAdminExercise = false;
           this.isAdminRutina = false;
           this.isAdminAssignRoutines = false;
+          this.isAdminEstadisticas = false;
         }else if(e.url === '/admin/exercise'){
           this.isAdminSign_in = false;
           this.isAdminUsers = false;
@@ -105,7 +117,8 @@ export class AppComponent implements OnInit {
           this.isAdminExercise = true;
           this.isAdminRutina = false;
           this.isAdminAssignRoutines = false;
-        }else if(e.url === '/admin/routines' || e.url ==='/admin/routines/#id'){
+          this.isAdminEstadisticas = false;
+        }else if(e.url === '/admin/routines' || e.url ==='/admin/routines/'+this.message){
           this.isAdminSign_in = false;
           this.isAdminUsers = false;
           this.isAdminUsersEdit = false;
@@ -115,6 +128,7 @@ export class AppComponent implements OnInit {
           this.isAdminExercise = false;
           this.isAdminRutina = true;
           this.isAdminAssignRoutines = false;
+          this.isAdminEstadisticas = false;
         }else if(e.url === '/admin/assignRoutines'){
           this.isAdminSign_in = false;
           this.isAdminUsers = false;
@@ -125,9 +139,27 @@ export class AppComponent implements OnInit {
           this.isAdminExercise = false;
           this.isAdminRutina = false;
           this.isAdminAssignRoutines = true;
+          this.isAdminEstadisticas = false;
+        }else if(e.url === '/admin/estadisticas'){
+          this.isAdminSign_in = false;
+          this.isAdminUsers = false;
+          this.isAdminUsersEdit = false;
+          this.isAdminActivateUsers = false;
+          this.isAdminActivate = false;
+          this.isAdminRegister = false;
+          this.isAdminExercise = false;
+          this.isAdminRutina = false;
+          this.isAdminAssignRoutines = false;
+          this.isAdminEstadisticas = true;
         }
       }
     });
   }
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    
+  }
+
+  ngOnDestroy(){
+
+  }
 }

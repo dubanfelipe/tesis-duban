@@ -4,6 +4,6 @@ import { LoginComponent } from './components/login/login.component';
 
 const appRoutes = [
   { path: "", component: AppComponent, pathMatch: "full" },
-  { path: "home", component: LoginComponent, pathMatch: "full" },
+  { path: "login", component: LoginComponent, pathMatch: "full" },
 ];
 export const routing = RouterModule.forRoot(appRoutes);

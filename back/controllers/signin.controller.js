@@ -32,7 +32,6 @@ signinCtrl.updateEstadoByIdUsuario = (req, res) => {
 }
 signinCtrl.getRegisterByIdUsuarioIngreso = (req, res) => {
     let id = req.params.Ingreso;
-    console.log(id);
     db.query(`SELECT p.*, u.*, s.* FROM Persona AS p INNER JOIN Usuario AS u ON p.Id_persona = u.Persona_id_persona INNER JOIN Sede As s ON s.Id_sede = u.Sede_id_sede WHERE Ingreso='${id}'`, (err, data) => {
         if (err) {
             res.json({ error: err });

@@ -79,7 +79,16 @@
         </div>
     </div> 
 </div>
-<div *ngIf="!isAdminSign_in && !isAdminUsers && !isAdminUsersEdit && !isAdminActivateUsers && !isAdminActivate && !isAdminRegister && !isAdminExercise && !isAdminRutina && !isAdminAssignRoutines">
+<div *ngIf="isAdminEstadisticas">
+    <app-nav-bar class="menu-fixed"></app-nav-bar>
+    <div>
+        <app-admin class="style-admin"></app-admin>
+        <div class="style-router">
+            <router-outlet></router-outlet>
+        </div>
+    </div> 
+</div>
+<div *ngIf="!isAdminSign_in && !isAdminUsers && !isAdminUsersEdit && !isAdminActivateUsers && !isAdminActivate && !isAdminRegister && !isAdminExercise && !isAdminRutina && !isAdminAssignRoutines && !isAdminEstadisticas">
     <router-outlet></router-outlet>
     <app-footer></app-footer>
 </div>

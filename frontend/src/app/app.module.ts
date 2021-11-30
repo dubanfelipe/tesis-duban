@@ -33,6 +33,8 @@ import { MaterialModule } from './material/material.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
+import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
+import { ChartsModule } from "ng2-charts";
 
 @NgModule({
   declarations: [
@@ -54,9 +56,11 @@ import { environment } from 'src/environments/environment';
     RutinasComponent,
     ExerciseComponent,
     AsignarRutinasComponent,
+    EstadisticasComponent,
   ],
   imports: [
     HttpClientModule,
+    ChartsModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
