@@ -279,7 +279,7 @@ export class EditUsersComponent implements OnInit {
     }
     this.registerService.getRegisterByIdPersonaCorreo(form.value.Correo)
     .subscribe((data) => {
-      if ((data[0] != undefined) && (data[0].ID_PERSONA != this.estudiantes.Id_persona)) {
+      if ((data[0] != undefined) && (data[0].Id_persona != this.estudiantes.Id_persona)) {
         M.toast({
           html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
                   <h4 class="alert-heading">ACTUALIZACIÓN INCOMPLETA</h4>
@@ -289,7 +289,7 @@ export class EditUsersComponent implements OnInit {
       }else{
         this.registerService.getRegisterByIdPersonaCedula(form.value.Cedula)
         .subscribe((data) => {
-            if ((data[0] != undefined) && (data[0].ID_PERSONA != this.estudiantes.Id_persona)) {
+            if ((data[0] != undefined) && (data[0].Id_persona != this.estudiantes.Id_persona)) {
               M.toast({
                 html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
                       <h4 class="alert-heading">ACTUALIZACIÓN INCOMPLETA</h4>

@@ -94,17 +94,23 @@ export class LoginComponent implements OnInit {
         M.toast({
           html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
                <h4 class="alert-heading">USUARIO INACTIVO</h4>
-               <p>El usuario ya se encuentra registrado, pero aun no ha sido activado</p>
+               <p>El usuario aun no ha sido activado en el sistema</p>
                <hr>
            </div>`});
+           localStorage.setItem('usuario', data['token']);      
+            this.tokenPayload = decode(data['token']); 
+            if (this.tokenPayload.rol == 1) {
+              this.router.navigate(['admin/sign_in']);
+            } else {
+              this.router.navigate(['usuarios/profile']);
+            }
       } else {
         localStorage.setItem('usuario', data['token']);      
         this.tokenPayload = decode(data['token']); 
         if (this.tokenPayload.rol == 1) {
-          console.log("entre aca");
           this.router.navigate(['admin/sign_in']);
         } else {
-          this.router.navigate(['usuarios']);
+          this.router.navigate(['usuarios/profile']);
         }           
       } 
     });

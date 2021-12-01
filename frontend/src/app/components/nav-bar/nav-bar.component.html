@@ -2,7 +2,6 @@
     <ul class= "nav-menu">
         <img src="https://facultadderecho.usta.edu.co/images/Logo-USTA-19.png" alt="TechNews Logo" class="nav-brand">
         <i><p class="fa fa-male">{{nombre_Persona}}</p></i>
-        <li><a *ngIf="estudianteCargo()" href="#" routerLink="/usuarios" class="fa fa-home">Inicio</a></li>
         <li><p><a *ngIf="estudianteCargo()" routerLink='/usuarios/profile' class="fa fa-smile-o"> Mi Perfil</a></p></li>
         <li><a (click)='logout()' routerLink="/login"><i class="fa fa-power-off"></i> Cerrar Sesión</a></li>
     </ul>      

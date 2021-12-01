@@ -1,269 +1,375 @@
-<app-nav-bar></app-nav-bar>
 <body>
-  <form *ngIf="yaCargo()" [formGroup]="registerForm" novalidate>
-      <div class="form-label-group">
-        <label for="ejemplo">Nombre*</label>
-        <input  type="text" class="form-control" name="Nombre" placeholder="Ingrese su Nombre" autofocus required formControlName="Nombre">
-        <div *ngIf="registerForm.get('Nombre').errors" class="alert alert-danger">
-            <div *ngIf="registerForm.get('Nombre').errors['required']">
-              Nombre requerido
-            </div>
-            <div *ngIf="registerForm.get('Nombre').errors['pattern']">
-              Nombre incorrecto
-            </div>
-        </div>
-      </div> 
-      <div class="form-label-group">
-        <label for="ejemplo">Apellido*</label>
-        <input  type="text" class="form-control" name="Apellido" placeholder="Ingrese su Apellido" required formControlName="Apellido">
-        <div *ngIf="registerForm.get('Apellido').errors" class="alert alert-danger">
-            <div *ngIf="registerForm.get('Apellido').errors['required']">
-              Apellido requerido
-            </div>
-            <div *ngIf="registerForm.get('Apellido').errors['pattern']">
-              Apellido incorrecto
-            </div>
-        </div>
-      </div> 
-      <div class="form-label-group">
-        <label for="ejemplo">Correo*</label>
-        <input type="email" class="form-control" name="Correo" placeholder="Ingrese su Correo" required formControlName="Correo" disabled>
-        <div *ngIf="registerForm.get('Correo').errors" class="alert alert-danger">
-          <div *ngIf="registerForm.get('Correo').errors['required']">
-            Email requerido
-          </div>
-          <div *ngIf="registerForm.get('Correo').errors['pattern']">
-            Email incorrecto
-          </div>
-        </div>
-      </div>
-      <div class="form-label-group">
-          <label for="ejemplo">Cedula*</label>
-          <input  type="text" class="form-control" name="Cedula" placeholder="Ingrese su Cedula" required formControlName="Cedula" disabled>
-          <div *ngIf="registerForm.get('Cedula').errors" class="alert alert-danger">
-              <div *ngIf="registerForm.get('Cedula').errors['required']">
-                  Cedula requerida
-              </div>
-              <div *ngIf="registerForm.get('Cedula').errors['pattern']">
-                  Cedula requerida
-              </div>
-              <div *ngIf="registerForm.get('Cedula').errors['min'] && !registerForm.get('Cedula').errors['pattern']">
-                  Cedula incorrecto
+  <div style="position: absolute; top: 20%; left: 10%">
+    <div *ngIf="Cargando">
+      <div style="display: flex;">
+        <div class="card" style="width: 1200px;">
+          <div style="text-align: center;">
+            <br>
+            <h5 class="card-title">Informacion del usuario {{NombreUsuario}} {{ApellidoUsuario}}</h5>
+            <form [formGroup]="registerForm">
+              <div class="section-flex">
+                <div class="form-group">
+                  <mat-form-field appearance="outline" style="width:325px !important">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput formControlName="Nombre" type="text" autocomplete="off" required
+                      placeholder="Digite sus nombres" />
+                    <mat-error *ngIf="nombre.errors?.pattern">No cumple los parametros</mat-error>
+                    <mat-error *ngIf="nombre.errors?.required">Nombre requerido</mat-error>
+                  </mat-form-field>
+                  &nbsp;&nbsp;&nbsp;
+                  <mat-form-field appearance="outline" style="width:325px !important">
+                    <mat-label>Apellido</mat-label>
+                    <input matInput formControlName="Apellido" type="text" autocomplete="off" required
+                      placeholder="Digite sus Apellidos" />
+                    <mat-error *ngIf="apellido.errors?.pattern">No cumple los parametros</mat-error>
+                    <mat-error *ngIf="apellido.errors?.required">Apellido requerido</mat-error>
+                  </mat-form-field>
+                  &nbsp;&nbsp;&nbsp;
+                  <mat-form-field appearance="outline" style="width:400px !important">
+                    <mat-label>Correo institucional</mat-label>
+                    <input matInput formControlName="Correo" type="text" autocomplete="off"/>
+                  </mat-form-field>
                 </div>
-              <div *ngIf="registerForm.get('Cedula').errors['max'] && !registerForm.get('Cedula').errors['pattern']">
-                  Cedula incorrecto
               </div>
-          </div>
-      </div> 
-      <div class="form-label-group">
-        <label><label id="lbl"></label>Ocupacion*</label>
-          <select id="select" class="form-control" name="Rol_id_rol" formControlName="Rol_id_rol" disabled> 
-            <option value="" disabled>Seleccione su Ocupacion</option>
-            <option *ngFor="let roles of registerService.Rol | slice:1 " value={{roles.ID_ROL}}>
-              {{roles.NOMBRE_ROL}}
-            </option>
-          </select>
-          <div *ngIf="registerForm.get('Rol_id_rol').errors" class="alert alert-danger">
-              <div *ngIf="registerForm.get('Rol_id_rol').errors['required']">
-                Ocupacion requerida
+              <div class="section-flex">
+                <div class="form-group">
+                  <mat-form-field appearance="outline" style="width:325px !important">
+                    <mat-label>Numero de identificación</mat-label>
+                    <input matInput formControlName="Cedula" type="text" autocomplete="off"/>
+                  </mat-form-field>
+                  &nbsp;&nbsp;&nbsp;
+                  <mat-form-field appearance="outline" style="width:325px !important">
+                    <mat-label>Ocupacion</mat-label>
+                    <mat-select matInput formControlName="Rol_id_rol">
+                      <mat-option *ngFor="let roles of roles[0] " value={{roles.Nombre_rol}}>
+                        {{roles.Nombre_rol}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  &nbsp;&nbsp;&nbsp;
+                  <mat-form-field *ngIf="!rolAdministrador" appearance="outline" style="width:400px !important">
+                    <mat-label>Rutina asignada</mat-label>
+                    <input matInput formControlName="Rutina_asignada" type="text" autocomplete="off" />
+                  </mat-form-field>
+                </div>
               </div>
-            </div>
-      </div>     
-  </form>  
-  <form *ngIf="yaCargo()" [formGroup]="registerUsuarioForm" novalidate> 
-    <div class="form-label-group">
-      <label for="ejemplo">Celular*</label>
-      <input  type="text" class="form-control" name="Celular" placeholder="Ingrese su Celular" required formControlName="Celular" disabled>
-      <div *ngIf="registerUsuarioForm.get('Celular').errors" class="alert alert-danger">
-          <div *ngIf="registerUsuarioForm.get('Celular').errors['required']">
-            Celular requerido
+            </form>
+            <form [formGroup]="registerUsuarioForm">
+              <div class="section-flex">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Celular</mat-label>
+                    <input matInput formControlName="Celular" type="text" autocomplete="off" required
+                      placeholder="Digite su # de celular" />
+                    <mat-error *ngIf="celular.errors?.pattern">No cumple los parametros</mat-error>
+                    <mat-error *ngIf="celular.errors?.required">Celular requerido</mat-error>
+                    <mat-error *ngIf="celular.errors?.min">No cumple los parametros</mat-error>
+                    <mat-error *ngIf="celular.errors?.max">No cumple los parametros</mat-error>
+                  </mat-form-field>
+                  &nbsp;&nbsp;
+                  <mat-form-field appearance="outline">
+                    <mat-label>Edad</mat-label>
+                    <input matInput formControlName="Edad" type="text" autocomplete="off" required
+                      placeholder="Digite su edad" />
+                    <mat-error *ngIf="edad.errors?.pattern">No cumple los parametros</mat-error>
+                    <mat-error *ngIf="edad.errors?.required">Edad requerida</mat-error>
+                  </mat-form-field>
+                  &nbsp;&nbsp;
+                  <mat-form-field appearance="outline">
+                    <mat-label>Estatura</mat-label>
+                    <input matInput formControlName="Estatura" type="text" autocomplete="off" required
+                      placeholder="Digite su estatura en cm" />
+                    <mat-error *ngIf="estatura.errors?.pattern">No cumple los parametros</mat-error>
+                    <mat-error *ngIf="estatura.errors?.required">Estatura requerida</mat-error>
+                    <mat-error *ngIf="estatura.errors?.min">No cumple los parametros</mat-error>
+                    <mat-error *ngIf="estatura.errors?.max">No cumple los parametros</mat-error>
+                  </mat-form-field>
+                  &nbsp;&nbsp;
+                  <mat-form-field appearance="outline">
+                    <mat-label>Peso</mat-label>
+                    <input matInput formControlName="Peso" type="text" autocomplete="off" required
+                      placeholder="Digite su peso" />
+                    <mat-error *ngIf="peso.errors?.pattern">No cumple los parametros</mat-error>
+                    <mat-error *ngIf="peso.errors?.required">Edad requerida</mat-error>
+                  </mat-form-field>
+                  &nbsp;&nbsp;
+                  <mat-form-field appearance="outline">
+                    <mat-label>Rh</mat-label>
+                    <mat-select matInput autocomplete="off" required placeholder="Seleccione su Rh"
+                      formControlName="Rh">
+                      <mat-option *ngFor="let Rh of tipoSangre" value={{Rh}}>
+                        {{Rh}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="rh.errors?.required">Rh requerido</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="section-flex">
+                <div class="form-group">
+                  <mat-form-field appearance="outline" style="width:350px !important">
+                    <mat-label>Facultad</mat-label>
+                    <mat-select matInput autocomplete="off" required placeholder="Seleccione su Facultad"
+                      formControlName="Facultad_id_facultad">
+                      <mat-option *ngFor="let facultades of facultadArray[0]" value={{facultades.Nombre_facultad}}>
+                        {{facultades.Nombre_facultad}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="facultad.errors?.required">Facultad requerida</mat-error>
+                  </mat-form-field>
+                  &nbsp;&nbsp;
+                  <mat-form-field appearance="outline" style="width:350px !important">
+                    <mat-label>Deportista de alto rendimiento</mat-label>
+                    <mat-select matInput autocomplete="off" required placeholder="Seleccione su deporte"
+                      formControlName="Deportista">
+                      <mat-option *ngFor="let Deportista of listDeportista" value={{Deportista}}>
+                        {{Deportista}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="deportista.errors?.required">Campo requerido</mat-error>
+                  </mat-form-field>
+                  &nbsp;&nbsp;
+                  <mat-form-field appearance="outline" style="width:350px !important">
+                    <mat-label>Escala de peso</mat-label>
+                    <mat-select matInput autocomplete="off" required placeholder="Seleccione su escala"
+                      formControlName="EscalaPeso">
+                      <mat-option *ngFor="let EscalaPeso of pesoEscala" value={{EscalaPeso}}>
+                        {{EscalaPeso}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="deportista.errors?.required">Campo requerido</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="section-flex">
+                <div class="form-group">
+                  <mat-form-field appearance="outline" style="width:250px !important">
+                    <mat-label>Eps</mat-label>
+                    <input matInput formControlName="Eps" type="text" autocomplete="off" required
+                      placeholder="Digite su Eps" />
+                    <mat-error *ngIf="eps.errors?.pattern">No cumple los parametros</mat-error>
+                    <mat-error *ngIf="eps.errors?.required">Eps requerida</mat-error>
+                  </mat-form-field>
+                  &nbsp;&nbsp;&nbsp;
+                  <mat-form-field appearance="outline" style="width:550px !important">
+                    <mat-label>Dificultades patologicas</mat-label>
+                    <input matInput formControlName="Dificultades_patologicas" type="text" autocomplete="off" required
+                      placeholder="Digite sus dificultades patologicas" />
+                    <mat-error *ngIf="dificultades_patologicas.errors?.pattern">No cumple los parametros</mat-error>
+                    <mat-error *ngIf="dificultades_patologicas.errors?.required">En caso de no, --Ninguna--</mat-error>
+                  </mat-form-field>
+                  &nbsp;&nbsp;&nbsp;
+                  <mat-form-field appearance="outline" style="width:250px !important">
+                    <mat-label>Fecha de nacimiento</mat-label>
+                    <input matInput formControlName="Fecha_nacimiento" type="date" autocomplete="off" required
+                      placeholder="Digite su fecha de nacimiento" />
+                    <mat-error *ngIf="fecha_nacimiento.errors?.pattern">No cumple los parametros</mat-error>
+                    <mat-error *ngIf="fecha_nacimiento.errors?.required">Fecha requerida</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="section-flex">
+                <div class="form-group">
+                  <mat-form-field appearance="outline" style="width:350px !important">
+                    <mat-label>Contacto de emergencia (Nombre)</mat-label>
+                    <input matInput formControlName="Nombre_Acompanante" type="text" autocomplete="off" required
+                      placeholder="Digite su contacto de emergencia" />
+                    <mat-error *ngIf="nombre_Acompanante.errors?.pattern">No cumple los parametros</mat-error>
+                    <mat-error *ngIf="nombre_Acompanante.errors?.required">Nombre requerido</mat-error>
+                  </mat-form-field>
+                  &nbsp;&nbsp;&nbsp;
+                  <mat-form-field appearance="outline" style="width:350px !important">
+                    <mat-label>Contacto de emergencia (celular)</mat-label>
+                    <input matInput formControlName="Celular_Acompanante" type="text" autocomplete="off" required
+                      placeholder="Digite su contacto de emergencia" />
+                    <mat-error *ngIf="celular_Acompanante.errors?.pattern">No cumple los parametros</mat-error>
+                    <mat-error *ngIf="celular_Acompanante.errors?.required">Celular requerido</mat-error>
+                  </mat-form-field>
+                  &nbsp;&nbsp;&nbsp;
+                  <mat-form-field appearance="outline" style="width:350px !important">
+                    <mat-label>Contacto de emergencia (Parentesco)</mat-label>
+                    <input matInput formControlName="Parentesco_Acompanante" type="text" autocomplete="off" required
+                      placeholder="Digite su contacto de emergencia" />
+                    <mat-error *ngIf="parentesco_Acompanante.errors?.pattern">No cumple los parametros</mat-error>
+                    <mat-error *ngIf="parentesco_Acompanante.errors?.required">Parentesco requerido</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+            </form>
+            <form *ngIf="rolEstudiante" [formGroup]="registerEstudianteForm">
+              <div class="section-flex">
+                <div class="form-group">
+                  <mat-form-field appearance="outline" style="width:350px !important">
+                    <mat-label>Codigo</mat-label>
+                    <input matInput formControlName="Codigo" type="text" autocomplete="off" required
+                      placeholder="Digite su codigo" />
+                    <mat-error *ngIf="codigo.errors?.pattern">No cumple los parametros</mat-error>
+                    <mat-error *ngIf="codigo.errors?.required">Codigo requerido</mat-error>
+                  </mat-form-field>
+                  &nbsp;&nbsp;&nbsp;
+                  <mat-form-field appearance="outline" style="width:350px !important">
+                    <mat-label>semestre</mat-label>
+                    <input matInput formControlName="Semestre" type="text" autocomplete="off" required
+                      placeholder="Digite su semestre" />
+                    <mat-error *ngIf="semestre.errors?.pattern">No cumple los parametros</mat-error>
+                    <mat-error *ngIf="semestre.errors?.required">Semestre requerido</mat-error>
+                    <mat-error *ngIf="semestre.errors?.min">No cumple los parametros</mat-error>
+                    <mat-error *ngIf="semestre.errors?.max">No cumple los parametros</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+            </form>
+            <form [formGroup]="DocumentosForm">
+              <div class="section-flex">
+                <div class="form-group">
+                  <mat-form-field appearance="outline" style="width:270px !important">
+                    <mat-label>Carnet Universitario</mat-label>
+                    <input matInput type="text" placeholder="Carnet Universitario" formControlName="CarnetDocument" />
+                  </mat-form-field>
+                  &nbsp;&nbsp;
+                  <label matTooltip="Ver Documento">
+                    <a target="_blank" href="{{URLS[0]}}" style="color: black;">
+                      <mat-icon class="mat-icon--action">visibility</mat-icon>
+                    </a>
+                  </label>
+                  &nbsp;
+                  <label matTooltip="Editar Documento">
+                    <a target="_blank" (click)="EditarArchivos()">
+                      <mat-icon class="mat-icon--action">open_in_new</mat-icon>
+                    </a>
+                  </label>
+                  &nbsp;&nbsp;&nbsp;
+                  <mat-form-field appearance="outline" style="width:270px !important">
+                    <mat-label>Certificado Enfermeria</mat-label>
+                    <input matInput type="text" placeholder="Certificado Enfermeria" formControlName="TamizajeDocument" />
+                  </mat-form-field>
+                  &nbsp;&nbsp;
+                  <label matTooltip="Ver Certificado">
+                    <a target="_blank" href="{{URLS[1]}}" style="color: black;">
+                      <mat-icon class="mat-icon--action">visibility</mat-icon>
+                    </a>
+                  </label>
+                  &nbsp;
+                  <label matTooltip="Editar Certificado">
+                    <a target="_blank" (click)="EditarCertificado()">
+                      <mat-icon class="mat-icon--action">open_in_new</mat-icon>
+                    </a>
+                  </label>
+                </div>
+              </div>
+            </form>
+            <button [disabled]="
+              (rolEstudiante && (!registerForm.valid || !registerUsuarioForm.valid || !registerEstudianteForm.valid)) 
+              || ((!rolEstudiante) && (!registerForm.valid || !registerUsuarioForm.valid))"
+              mat-raised-button class="btn"
+              id="btnRegister" type="button"
+              (click)="EditarArchivos()">
+              Editar archivos</button>
+            <button [disabled]="
+              (rolEstudiante && (!registerForm.valid || !registerUsuarioForm.valid || !registerEstudianteForm.valid)) 
+              || ((!rolEstudiante) && (!registerForm.valid || !registerUsuarioForm.valid))"
+              mat-raised-button class="btn"
+              id="btnRegister" type="button"
+              (click)="addRegister(registerForm, registerUsuarioForm, registerEstudianteForm)">
+              Actualizar</button>
+            <br>
           </div>
-          <div *ngIf="registerUsuarioForm.get('Celular').errors['pattern']">
-            Celular incorrecto
-          </div>
-          <div *ngIf="registerUsuarioForm.get('Celular').errors['min'] && !registerUsuarioForm.get('Celular').errors['pattern']">
-            Celular incorrecto
-          </div>
-          <div *ngIf="registerUsuarioForm.get('Celular').errors['max'] && !registerUsuarioForm.get('Celular').errors['pattern']">
-            Celular incorrecto
-          </div>
-      </div>
-    </div> 
-      <div class="form-label-group">
-        <label for="ejemplo">Edad*</label>
-        <input  type="text" class="form-control" name="Edad" placeholder="Ingrese su Edad" required formControlName="Edad">
-        <div *ngIf="registerUsuarioForm.get('Edad').errors" class="alert alert-danger">
-            <div *ngIf="registerUsuarioForm.get('Edad').errors['required']">
-              Edad requerida
-            </div>
-            <div *ngIf="registerUsuarioForm.get('Edad').errors['pattern']">
-              Edad incorrecta
-            </div>
         </div>
-      </div>
-      <div class="form-label-group">
-        <label for="ejemplo">Estatura*</label>
-        <input  type="text" class="form-control" name="Estatura" placeholder="Ingrese su Estatura en cm" required formControlName="Estatura">
-        <div *ngIf="registerUsuarioForm.get('Estatura').errors" class="alert alert-danger">
-            <div *ngIf="registerUsuarioForm.get('Estatura').errors['required']">
-              Estatura requerida
-            </div>
-            <div *ngIf="registerUsuarioForm.get('Estatura').errors['pattern']">
-              Estatura incorrecta
-            </div>
-            <div *ngIf="registerUsuarioForm.get('Estatura').errors['min'] && !registerUsuarioForm.get('Estatura').errors['pattern']">
-              Estatura incorrecta
-            </div>
-            <div *ngIf="registerUsuarioForm.get('Estatura').errors['max'] && !registerUsuarioForm.get('Estatura').errors['pattern']">
-              Estatura incorrecta
-            </div>
-        </div>
-      </div>
-      <div class="form-label-group">
-        <label for="ejemplo">Peso*</label>
-        <input  type="text" class="form-control" name="Peso" placeholder="Ingrese su Peso" required formControlName="Peso">
-        <div *ngIf="registerUsuarioForm.get('Peso').errors" class="alert alert-danger">
-            <div *ngIf="registerUsuarioForm.get('Peso').errors['required']">
-              Peso requerido
-            </div>
-            <div *ngIf="registerUsuarioForm.get('Peso').errors['pattern']">
-              Peso incorrecto
-            </div>
-        </div>
-      </div>
-      <div class="form-label-group">
-        <label for="ejemplo">Rh*</label>
-        <input  type="text" class="form-control" name="Rh" placeholder="Ingrese su Rh" required formControlName="Rh">
-        <div *ngIf="registerUsuarioForm.get('Rh').errors" class="alert alert-danger">
-            <div *ngIf="registerUsuarioForm.get('Rh').errors['required']">
-              Rh requerido
-            </div>
-            <div *ngIf="registerUsuarioForm.get('Rh').errors['pattern']">
-              Rh incorrecto
-            </div>
-        </div>
-      </div>
-      <div class="form-label-group">
-        <label for="ejemplo">Eps*</label>
-        <input  type="text" class="form-control" name="Eps" placeholder="Ingrese su Eps" required formControlName="Eps">
-        <div *ngIf="registerUsuarioForm.get('Eps').errors" class="alert alert-danger">
-            <div *ngIf="registerUsuarioForm.get('Eps').errors['required']">
-              Eps requerido
-            </div>
-            <div *ngIf="registerUsuarioForm.get('Eps').errors['pattern']">
-              Eps incorrecto
-            </div>
-        </div>
-      </div>
-      <div class="form-label-group">
-        <label for="ejemplo">Dificultades_patologicas en caso de no tener añadir --NINGUNA--*</label>
-        <input  type="text" class="form-control" name="Dificultades_patologicas" placeholder="Ingrese sus Dificultades patologicas" required formControlName="Dificultades_patologicas">
-        <div *ngIf="registerUsuarioForm.get('Dificultades_patologicas').errors" class="alert alert-danger">
-            <div *ngIf="registerUsuarioForm.get('Dificultades_patologicas').errors['required']">
-              Dificultades patologicas requeridas
-            </div>
-            <div *ngIf="registerUsuarioForm.get('Dificultades_patologicas').errors['pattern']">
-              Dificultades patologicas incorrecta
-            </div>
-        </div>
-      </div>
-      <div class="form-label-group">
-        <label for="ejemplo">Fecha de nacimiento*</label>
-        <input  type="text" class="form-control" name="Fecha_nacimiento" placeholder="Ingrese su Fecha de nacimiento" required formControlName="Fecha_nacimiento">
-        <div *ngIf="registerUsuarioForm.get('Fecha_nacimiento').errors" class="alert alert-danger">
-            <div *ngIf="registerUsuarioForm.get('Fecha_nacimiento').errors['required']">
-              Fecha de nacimiento requerida
-            </div>
-            <div *ngIf="registerUsuarioForm.get('Fecha_nacimiento').errors['pattern']">
-              Fecha de nacimiento incorrecta
-            </div>
-        </div>
-      </div>
-      <div class="form-label-group">
-        <label for="ejemplo">En caso de emergencia comunicarse con*</label>
-        <input  type="text" class="form-control" name="Nombre_Acompanante" placeholder="Ingrese el Nombre" required formControlName="Nombre_Acompanante">
-        <div *ngIf="registerUsuarioForm.get('Nombre_Acompanante').errors" class="alert alert-danger">
-            <div *ngIf="registerUsuarioForm.get('Nombre_Acompanante').errors['required']">
-              Nombre requerido
-            </div>
-            <div *ngIf="registerUsuarioForm.get('Nombre_Acompanante').errors['pattern']">
-              Nombre incorrecto
-            </div>
-        </div>
-      </div>
-      <div class="form-label-group">
-        <label for="ejemplo">Celular*</label>
-        <input  type="text" class="form-control" name="Celular_Acompanante" placeholder="Ingrese el numero de celular" required formControlName="Celular_Acompanante">
-        <div *ngIf="registerUsuarioForm.get('Celular_Acompanante').errors" class="alert alert-danger">
-            <div *ngIf="registerUsuarioForm.get('Celular_Acompanante').errors['required']">
-              Celular requerido
-            </div>
-            <div *ngIf="registerUsuarioForm.get('Celular_Acompanante').errors['pattern']">
-              Celular incorrecto
-            </div>
-        </div>
-      </div>
-      <div class="form-label-group">
-        <label for="ejemplo">Parentesco*</label>
-        <input  type="text" class="form-control" name="Parentesco_Acompanante" placeholder="Ingrese su parentesco con esa persona" required formControlName="Parentesco_Acompanante">
-        <div *ngIf="registerUsuarioForm.get('Parentesco_Acompanante').errors" class="alert alert-danger">
-            <div *ngIf="registerUsuarioForm.get('Parentesco_Acompanante').errors['required']">
-              Parentesco requerido
-            </div>
-            <div *ngIf="registerUsuarioForm.get('Parentesco_Acompanante').errors['pattern']">
-              Parentesco incorrecto
-            </div>
-        </div>
-      </div>      
-  </form>
-  <form *ngIf="estudianteCargo(registerForm)" [formGroup]="registerEstudianteForm" novalidate>
-    <div class="form-label-group">
-      <label for="ejemplo">Codigo*</label>
-      <input  type="text" class="form-control" name="Codigo" placeholder="Ingrese su Codigo" required formControlName="Codigo" disabled>
-      <div *ngIf="registerEstudianteForm.get('Codigo').errors" class="alert alert-danger">
-          <div *ngIf="registerEstudianteForm.get('Codigo').errors['required']">
-            Codigo requerido
-          </div>
-          <div *ngIf="registerEstudianteForm.get('Codigo').errors['pattern']">
-            Codigo incorrecto
-          </div>
       </div>
     </div>
-    <div class="form-label-group">
-      <label for="ejemplo">Semestre*</label>
-      <input  type="text" class="form-control" name="Semestre" placeholder="Ingrese su Semestre" required formControlName="Semestre">
-      <div *ngIf="registerEstudianteForm.get('Semestre').errors" class="alert alert-danger">
-          <div *ngIf="registerEstudianteForm.get('Semestre').errors['required']">
-            Semestre requerido
-          </div>
-          <div *ngIf="registerEstudianteForm.get('Semestre').errors['pattern']">
-            Semestre incorrecto
-          </div>
-          <div *ngIf="registerEstudianteForm.get('Semestre').errors['min'] && !registerEstudianteForm.get('Semestre').errors['pattern']">
-            Semestre incorrecto
-          </div>
-          <div *ngIf="registerEstudianteForm.get('Semestre').errors['max'] && !registerEstudianteForm.get('Semestre').errors['pattern']">
-            Semestre incorrecto
-          </div>
-      </div>
-    </div>
-    <div class="form-label-group">
-      <label><label id="lbl"></label>Facultad*</label>
-        <select id="select" class="form-control" name="Facultad_id_facultad" formControlName="Facultad_id_facultad"> 
-          <option value="" disabled>Seleccione su Facultad</option>
-          <option *ngFor="let facultades of registerService.Facultad" value={{facultades.ID_FACULTAD}}>
-            {{facultades.NOMBRE_FACULTAD}}
-          </option>
-        </select>
-        <div *ngIf="registerEstudianteForm.get('Facultad_id_facultad').errors" class="alert alert-danger">
-            <div *ngIf="registerEstudianteForm.get('Facultad_id_facultad').errors['required']">
-              Facultad requerida
-            </div>
-          </div>
-    </div>
-  </form>
-  <div class="form-label-group">
-        <button [disabled]="!registerForm.valid" class="btn btn-block" id="btnLogin" (click)="addRegister(registerForm, registerUsuarioForm, registerEstudianteForm)"
-          type="button">Save</button>
-  </div>
+  </div> 
 </body>
+<a id="modalUsers" href="#" data-toggle="modal" data-target="#openModalUsers" mat-raised-button
+  class="btn btn--success">
+</a>
+<div class="form-modal">
+  <div class="modal fade" id="openModalUsers" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content border-success">
+        <div class="modal-header">
+          <div class="alert-dialog-w">
+            <div style="padding-bottom: 15px; text-align: center;">
+              <img src="https://facultadderecho.usta.edu.co/images/Logo-USTA-19.png" style="width: 500px" />
+            </div>
+            <hr style="border: 1px solid #00468f">
+            <br>
+            <div style="text-align: center;">
+              Por favor suba el nuevo archivo que desea guardar.
+            </div>
+            <br>
+            <form [formGroup]="CarnetForm">
+              <div class="section-flex">
+                <div class="form-group">
+                  <mat-form-field appearance="outline" style="width:400px !important">
+                    <mat-label>Carnet Universitario</mat-label>
+                    <input matInput type="text" placeholder="Carnet Universitario" formControlName="CarnetDocumentEdit" />
+                  </mat-form-field>
+                  &nbsp;&nbsp;
+                  <label [attr.for]="'file-upload'" matTooltip="Subir Archivo">
+                    <mat-icon class="mat-icon--action">backup</mat-icon>
+                  </label>
+                  <input [attr.id]="'file-upload'" type="file" (change)="handleInputChangeCarnet($event)"
+                    style="display: none;" />
+                </div>
+              </div>
+            </form>
+            <div>
+              <div style="display: flex; justify-content: space-around;">
+                <button id="btnAceptar" data-dismiss="modal" (click)="SaveCarnet()">Guardar</button>
+                <button id="btnCancelar" data-dismiss="modal">Cancelar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<a id="modalCertificado" href="#" data-toggle="modal" data-target="#openModalCertificado" mat-raised-button
+  class="btn btn--success">
+</a>
+<div class="form-modal">
+  <div class="modal fade" id="openModalCertificado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content border-success">
+        <div class="modal-header">
+          <div class="alert-dialog-w">
+            <div style="padding-bottom: 15px; text-align: center;">
+              <img src="https://facultadderecho.usta.edu.co/images/Logo-USTA-19.png" style="width: 500px" />
+            </div>
+            <hr style="border: 1px solid #00468f">
+            <br>
+            <div style="text-align: center;">
+              Por favor suba el nuevo archivo que desea guardar.
+            </div>
+            <br>
+            <form [formGroup]="TamizajeForm">
+              <div class="section-flex">
+                <div class="form-group">                  
+                  <mat-form-field appearance="outline" style="width:400px !important">
+                    <mat-label>Certificado Enfermeria</mat-label>
+                    <input matInput type="text" placeholder="Certificado Enfermeria" formControlName="TamizajeDocumentEdit" />
+                  </mat-form-field>
+                  &nbsp;&nbsp;
+                  <label [attr.for]="'file-uploadd'" matTooltip="Subir Archivo">
+                    <mat-icon class="mat-icon--action">backup</mat-icon>
+                  </label>
+                  <input [attr.id]="'file-uploadd'" type="file" (change)="handleInputChangeTamizaje($event)"
+                    style="display: none;" />
+                </div>
+              </div>
+            </form>
+            <div>
+              <div style="display: flex; justify-content: space-around;">
+                <button id="btnAceptar" data-dismiss="modal" (click)="SaveTamizaje()">Guardar</button>
+                <button id="btnCancelar" data-dismiss="modal">Cancelar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

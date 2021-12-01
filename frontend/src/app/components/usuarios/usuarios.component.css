@@ -1,0 +1,45 @@
+i {
+    display: table-cell;
+    width: 60px;
+    height: 65px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 30px;
+}
+.main-menu:hover,nav.main-menu.expanded {
+    width:250px;
+    overflow:visible;
+}
+.main-menu {
+    background:#00468f;
+    background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%2379787b' fill-opacity='0.4'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");    
+    left:0;
+    width:60px;
+    overflow:hidden;
+}
+.main-menu li {
+width:250px;
+}
+.main-menu li>a {
+display:table;
+color:white;
+font-family: arial;
+text-decoration:none;
+}
+.main-menu .nav-text {
+display:table-cell;
+vertical-align:middle;
+width:190px;
+font-family: 'Titillium Web', sans-serif;
+}
+nav ul,nav li {
+margin:0;
+padding:0;
+}
+.main-menu li:hover>a,nav.main-menu li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a {
+color:black;
+background-color:#5fa2db;
+}
+
+
+

@@ -39,8 +39,13 @@ loginCtrl.authentication = (req, res) => {
                 res.json({ fail: 2 });
                 console.log("diferentes");
             } else if (data[0].Activo == false) {
-                res.json({ fail: 3 });
                 console.log("No activado");
+                id_persona = data[0].Id_persona;
+                cedula = data[0].Cedula;
+                nombre = data[0].Nombre; 
+                rol = data[0].Rol_id_rol;     
+                token = jwt.sign({id_persona, cedula, nombre, rol},config.secret, { expiresIn: 86400 })
+                res.json({ auth: true, token: token, fail: 3 })
             } else {
                 console.log("correcto");
                 id_persona = data[0].Id_persona;

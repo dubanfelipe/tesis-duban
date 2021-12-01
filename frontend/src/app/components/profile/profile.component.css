@@ -1,0 +1,63 @@
+body{
+    padding-top: 12%; 
+}
+#openModalUsers{
+    top: 10%;
+    justify-content: center;
+    align-items: center;
+    width: 550px;
+    left: 35%;      
+}
+#openModalCertificado{
+    top: 30%;
+    justify-content: center;
+    align-items: center;
+    width: 550px;
+    left: 35%;      
+}
+#btnAceptar {
+    background-color: #00468f;
+    padding: 8px 15px;
+    color: white;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    border-radius: 5rem;
+}
+#btnCancelar {
+    background-color: red;
+    padding: 8px 15px;
+    color: white;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    border-radius: 5rem;
+}
+.form-group{
+    margin-left: 4%;
+    margin-right: 4%;
+}
+#btnRegister {
+    background-color: #00468f;
+    color: white;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; 
+    text-align:center;  
+}
+
+#btnRegister:hover {
+    color: white;
+    border-radius: 8rem;
+}
+.card-title{
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    text-align: center;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: black!important;
+    opacity: 2!important;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: black!important;
+}
+
+

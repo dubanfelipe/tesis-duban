@@ -9,11 +9,13 @@ import decode from 'jwt-decode';
 export class GuardsGuard implements CanActivate {
 
   id_Usuario: any; 
+  tokenPayload: any;
   constructor (private router : Router){
   }
   canActivate(): boolean  {
       const token = localStorage.getItem('usuario');
-      if (token === 'null') {      
+      this.tokenPayload = decode(token)
+      if (this.tokenPayload.rol != 1) {      
         this.router.navigate(['login']);
         return false;
       } else {
