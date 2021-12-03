@@ -156,6 +156,27 @@ registerCtrl.updateRegisterRutinaAsignadaByRutinaAsignada = (req, res) =>{
     }
 }
 
+registerCtrl.getRutinaAsignadaHasPersona = (req, res) =>{
+    console.log("Este es el id",req.params.id_persona);
+    let id = req.params.id_persona;
+    db.query(`SELECT * FROM RutinaCompleta_has_persona WHERE Persona_id_persona='${id}'`, (err, data) => {
+        if (err) {
+            res.json({ error: err });
+            console.log("Hubo un error en la busqueda del Persona" + err);
+        } else {
+            let idRutina = data[0].RutinaCompleta_id_rutinacompleta
+            db.query(`SELECT * FROM Rutina_completa WHERE Id_rutinacompleta='${idRutina}'`, (err, data) => {
+                if (err) {
+                    res.json({ error: err });
+                    console.log("Hubo un error en la busqueda del Persona" + err);
+                } else {
+                    res.json(data);
+                }
+            });
+        }
+    });
+}
+
 //Usuario
 registerCtrl.getRegisterByIdUsuarioCelular = (req, res) => {   
     let id = req.params.Celular;

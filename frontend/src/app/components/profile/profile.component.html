@@ -263,13 +263,6 @@
               || ((!rolEstudiante) && (!registerForm.valid || !registerUsuarioForm.valid))"
               mat-raised-button class="btn"
               id="btnRegister" type="button"
-              (click)="EditarArchivos()">
-              Editar archivos</button>
-            <button [disabled]="
-              (rolEstudiante && (!registerForm.valid || !registerUsuarioForm.valid || !registerEstudianteForm.valid)) 
-              || ((!rolEstudiante) && (!registerForm.valid || !registerUsuarioForm.valid))"
-              mat-raised-button class="btn"
-              id="btnRegister" type="button"
               (click)="addRegister(registerForm, registerUsuarioForm, registerEstudianteForm)">
               Actualizar</button>
             <br>

@@ -53,6 +53,9 @@ export class RegisterService{
         console.log(Rutina_asignada, RutinaNo);
         return this.http.put(this.API_URL+`/register/Persona/RutinaAsignada/Persona/${Rutina_asignada}`,RutinaNo);
     }
+    getRutinaAsignadaHasPersona(id: number){
+        return this.http.get(this.API_URL+`/register/Persona/RutinaAsignadaHasPersona/${id}`);
+    }
     // Usuario
     getRegisterByIdUsuarioCelular(Celular:string){
         return this.http.get(this.API_URL+`/register/Usuario/Celular/${Celular}`);

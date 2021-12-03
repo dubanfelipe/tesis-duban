@@ -1,0 +1,146 @@
+<body>
+    <div style="position: absolute; top: 20%; left: 5%">
+        <div style="display: flex;">
+            <div class="card" style="width: 1270px;">
+                <div style="text-align: center;">
+                    <br>
+                    <h5 class="card-title">RUTINA ASIGNADA</h5>
+                    <form [formGroup]="rutinaForm">
+                        <div class="section-flex">
+                            <div class="form-group">
+                                <mat-form-field appearance="outline" style="width:600px !important">
+                                    <mat-label>Nombre rutina</mat-label>
+                                    <input matInput formControlName="Nombre" type="text"
+                                        autocomplete="off"/>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </form>
+                    <div style="display: flex; justify-content: space-around;">
+                        <div>
+                            <div style="display: flex; justify-content: flex-start;">
+                                <h4>LUNES</h4>
+                            </div>
+                            <div class="table" style="margin: 0 auto;">
+                                <ng2-smart-table [settings]="settings" [source]="Dia.lunes.Ejercicio" (custom)="onCustom($event)"></ng2-smart-table>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: flex-start;">
+                                <h4>MARTES</h4>
+                            </div>
+                            <div class="table" style="margin: 0 auto;">
+                                <ng2-smart-table [settings]="settings" [source]="Dia.Martes.Ejercicio" (custom)="onCustom($event)"></ng2-smart-table>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-around;">
+                        <div>
+                            <div style="display: flex; justify-content: flex-start;">
+                                <h4>MIERCOLES</h4>
+                            </div>
+                            <div class="table" style="margin: 0 auto;">
+                                <ng2-smart-table [settings]="settings" [source]="Dia.Miercoles.Ejercicio" (custom)="onCustom($event)"></ng2-smart-table>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: flex-start;">
+                                <h4>JUEVES</h4>
+                            </div>
+                            <div class="table" style="margin: 0 auto;">
+                                <ng2-smart-table [settings]="settings" [source]="Dia.Jueves.Ejercicio" (custom)="onCustom($event)"></ng2-smart-table>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-around;">
+                        <div>
+                            <div style="display: flex; justify-content: flex-start;">
+                                <h4>VIERNES</h4>
+                            </div>
+                            <div class="table" style="margin: 0 auto;">
+                                <ng2-smart-table [settings]="settings" [source]="Dia.Viernes.Ejercicio" (custom)="onCustom($event)"></ng2-smart-table>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: flex-start;">
+                                <h4>SABADO</h4>
+                            </div>
+                            <div class="table" style="margin: 0 auto;">
+                                <ng2-smart-table [settings]="settings" [source]="Dia.Sabado.Ejercicio" (custom)="onCustom($event)"></ng2-smart-table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<a id="modalVisibility" href="#" data-toggle="modal" data-target="#openModalVisibility" mat-raised-button
+  class="btn btn--success">
+</a>
+<div class="form-modal">
+  <div class="modal fade" id="openModalVisibility" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content border-success">
+        <div class="modal-header">
+          <div class="alert-dialog-w">
+            <div style="padding-bottom: 15px; text-align: center;">
+              <img src="https://facultadderecho.usta.edu.co/images/Logo-USTA-19.png" style="width: 500px" />
+            </div>
+            <hr style="border: 1px solid #00468f">
+            <h4 style="text-align: center;">Informacion del ejercicio {{NombreEjercicio}}</h4>
+            <br>
+            <div style="display: flex; justify-content: space-between;">
+              <div>
+                <div style="padding-bottom: 15px; text-align: center;">
+                  <img src="{{URL}}" width="400" height="300" />
+                </div>
+              </div>
+              <div style="margin-left: 40px;">                
+                <div style="text-align: center;">
+                  <form [formGroup]="EjerciciosForm">
+                    <div class="section-flex">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" style="width:250px !important">
+                          <mat-label>Nombre del ejercicio</mat-label>
+                          <input matInput type="text" formControlName="Nombre" />
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="section-flex">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" style="width:120px !important">
+                          <mat-label>No de series</mat-label>
+                          <input matInput type="text" formControlName="Series" />
+                        </mat-form-field>
+                        &nbsp;&nbsp;
+                        <mat-form-field appearance="outline" style="width:120px !important">
+                          <mat-label>No de repeticiones</mat-label>
+                          <input matInput type="text" formControlName="Repeticiones" />
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="section-flex">
+                      <div class="form-group">
+                        <mat-form-field appearance="outline" style="width:120px !important">
+                          <mat-label>Tiempo de descanso</mat-label>
+                          <input matInput type="text" formControlName="tiempoDescanso" />
+                        </mat-form-field>
+                        &nbsp;&nbsp;
+                        <mat-form-field appearance="outline" style="width:120px !important">
+                          <mat-label>Musculo</mat-label>
+                          <input matInput type="text" formControlName="Musculo" />
+                        </mat-form-field>
+                      </div>
+                    </div>                    
+                  </form>
+                </div>                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -35,6 +35,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
 import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
 import { ChartsModule } from "ng2-charts";
+import { UserRutinasComponent } from './components/user-rutinas/user-rutinas.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { ChartsModule } from "ng2-charts";
     ExerciseComponent,
     AsignarRutinasComponent,
     EstadisticasComponent,
+    UserRutinasComponent,
   ],
   imports: [
     HttpClientModule,

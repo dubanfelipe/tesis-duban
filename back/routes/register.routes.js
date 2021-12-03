@@ -13,6 +13,7 @@ router.put('/Persona/:id_persona', registerCtrl.updateRegisterByIdPersona);
 router.put('/Persona/RutinaAsignada/:id_persona', registerCtrl.updateRegisterRutinaAsignadaByIdPersona);
 router.put('/Persona/RutinaAsignada/Persona/:Rutina_asignada', registerCtrl.updateRegisterRutinaAsignadaByRutinaAsignada);
 router.get('/Persona/Activate/:Activo', registerCtrl.getRegisterByIdPersonaActivo);
+router.get('/Persona/RutinaAsignadaHasPersona/:id_persona', registerCtrl.getRutinaAsignadaHasPersona);
 //Usuario
 router.get('/Usuario/Celular/:Celular', registerCtrl.getRegisterByIdUsuarioCelular);
 router.get('/Usuario/:Cedula', registerCtrl.getRegisterByIdUsuario);

@@ -1,9 +1,9 @@
-<body>
+<body *ngIf="disabled">
     <div class="area"></div>
     <nav class="main-menu">
         <ul>
             <li class="has-subnav">
-                <a [routerLink]="['/usuarios/routine']">
+                <a [routerLink]="['usuarios/rutinas']">
                     <i class="material-icons">directions_run</i>
                     <span class="nav-text">
                         Rutina
