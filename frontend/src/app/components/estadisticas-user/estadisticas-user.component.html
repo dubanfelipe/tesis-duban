@@ -1,0 +1,70 @@
+<div class="home" style="display: flex; justify-content: space-around;">
+    <div class="graph-container" style="text-align: center;">
+      <br>
+      <div style="display: flex; justify-content: space-around;">
+        <div>
+          <h5 style="color: white;">Grafica de asistentes para</h5>
+          <h5 style="color: white;">un dia en especifico</h5>
+        </div>
+        <div>
+          <form [formGroup]="diaForm" autocomplete="off">
+            <div class="section-flex">
+              <div class="form-group">
+                <mat-form-field appearance="outline" style="width:150px !important">
+                  <mat-label>Dia</mat-label>
+                  <mat-select matInput autocomplete="off" required placeholder="Seleccione el dia" formControlName="diaLetra">
+                    <mat-option *ngFor="let dia of dia" value={{dia}}>
+                      {{dia}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="diaLetra.errors?.required">dia requerido</mat-error>
+                </mat-form-field>                         
+                <button class="btn btn--rounded" (click)="DiaSelected(diaForm)">
+                  <mat-icon matSuffix style="color: white !important; cursor: pointer;">open_in_new</mat-icon>
+                </button>
+              </div> 
+            </div>
+          </form>
+        </div>      
+      </div>    
+      <div class="graph-container__top">
+        <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+          [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType">
+        </canvas>
+      </div>
+    </div>
+    <div class="graph-container" style="text-align: center;">
+      <br>
+      <div style="display: flex; justify-content: space-around;">
+        <div>
+          <h5 style="color: white;">Grafica de asistentes para</h5>
+          <h5 style="color: white;">un mes en especifico</h5>
+        </div>
+        <div>
+          <form [formGroup]="mesForm" autocomplete="off">
+            <div class="section-flex">
+              <div class="form-group">
+                <mat-form-field appearance="outline" style="width:150px !important">
+                  <mat-label>Mes</mat-label>
+                  <mat-select matInput autocomplete="off" required placeholder="Seleccione el mes" formControlName="mesLetra">
+                    <mat-option *ngFor="let mes of mes" value={{mes}}>
+                      {{mes}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="mesLetra.errors?.required">mes requerido</mat-error>
+                </mat-form-field>                         
+                <button class="btn btn--rounded" (click)="MesSelected(mesForm)">
+                  <mat-icon matSuffix style="color: white !important; cursor: pointer;">open_in_new</mat-icon>
+                </button>
+              </div> 
+            </div>
+          </form>
+        </div>      
+      </div>  
+      <div class="graph-container__top">
+        <canvas baseChart [datasets]="lineMesChartData" [labels]="lineMesChartLabels" [options]="lineMesChartOptions"
+          [colors]="lineMesChartColors" [legend]="lineMesChartLegend" [chartType]="lineMesChartType">
+        </canvas>
+      </div>
+    </div>
+  </div>

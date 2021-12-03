@@ -36,6 +36,7 @@ import { environment } from 'src/environments/environment';
 import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
 import { ChartsModule } from "ng2-charts";
 import { UserRutinasComponent } from './components/user-rutinas/user-rutinas.component';
+import { EstadisticasUserComponent } from './components/estadisticas-user/estadisticas-user.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { UserRutinasComponent } from './components/user-rutinas/user-rutinas.com
     AsignarRutinasComponent,
     EstadisticasComponent,
     UserRutinasComponent,
+    EstadisticasUserComponent,
   ],
   imports: [
     HttpClientModule,

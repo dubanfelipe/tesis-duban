@@ -22,6 +22,8 @@ export class AppComponent implements OnInit, OnDestroy {
   isAdminEstadisticas: boolean  = false;
   isUsuariosProfile: boolean  = false;
   isUsuariosRoutines: boolean  = false;
+  isUsuariosEstadisticas: boolean = false;
+  isLogin : boolean = false;
   subscription : Subscription;
   message: string;
   numero: any;
@@ -45,6 +47,8 @@ export class AppComponent implements OnInit, OnDestroy {
         this.isAdminEstadisticas = false;
         this.isUsuariosProfile = false;
         this.isUsuariosRoutines = false;
+        this.isUsuariosEstadisticas = false;
+        this.isLogin = false;
         if (e.url === '/admin/sign_in') {
           this.isAdminSign_in = true;
           this.isAdminUsers = false;
@@ -58,6 +62,8 @@ export class AppComponent implements OnInit, OnDestroy {
           this.isAdminEstadisticas = false;
           this.isUsuariosProfile = false;
           this.isUsuariosRoutines = false;
+          this.isUsuariosEstadisticas = false;
+          this.isLogin = false;
         } else if (e.url === '/admin/users') {
           this.isAdminSign_in = false;
           this.isAdminUsers = true;
@@ -71,6 +77,8 @@ export class AppComponent implements OnInit, OnDestroy {
           this.isAdminEstadisticas = false;
           this.isUsuariosProfile = false;
           this.isUsuariosRoutines = false;
+          this.isUsuariosEstadisticas = false;
+          this.isLogin = false;
         } else if (e.url === '/admin/users/edit') {          
           this.isAdminSign_in = false;
           this.isAdminUsers = false;
@@ -84,6 +92,8 @@ export class AppComponent implements OnInit, OnDestroy {
           this.isAdminEstadisticas = false;
           this.isUsuariosProfile = false;
           this.isUsuariosRoutines = false;
+          this.isUsuariosEstadisticas = false;
+          this.isLogin = false;
         } else if (e.url === '/admin/activate/users'){
           this.isAdminSign_in = false;
           this.isAdminUsers = false;
@@ -97,6 +107,8 @@ export class AppComponent implements OnInit, OnDestroy {
           this.isAdminEstadisticas = false;
           this.isUsuariosProfile = false;
           this.isUsuariosRoutines = false;
+          this.isUsuariosEstadisticas = false;
+          this.isLogin = false;
         } else if (e.url === '/admin/activate'){          
           this.isAdminSign_in = false;
           this.isAdminUsers = false;
@@ -110,6 +122,8 @@ export class AppComponent implements OnInit, OnDestroy {
           this.isAdminEstadisticas = false;
           this.isUsuariosProfile = false;
           this.isUsuariosRoutines = false;
+          this.isUsuariosEstadisticas = false;
+          this.isLogin = false;
         }else if(e.url === '/admin/register'){
           this.isAdminSign_in = false;
           this.isAdminUsers = false;
@@ -123,6 +137,8 @@ export class AppComponent implements OnInit, OnDestroy {
           this.isAdminEstadisticas = false;
           this.isUsuariosProfile = false;
           this.isUsuariosRoutines = false;
+          this.isUsuariosEstadisticas = false;
+          this.isLogin = false;
         }else if(e.url === '/admin/exercise'){
           this.isAdminSign_in = false;
           this.isAdminUsers = false;
@@ -136,6 +152,8 @@ export class AppComponent implements OnInit, OnDestroy {
           this.isAdminEstadisticas = false;
           this.isUsuariosProfile = false;
           this.isUsuariosRoutines = false;
+          this.isUsuariosEstadisticas = false;
+          this.isLogin = false;
         }else if(e.url === '/admin/routines' || e.url ==='/admin/routines/'+this.message){
           this.isAdminSign_in = false;
           this.isAdminUsers = false;
@@ -149,6 +167,8 @@ export class AppComponent implements OnInit, OnDestroy {
           this.isAdminEstadisticas = false;
           this.isUsuariosProfile = false;
           this.isUsuariosRoutines = false;
+          this.isUsuariosEstadisticas = false;
+          this.isLogin = false;
         }else if(e.url === '/admin/assignRoutines'){
           this.isAdminSign_in = false;
           this.isAdminUsers = false;
@@ -162,6 +182,8 @@ export class AppComponent implements OnInit, OnDestroy {
           this.isAdminEstadisticas = false;
           this.isUsuariosProfile = false;
           this.isUsuariosRoutines = false;
+          this.isUsuariosEstadisticas = false;
+          this.isLogin = false;
         }else if(e.url === '/admin/estadisticas'){
           this.isAdminSign_in = false;
           this.isAdminUsers = false;
@@ -175,6 +197,8 @@ export class AppComponent implements OnInit, OnDestroy {
           this.isAdminEstadisticas = true;
           this.isUsuariosProfile = false;
           this.isUsuariosRoutines = false;
+          this.isUsuariosEstadisticas = false;
+          this.isLogin = false;
         }else if(e.url === '/usuarios/profile'){
           this.isAdminSign_in = false;
           this.isAdminUsers = false;
@@ -188,6 +212,8 @@ export class AppComponent implements OnInit, OnDestroy {
           this.isAdminEstadisticas = false;
           this.isUsuariosProfile = true;
           this.isUsuariosRoutines = false;
+          this.isUsuariosEstadisticas = false;
+          this.isLogin = false;
         }else if(e.url === '/usuarios/rutinas'){
           this.isAdminSign_in = false;
           this.isAdminUsers = false;
@@ -201,6 +227,38 @@ export class AppComponent implements OnInit, OnDestroy {
           this.isAdminEstadisticas = false;
           this.isUsuariosProfile = false;
           this.isUsuariosRoutines = true;
+          this.isUsuariosEstadisticas = false;
+          this.isLogin = false;
+        }else if(e.url === '/usuarios/estadisticas'){
+          this.isAdminSign_in = false;
+          this.isAdminUsers = false;
+          this.isAdminUsersEdit = false;
+          this.isAdminActivateUsers = false;
+          this.isAdminActivate = false;
+          this.isAdminRegister = false;
+          this.isAdminExercise = false;
+          this.isAdminRutina = false;
+          this.isAdminAssignRoutines = false;
+          this.isAdminEstadisticas = false;
+          this.isUsuariosProfile = false;
+          this.isUsuariosRoutines = false;
+          this.isUsuariosEstadisticas = true;
+          this.isLogin = false;
+        }else if(this.message == "default message"){
+          this.isAdminSign_in = false;
+          this.isAdminUsers = false;
+          this.isAdminUsersEdit = false;
+          this.isAdminActivateUsers = false;
+          this.isAdminActivate = false;
+          this.isAdminRegister = false;
+          this.isAdminExercise = false;
+          this.isAdminRutina = false;
+          this.isAdminAssignRoutines = false;
+          this.isAdminEstadisticas = false;
+          this.isUsuariosProfile = false;
+          this.isUsuariosRoutines = false;
+          this.isUsuariosEstadisticas = false;
+          this.isLogin = true;
         }
       }
     });

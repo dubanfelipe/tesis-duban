@@ -18,6 +18,7 @@ import { AsignarRutinasComponent } from './components/asignar-rutinas/asignar-ru
 import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
 import { UserRutinasComponent } from './components/user-rutinas/user-rutinas.component';
 import { NewGuardsGuard } from './shared/newGuards/new-guards.guard';
+import { EstadisticasUserComponent } from './components/estadisticas-user/estadisticas-user.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'admin/estadisticas', component: EstadisticasComponent, canActivate: [GuardsGuard]},
   { path: 'usuarios/profile', component: ProfileComponent, canActivate: [NewGuardsGuard]},
   { path: 'usuarios/rutinas', component: UserRutinasComponent, canActivate: [NewGuardsGuard]},
+  { path: 'usuarios/estadisticas', component: EstadisticasUserComponent, canActivate: [NewGuardsGuard]},
   { path: '**', component: LoginComponent }
 ];
 
