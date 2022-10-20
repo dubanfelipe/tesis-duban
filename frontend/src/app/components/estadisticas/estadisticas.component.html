@@ -11,7 +11,7 @@
           <div class="section-flex">
             <div class="form-group">
               <mat-form-field appearance="outline" style="width:150px !important">
-                <mat-label>Dia</mat-label>
+                <mat-label style="color: white;">Dia</mat-label>
                 <mat-select matInput autocomplete="off" required placeholder="Seleccione el dia" formControlName="diaLetra">
                   <mat-option *ngFor="let dia of dia" value={{dia}}>
                     {{dia}}
@@ -45,7 +45,7 @@
           <div class="section-flex">
             <div class="form-group">
               <mat-form-field appearance="outline" style="width:150px !important">
-                <mat-label>Mes</mat-label>
+                <mat-label style="color: white;">Mes</mat-label>
                 <mat-select matInput autocomplete="off" required placeholder="Seleccione el mes" formControlName="mesLetra">
                   <mat-option *ngFor="let mes of mes" value={{mes}}>
                     {{mes}}

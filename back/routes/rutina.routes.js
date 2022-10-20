@@ -8,6 +8,7 @@ router.delete('/Ejercicio/:Id_ejercicio', RutinaCtrl.deleteEjercicio);
 router.put('/Ejercicio/:Id_ejercicio', RutinaCtrl.updateEjercicio);
 router.get('/Ejercicio/:Id_ejercicio', RutinaCtrl.getEjercicioById);
 router.get('/Ejercicio', RutinaCtrl.getEjercicio);
+router.get('/Ejercicio/Name/:Name', RutinaCtrl.getEjercicioName)
 
 //Rutina
 router.post('/Rutina/createRutina', RutinaCtrl.createRutina);

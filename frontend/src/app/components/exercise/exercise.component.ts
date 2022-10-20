@@ -116,15 +116,50 @@ export class ExerciseComponent implements OnInit {
             this.DocumentosForm.patchValue({
               EjercicioImagen: null
             });
-            document.getElementById("modalNotificacion").click();
+            this.RutinaService.getEjercicioName(this.datosEjercicio.Nombre)
+            .subscribe(res => {
+              if(res[0] != undefined){
+                M.toast({
+                  html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                      <h4 class="alert-heading">ERROR CREANDO EJERCICIO</h4>
+                      <p>Ya existe un ejercicio con este nombre</p>
+                      <hr>
+                </div>`});
+              }else{
+                document.getElementById("modalNotificacion").click();
+              }
+            })
+          }else {
+            M.toast({
+              html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                  <h4 class="alert-heading">ERROR CREANDO EJERCICIO</h4>
+                  <p>No cumple con las parametros</p>
+                  <hr>
+            </div>`});
           }
         }
+        else {
+          M.toast({
+            html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                <h4 class="alert-heading">ERROR CREANDO EJERCICIO</h4>
+                <p>El tiempo de descanso no puede ser superior a 300 segundos</p>
+                <hr>
+          </div>`});
+        }
+      }
+      else {
+        M.toast({
+          html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+              <h4 class="alert-heading">ERROR CREANDO EJERCICIO</h4>
+              <p>El numero de repeticiones no puede ser superior a 99</p>
+              <hr>
+        </div>`});
       }
     } else {
       M.toast({
         html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
             <h4 class="alert-heading">ERROR CREANDO EJERCICIO</h4>
-            <p>No cumple con las parametros</p>
+            <p>El numero de series no puede ser superior a 99</p>
             <hr>
       </div>`});
     }
@@ -145,18 +180,51 @@ export class ExerciseComponent implements OnInit {
               this.DocumentosForm.patchValue({
                 EjercicioImagen: null
               });
-              document.getElementById("modalImagen").click();
+              this.RutinaService.getEjercicioName(this.datosEjercicio.Nombre)
+              .subscribe(res => {
+                if(res[0].Id_ejercicio != this.datosEjercicio.Id_ejercicio){
+                  M.toast({
+                    html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                        <h4 class="alert-heading">ERROR EDITANDO EJERCICIO</h4>
+                        <p>Ya existe un ejercicio con este nombre</p>
+                        <hr>
+                  </div>`});
+                }else{
+                  document.getElementById("modalImagen").click();
+                } 
+              })
             }, (error) => {
               console.log(error)
             });
+          }else {
+            M.toast({
+              html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                  <h4 class="alert-heading">ERROR EDITANDO EJERCICIO</h4>
+                  <p>No cumple con las parametros</p>
+                  <hr>
+            </div>`});
           }
+        }else {
+          M.toast({
+            html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                <h4 class="alert-heading">ERROR EDITANDO EJERCICIO</h4>
+                <p>El tiempo de descanso no puede ser superior a 300 segundos</p>
+                <hr>
+          </div>`});
         }
+      }else {
+        M.toast({
+          html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+              <h4 class="alert-heading">ERROR EDITANDO EJERCICIO</h4>
+              <p>El numero de repeticiones no puede ser superior a 99</p>
+              <hr>
+        </div>`});
       }
     } else {
       M.toast({
         html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
             <h4 class="alert-heading">ERROR EDITANDO EJERCICIO</h4>
-            <p>No cumple con las parametros</p>
+            <p>El numero de series no puede ser superior a 99</p>
             <hr>
       </div>`});
     }

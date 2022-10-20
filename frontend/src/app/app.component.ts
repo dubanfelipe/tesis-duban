@@ -258,7 +258,6 @@ export class AppComponent implements OnInit, OnDestroy {
           this.isUsuariosProfile = false;
           this.isUsuariosRoutines = false;
           this.isUsuariosEstadisticas = false;
-          this.isLogin = true;
         }
       }
     });

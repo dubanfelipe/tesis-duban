@@ -71,6 +71,17 @@ RutinaCtrl.getEjercicioById = (req, res) => {
         }
     });
 }
+RutinaCtrl.getEjercicioName = (req, res) =>{
+    let Name = req.params.Name;
+    db.query(`SELECT * FROM Ejercicio WHERE Nombre='${Name}'`, (err, data) => {
+        if (err) {
+            res.json({ error: err });
+            console.log("Hubo un error en la busqueda de Ejercicios" + err);
+        } else {
+            res.json(data);
+        }
+    });
+}
 RutinaCtrl.getEjercicio = (req, res) => {
     db.query(`SELECT e.*,m.* FROM Ejercicio AS e INNER JOIN Musculos AS m ON e.Musculos_id_musculos = m.Id_musculos`, (err, data) => {
         if (err) {

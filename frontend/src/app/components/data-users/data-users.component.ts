@@ -16,6 +16,7 @@ export class DataUsersComponent implements OnInit {
   Nombre_Rol;
   Cedula;
   Id_Persona: any;
+  Nombre_Apellido: any;
   constructor(public registerService:RegisterService, private router: Router, public DatosService:datosService) { }
   settings = {
     hideSubHeader: false,
@@ -74,6 +75,7 @@ export class DataUsersComponent implements OnInit {
       this.Nombre_Rol = event.data.Nombre_rol;
       this.Cedula = event.data.Cedula;
       this.Id_Persona = event.data.Id_persona; 
+      this.Nombre_Apellido = event.data.Nombre + ' ' + event.data.Apellido;
       document.getElementById("modalNotificacion").click();        
     }
   }

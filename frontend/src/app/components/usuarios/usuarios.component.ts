@@ -22,7 +22,6 @@ export class UsuariosComponent implements OnInit {
     const token = localStorage.getItem('usuario');
     this.tokenPayload = decode(token)
     this.tokenPayload.activo == 0 ? this.disabled = false : this.disabled = true;
-    console.log("disabled", this.disabled);
   }
   
 }

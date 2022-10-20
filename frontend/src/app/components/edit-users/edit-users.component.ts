@@ -161,110 +161,11 @@ export class EditUsersComponent implements OnInit {
       Semestre: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(10), Validators.pattern(/^[0-9]*$/)])],
     })
   };
-  ngOnInit(): void { 
-    this.getFacultades();
-    this.getRoles();
-    this.getRh();
-    this.getDeportista();
-    this.getEscalaPeso();
-    if (this.DatosService.Value_Cedula == undefined) {
-      this.router.navigate(['admin/users']);
-    } else {
-      if (this.DatosService.Value_Rol == 'Estudiante') {
-        this.rolEstudiante = true;
-        this.rolOtro = true;
-        this.registerService.getRegisterByIdEstudiante(this.DatosService.Value_Cedula)
-        .subscribe(
-          res =>{
-            console.log(res[0]);
-            this.estudiantes = res[0];
-            this.NombreUsuario = this.estudiantes.Nombre;
-            this.ApellidoUsuario = this.estudiantes.Apellido;
-            this.registerForm.patchValue({"Id_persona": this.estudiantes.Id_persona});
-            this.registerForm.patchValue({"Nombre": this.estudiantes.Nombre});
-            this.registerForm.patchValue({"Apellido": this.estudiantes.Apellido});  
-            this.registerForm.patchValue({"Correo": this.estudiantes.Correo});
-            this.registerForm.patchValue({"Cedula": this.estudiantes.Cedula}); 
-            this.registerForm.patchValue({"Rutina_asignada": this.estudiantes.Rutina_asignada});
-            this.registerForm.patchValue({"Rol_id_rol": this.roles[0][this.estudiantes.Rol_id_rol-1].Nombre_rol}); 
-            this.registerUsuarioForm.patchValue({"Id_usuario": this.estudiantes.Id_usuario});
-            this.registerUsuarioForm.patchValue({"Celular": this.estudiantes.Celular});
-            this.registerUsuarioForm.patchValue({"Edad": this.estudiantes.Edad});
-            this.registerUsuarioForm.patchValue({"Estatura": this.estudiantes.Estatura});
-            this.registerUsuarioForm.patchValue({"Peso": this.estudiantes.Peso});
-            this.registerUsuarioForm.patchValue({"Rh": this.estudiantes.Rh});
-            this.registerUsuarioForm.patchValue({"Deportista": this.estudiantes.Deportista});
-            this.registerUsuarioForm.patchValue({"Facultad_id_facultad": this.facultadArray[0][this.estudiantes.Facultad_id_facultad-1].Nombre_facultad});
-            this.registerUsuarioForm.patchValue({"EscalaPeso": this.estudiantes.EscalaPeso});
-            this.registerUsuarioForm.patchValue({"Eps": this.estudiantes.Eps});
-            this.registerUsuarioForm.patchValue({"Dificultades_patologicas": this.estudiantes.Dificultades_patologicas});
-            this.registerUsuarioForm.patchValue({"Fecha_nacimiento": this.estudiantes.Fecha_nacimiento});
-            this.registerUsuarioForm.patchValue({"Nombre_Acompanante": this.estudiantes.Nombre_Acompanante});
-            this.registerUsuarioForm.patchValue({"Celular_Acompanante": this.estudiantes.Celular_Acompanante});
-            this.registerUsuarioForm.patchValue({"Parentesco_Acompanante": this.estudiantes.Parentesco_Acompanante});
-            this.registerEstudianteForm.patchValue({"Id_estudiante": this.estudiantes.Id_estudiante});
-            this.registerEstudianteForm.patchValue({"Codigo": this.estudiantes.Codigo});
-            this.registerEstudianteForm.patchValue({"Semestre": this.estudiantes.Semestre});
-            this.Cargando=true; 
-          },
-          err=> console.log(err)
-        )      
-      } else if (this.DatosService.Value_Rol == 'Administrador'){
-        this.registerService.getRegisterByIdPersonaCedula(this.DatosService.Value_Cedula) 
-        .subscribe(
-          res => {
-            this.estudiantes = res[0];    
-            this.rolAdministrador = true;  
-            this.NombreUsuario = this.estudiantes.Nombre;
-            this.ApellidoUsuario = this.estudiantes.Apellido;
-            this.registerForm.patchValue({"Id_persona": this.estudiantes.Id_persona});
-            this.registerForm.patchValue({"Nombre": this.estudiantes.Nombre});
-            this.registerForm.patchValue({"Apellido": this.estudiantes.Apellido});  
-            this.registerForm.patchValue({"Correo": this.estudiantes.Correo});
-            this.registerForm.patchValue({"Cedula": this.estudiantes.Cedula}); 
-            this.registerForm.patchValue({"Rutina_asignada": this.estudiantes.Rutina_asignada}); 
-            this.registerForm.patchValue({"Rol_id_rol": this.roles[0][this.estudiantes.Rol_id_rol-1].Nombre_rol});            
-            this.Cargando=true; 
-          },
-          err=> console.log(err)
-        )      
-      }else {
-        this.rolEstudiante = false;
-        this.rolOtro = true;
-        this.registerService.getRegisterByIdUsuario(this.DatosService.Value_Cedula)  
-        .subscribe(
-          res => {
-            this.estudiantes = res[0];            
-            this.NombreUsuario = this.estudiantes.Nombre;
-            this.ApellidoUsuario = this.estudiantes.Apellido;
-            this.registerForm.patchValue({"Id_persona": this.estudiantes.Id_persona});
-            this.registerForm.patchValue({"Nombre": this.estudiantes.Nombre});
-            this.registerForm.patchValue({"Apellido": this.estudiantes.Apellido});  
-            this.registerForm.patchValue({"Correo": this.estudiantes.Correo});
-            this.registerForm.patchValue({"Cedula": this.estudiantes.Cedula}); 
-            this.registerForm.patchValue({"Rutina_asignada": this.estudiantes.Rutina_asignada}); 
-            this.registerForm.patchValue({"Rol_id_rol": this.roles[0][this.estudiantes.Rol_id_rol-1].Nombre_rol});
-            this.registerUsuarioForm.patchValue({"Id_usuario": this.estudiantes.Id_usuario});
-            this.registerUsuarioForm.patchValue({"Celular": this.estudiantes.Celular});
-            this.registerUsuarioForm.patchValue({"Edad": this.estudiantes.Edad});
-            this.registerUsuarioForm.patchValue({"Estatura": this.estudiantes.Estatura});
-            this.registerUsuarioForm.patchValue({"Peso": this.estudiantes.Peso});
-            this.registerUsuarioForm.patchValue({"Rh": this.estudiantes.Rh});
-            this.registerUsuarioForm.patchValue({"Deportista": this.estudiantes.Deportista});
-            this.registerUsuarioForm.patchValue({"Facultad_id_facultad": this.facultadArray[0][this.estudiantes.Facultad_id_facultad-1].Nombre_facultad});
-            this.registerUsuarioForm.patchValue({"EscalaPeso": this.estudiantes.EscalaPeso});
-            this.registerUsuarioForm.patchValue({"Eps": this.estudiantes.Eps});
-            this.registerUsuarioForm.patchValue({"Dificultades_patologicas": this.estudiantes.Dificultades_patologicas});
-            this.registerUsuarioForm.patchValue({"Fecha_nacimiento": this.estudiantes.Fecha_nacimiento});
-            this.registerUsuarioForm.patchValue({"Nombre_Acompanante": this.estudiantes.Nombre_Acompanante});
-            this.registerUsuarioForm.patchValue({"Celular_Acompanante": this.estudiantes.Celular_Acompanante});
-            this.registerUsuarioForm.patchValue({"Parentesco_Acompanante": this.estudiantes.Parentesco_Acompanante});
-            this.Cargando=true;
-          },
-          err=> console.log(err)
-        )
-      }
-    }
+  async ngOnInit() { 
+    await this.getFacultades();    
+    await this.getRh();
+    await this.getDeportista();
+    await this.getEscalaPeso();       
   }  
   addRegister(form?, form2?, form3?){ 
     form.value.Rutina_asignada = this.estudiantes.Rutina_asignada;
@@ -371,17 +272,119 @@ export class EditUsersComponent implements OnInit {
     })
   }
 
-  getFacultades() {
+  async getFacultades() {
     this.registerService.getFacultades()
-      .subscribe(res => {
+      .subscribe(async res => {
         this.facultadArray[0] = res;
+        await this.getRoles();
       })
   }
-  getRoles() {
+  async getRoles() {
     this.registerService.getRoles()
-    .subscribe(res => {
-      this.roles[0] = res;     
+    .subscribe( async res => {
+      this.roles[0] = res;    
+      await this.Datos(); 
     })
+  }
+  async Datos(){
+    if (this.DatosService.Value_Cedula == undefined) {
+      this.router.navigate(['admin/users']);
+    } else {
+      if (this.DatosService.Value_Rol == 'Estudiante') {
+        this.rolEstudiante = true;
+        this.rolOtro = true;
+        this.registerService.getRegisterByIdEstudiante(this.DatosService.Value_Cedula)
+        .subscribe(
+          res =>{
+            console.log(res[0]);
+            this.estudiantes = res[0];
+            this.NombreUsuario = this.estudiantes.Nombre;
+            this.ApellidoUsuario = this.estudiantes.Apellido;
+            this.registerForm.patchValue({"Id_persona": this.estudiantes.Id_persona});
+            this.registerForm.patchValue({"Nombre": this.estudiantes.Nombre});
+            this.registerForm.patchValue({"Apellido": this.estudiantes.Apellido});  
+            this.registerForm.patchValue({"Correo": this.estudiantes.Correo});
+            this.registerForm.patchValue({"Cedula": this.estudiantes.Cedula}); 
+            this.registerForm.patchValue({"Rutina_asignada": this.estudiantes.Rutina_asignada});
+            this.registerForm.patchValue({"Rol_id_rol": this.roles[0][this.estudiantes.Rol_id_rol-1].Nombre_rol}); 
+            this.registerUsuarioForm.patchValue({"Id_usuario": this.estudiantes.Id_usuario});
+            this.registerUsuarioForm.patchValue({"Celular": this.estudiantes.Celular});
+            this.registerUsuarioForm.patchValue({"Edad": this.estudiantes.Edad});
+            this.registerUsuarioForm.patchValue({"Estatura": this.estudiantes.Estatura});
+            this.registerUsuarioForm.patchValue({"Peso": this.estudiantes.Peso});
+            this.registerUsuarioForm.patchValue({"Rh": this.estudiantes.Rh});
+            this.registerUsuarioForm.patchValue({"Deportista": this.estudiantes.Deportista});
+            this.registerUsuarioForm.patchValue({"Facultad_id_facultad": this.facultadArray[0][this.estudiantes.Facultad_id_facultad-1].Nombre_facultad});
+            this.registerUsuarioForm.patchValue({"EscalaPeso": this.estudiantes.EscalaPeso});
+            this.registerUsuarioForm.patchValue({"Eps": this.estudiantes.Eps});
+            this.registerUsuarioForm.patchValue({"Dificultades_patologicas": this.estudiantes.Dificultades_patologicas});
+            this.registerUsuarioForm.patchValue({"Fecha_nacimiento": this.estudiantes.Fecha_nacimiento});
+            this.registerUsuarioForm.patchValue({"Nombre_Acompanante": this.estudiantes.Nombre_Acompanante});
+            this.registerUsuarioForm.patchValue({"Celular_Acompanante": this.estudiantes.Celular_Acompanante});
+            this.registerUsuarioForm.patchValue({"Parentesco_Acompanante": this.estudiantes.Parentesco_Acompanante});
+            this.registerEstudianteForm.patchValue({"Id_estudiante": this.estudiantes.Id_estudiante});
+            this.registerEstudianteForm.patchValue({"Codigo": this.estudiantes.Codigo});
+            this.registerEstudianteForm.patchValue({"Semestre": this.estudiantes.Semestre});
+            this.Cargando=true; 
+          },
+          err=> console.log(err)
+        )      
+      } else if (this.DatosService.Value_Rol == 'Administrador'){
+        this.registerService.getRegisterByIdPersonaCedula(this.DatosService.Value_Cedula) 
+        .subscribe(
+          res => {
+            this.estudiantes = res[0];    
+            this.rolAdministrador = true;  
+            this.NombreUsuario = this.estudiantes.Nombre;
+            this.ApellidoUsuario = this.estudiantes.Apellido;
+            this.registerForm.patchValue({"Id_persona": this.estudiantes.Id_persona});
+            this.registerForm.patchValue({"Nombre": this.estudiantes.Nombre});
+            this.registerForm.patchValue({"Apellido": this.estudiantes.Apellido});  
+            this.registerForm.patchValue({"Correo": this.estudiantes.Correo});
+            this.registerForm.patchValue({"Cedula": this.estudiantes.Cedula}); 
+            this.registerForm.patchValue({"Rutina_asignada": this.estudiantes.Rutina_asignada}); 
+            this.registerForm.patchValue({"Rol_id_rol": this.roles[0][this.estudiantes.Rol_id_rol-1].Nombre_rol});            
+            this.Cargando=true; 
+          },
+          err=> console.log(err)
+        )      
+      }else {
+        this.rolEstudiante = false;
+        this.rolOtro = true;
+        this.registerService.getRegisterByIdUsuario(this.DatosService.Value_Cedula)  
+        .subscribe(
+          res => {
+            this.estudiantes = res[0];            
+            this.NombreUsuario = this.estudiantes.Nombre;
+            this.ApellidoUsuario = this.estudiantes.Apellido;
+            this.registerForm.patchValue({"Id_persona": this.estudiantes.Id_persona});
+            this.registerForm.patchValue({"Nombre": this.estudiantes.Nombre});
+            this.registerForm.patchValue({"Apellido": this.estudiantes.Apellido});  
+            this.registerForm.patchValue({"Correo": this.estudiantes.Correo});
+            this.registerForm.patchValue({"Cedula": this.estudiantes.Cedula}); 
+            this.registerForm.patchValue({"Rutina_asignada": this.estudiantes.Rutina_asignada}); 
+            this.registerForm.patchValue({"Rol_id_rol": this.roles[0][this.estudiantes.Rol_id_rol-1].Nombre_rol});
+            this.registerUsuarioForm.patchValue({"Id_usuario": this.estudiantes.Id_usuario});
+            this.registerUsuarioForm.patchValue({"Celular": this.estudiantes.Celular});
+            this.registerUsuarioForm.patchValue({"Edad": this.estudiantes.Edad});
+            this.registerUsuarioForm.patchValue({"Estatura": this.estudiantes.Estatura});
+            this.registerUsuarioForm.patchValue({"Peso": this.estudiantes.Peso});
+            this.registerUsuarioForm.patchValue({"Rh": this.estudiantes.Rh});
+            this.registerUsuarioForm.patchValue({"Deportista": this.estudiantes.Deportista});
+            this.registerUsuarioForm.patchValue({"Facultad_id_facultad": this.facultadArray[0][this.estudiantes.Facultad_id_facultad-1].Nombre_facultad});
+            this.registerUsuarioForm.patchValue({"EscalaPeso": this.estudiantes.EscalaPeso});
+            this.registerUsuarioForm.patchValue({"Eps": this.estudiantes.Eps});
+            this.registerUsuarioForm.patchValue({"Dificultades_patologicas": this.estudiantes.Dificultades_patologicas});
+            this.registerUsuarioForm.patchValue({"Fecha_nacimiento": this.estudiantes.Fecha_nacimiento});
+            this.registerUsuarioForm.patchValue({"Nombre_Acompanante": this.estudiantes.Nombre_Acompanante});
+            this.registerUsuarioForm.patchValue({"Celular_Acompanante": this.estudiantes.Celular_Acompanante});
+            this.registerUsuarioForm.patchValue({"Parentesco_Acompanante": this.estudiantes.Parentesco_Acompanante});
+            this.Cargando=true;
+          },
+          err=> console.log(err)
+        )
+      }
+    }
   }
   getRh() {
     this.tipoSangre[0] = "O -";

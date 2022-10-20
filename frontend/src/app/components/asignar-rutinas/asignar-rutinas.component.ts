@@ -113,7 +113,6 @@ export class AsignarRutinasComponent implements OnInit {
   getUsuarios(){
     this.registerService.getRegisterRol().
     subscribe(res =>{
-      console.log(res);
       this.registerService.personas = res as PERSONA[];
     })
   }
@@ -147,26 +146,28 @@ export class AsignarRutinasComponent implements OnInit {
     })
   }
 
-  ConfirmRutina(){
-    for (let index = 0; index < this.selectedRows.length; index++) {    
-      this.HAS.Id_persona = this.selectedRows[index].Id_persona;
-      this.HAS.Id_rutinacompleta = this.RutinaSeleccionada.Id_rutinacompleta;
-      this.selectedRows[index].Rutina_asignada = this.RutinaSeleccionada.Nombre_Rutina;
-      this.RutinaService.deleteRutinaCompletaHas(this.HAS.Id_persona)
-      .subscribe(res =>{
-        this.RutinaService.createRutinacompletaHasPersona(this.HAS)
-        .subscribe(res => {                 
-          this.registerService.updateRegisterRutinaAsignadaByIdPersona(this.HAS.Id_persona, this.selectedRows[index])
+  async ConfirmRutina(){
+    for await(let index of this.selectedRows) {  
+     await this.RutinaService.deleteRutinaCompletaHas(index.Id_persona)
+      .subscribe(async res =>{
+        this.HAS.Id_persona = index.Id_persona;
+        this.HAS.Id_rutinacompleta = this.RutinaSeleccionada.Id_rutinacompleta;
+        index.Rutina_asignada = this.RutinaSeleccionada.Nombre_Rutina;
+        await this.RutinaService.createRutinacompletaHasPersona(this.HAS)
+        .subscribe(async res => {                
+          await this.registerService.updateRegisterRutinaAsignadaByIdPersona(index.Id_persona, index)
           .subscribe(res => {  
             M.toast({
               html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
                   <h4 class="alert-heading">RUTINAS ASIGNADAS</h4>
                   <hr>
               </div>`});  
-              this.getUsuarios();            
+              if(index.Id_persona == this.selectedRows[(this.selectedRows.length - 1)].Id_persona){
+                window.location.reload(); 
+              }                         
           })            
         }) 
       })           
-    }       
+    }    
   }
 }

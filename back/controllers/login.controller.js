@@ -27,38 +27,42 @@ loginCtrl.authentication = (req, res) => {
     let cedula = req.body.cedula;
     let password = req.body.password;
     db.query(`SELECT * FROM Persona WHERE cedula = '${cedula}'`, (err, data) => {
-        if (err) { 
-            res.send('Ocurrio un error en la busqueda' + err) 
-        } 
-        else {
-            console.log(data[0].Password);
-            if (data.length == 0) {
-                console.log("no existe");
-                res.json({ fail: 1 });
-            } else if (bcrypt.compareSync(password, data[0].Password) != 1) {
-                res.json({ fail: 2 });
-                console.log("diferentes");
-            } else if (data[0].Activo == false) {
-                console.log("No activado");
-                id_persona = data[0].Id_persona;
-                cedula = data[0].Cedula;
-                nombre = data[0].Nombre; 
-                rol = data[0].Rol_id_rol;  
-                activo = data[0].Activo; 
-                token = jwt.sign({id_persona, cedula, nombre, rol, activo},config.secret, { expiresIn: 86400 })
-                res.json({ auth: true, token: token, fail: 3 })
-            } else {
-                console.log("correcto");
-                id_persona = data[0].Id_persona;
-                cedula = data[0].Cedula;
-                nombre = data[0].Nombre; 
-                rol = data[0].Rol_id_rol;  
-                activo = data[0].Activo;   
-                token = jwt.sign({id_persona, cedula, nombre, rol, activo},config.secret, { expiresIn: 86400 })
-                res.json({ auth: true, token: token })       
-                                  
+        if(data[0] == undefined){
+            res.json({ fail: 1 });
+        }else{
+            if (err) { 
+                res.send('Ocurrio un error en la busqueda' + err) 
+            } 
+            else {
+                console.log(data[0].Password);
+                if (data.length == 0) {
+                    console.log("no existe");
+                    res.json({ fail: 1 });
+                } else if (bcrypt.compareSync(password, data[0].Password) != 1) {
+                    res.json({ fail: 2 });
+                    console.log("diferentes");
+                } else if (data[0].Activo == false) {
+                    console.log("No activado");
+                    id_persona = data[0].Id_persona;
+                    cedula = data[0].Cedula;
+                    nombre = data[0].Nombre; 
+                    rol = data[0].Rol_id_rol;  
+                    activo = data[0].Activo; 
+                    token = jwt.sign({id_persona, cedula, nombre, rol, activo},config.secret, { expiresIn: 86400 })
+                    res.json({ auth: true, token: token, fail: 3 })
+                } else {
+                    console.log("correcto");
+                    id_persona = data[0].Id_persona;
+                    cedula = data[0].Cedula;
+                    nombre = data[0].Nombre; 
+                    rol = data[0].Rol_id_rol;  
+                    activo = data[0].Activo;   
+                    token = jwt.sign({id_persona, cedula, nombre, rol, activo},config.secret, { expiresIn: 86400 })
+                    res.json({ auth: true, token: token })       
+                                      
+                }
             }
-        }
+        }        
     });
 }
 

@@ -115,6 +115,9 @@ export class SignInComponent implements OnInit {
                 <h4 class="alert-heading">INGRESO EXITOSO</h4>
                 <hr>
             </div>`});
+            this.loginForm.patchValue({
+              cedula: null,
+            });
             this.getIngreso();
           })          
         })  
@@ -131,6 +134,9 @@ export class SignInComponent implements OnInit {
               <h4 class="alert-heading">SALIDA EXITOSA</h4>
               <hr>
           </div>`});
+          this.loginForm.patchValue({
+            cedula: null,
+          });
           this.getIngreso();
         })  
       }       

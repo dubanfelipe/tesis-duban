@@ -18,18 +18,20 @@
           <div class="texto1">
             <h2 class="al">al</h2>
             <h2 class="gimnasio">gimnasio</h2>
+            <br>
+            <br>
             <h2 class="usta">USTA</h2>
           </div>
         </div>
-        <div class="card" style="width: 280px;">
+        <div class="card" style="width: 300px;">
           <div>
             <h5 class="card-title">INGRESAR</h5>
-            <form [formGroup]="loginForm" autocomplete="off">
+            <form [formGroup]="loginForm" autocomplete="nope">
               <div class="section-flex">
                 <div class="form-group">
                   <mat-form-field appearance="outline">
                     <mat-label>Documento</mat-label>
-                    <input matInput formControlName="cedula" type="text" autocomplete="off" required placeholder="Digita # de Documento" />
+                    <input matInput formControlName="cedula" type="text" autocomplete="nope" required placeholder="Digita # de Documento" />
                     <mat-error *ngIf="cedula.errors?.pattern">Documento incorrecto</mat-error>
                     <mat-error *ngIf="cedula.errors?.required">Documento requerido</mat-error>
                   </mat-form-field>
@@ -39,7 +41,7 @@
                 <div class="form-group">
                   <mat-form-field appearance="outline">
                     <mat-label>Contraseña</mat-label>
-                    <input matInput formControlName="password" autocomplete="off" type="password" placeholder="Digita la contraseña"
+                    <input matInput formControlName="password" autocomplete="nope" type="password" placeholder="Digita la contraseña"
                       required />
                     <mat-error *ngIf="password.errors?.required">Contraseña requerida</mat-error>
                   </mat-form-field>

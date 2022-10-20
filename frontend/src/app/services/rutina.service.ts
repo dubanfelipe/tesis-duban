@@ -28,6 +28,9 @@ export class rutinaService{
     getEjercicio(){
         return this.http.get(this.API_URL+"/Ejercicio");
     }
+    getEjercicioName(name:string){
+        return this.http.get(this.API_URL+`/Ejercicio/Name/${name}`);
+    }
     createEjercicio(ejercicio:EJERCICIO ){
         return this.http.post(this.API_URL+'/Ejercicio/createEjercicio',ejercicio);
     }
