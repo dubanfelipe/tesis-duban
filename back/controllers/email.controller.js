@@ -11,7 +11,7 @@ var transporter = nodemailer.createTransport(smtpTransport({
     service: 'gmail',
     auth: {
         user: 'gimnasi.santotomas@gmail.com',
-        pass: 'Du123.-+85+HOLduf',
+        pass: 'qnaqyltllkrcofyr',
     }
 }));
 
@@ -19,19 +19,28 @@ var transporter = nodemailer.createTransport(smtpTransport({
 emailCtrl.postFormulario = (req, res) => {
     var correo = req.body.Correo;
     var texto = req.body.Texto;
-    const mailOptions = {
-        from: 'gimnasiouniversidad.santotomas@gmail.com', // dirección del remitente 
-        to: `${correo}`, // lista de los destinatarios del 
-        subject: 'SOLICITUD DENAGADA PARA EL REGISTRO EN EL GIMNASIO', // Línea del asunto 
-        html: `${texto}` // cuerpo de texto sin formato 
-    };
-    transporter.sendMail(mailOptions, function(err, info) {
+    db.query(`SELECT * FROM Persona WHERE Correo = '${correo}'`, (err, data) => {
         if (err) {
-            console.log(err)
-            res.json({ exito: false });
+            res.json({ error: err });
+            console.log("Hubo un error en la busqueda del Persona" + err);
         } else {
-            console.log(info);
-            res.json({ exito: true });
+            nombre = data[0].Nombre;
+            const mailOptions = {
+                from: 'gimnasi.santotomas@gmail.com', // dirección del remitente 
+                to: `${correo}`, // lista de los destinatarios del 
+                subject: 'SOLICITUD DENAGADA PARA EL REGISTRO EN EL GIMNASIO', // Línea del asunto 
+                html: `<p>Hola ${nombre}, su solicitud para la activación del gimansio fue denegada por la siguiente razon:</p>
+                        <p>${texto}</p>`  // cuerpo de texto sin formato 
+            };
+            transporter.sendMail(mailOptions, function(err, info) {
+                if (err) {
+                    console.log(err)
+                    res.json({ exito: false });
+                } else {
+                    console.log(info);
+                    res.json({ exito: true });
+                }
+            });
         }
     });
 };

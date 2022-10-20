@@ -14,7 +14,7 @@ var transporter = nodemailer.createTransport(smtpTransport({
     service: 'gmail',
     auth: {
         user: 'gimnasi.santotomas@gmail.com',
-        pass: 'Du123.-+85+HOLduf',
+        pass: 'qnaqyltllkrcofyr',
         //Du123.-+85+HOLduf
     }
 }));
@@ -80,7 +80,7 @@ loginCtrl.recoveryCode =  (req, res) => {
                         res.json({ error: err });
                     } else {
                         const mailOptions = {
-                            from: 'gimnasiouniversidad.santotomas@gmail.com', 
+                            from: 'gimnasi.santotomas@gmail.com', 
                             to: `${correo}`,  
                             subject: 'CODIGO PARA RECUPERAR CONTRASEÑA PLATAFORMA GIMNASIO',  
                             html: `<h1>Solicitud cambio de contraseña</h1>
