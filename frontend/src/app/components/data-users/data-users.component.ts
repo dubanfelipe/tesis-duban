@@ -83,19 +83,15 @@ export class DataUsersComponent implements OnInit {
     if (this.Nombre_Rol == "Estudiante") {
       this.registerService.getRegisterByIdEstudiante(this.Cedula)
       .subscribe(res =>{
-        console.log(res);
         let ESTUDIANTE = res[0].Id_estudiante;
         let USUARIO = res[0].Id_usuario;
         let PERSONA = res[0].Id_persona;
         this.registerService.deleteRegisterByIdEstudiante(ESTUDIANTE)
-        .subscribe(res =>{              
-          console.log(res);
+        .subscribe(res =>{   
           this.registerService.deleteRegisterByIdUsuario(USUARIO)
           .subscribe(res =>{
-            console.log(res);
             this.registerService.deleteRegisterByIdPersona(PERSONA)
             .subscribe(res =>{
-              console.log(res);
               M.toast({
                 html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
                     <h4 class="alert-heading">USUARIO ELIMINADO</h4>
@@ -116,11 +112,9 @@ export class DataUsersComponent implements OnInit {
       } else {
         this.registerService.getRegisterByIdPersonaCedula(this.Cedula)
         .subscribe(res =>{
-          console.log(res);
           let PERSONA = res[0].Id_persona;
           this.registerService.deleteRegisterByIdPersona(PERSONA)
           .subscribe(res =>{
-            console.log(res);
             M.toast({
               html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
                   <h4 class="alert-heading">ADMINISTRADOR ELIMINADO</h4>
@@ -133,15 +127,12 @@ export class DataUsersComponent implements OnInit {
     } else {
       this.registerService.getRegisterByIdUsuario(this.Cedula)
       .subscribe(res =>{
-        console.log(res);
         let USUARIO = res[0].Id_usuario;
         let PERSONA = res[0].Id_persona;
         this.registerService.deleteRegisterByIdUsuario(USUARIO)
         .subscribe(res =>{
-          console.log(res);
           this.registerService.deleteRegisterByIdPersona(PERSONA)
           .subscribe(res =>{
-            console.log(res);
             M.toast({
               html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
                   <h4 class="alert-heading">USUARIO ELIMINADO</h4>

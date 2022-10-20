@@ -64,12 +64,10 @@ registerCtrl.getRegisterByIdPersonaActivo = (req, res) => {
     });
 }
 registerCtrl.createRegisterPersona = async (req, res) => {
-    console.log("usuarios que llego :", req.body);
     usuarios = req.body;
     bcrypt.hash(usuarios.Password,10,function(err,data){
         if(data){
-            usuarios.Password=data;
-            console.log("Password encriptado ",usuarios.Password);            
+            usuarios.Password=data;           
         }else{
             console.log("Hubo un error ENCRIPTANDOCLAVE" + err);
         }  
@@ -93,7 +91,6 @@ registerCtrl.deleteRegisterByIdPersona = (req, res) =>{
             res.json({ error: err });
             console.log("Hubo un error ELIMINANDO Persona" + err);
         } else {
-            console.log("PERSONA ELIMINADAAAAAAAAA");
             res.json({message: 'Persona eliminada'});
         }
     });
@@ -156,7 +153,6 @@ registerCtrl.updateRegisterRutinaAsignadaByRutinaAsignada = (req, res) =>{
 }
 
 registerCtrl.getRutinaAsignadaHasPersona = (req, res) =>{
-    console.log("Este es el id",req.params.id_persona);
     let id = req.params.id_persona;
     db.query(`SELECT * FROM RutinaCompleta_has_persona WHERE Persona_id_persona='${id}'`, (err, data) => {
         if (err) {
@@ -200,7 +196,6 @@ registerCtrl.getRegisterByIdUsuario = (req, res) => {
     });
 }
 registerCtrl.createRegisterUsuario = async (req, res) => {
-    console.log("usuarios que llego :", req.body);
     usuarios = req.body;    
     var query = `INSERT INTO Usuario (Celular,Edad,Estatura,Peso,Rh,Eps,Ingreso,Hora,Deportista,Facultad_id_facultad,EscalaPeso,Dificultades_patologicas,Fecha_nacimiento,Nombre_Acompanante,Celular_Acompanante,Parentesco_Acompanante,Persona_id_persona,Sede_id_sede)
     VALUES ('${usuarios.Celular}','${usuarios.Edad}','${usuarios.Estatura}','${usuarios.Peso}','${usuarios.Rh}','${usuarios.Eps}','${usuarios.Ingreso}','${usuarios.Hora}','${usuarios.Deportista}','${usuarios.Facultad_id_facultad}','${usuarios.EscalaPeso}','${usuarios.Dificultades_patologicas}','${usuarios.Fecha_nacimiento}','${usuarios.Nombre_Acompanante}','${usuarios.Celular_Acompanante}','${usuarios.Parentesco_Acompanante}','${usuarios.Persona_id_persona}','${usuarios.Sede_id_sede}')`;
@@ -215,13 +210,11 @@ registerCtrl.createRegisterUsuario = async (req, res) => {
 }
 registerCtrl.deleteRegisterByIdUsuario = (req, res) => {
     let id = req.params.id_usuario;
-    console.log("en el back llego",id)
     db.query(`DELETE FROM Usuario WHERE Id_usuario= '${id}'`, (err, data) => {
         if (err) {
             res.json({ error: err });
             console.log("Hubo un error ELIMINANDO Usuario" + err);
         } else {
-            console.log("USUARIO ELIMINADAAAAAAAAA");
             res.json({message: 'Usuario eliminado'});
         }
     });
@@ -270,7 +263,6 @@ registerCtrl.getRegisterByIdEstudiante = (req, res) => {
     });
 }
 registerCtrl.createRegisterEstudiante = async (req, res) => {
-    console.log("usuarios que llego :", req.body);
     usuarios = req.body;    
     var query = `INSERT INTO Estudiante (Codigo,Semestre,Usuario_id_usuario)
     VALUES ('${usuarios.Codigo}','${usuarios.Semestre}','${usuarios.Usuario_id_usuario}')`;
@@ -290,7 +282,6 @@ registerCtrl.deleteRegisterByIdEstudiante = (req, res) =>{
             res.json({ error: err });
             console.log("Hubo un error ELIMINANDO Estudiante" + err);
         } else {
-            console.log("ESTUDIANTE ELIMINADAAAAAAAAA");
             res.json({message: 'Estudiante eliminado'});
         }
     });

@@ -119,7 +119,6 @@ export class AsignarRutinasComponent implements OnInit {
   getRutinas(){
     this.RutinaService.getRutinacompleta()
     .subscribe(res =>{
-      console.log(res);
       this.RutinaService.rutina = res as RutinaCompleta[];
     })
   }

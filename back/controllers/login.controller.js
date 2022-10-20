@@ -34,15 +34,11 @@ loginCtrl.authentication = (req, res) => {
                 res.send('Ocurrio un error en la busqueda' + err) 
             } 
             else {
-                console.log(data[0].Password);
                 if (data.length == 0) {
-                    console.log("no existe");
                     res.json({ fail: 1 });
                 } else if (bcrypt.compareSync(password, data[0].Password) != 1) {
                     res.json({ fail: 2 });
-                    console.log("diferentes");
                 } else if (data[0].Activo == false) {
-                    console.log("No activado");
                     id_persona = data[0].Id_persona;
                     cedula = data[0].Cedula;
                     nombre = data[0].Nombre; 
@@ -51,7 +47,6 @@ loginCtrl.authentication = (req, res) => {
                     token = jwt.sign({id_persona, cedula, nombre, rol, activo},config.secret, { expiresIn: 86400 })
                     res.json({ auth: true, token: token, fail: 3 })
                 } else {
-                    console.log("correcto");
                     id_persona = data[0].Id_persona;
                     cedula = data[0].Cedula;
                     nombre = data[0].Nombre; 
@@ -75,12 +70,10 @@ loginCtrl.recoveryCode =  (req, res) => {
     db.query(query, function(err, data) {
         if (err) { res.json({ error: err }) } else {
             if (data.length === 0) {
-                console.log('no esta registrado ese correo', data);
                 res.json({
                     exito: true
                 })
             } else {
-                console.log('se encontro este usuario', data[0].Nombre);
                 nombre = data[0].Nombre;
                 db.query(query2, function(err, data) {
                     if (err) {
@@ -112,18 +105,15 @@ loginCtrl.recoveryCode =  (req, res) => {
 
 loginCtrl.recoveryPassword =  (req, res) => {
     recovery = req.body;
-    console.log('llego esta info del recovery', recovery);
     query = `SELECT Password,Recovery FROM Persona WHERE Correo = '${recovery.correo}'`;
     db.query(query, function(err, data) {
         if (err) { res.json({ error: err }) } else {
             if (data.length === 0) {
-                console.log('no esta registrado ese correo', data);
                 res.json({
                     exito: false,
                     mensaje: `el correo o codigo de cambio de contraseña son incorrectos`
                 })
             } else if (data[0].Recovery === recovery.key) {
-                console.log('se encontro este usuario', data);
                 var hashedPassword = bcrypt.hashSync(recovery.password, 8);
                 query2 = `UPDATE Persona SET Password='${hashedPassword}' WHERE Correo = '${recovery.correo}'`;
                 db.query(query2, function(err, data) {

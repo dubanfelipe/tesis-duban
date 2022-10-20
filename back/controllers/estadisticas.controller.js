@@ -10,9 +10,7 @@ estadisticasCtrl.getEstadisticasDiaLetra = (req, res) => {
     db.query(`SELECT hora, SUM(CASE WHEN sede = 'Sede principal' THEN 1 ELSE 0 END) as cant01, SUM(CASE WHEN sede = 'Edificio Dr Angelico' THEN 1 ELSE 0 END) as cant02, SUM(CASE WHEN sede = 'Campus San Alberto Magno' THEN 1 ELSE 0 END) as cant03 FROM Estadisticas WHERE diaLetra = '${id}' GROUP BY hora ORDER BY hora`, (err, data) =>{
         if (err) {
             res.json({ error: err });
-            console.log("Hubo un error en la busqueda de Usuarios" + err);
         } else {
-            console.log(data);
             res.json(data);
         }
     })
@@ -23,9 +21,7 @@ estadisticasCtrl.getEstadisticasMes = (req, res) => {
     db.query(`SELECT diaNumero, SUM(CASE WHEN sede = 'Sede principal' THEN 1 ELSE 0 END) as cant01, SUM(CASE WHEN sede = 'Edificio Dr Angelico' THEN 1 ELSE 0 END) as cant02, SUM(CASE WHEN sede = 'Campus San Alberto Magno' THEN 1 ELSE 0 END) as cant03 FROM Estadisticas WHERE mes = '${id}' GROUP BY diaNumero ORDER BY diaNumero`, (err, data) =>{
         if (err) {
             res.json({ error: err });
-            console.log("Hubo un error en la busqueda de Usuarios" + err);
         } else {
-            console.log(data);
             res.json(data);
         }
     })

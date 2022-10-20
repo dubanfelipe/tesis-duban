@@ -13,7 +13,6 @@ AutenticarUsuariosCtrl.changeStatus = (req, res) => {
 
     const { id } = req.params;
     const activo = req.body.status;
-    console.log(`change status ${id} , activo: ${activo} y req.body= ${req.body}`);
     db.query(`UPDATE Persona SET activo='${activo}' WHERE Id_persona='${id}' `, (err, data) => {
         if (err) {
             res.json({ status: false });

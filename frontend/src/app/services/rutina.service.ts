@@ -53,14 +53,12 @@ export class rutinaService{
         return this.http.post(this.API_URL+'/Rutina/createRutina',rutina);
     }
     createEjercicioHasRutina(Has:has){
-        console.log("este es el Has",Has);
         return this.http.post(this.API_URL+'/EjercicioHasRutina/create',Has);
     }
     deleteEjercicioHasRutina(Has:has){
         return this.http.delete(this.API_URL+`/EjercicioHasRutina/delete/${Has.Id_ejercicio}/${Has.Id_rutina}`);
     } 
     deleteEjercicioHas(id: number){
-        console.log("llego id", id);
         return this.http.delete(this.API_URL+`/EjercicioHasRutina/Ejercicio/delete/${id}`);
     }
     getEjercicioHasRutina(Id:number){

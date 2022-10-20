@@ -144,7 +144,6 @@ export class LoginComponent implements OnInit {
     this.LoginService.recoveryPassword(recovery)
       .subscribe(
         res => {
-          console.log('respondio esto', res);
           if (res['error']) {
             M.toast({
               html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">

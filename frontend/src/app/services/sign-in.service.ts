@@ -10,8 +10,7 @@ export class signinService{
     API_URL = 'http://localhost:3000/api/signin';
     constructor(private http: HttpClient) {}
 
-    updateEstadoByIdUsuario(id:number, datos: estados){    
-        console.log(id,datos);
+    updateEstadoByIdUsuario(id:number, datos: estados){  
         return this.http.put(this.API_URL+`/ingreso/${id}`,datos);
     }
     getRegisterByIdUsuarioIngreso(Ingreso: string){

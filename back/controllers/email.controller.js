@@ -19,7 +19,6 @@ var transporter = nodemailer.createTransport(smtpTransport({
 emailCtrl.postFormulario = (req, res) => {
     var correo = req.body.Correo;
     var texto = req.body.Texto;
-    console.log(correo);
     const mailOptions = {
         from: 'gimnasiouniversidad.santotomas@gmail.com', // dirección del remitente 
         to: `${correo}`, // lista de los destinatarios del 

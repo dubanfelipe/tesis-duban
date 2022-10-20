@@ -296,7 +296,6 @@ export class EditUsersComponent implements OnInit {
         this.registerService.getRegisterByIdEstudiante(this.DatosService.Value_Cedula)
         .subscribe(
           res =>{
-            console.log(res[0]);
             this.estudiantes = res[0];
             this.NombreUsuario = this.estudiantes.Nombre;
             this.ApellidoUsuario = this.estudiantes.Apellido;

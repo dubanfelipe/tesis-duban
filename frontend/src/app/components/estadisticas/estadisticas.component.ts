@@ -245,7 +245,6 @@ export class EstadisticasComponent implements OnInit {
   }
 
   MesSelected(Form){
-    console.log(Form.value.mesLetra);
     this.estadisticasService.getEstadisticasMes(Form.value.mesLetra)
     .subscribe(records =>{      
       this.rsoRecordRso = records;

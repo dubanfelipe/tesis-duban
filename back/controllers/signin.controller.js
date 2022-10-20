@@ -14,7 +14,6 @@ signinCtrl.updateEstadoByIdUsuario = (req, res) => {
     const sede = req.body.Sede_id_sede;
     const ingreso = req.body.Ingreso; 
     const hora = req.body.Hora; 
-    console.log(req.body);  
     var query = `UPDATE Usuario SET Sede_id_sede ='${sede}', Ingreso = '${ingreso}', Hora = '${hora}' WHERE Id_usuario='${id}' `;
     try {
         db.query(query, (err, data) => {

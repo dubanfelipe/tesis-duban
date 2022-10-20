@@ -72,7 +72,6 @@ export class ActivateComponent implements OnInit {
   getDatos(){
     this.registerService.getRegisterByIdPersonaCedula(this.DatosService.Value_Cedula)
     .subscribe(res => {
-      console.log(res);
       this.datospersona = res[0];
       if (this.datospersona.Rol_id_rol === 1) {
         this.rolAdministrador = true;
@@ -137,8 +136,7 @@ export class ActivateComponent implements OnInit {
   }
 
   contactForm(form, form2){
-    form.value.Texto = form2.value.Texto;    
-    console.log(form.value);
+    form.value.Texto = form2.value.Texto;   
     this.EmailService.postFormulario(form.value)
     .subscribe(() => {
       swal.fire('Correo enviado!', 'Se le informa al usuario por medio de correo electronico!');

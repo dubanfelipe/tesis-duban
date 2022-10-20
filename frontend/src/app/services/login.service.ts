@@ -10,7 +10,6 @@ export class loginService{
     constructor(private http: HttpClient) {}
 
     authentication(usuario:login){
-        console.log(this.API_URL+`/login`);
         return this.http.post(this.API_URL+'/login',usuario);
     }
     logout(){

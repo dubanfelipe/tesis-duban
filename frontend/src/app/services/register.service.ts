@@ -50,7 +50,6 @@ export class RegisterService{
         return this.http.delete(this.API_URL+`/register/Persona/${id}`);
     }
     updateRegisterRutinaAsignadaByRutinaAsignada(Rutina_asignada: string, RutinaNo: string){
-        console.log(Rutina_asignada, RutinaNo);
         return this.http.put(this.API_URL+`/register/Persona/RutinaAsignada/Persona/${Rutina_asignada}`,RutinaNo);
     }
     getRutinaAsignadaHasPersona(id: number){

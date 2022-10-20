@@ -105,7 +105,6 @@ export class SignInComponent implements OnInit {
         let hora = moment().format('MMMM Do YYYY, h:mm:ss a');
         this.loginForm.patchValue({"Ingreso": estudiantes});
         this.loginForm.patchValue({"Hora": hora});
-        console.log(form.value);
         this.SigninService.updateEstadoByIdUsuario(res[0].Id_usuario, form.value)
         .subscribe((data) =>{
           this.estadisticasService.createEstadisticas(this.estadisticas)
@@ -126,7 +125,6 @@ export class SignInComponent implements OnInit {
         let hora = '';
         this.loginForm.patchValue({"Ingreso": estudiantes});
         this.loginForm.patchValue({"Hora": hora});
-        console.log(form.value);
         this.SigninService.updateEstadoByIdUsuario(res[0].Id_usuario, form.value)
         .subscribe((data) =>{
           M.toast({
@@ -156,7 +154,6 @@ export class SignInComponent implements OnInit {
     let Ingreso = "true";
     this.SigninService.getRegisterByIdUsuarioIngreso(Ingreso).
     subscribe(res =>{
-      console.log("datos", res[0])
       this.registerService.personas = res as PERSONA[];
     }) 
   }
