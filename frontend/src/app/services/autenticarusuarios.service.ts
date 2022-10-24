@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AutenticarusuariosService{
 
-    API_URL = 'http://localhost:3000/api/autenticarusuarios';
+    API_URL = 'http://3.95.250.227/api/autenticarusuarios';
     constructor(private http: HttpClient) {}
 
     changeStatus(id_asesoria:number, status:number){  

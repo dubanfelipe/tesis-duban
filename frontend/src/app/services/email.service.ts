@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class emailService{ 
 
-    API_URL = 'http://localhost:3000/api/email';
+    API_URL = 'http://3.95.250.227/api/email';
     constructor(private http: HttpClient) {}
 
     postFormulario(body) {
