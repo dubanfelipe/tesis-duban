@@ -2924,7 +2924,7 @@
           _classCallCheck(this, loginService);
 
           this.http = http;
-          this.API_URL = 'http://3.95.250.227/api';
+          this.API_URL = 'http://3.94.158.166/api';
         }
 
         _createClass(loginService, [{
@@ -3032,7 +3032,7 @@
           _classCallCheck(this, EstadisticasService);
 
           this.http = http;
-          this.API_URL = 'http://3.95.250.227/api/estadisticas';
+          this.API_URL = 'http://3.94.158.166/api/estadisticas';
         }
 
         _createClass(EstadisticasService, [{
@@ -4871,7 +4871,7 @@
           this.http = http;
           this.messageSource = new rxjs__WEBPACK_IMPORTED_MODULE_0__["BehaviorSubject"]('default message');
           this.currentMessage = this.messageSource.asObservable();
-          this.API_URL = 'http://3.95.250.227/api/rutina';
+          this.API_URL = 'http://3.94.158.166/api/rutina';
         }
 
         _createClass(rutinaService, [{
@@ -7398,7 +7398,7 @@
           _classCallCheck(this, AutenticarusuariosService);
 
           this.http = http;
-          this.API_URL = 'http://3.95.250.227/api/autenticarusuarios';
+          this.API_URL = 'http://3.94.158.166/api/autenticarusuarios';
         }
 
         _createClass(AutenticarusuariosService, [{
@@ -13149,7 +13149,7 @@
           _classCallCheck(this, emailService);
 
           this.http = http;
-          this.API_URL = 'http://3.95.250.227/api/email';
+          this.API_URL = 'http://3.94.158.166/api/email';
         }
 
         _createClass(emailService, [{
@@ -15436,7 +15436,7 @@
           _classCallCheck(this, signinService);
 
           this.http = http;
-          this.API_URL = 'http://3.95.250.227/api/signin';
+          this.API_URL = 'http://3.94.158.166/api/signin';
         }
 
         _createClass(signinService, [{
@@ -15503,7 +15503,7 @@
           _classCallCheck(this, RegisterService);
 
           this.http = http;
-          this.API_URL = 'http://3.95.250.227/api';
+          this.API_URL = 'http://3.94.158.166/api';
         }
 
         _createClass(RegisterService, [{

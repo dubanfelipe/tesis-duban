@@ -7,7 +7,7 @@ import { Estadisticas } from '../models/Estadisticas';
 })
 export class EstadisticasService{ 
 
-    API_URL = 'http://3.95.250.227/api/estadisticas';
+    API_URL = 'http://3.94.158.166/api/estadisticas';
     constructor(private http: HttpClient) {}
 
     createEstadisticas(estadisticas : Estadisticas) {

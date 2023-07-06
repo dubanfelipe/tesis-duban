@@ -18,7 +18,7 @@ export class rutinaService{
     ejercicios: EJERCICIO[];
     musculo: musculos[];
     rutina: RutinaCompleta[];
-    API_URL = 'http://3.95.250.227/api/rutina';
+    API_URL = 'http://3.94.158.166/api/rutina';
     constructor(private http: HttpClient) {}
 
     changeMessage(message: string) {

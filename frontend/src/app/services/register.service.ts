@@ -18,7 +18,7 @@ export class RegisterService{
     sede: sedes[];
     Rol: roles[];
 
-    API_URL = 'http://3.95.250.227/api';
+    API_URL = 'http://3.94.158.166/api';
     constructor(private http: HttpClient) {}
 
     getRegister(){

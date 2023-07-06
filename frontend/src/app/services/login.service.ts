@@ -6,7 +6,7 @@ import { login } from '../models/login';
     providedIn: 'root'
 })
 export class loginService{
-    API_URL = 'http://3.95.250.227/api';
+    API_URL = 'http://3.94.158.166/api';
     constructor(private http: HttpClient) {}
 
     authentication(usuario:login){

@@ -7,7 +7,7 @@ import { estados } from '../models/estado';
 })
 export class signinService{
 
-    API_URL = 'http://3.95.250.227/api/signin';
+    API_URL = 'http://3.94.158.166/api/signin';
     constructor(private http: HttpClient) {}
 
     updateEstadoByIdUsuario(id:number, datos: estados){  

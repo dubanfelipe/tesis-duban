@@ -1550,7 +1550,7 @@ __webpack_require__.r(__webpack_exports__);
 class loginService {
     constructor(http) {
         this.http = http;
-        this.API_URL = 'http://3.95.250.227/api';
+        this.API_URL = 'http://3.94.158.166/api';
     }
     authentication(usuario) {
         return this.http.post(this.API_URL + '/login', usuario);
@@ -1605,7 +1605,7 @@ __webpack_require__.r(__webpack_exports__);
 class EstadisticasService {
     constructor(http) {
         this.http = http;
-        this.API_URL = 'http://3.95.250.227/api/estadisticas';
+        this.API_URL = 'http://3.94.158.166/api/estadisticas';
     }
     createEstadisticas(estadisticas) {
         return this.http.post(this.API_URL + `/Grafica/createGrafica`, estadisticas);
@@ -2732,7 +2732,7 @@ class rutinaService {
         this.http = http;
         this.messageSource = new rxjs__WEBPACK_IMPORTED_MODULE_0__["BehaviorSubject"]('default message');
         this.currentMessage = this.messageSource.asObservable();
-        this.API_URL = 'http://3.95.250.227/api/rutina';
+        this.API_URL = 'http://3.94.158.166/api/rutina';
     }
     changeMessage(message) {
         this.messageSource.next(message);
@@ -4330,7 +4330,7 @@ __webpack_require__.r(__webpack_exports__);
 class AutenticarusuariosService {
     constructor(http) {
         this.http = http;
-        this.API_URL = 'http://3.95.250.227/api/autenticarusuarios';
+        this.API_URL = 'http://3.94.158.166/api/autenticarusuarios';
     }
     changeStatus(id_asesoria, status) {
         var estado = { status };
@@ -7488,7 +7488,7 @@ __webpack_require__.r(__webpack_exports__);
 class emailService {
     constructor(http) {
         this.http = http;
-        this.API_URL = 'http://3.95.250.227/api/email';
+        this.API_URL = 'http://3.94.158.166/api/email';
     }
     postFormulario(body) {
         return this.http.post(this.API_URL + `/formulario`, body);
@@ -8906,7 +8906,7 @@ __webpack_require__.r(__webpack_exports__);
 class signinService {
     constructor(http) {
         this.http = http;
-        this.API_URL = 'http://3.95.250.227/api/signin';
+        this.API_URL = 'http://3.94.158.166/api/signin';
     }
     updateEstadoByIdUsuario(id, datos) {
         return this.http.put(this.API_URL + `/ingreso/${id}`, datos);
@@ -8938,7 +8938,7 @@ __webpack_require__.r(__webpack_exports__);
 class RegisterService {
     constructor(http) {
         this.http = http;
-        this.API_URL = 'http://3.95.250.227/api';
+        this.API_URL = 'http://3.94.158.166/api';
     }
     getRegister() {
         return this.http.get(this.API_URL + "/register");
