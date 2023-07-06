@@ -20,7 +20,7 @@ import { Observable } from "rxjs";
 export class EstadisticasComponent implements OnInit {
   @ViewChild(BaseChartDirective)
   chart: BaseChartDirective;
-  public dia = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+  public dia = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
   public mes = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
   public lineChartData: ChartDataSets[] = [];
   public lineMesChartData: ChartDataSets[] = [];
@@ -162,7 +162,14 @@ export class EstadisticasComponent implements OnInit {
   rsoRecordRso;
   diaForm: FormGroup;
   mesForm: FormGroup;
+  nombreDia: string;
+  nombreMes: string;
   constructor(private router: Router, private fb: FormBuilder, public estadisticasService : EstadisticasService) {
+    var fechaActual = new Date();
+    var numeroDia = fechaActual.getDay();
+    this.nombreDia = this.dia[numeroDia];
+    var numeroMes = fechaActual.getMonth();
+    this.nombreMes = this.mes[numeroMes];
     this.buildForm();
   }
 
@@ -175,22 +182,20 @@ export class EstadisticasComponent implements OnInit {
   }
   buildForm() {
     this.diaForm = this.fb.group({
-      diaLetra: ['Lunes', Validators.compose([Validators.required])],
+      diaLetra: [this.nombreDia, Validators.compose([Validators.required])],
     });
     this.mesForm = this.fb.group({
-      mesLetra: ['November', Validators.compose([Validators.required])],
+      mesLetra: [this.nombreMes, Validators.compose([Validators.required])],
     })
   }
 
-  ngOnInit(): void {
-    let diaLetra = "Martes";
-    let mesLetra = "November"
-    this.estadisticasService.getEstadisticas(diaLetra)
+  ngOnInit(): void {    
+    this.estadisticasService.getEstadisticas(this.nombreDia)
     .subscribe(records =>{      
       this.rsoRecord = records;
       this.createGraficaLine(this.rsoRecord);
     })
-    this.estadisticasService.getEstadisticasMes(mesLetra)
+    this.estadisticasService.getEstadisticasMes(this.nombreMes)
     .subscribe(recordss =>{
       this.rsoRecordRso = recordss;
       this.createGraficaLineMes(this.rsoRecordRso);

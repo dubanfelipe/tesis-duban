@@ -28,9 +28,10 @@
                                 <h4>LUNES</h4>
                                 <i class="material-icons" (click)="SelectDia(0,1)" *ngIf="Martes"
                                     style="color: black !important; cursor: pointer;">edit</i>
-                            </div>                        
+                            </div>
                             <div class="table" style="margin: 0 auto;" *ngIf="yacargoLunes && Lunes">
-                                <ng2-smart-table [settings]="settings" [source]="Dia.lunes.Ejercicio" (custom)="onCustom($event)"></ng2-smart-table>
+                                <ng2-smart-table [settings]="settings" [source]="Dia.lunes.Ejercicio"
+                                    (custom)="onCustom($event)"></ng2-smart-table>
                             </div>
                         </div>
                         <div *ngIf="rutinaCheck && Martes">
@@ -40,10 +41,11 @@
                                     style="color: black !important; cursor: pointer;">edit</i>
                             </div>
                             <div class="table" style="margin: 0 auto;" *ngIf="yacargoMartes && Martes">
-                                <ng2-smart-table [settings]="settings" [source]="Dia.Martes.Ejercicio" (custom)="onCustom($event)"></ng2-smart-table>
+                                <ng2-smart-table [settings]="settings" [source]="Dia.Martes.Ejercicio"
+                                    (custom)="onCustom($event)"></ng2-smart-table>
                             </div>
                         </div>
-                    </div>  
+                    </div>
                     <div style="display: flex; justify-content: space-around;">
                         <div *ngIf="rutinaCheck && Miercoles">
                             <div style="display: flex; justify-content: flex-start;">
@@ -52,20 +54,22 @@
                                     style="color: black !important; cursor: pointer;">edit</i>
                             </div>
                             <div class="table" *ngIf="yacargoMiercoles && Miercoles" class="default">
-                                <ng2-smart-table [settings]="settings" [source]="Dia.Miercoles.Ejercicio" (custom)="onCustom($event)"></ng2-smart-table>
+                                <ng2-smart-table [settings]="settings" [source]="Dia.Miercoles.Ejercicio"
+                                    (custom)="onCustom($event)"></ng2-smart-table>
                             </div>
                         </div>
                         <div *ngIf="rutinaCheck && Jueves">
                             <div style="display: flex; justify-content: flex-start;">
                                 <h4>JUEVES</h4>
-                                <i class="material-icons"(click)="SelectDia(3,1)" *ngIf="Viernes"
+                                <i class="material-icons" (click)="SelectDia(3,1)" *ngIf="Viernes"
                                     style="color: black !important; cursor: pointer;">edit</i>
                             </div>
                             <div class="table" *ngIf="yacargoJueves && Jueves" class="default">
-                                <ng2-smart-table [settings]="settings" [source]="Dia.Jueves.Ejercicio" (custom)="onCustom($event)"></ng2-smart-table>
+                                <ng2-smart-table [settings]="settings" [source]="Dia.Jueves.Ejercicio"
+                                    (custom)="onCustom($event)"></ng2-smart-table>
                             </div>
                         </div>
-                    </div>                  
+                    </div>
                     <div style="display: flex; justify-content: space-around;">
                         <div *ngIf="rutinaCheck && Viernes">
                             <div style="display: flex; justify-content: flex-start;">
@@ -74,7 +78,8 @@
                                     style="color: black !important; cursor: pointer;">edit</i>
                             </div>
                             <div class="table" *ngIf="yacargoViernes && Viernes" class="default">
-                                <ng2-smart-table [settings]="settings" [source]="Dia.Viernes.Ejercicio" (custom)="onCustom($event)"></ng2-smart-table>
+                                <ng2-smart-table [settings]="settings" [source]="Dia.Viernes.Ejercicio"
+                                    (custom)="onCustom($event)"></ng2-smart-table>
                             </div>
                         </div>
                         <div *ngIf="rutinaCheck && Sabado">
@@ -84,7 +89,8 @@
                                     style="color: black !important; cursor: pointer;">edit</i>
                             </div>
                             <div class="table" *ngIf="yacargoSabado && Sabado" class="default">
-                                <ng2-smart-table [settings]="settings" [source]="Dia.Sabado.Ejercicio" (custom)="onCustom($event)"></ng2-smart-table>
+                                <ng2-smart-table [settings]="settings" [source]="Dia.Sabado.Ejercicio"
+                                    (custom)="onCustom($event)"></ng2-smart-table>
                             </div>
                         </div>
                     </div>
@@ -92,17 +98,20 @@
                     <div *ngIf="yaCargo" style="text-align: center; aling-items: center">
                         <p>Por favor seleccione los ejercicios que desea asignar para este dia</p>
                         <div>
-                                <button mat-raised-button class="btn" id="btnRegister" (click)="update()" *ngIf="banderaParaEditar && !Domingo">
-                                    ACTUALIZAR
-                                </button>
-                                <button mat-raised-button class="btn" id="btnRegister" (click)="saveRutina(rutinaForm)" *ngIf="yaCargo2 && !banderaParaEditar && !Domingo">
-                                    SIGUIENTE
-                                </button>
-                                <button mat-raised-button class="btn" id="btnRegister" (click)="GuardarRutina()" *ngIf="Domingo && !banderaParaEditar">
-                                    GUARDAR RUTINA
-                                </button>
-                        </div>        
-                        <br>                 
+                            <button mat-raised-button class="btn" id="btnRegister" (click)="update()"
+                                *ngIf="banderaParaEditar && !Domingo">
+                                ACTUALIZAR
+                            </button>
+                            <button mat-raised-button class="btn" id="btnRegister" (click)="saveRutina(rutinaForm)"
+                                *ngIf="yaCargo2 && !banderaParaEditar && !Domingo">
+                                SIGUIENTE
+                            </button>
+                            <button mat-raised-button class="btn" id="btnRegister" (click)="GuardarRutina()"
+                                *ngIf="Domingo && !banderaParaEditar">
+                                GUARDAR RUTINA
+                            </button>
+                        </div>
+                        <br>
                         <table style="margin: 0 auto;">
                             <tr>
                                 <th>ABDOMINAL</th>
@@ -114,38 +123,32 @@
                             </tr>
                             <td>
                                 <p *ngFor="let item of Musculos.Abdominales.Ejercicios;let indice=index">
-                                    {{item.Nombre}}&nbsp;<input #check type="checkbox"
-                                        [(ngModel)]="item.isSelected"
+                                    {{item.Nombre}}&nbsp;<input #check type="checkbox" [(ngModel)]="item.isSelected"
                                         (change)="ejercicioSeleccionado(item.Id_ejercicio,indice,item.isSelected)"></p>
                             </td>
                             <td>
                                 <p *ngFor="let item of Musculos.Biceps.Ejercicios;let indice=index">
-                                    {{item.Nombre}}&nbsp;<input #check type="checkbox"
-                                        [(ngModel)]="item.isSelected"
+                                    {{item.Nombre}}&nbsp;<input #check type="checkbox" [(ngModel)]="item.isSelected"
                                         (change)="ejercicioSeleccionado(item.Id_ejercicio,indice,item.isSelected)"></p>
                             </td>
                             <td>
                                 <p *ngFor="let item of Musculos.Cuadriceps.Ejercicios;let indice=index">
-                                    {{item.Nombre}}&nbsp;<input #check type="checkbox"
-                                        [(ngModel)]="item.isSelected"
+                                    {{item.Nombre}}&nbsp;<input #check type="checkbox" [(ngModel)]="item.isSelected"
                                         (change)="ejercicioSeleccionado(item.Id_ejercicio,indice,item.isSelected)"></p>
                             </td>
                             <td>
                                 <p *ngFor="let item of Musculos.Dorsal.Ejercicios;let indice=index">
-                                    {{item.Nombre}}&nbsp;<input #check type="checkbox"
-                                        [(ngModel)]="item.isSelected"
+                                    {{item.Nombre}}&nbsp;<input #check type="checkbox" [(ngModel)]="item.isSelected"
                                         (change)="ejercicioSeleccionado(item.Id_ejercicio,indice,item.isSelected)"></p>
                             </td>
                             <td>
                                 <p *ngFor="let item of Musculos.Gemelos.Ejercicios;let indice=index">
-                                    {{item.Nombre}}&nbsp;<input #check type="checkbox"
-                                        [(ngModel)]="item.isSelected"
+                                    {{item.Nombre}}&nbsp;<input #check type="checkbox" [(ngModel)]="item.isSelected"
                                         (change)="ejercicioSeleccionado(item.Id_ejercicio,indice,item.isSelected)"></p>
                             </td>
                             <td>
                                 <p *ngFor="let item of Musculos.Gluteos.Ejercicios;let indice=index">
-                                    {{item.Nombre}}&nbsp;<input #check type="checkbox"
-                                        [(ngModel)]="item.isSelected"
+                                    {{item.Nombre}}&nbsp;<input #check type="checkbox" [(ngModel)]="item.isSelected"
                                         (change)="ejercicioSeleccionado(item.Id_ejercicio,indice,item.isSelected)"></p>
                             </td>
                             <tr>
@@ -158,38 +161,32 @@
                             </tr>
                             <td>
                                 <p *ngFor="let item of Musculos.Hombros.Ejercicios;let indice=index">
-                                    {{item.Nombre}}&nbsp;<input #check type="checkbox"
-                                        [(ngModel)]="item.isSelected"
+                                    {{item.Nombre}}&nbsp;<input #check type="checkbox" [(ngModel)]="item.isSelected"
                                         (change)="ejercicioSeleccionado(item.Id_ejercicio,indice,item.isSelected)"></p>
                             </td>
                             <td>
                                 <p *ngFor="let item of Musculos.Isquios.Ejercicios;let indice=index">
-                                    {{item.Nombre}}&nbsp;<input #check type="checkbox"
-                                        [(ngModel)]="item.isSelected"
+                                    {{item.Nombre}}&nbsp;<input #check type="checkbox" [(ngModel)]="item.isSelected"
                                         (change)="ejercicioSeleccionado(item.Id_ejercicio,indice,item.isSelected)"></p>
                             </td>
                             <td>
                                 <p *ngFor="let item of Musculos.Antebrazo.Ejercicios;let indice=index">
-                                    {{item.Nombre}}&nbsp;<input #check type="checkbox"
-                                        [(ngModel)]="item.isSelected"
+                                    {{item.Nombre}}&nbsp;<input #check type="checkbox" [(ngModel)]="item.isSelected"
                                         (change)="ejercicioSeleccionado(item.Id_ejercicio,indice,item.isSelected)"></p>
                             </td>
                             <td>
                                 <p *ngFor="let item of Musculos.Cuello.Ejercicios;let indice=index">
-                                    {{item.Nombre}}&nbsp;<input #check type="checkbox"
-                                        [(ngModel)]="item.isSelected"
+                                    {{item.Nombre}}&nbsp;<input #check type="checkbox" [(ngModel)]="item.isSelected"
                                         (change)="ejercicioSeleccionado(item.Id_ejercicio,indice,item.isSelected)"></p>
                             </td>
                             <td>
                                 <p *ngFor="let item of Musculos.Pectoral.Ejercicios;let indice=index">
-                                    {{item.Nombre}}&nbsp;<input #check type="checkbox"
-                                        [(ngModel)]="item.isSelected"
+                                    {{item.Nombre}}&nbsp;<input #check type="checkbox" [(ngModel)]="item.isSelected"
                                         (change)="ejercicioSeleccionado(item.Id_ejercicio,indice,item.isSelected)"></p>
                             </td>
                             <td>
                                 <p *ngFor="let item of Musculos.Triceps.Ejercicios;let indice=index">
-                                    {{item.Nombre}}&nbsp;<input #check type="checkbox"
-                                        [(ngModel)]="item.isSelected"
+                                    {{item.Nombre}}&nbsp;<input #check type="checkbox" [(ngModel)]="item.isSelected"
                                         (change)="ejercicioSeleccionado(item.Id_ejercicio,indice,item.isSelected)"></p>
                             </td>
                         </table>
@@ -200,71 +197,70 @@
     </div>
 </body>
 <a id="modalVisibility" href="#" data-toggle="modal" data-target="#openModalVisibility" mat-raised-button
-  class="btn btn--success">
+    class="btn btn--success">
 </a>
-<div class="form-modal">
-  <div class="modal fade" id="openModalVisibility" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+
+<div class="modal fade" id="openModalVisibility" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content border-success">
-        <div class="modal-header">
-          <div class="alert-dialog-w">
-            <div style="padding-bottom: 15px; text-align: center;">
-              <img src="https://facultadderecho.usta.edu.co/images/Logo-USTA-19.png" style="width: 500px" />
-            </div>
-            <hr style="border: 1px solid #00468f">
-            <h4 style="text-align: center;">Informacion del ejercicio {{NombreEjercicio}}</h4>
-            <br>
-            <div style="display: flex; justify-content: space-between;">
-              <div>
+        <div class="modal-content">
+            <div class="alert-dialog-w" style="margin-left: 4%; margin-right: 4%;">
+                <br>
                 <div style="padding-bottom: 15px; text-align: center;">
-                  <img src="{{URL}}" width="400" height="300" />
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logotipo_USTA_Colombia.gif"
+                        style="width: 80px" />
                 </div>
-              </div>
-              <div style="margin-left: 40px;">                
-                <div style="text-align: center;">
-                  <form [formGroup]="EjerciciosForm">
-                    <div class="section-flex">
-                      <div class="form-group">
-                        <mat-form-field appearance="outline" style="width:250px !important">
-                          <mat-label>Nombre del ejercicio</mat-label>
-                          <input matInput type="text" formControlName="Nombre" />
-                        </mat-form-field>
-                      </div>
+                <hr style="border: 1px solid #00468f">
+                <h4 style="text-align: center;">Informacion del ejercicio {{NombreEjercicio}}</h4>
+                <br>
+                <div style="display: flex; justify-content: space-between;">
+                    <div>
+                        <div style="padding-bottom: 15px; text-align: center;">
+                            <img src="{{URL}}" width="400" height="300" />
+                        </div>
                     </div>
-                    <div class="section-flex">
-                      <div class="form-group">
-                        <mat-form-field appearance="outline" style="width:120px !important">
-                          <mat-label>No de series</mat-label>
-                          <input matInput type="text" formControlName="Series" />
-                        </mat-form-field>
-                        &nbsp;&nbsp;
-                        <mat-form-field appearance="outline" style="width:120px !important">
-                          <mat-label>No de repeticiones</mat-label>
-                          <input matInput type="text" formControlName="Repeticiones" />
-                        </mat-form-field>
-                      </div>
+                    <div style="margin-left: 40px;">
+                        <div style="text-align: center;">
+                            <form [formGroup]="EjerciciosForm">
+                                <div class="section-flex">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="outline" style="width:250px !important">
+                                            <mat-label>Nombre del ejercicio</mat-label>
+                                            <input matInput type="text" formControlName="Nombre" />
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="section-flex">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="outline" style="width:120px !important">
+                                            <mat-label>No de series</mat-label>
+                                            <input matInput type="text" formControlName="Series" />
+                                        </mat-form-field>
+                                        &nbsp;&nbsp;
+                                        <mat-form-field appearance="outline" style="width:120px !important">
+                                            <mat-label>No de repeticiones</mat-label>
+                                            <input matInput type="text" formControlName="Repeticiones" />
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="section-flex">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="outline" style="width:120px !important">
+                                            <mat-label>Tiempo de descanso</mat-label>
+                                            <input matInput type="text" formControlName="tiempoDescanso" />
+                                        </mat-form-field>
+                                        &nbsp;&nbsp;
+                                        <mat-form-field appearance="outline" style="width:120px !important">
+                                            <mat-label>Musculo</mat-label>
+                                            <input matInput type="text" formControlName="Musculo" />
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="section-flex">
-                      <div class="form-group">
-                        <mat-form-field appearance="outline" style="width:120px !important">
-                          <mat-label>Tiempo de descanso</mat-label>
-                          <input matInput type="text" formControlName="tiempoDescanso" />
-                        </mat-form-field>
-                        &nbsp;&nbsp;
-                        <mat-form-field appearance="outline" style="width:120px !important">
-                          <mat-label>Musculo</mat-label>
-                          <input matInput type="text" formControlName="Musculo" />
-                        </mat-form-field>
-                      </div>
-                    </div>                    
-                  </form>
-                </div>                
-              </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>

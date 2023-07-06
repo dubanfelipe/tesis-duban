@@ -27,7 +27,7 @@
                   &nbsp;&nbsp;&nbsp;
                   <mat-form-field appearance="outline" style="width:400px !important">
                     <mat-label>Correo institucional</mat-label>
-                    <input matInput formControlName="Correo" type="text" autocomplete="off"/>
+                    <input matInput formControlName="Correo" type="text" autocomplete="off" />
                   </mat-form-field>
                 </div>
               </div>
@@ -35,7 +35,7 @@
                 <div class="form-group">
                   <mat-form-field appearance="outline" style="width:325px !important">
                     <mat-label>Numero de identificación</mat-label>
-                    <input matInput formControlName="Cedula" type="text" autocomplete="off"/>
+                    <input matInput formControlName="Cedula" type="text" autocomplete="off" />
                   </mat-form-field>
                   &nbsp;&nbsp;&nbsp;
                   <mat-form-field appearance="outline" style="width:325px !important">
@@ -241,7 +241,8 @@
                   &nbsp;&nbsp;&nbsp;
                   <mat-form-field appearance="outline" style="width:270px !important">
                     <mat-label>Certificado Enfermeria</mat-label>
-                    <input matInput type="text" placeholder="Certificado Enfermeria" formControlName="TamizajeDocument" />
+                    <input matInput type="text" placeholder="Certificado Enfermeria"
+                      formControlName="TamizajeDocument" />
                   </mat-form-field>
                   &nbsp;&nbsp;
                   <label matTooltip="Ver Certificado">
@@ -260,9 +261,8 @@
             </form>
             <button [disabled]="
               (rolEstudiante && (!registerForm.valid || !registerUsuarioForm.valid || !registerEstudianteForm.valid)) 
-              || ((!rolEstudiante) && (!registerForm.valid || !registerUsuarioForm.valid))"
-              mat-raised-button class="btn"
-              id="btnRegister" type="button"
+              || ((!rolEstudiante) && (!registerForm.valid || !registerUsuarioForm.valid))" mat-raised-button
+              class="btn" id="btnRegister" type="button"
               (click)="addRegister(registerForm, registerUsuarioForm, registerEstudianteForm)">
               Actualizar</button>
             <br>
@@ -270,49 +270,47 @@
         </div>
       </div>
     </div>
-  </div> 
+  </div>
 </body>
 <a id="modalUsers" href="#" data-toggle="modal" data-target="#openModalUsers" mat-raised-button
   class="btn btn--success">
 </a>
-<div class="form-modal">
-  <div class="modal fade" id="openModalUsers" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content border-success">
-        <div class="modal-header">
-          <div class="alert-dialog-w">
-            <div style="padding-bottom: 15px; text-align: center;">
-              <img src="https://facultadderecho.usta.edu.co/images/Logo-USTA-19.png" style="width: 500px" />
+<div class="modal fade" id="openModalUsers" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="alert-dialog-w" style="margin-left: 4%; margin-right: 4%;">
+        <br>
+        <div style="padding-bottom: 15px; text-align: center;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logotipo_USTA_Colombia.gif"
+            style="width: 80px" />
+        </div>
+        <hr style="border: 1px solid #00468f">
+        <br>
+        <div style="text-align: center;">
+          Por favor suba el nuevo archivo que desea guardar.
+        </div>
+        <br>
+        <form [formGroup]="CarnetForm">
+          <div class="section-flex">
+            <div class="form-group">
+              <mat-form-field appearance="outline" style="width:400px !important">
+                <mat-label>Carnet Universitario</mat-label>
+                <input matInput type="text" placeholder="Carnet Universitario" formControlName="CarnetDocumentEdit" />
+              </mat-form-field>
+              &nbsp;&nbsp;
+              <label [attr.for]="'file-upload'" matTooltip="Subir Archivo">
+                <mat-icon class="mat-icon--action">backup</mat-icon>
+              </label>
+              <input [attr.id]="'file-upload'" type="file" (change)="handleInputChangeCarnet($event)"
+                style="display: none;" />
             </div>
-            <hr style="border: 1px solid #00468f">
-            <br>
-            <div style="text-align: center;">
-              Por favor suba el nuevo archivo que desea guardar.
-            </div>
-            <br>
-            <form [formGroup]="CarnetForm">
-              <div class="section-flex">
-                <div class="form-group">
-                  <mat-form-field appearance="outline" style="width:400px !important">
-                    <mat-label>Carnet Universitario</mat-label>
-                    <input matInput type="text" placeholder="Carnet Universitario" formControlName="CarnetDocumentEdit" />
-                  </mat-form-field>
-                  &nbsp;&nbsp;
-                  <label [attr.for]="'file-upload'" matTooltip="Subir Archivo">
-                    <mat-icon class="mat-icon--action">backup</mat-icon>
-                  </label>
-                  <input [attr.id]="'file-upload'" type="file" (change)="handleInputChangeCarnet($event)"
-                    style="display: none;" />
-                </div>
-              </div>
-            </form>
-            <div>
-              <div style="display: flex; justify-content: space-around;">
-                <button id="btnAceptar" data-dismiss="modal" (click)="SaveCarnet()">Guardar</button>
-                <button id="btnCancelar" data-dismiss="modal">Cancelar</button>
-              </div>
-            </div>
+          </div>
+        </form>
+        <div>
+          <div style="display: flex; justify-content: space-around;">
+            <button id="btnAceptar" data-dismiss="modal" (click)="SaveCarnet()">Guardar</button>
+            <button id="btnCancelar" data-dismiss="modal">Cancelar</button>
           </div>
         </div>
       </div>
@@ -322,46 +320,46 @@
 <a id="modalCertificado" href="#" data-toggle="modal" data-target="#openModalCertificado" mat-raised-button
   class="btn btn--success">
 </a>
-<div class="form-modal">
-  <div class="modal fade" id="openModalCertificado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content border-success">
-        <div class="modal-header">
-          <div class="alert-dialog-w">
-            <div style="padding-bottom: 15px; text-align: center;">
-              <img src="https://facultadderecho.usta.edu.co/images/Logo-USTA-19.png" style="width: 500px" />
-            </div>
-            <hr style="border: 1px solid #00468f">
-            <br>
-            <div style="text-align: center;">
-              Por favor suba el nuevo archivo que desea guardar.
-            </div>
-            <br>
-            <form [formGroup]="TamizajeForm">
-              <div class="section-flex">
-                <div class="form-group">                  
-                  <mat-form-field appearance="outline" style="width:400px !important">
-                    <mat-label>Certificado Enfermeria</mat-label>
-                    <input matInput type="text" placeholder="Certificado Enfermeria" formControlName="TamizajeDocumentEdit" />
-                  </mat-form-field>
-                  &nbsp;&nbsp;
-                  <label [attr.for]="'file-uploadd'" matTooltip="Subir Archivo">
-                    <mat-icon class="mat-icon--action">backup</mat-icon>
-                  </label>
-                  <input [attr.id]="'file-uploadd'" type="file" (change)="handleInputChangeTamizaje($event)"
-                    style="display: none;" />
-                </div>
-              </div>
-            </form>
-            <div>
-              <div style="display: flex; justify-content: space-around;">
-                <button id="btnAceptar" data-dismiss="modal" (click)="SaveTamizaje()">Guardar</button>
-                <button id="btnCancelar" data-dismiss="modal">Cancelar</button>
-              </div>
+<div class="modal fade" id="openModalCertificado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="alert-dialog-w" style="margin-left: 4%; margin-right: 4%;">
+        <br>
+        <div style="padding-bottom: 15px; text-align: center;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logotipo_USTA_Colombia.gif"
+            style="width: 80px" />
+        </div>
+        <hr style="border: 1px solid #00468f">
+        <br>
+        <div style="text-align: center;">
+          Por favor suba el nuevo archivo que desea guardar.
+        </div>
+        <br>
+        <form [formGroup]="TamizajeForm">
+          <div class="section-flex">
+            <div class="form-group">
+              <mat-form-field appearance="outline" style="width:400px !important">
+                <mat-label>Certificado Enfermeria</mat-label>
+                <input matInput type="text" placeholder="Certificado Enfermeria"
+                  formControlName="TamizajeDocumentEdit" />
+              </mat-form-field>
+              &nbsp;&nbsp;
+              <label [attr.for]="'file-uploadd'" matTooltip="Subir Archivo">
+                <mat-icon class="mat-icon--action">backup</mat-icon>
+              </label>
+              <input [attr.id]="'file-uploadd'" type="file" (change)="handleInputChangeTamizaje($event)"
+                style="display: none;" />
             </div>
           </div>
+        </form>
+        <div>
+          <div style="display: flex; justify-content: space-around;">
+            <button id="btnAceptar" data-dismiss="modal" (click)="SaveTamizaje()">Guardar</button>
+            <button id="btnCancelar" data-dismiss="modal">Cancelar</button>
+          </div>
         </div>
+        <br>
       </div>
     </div>
   </div>

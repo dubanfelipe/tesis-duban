@@ -102,6 +102,7 @@ export class AsignarRutinasComponent implements OnInit {
       this.RutinaService.changeMessage(event.data.Id_rutinacompleta);
       this.router.navigate(['/admin/routines/'+event.data.Id_rutinacompleta]);
     } else if (event.action == "deleteAction"){
+      this.RutinaSeleccionada = event.data; 
       document.getElementById("modalDelete").click();      
     }    
   }
@@ -127,8 +128,10 @@ export class AsignarRutinasComponent implements OnInit {
   }
   DeleteRutina(){
     let RutinaNo = "No";
+    console.log("eyy", this.RutinaSeleccionada);
     this.registerService.updateRegisterRutinaAsignadaByRutinaAsignada(this.RutinaSeleccionada.Nombre_Rutina, RutinaNo)
     .subscribe(res =>{
+      console.log(res);
       this.RutinaService.deleteRutinaCompletaHasPersona(this.RutinaSeleccionada.Id_rutinacompleta)
       .subscribe(res =>{
         this.RutinaService.deleteRutinacompleta(this.RutinaSeleccionada.Id_rutinacompleta)

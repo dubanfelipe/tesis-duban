@@ -1,32 +1,30 @@
 <div class="table">
-    <ng2-smart-table [settings]="settings" [source]="registerService.personas" (custom)="onCustom($event)">
-    </ng2-smart-table>
+  <ng2-smart-table [settings]="settings" [source]="registerService.personas" (custom)="onCustom($event)">
+  </ng2-smart-table>
 </div>
 <a id="modalNotificacion" href="#" data-toggle="modal" data-target="#openModal" mat-raised-button
   class="btn btn--success">
 </a>
-<div class="form-modal">
-  <div class="modal fade" id="openModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content border-success">
-        <div class="modal-header">
-          <div class="alert-dialog-w">
-            <div style="padding-bottom: 15px; text-align: center;">
-              <img src="https://facultadderecho.usta.edu.co/images/Logo-USTA-19.png" style="width: 500px" />
-            </div>
-            <hr style="border: 1px solid #00468f">
-            <br>
-            <div style="text-align: center;">
-              Esta seguro de querer eliminar el Usuario {{ Nombre_Apellido }} del sistema
-            </div>
-            <br>
-            <div>
-              <div style="display: flex; justify-content: space-around;">
-                <button id="btnAceptar" data-dismiss="modal" (click)="DeleteUser()">Aceptar</button>
-                <button id="btnCancelar"  data-dismiss="modal">Cancelar</button>                
-              </div>
-            </div>
+<div class="modal fade" id="openModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content" style="width: 500px; height: 300px;">
+      <div class="alert-dialog-w" style="margin-left: 4%; margin-right: 4%;">
+        <br>
+        <div style="padding-bottom: 15px; text-align: center;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logotipo_USTA_Colombia.gif"
+            style="width: 80px" />
+        </div>
+        <hr style="border: 1px solid #00468f">
+        <br>
+        <div style="text-align: center;">
+          Esta seguro de querer eliminar el Usuario {{ Nombre_Apellido }} del sistema
+        </div>
+        <br>
+        <div>
+          <div style="display: flex; justify-content: space-around;">
+            <button id="btnAceptar" data-dismiss="modal" (click)="DeleteUser()">Aceptar</button>
+            <button id="btnCancelar" data-dismiss="modal">Cancelar</button>
           </div>
         </div>
       </div>

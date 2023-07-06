@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Personas } from '../models/persona';
 import { Usuarios } from '../models/usuario';
-import { facultades } from '../models/Facultad';
+import { facultades } from '../models/facultad';
 import { roles } from '../models/rol';
 import { Estudiante } from '../models/estudiante';
 import { PERSONA } from '../models/PERSONAS';
