@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, ValidatorFn, Validators, } from '@angular/forms
 import { RegisterService } from '../../services/register.service';
 import { Router } from '@angular/router';
 import { ESTUDIANTE } from '../../models/ESTUDIANTES';
-import { facultades} from '../../models/Facultad';
 import { roles } from '../../models/rol';
 
 declare var M: any;
@@ -135,7 +134,7 @@ export class EditUsersComponent implements OnInit {
     this.registerForm = this.fb.group({
       Nombre: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-z A-Z ñ Ñ]*$/)])],
       Apellido: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-z A-Z ñ Ñ]*$/)])],
-      Correo: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-z A-Z ñ Ñ]*.[a-z A-Z ñ Ñ]*@(usantotomas)[.](edu)[.](co)$/)])],
+      Correo: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-ZñÑ]*.[a-zA-ZñÑ]*@(usantotomas|usta|ustabuca|ustadistancia|ustamed|ustatunja)[.](edu)[.](co)$/)])],
       Cedula: ['', Validators.compose([Validators.required, Validators.min(100000), Validators.max(2000000000), Validators.pattern(/^[0-9]*$/)])],  
       Rutina_asignada: [{ value: '', disabled: true },],
       Rol_id_rol: [{ value: '', disabled: true },],      

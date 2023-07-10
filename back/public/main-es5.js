@@ -1301,7 +1301,7 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](100, "mat-label");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](101, "Escala de peso");
+          _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](101, "Clasificacion Cardiovascular");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
 
@@ -9862,7 +9862,7 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](132, "mat-label");
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](133, "Escala de peso");
+            _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](133, "Clasificacion Cardiovascular");
 
             _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
 
@@ -11708,7 +11708,7 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](58, "mat-label");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](59, "Escala de peso");
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](59, "Clasificacion Cardiovascular");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
 

@@ -3,12 +3,8 @@ import { FormBuilder, FormGroup, ValidatorFn, Validators, } from '@angular/forms
 import { RegisterService } from '../../services/register.service';
 import { Router } from '@angular/router';
 import { ESTUDIANTE } from '../../models/ESTUDIANTES';
-import { USUARIO } from '../../models/USUARIOS';
-import { facultades } from '../../models/Facultad';
-import { roles } from '../../models/rol';
 import decode from 'jwt-decode';
 import { subirArchivosService } from '../../services/subirArchivos.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 declare var M: any;
 @Component({

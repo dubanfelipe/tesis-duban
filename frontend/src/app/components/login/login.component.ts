@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.compose([Validators.required])]
     })    
     this.changePassword = this.fb.group({
-      correo: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-z]*.[a-z]*@(usantotomas)[.](edu)[.](co)$/)])],
+      correo: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-ZñÑ]*.[a-zA-ZñÑ]*@(usantotomas|usta|ustabuca|ustadistancia|ustamed|ustatunja)[.](edu)[.](co)$/)])],
       key: ['', Validators.compose([Validators.required])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
     })

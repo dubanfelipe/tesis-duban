@@ -217,7 +217,7 @@ RutinaCtrl.deleteEjercicioHasRutina = (req, res) => {
             res.json({ error: err });
             console.log("Hubo un error ELIMINANDO Rutina" + err);
         } else {
-            res.json({message: 'Conexion eliminada'});
+            res.json(data);
         }
     });
 }
@@ -228,7 +228,7 @@ RutinaCtrl.deleteEjercicioHas = (req, res) => {
             res.json({ error: err });
             console.log("Hubo un error ELIMINANDO Rutina" + err);
         } else {
-            res.json({message: 'Conexion eliminada'});
+            res.json(data);
         }
     });
 }
@@ -317,7 +317,7 @@ RutinaCtrl.deleteRutinaCompletaHasPersona = (req, res) => {
             res.json({ error: err });
             console.log("Hubo un error ELIMINANDO Rutina" + err);
         } else {
-            res.json({message: 'Conexion eliminada'});
+            res.json(data);
         }
     });
 }
@@ -329,7 +329,7 @@ RutinaCtrl.deleteRutinaCompletaHas = (req, res) => {
             res.json({ error: err });
             console.log("Hubo un error ELIMINANDO Rutina" + err);
         } else {
-            res.json({message: 'Conexion eliminada'});
+            res.json(data);
         }
     });
 }

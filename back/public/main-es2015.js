@@ -698,7 +698,7 @@ function ProfileComponent_div_2_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](98, " \u00A0\u00A0 ");
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](99, "mat-form-field", 42);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](100, "mat-label");
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](101, "Escala de peso");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](101, "Clasificacion Cardiovascular");
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](102, "mat-select", 45);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](103, ProfileComponent_div_2_mat_option_103_Template, 2, 2, "mat-option", 34);
@@ -5810,7 +5810,7 @@ RegisterComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefine
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](130, " \u00A0\u00A0 ");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](131, "mat-form-field", 37);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](132, "mat-label");
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](133, "Escala de peso");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](133, "Clasificacion Cardiovascular");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](134, "mat-select", 40);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](135, RegisterComponent_mat_option_135_Template, 2, 2, "mat-option", 25);
@@ -6710,7 +6710,7 @@ function EditUsersComponent_div_2_form_49_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](56, " \u00A0\u00A0 ");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](57, "mat-form-field", 28);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](58, "mat-label");
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](59, "Escala de peso");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](59, "Clasificacion Cardiovascular");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](60, "mat-select", 31);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](61, EditUsersComponent_div_2_form_49_mat_option_61_Template, 2, 2, "mat-option", 16);
