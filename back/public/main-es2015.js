@@ -4454,7 +4454,7 @@ class LoginComponent {
             password: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required])]
         });
         this.changePassword = this.fb.group({
-            correo: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].pattern(/^[a-z]*.[a-z]*@(usantotomas)[.](edu)[.](co)$/)])],
+            correo: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].pattern(/^[a-zA-ZñÑ]*.[a-zA-ZñÑ]*@(usantotomas|usta|ustabuca|ustadistancia|ustamed|ustatunja)[.](edu)[.](co)$/)])],
             key: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required])],
             password: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].minLength(6)])],
         });
@@ -5351,7 +5351,7 @@ class RegisterComponent {
         this.registerForm = this.fb.group({
             Nombre: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].pattern(/^[a-z A-Z ñ Ñ]*$/)])],
             Apellido: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].pattern(/^[a-z A-Z ñ Ñ]*$/)])],
-            Correo: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].pattern(/^[a-z A-Z ñ Ñ]*.[a-z A-Z ñ Ñ]*@(usantotomas)[.](edu)[.](co)$/)])],
+            Correo: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].pattern(/^[a-zA-ZñÑ]*.[a-zA-ZñÑ]*@(usantotomas|usta|ustabuca|ustadistancia|ustamed|ustatunja)[.](edu)[.](co)$/)])],
             Cedula: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].min(100000), _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].max(2000000000), _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].pattern(/^[0-9]*$/)])],
             Activo: [0],
             Recovery: [''],
@@ -5810,7 +5810,7 @@ RegisterComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefine
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](130, " \u00A0\u00A0 ");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](131, "mat-form-field", 37);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](132, "mat-label");
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](133, "Clasificacion Cardiovascular");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](133, "Clasificaci\u00F3n Cardiovascular");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](134, "mat-select", 40);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](135, RegisterComponent_mat_option_135_Template, 2, 2, "mat-option", 25);
@@ -7160,7 +7160,7 @@ class EditUsersComponent {
         this.registerForm = this.fb.group({
             Nombre: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].pattern(/^[a-z A-Z ñ Ñ]*$/)])],
             Apellido: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].pattern(/^[a-z A-Z ñ Ñ]*$/)])],
-            Correo: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].pattern(/^[a-z A-Z ñ Ñ]*.[a-z A-Z ñ Ñ]*@(usantotomas)[.](edu)[.](co)$/)])],
+            Correo: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].pattern(/^[a-zA-ZñÑ]*.[a-zA-ZñÑ]*@(usantotomas|usta|ustabuca|ustadistancia|ustamed|ustatunja)[.](edu)[.](co)$/)])],
             Cedula: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].min(100000), _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].max(2000000000), _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].pattern(/^[0-9]*$/)])],
             Rutina_asignada: [{ value: '', disabled: true },],
             Rol_id_rol: [{ value: '', disabled: true },],
@@ -7911,8 +7911,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_register_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/register.service */ "mdPV");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "tyNb");
 /* harmony import */ var _services_datos_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/datos.service */ "Px6c");
-/* harmony import */ var ng2_smart_table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ng2-smart-table */ "RS3s");
-/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material/button */ "bTqV");
+/* harmony import */ var src_app_services_rutina_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/rutina.service */ "RwPt");
+/* harmony import */ var ng2_smart_table__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ng2-smart-table */ "RS3s");
+/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/button */ "bTqV");
+
 
 
 
@@ -7920,10 +7922,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class DataUsersComponent {
-    constructor(registerService, router, DatosService) {
+    constructor(registerService, router, DatosService, RutinaService) {
         this.registerService = registerService;
         this.router = router;
         this.DatosService = DatosService;
+        this.RutinaService = RutinaService;
         this.settings = {
             hideSubHeader: false,
             actions: {
@@ -7987,76 +7990,79 @@ class DataUsersComponent {
         }
     }
     DeleteUser() {
-        if (this.Nombre_Rol == "Estudiante") {
-            this.registerService.getRegisterByIdEstudiante(this.Cedula)
-                .subscribe(res => {
-                let ESTUDIANTE = res[0].Id_estudiante;
-                let USUARIO = res[0].Id_usuario;
-                let PERSONA = res[0].Id_persona;
-                this.registerService.deleteRegisterByIdEstudiante(ESTUDIANTE)
+        this.RutinaService.deleteRutinaCompletaHas(this.Id_Persona)
+            .subscribe(res => {
+            if (this.Nombre_Rol == "Estudiante") {
+                this.registerService.getRegisterByIdEstudiante(this.Cedula)
                     .subscribe(res => {
+                    let ESTUDIANTE = res[0].Id_estudiante;
+                    let USUARIO = res[0].Id_usuario;
+                    let PERSONA = res[0].Id_persona;
+                    this.registerService.deleteRegisterByIdEstudiante(ESTUDIANTE)
+                        .subscribe(res => {
+                        this.registerService.deleteRegisterByIdUsuario(USUARIO)
+                            .subscribe(res => {
+                            this.registerService.deleteRegisterByIdPersona(PERSONA)
+                                .subscribe(res => {
+                                M.toast({
+                                    html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                        <h4 class="alert-heading">USUARIO ELIMINADO</h4>
+                        <hr>
+                    </div>`
+                                });
+                                window.location.reload();
+                            });
+                        });
+                    });
+                });
+            }
+            else if (this.Nombre_Rol == "Administrador") {
+                if (this.Id_Persona == 1) {
+                    M.toast({
+                        html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                  <h4 class="alert-heading">IMPOSIBLE ELIMINAR ESTE USUARIO</h4>
+                  <hr>
+              </div>`
+                    });
+                }
+                else {
+                    this.registerService.getRegisterByIdPersonaCedula(this.Cedula)
+                        .subscribe(res => {
+                        let PERSONA = res[0].Id_persona;
+                        this.registerService.deleteRegisterByIdPersona(PERSONA)
+                            .subscribe(res => {
+                            M.toast({
+                                html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                      <h4 class="alert-heading">ADMINISTRADOR ELIMINADO</h4>
+                      <hr>
+                  </div>`
+                            });
+                            window.location.reload();
+                        });
+                    });
+                }
+            }
+            else {
+                this.registerService.getRegisterByIdUsuario(this.Cedula)
+                    .subscribe(res => {
+                    let USUARIO = res[0].Id_usuario;
+                    let PERSONA = res[0].Id_persona;
                     this.registerService.deleteRegisterByIdUsuario(USUARIO)
                         .subscribe(res => {
                         this.registerService.deleteRegisterByIdPersona(PERSONA)
                             .subscribe(res => {
                             M.toast({
                                 html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
-                    <h4 class="alert-heading">USUARIO ELIMINADO</h4>
-                    <hr>
-                </div>`
+                      <h4 class="alert-heading">USUARIO ELIMINADO</h4>
+                      <hr>
+                  </div>`
                             });
                             window.location.reload();
                         });
                     });
                 });
-            });
-        }
-        else if (this.Nombre_Rol == "Administrador") {
-            if (this.Id_Persona == 1) {
-                M.toast({
-                    html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
-              <h4 class="alert-heading">IMPOSIBLE ELIMINAR ESTE USUARIO</h4>
-              <hr>
-          </div>`
-                });
             }
-            else {
-                this.registerService.getRegisterByIdPersonaCedula(this.Cedula)
-                    .subscribe(res => {
-                    let PERSONA = res[0].Id_persona;
-                    this.registerService.deleteRegisterByIdPersona(PERSONA)
-                        .subscribe(res => {
-                        M.toast({
-                            html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
-                  <h4 class="alert-heading">ADMINISTRADOR ELIMINADO</h4>
-                  <hr>
-              </div>`
-                        });
-                        window.location.reload();
-                    });
-                });
-            }
-        }
-        else {
-            this.registerService.getRegisterByIdUsuario(this.Cedula)
-                .subscribe(res => {
-                let USUARIO = res[0].Id_usuario;
-                let PERSONA = res[0].Id_persona;
-                this.registerService.deleteRegisterByIdUsuario(USUARIO)
-                    .subscribe(res => {
-                    this.registerService.deleteRegisterByIdPersona(PERSONA)
-                        .subscribe(res => {
-                        M.toast({
-                            html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
-                  <h4 class="alert-heading">USUARIO ELIMINADO</h4>
-                  <hr>
-              </div>`
-                        });
-                        window.location.reload();
-                    });
-                });
-            });
-        }
+        });
     }
     ngOnInit() {
         this.getUsuarios();
@@ -8068,7 +8074,7 @@ class DataUsersComponent {
         });
     }
 }
-DataUsersComponent.ɵfac = function DataUsersComponent_Factory(t) { return new (t || DataUsersComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_register_service__WEBPACK_IMPORTED_MODULE_1__["RegisterService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_datos_service__WEBPACK_IMPORTED_MODULE_3__["datosService"])); };
+DataUsersComponent.ɵfac = function DataUsersComponent_Factory(t) { return new (t || DataUsersComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_register_service__WEBPACK_IMPORTED_MODULE_1__["RegisterService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_datos_service__WEBPACK_IMPORTED_MODULE_3__["datosService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_rutina_service__WEBPACK_IMPORTED_MODULE_4__["rutinaService"])); };
 DataUsersComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: DataUsersComponent, selectors: [["app-data-users"]], decls: 21, vars: 3, consts: [[1, "table"], [3, "settings", "source", "custom"], ["id", "modalNotificacion", "href", "#", "data-toggle", "modal", "data-target", "#openModal", "mat-raised-button", "", 1, "btn", "btn--success"], ["id", "openModal", "tabindex", "-1", "role", "dialog", "aria-labelledby", "exampleModalLabel", "aria-hidden", "true", 1, "modal", "fade"], ["role", "document", 1, "modal-dialog", "modal-lg"], [1, "modal-content", 2, "width", "500px", "height", "300px"], [1, "alert-dialog-w", 2, "margin-left", "4%", "margin-right", "4%"], [2, "padding-bottom", "15px", "text-align", "center"], ["src", "https://upload.wikimedia.org/wikipedia/commons/a/a2/Logotipo_USTA_Colombia.gif", 2, "width", "80px"], [2, "border", "1px solid #00468f"], [2, "text-align", "center"], [2, "display", "flex", "justify-content", "space-around"], ["id", "btnAceptar", "data-dismiss", "modal", 3, "click"], ["id", "btnCancelar", "data-dismiss", "modal"]], template: function DataUsersComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "ng2-smart-table", 1);
@@ -8110,7 +8116,7 @@ DataUsersComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefin
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("settings", ctx.settings)("source", ctx.registerService.personas);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](12);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" Esta seguro de querer eliminar el Usuario ", ctx.Nombre_Apellido, " del sistema ");
-    } }, directives: [ng2_smart_table__WEBPACK_IMPORTED_MODULE_4__["Ng2SmartTableComponent"], _angular_material_button__WEBPACK_IMPORTED_MODULE_5__["MatAnchor"]], styles: [".table[_ngcontent-%COMP%]{\r\n    padding-top: 10%;  \r\n    width: 99%; \r\n}\r\n\r\n#openModal[_ngcontent-%COMP%]{\r\n    top: 30%;\r\n    justify-content: center;\r\n    align-items: center;\r\n    width: 520px;\r\n    left: 35%;  \r\n}\r\n\r\n#btnAceptar[_ngcontent-%COMP%] {\r\n    background-color: green;\r\n    padding: 8px 15px;\r\n    color: white;\r\n    font-family: \"Helvetica Neue\",Helvetica,Arial,sans-serif;\r\n    border-radius: 5rem;\r\n}\r\n\r\n#btnCancelar[_ngcontent-%COMP%] {\r\n    background-color: red;\r\n    padding: 8px 15px;\r\n    color: white;\r\n    font-family: \"Helvetica Neue\",Helvetica,Arial,sans-serif;\r\n    border-radius: 5rem;\r\n}\r\n\r\n[_nghost-%COMP%] ng2-smart-table thead > tr > th  { \r\n    background-color:#00468f;  \r\n}\r\n\r\n[_nghost-%COMP%] ng2-smart-table th.ng2-smart-actions  { \r\n    color: white;  \r\n}\r\n\r\n[_nghost-%COMP%] ng2-smart-table _nghost-ner-c87 a  { \r\n    background-color:black;  \r\n}\r\n\r\n[_nghost-%COMP%] ng2-smart-table-title> a {\r\n    color: white; \r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRhdGEtdXNlcnMuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGdCQUFnQjtJQUNoQixVQUFVO0FBQ2Q7O0FBRUE7SUFDSSxRQUFRO0lBQ1IsdUJBQXVCO0lBQ3ZCLG1CQUFtQjtJQUNuQixZQUFZO0lBQ1osU0FBUztBQUNiOztBQUVBO0lBQ0ksdUJBQXVCO0lBQ3ZCLGlCQUFpQjtJQUNqQixZQUFZO0lBQ1osd0RBQXdEO0lBQ3hELG1CQUFtQjtBQUN2Qjs7QUFDQTtJQUNJLHFCQUFxQjtJQUNyQixpQkFBaUI7SUFDakIsWUFBWTtJQUNaLHdEQUF3RDtJQUN4RCxtQkFBbUI7QUFDdkI7O0FBRUE7SUFDSSx3QkFBd0I7QUFDNUI7O0FBRUE7SUFDSSxZQUFZO0FBQ2hCOztBQUVBO0lBQ0ksc0JBQXNCO0FBQzFCOztBQUVBO0lBQ0ksWUFBWTtBQUNoQiIsImZpbGUiOiJkYXRhLXVzZXJzLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIudGFibGV7XHJcbiAgICBwYWRkaW5nLXRvcDogMTAlOyAgXHJcbiAgICB3aWR0aDogOTklOyBcclxufVxyXG5cclxuI29wZW5Nb2RhbHtcclxuICAgIHRvcDogMzAlO1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAgd2lkdGg6IDUyMHB4O1xyXG4gICAgbGVmdDogMzUlOyAgXHJcbn1cclxuXHJcbiNidG5BY2VwdGFyIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IGdyZWVuO1xyXG4gICAgcGFkZGluZzogOHB4IDE1cHg7XHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbiAgICBmb250LWZhbWlseTogXCJIZWx2ZXRpY2EgTmV1ZVwiLEhlbHZldGljYSxBcmlhbCxzYW5zLXNlcmlmO1xyXG4gICAgYm9yZGVyLXJhZGl1czogNXJlbTtcclxufVxyXG4jYnRuQ2FuY2VsYXIge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmVkO1xyXG4gICAgcGFkZGluZzogOHB4IDE1cHg7XHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbiAgICBmb250LWZhbWlseTogXCJIZWx2ZXRpY2EgTmV1ZVwiLEhlbHZldGljYSxBcmlhbCxzYW5zLXNlcmlmO1xyXG4gICAgYm9yZGVyLXJhZGl1czogNXJlbTtcclxufVxyXG5cclxuOmhvc3QvZGVlcC9uZzItc21hcnQtdGFibGUgdGhlYWQgPiB0ciA+IHRoICB7IFxyXG4gICAgYmFja2dyb3VuZC1jb2xvcjojMDA0NjhmOyAgXHJcbn1cclxuXHJcbjpob3N0L2RlZXAvbmcyLXNtYXJ0LXRhYmxlIHRoLm5nMi1zbWFydC1hY3Rpb25zICB7IFxyXG4gICAgY29sb3I6IHdoaXRlOyAgXHJcbn1cclxuXHJcbjpob3N0L2RlZXAvbmcyLXNtYXJ0LXRhYmxlIF9uZ2hvc3QtbmVyLWM4NyBhICB7IFxyXG4gICAgYmFja2dyb3VuZC1jb2xvcjpibGFjazsgIFxyXG59XHJcblxyXG46aG9zdC9kZWVwL25nMi1zbWFydC10YWJsZS10aXRsZT4gYSB7XHJcbiAgICBjb2xvcjogd2hpdGU7IFxyXG59Il19 */"] });
+    } }, directives: [ng2_smart_table__WEBPACK_IMPORTED_MODULE_5__["Ng2SmartTableComponent"], _angular_material_button__WEBPACK_IMPORTED_MODULE_6__["MatAnchor"]], styles: [".table[_ngcontent-%COMP%]{\r\n    padding-top: 10%;  \r\n    width: 99%; \r\n}\r\n\r\n#openModal[_ngcontent-%COMP%]{\r\n    top: 30%;\r\n    justify-content: center;\r\n    align-items: center;\r\n    width: 520px;\r\n    left: 35%;  \r\n}\r\n\r\n#btnAceptar[_ngcontent-%COMP%] {\r\n    background-color: green;\r\n    padding: 8px 15px;\r\n    color: white;\r\n    font-family: \"Helvetica Neue\",Helvetica,Arial,sans-serif;\r\n    border-radius: 5rem;\r\n}\r\n\r\n#btnCancelar[_ngcontent-%COMP%] {\r\n    background-color: red;\r\n    padding: 8px 15px;\r\n    color: white;\r\n    font-family: \"Helvetica Neue\",Helvetica,Arial,sans-serif;\r\n    border-radius: 5rem;\r\n}\r\n\r\n[_nghost-%COMP%] ng2-smart-table thead > tr > th  { \r\n    background-color:#00468f;  \r\n}\r\n\r\n[_nghost-%COMP%] ng2-smart-table th.ng2-smart-actions  { \r\n    color: white;  \r\n}\r\n\r\n[_nghost-%COMP%] ng2-smart-table _nghost-ner-c87 a  { \r\n    background-color:black;  \r\n}\r\n\r\n[_nghost-%COMP%] ng2-smart-table-title> a {\r\n    color: white; \r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRhdGEtdXNlcnMuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGdCQUFnQjtJQUNoQixVQUFVO0FBQ2Q7O0FBRUE7SUFDSSxRQUFRO0lBQ1IsdUJBQXVCO0lBQ3ZCLG1CQUFtQjtJQUNuQixZQUFZO0lBQ1osU0FBUztBQUNiOztBQUVBO0lBQ0ksdUJBQXVCO0lBQ3ZCLGlCQUFpQjtJQUNqQixZQUFZO0lBQ1osd0RBQXdEO0lBQ3hELG1CQUFtQjtBQUN2Qjs7QUFDQTtJQUNJLHFCQUFxQjtJQUNyQixpQkFBaUI7SUFDakIsWUFBWTtJQUNaLHdEQUF3RDtJQUN4RCxtQkFBbUI7QUFDdkI7O0FBRUE7SUFDSSx3QkFBd0I7QUFDNUI7O0FBRUE7SUFDSSxZQUFZO0FBQ2hCOztBQUVBO0lBQ0ksc0JBQXNCO0FBQzFCOztBQUVBO0lBQ0ksWUFBWTtBQUNoQiIsImZpbGUiOiJkYXRhLXVzZXJzLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIudGFibGV7XHJcbiAgICBwYWRkaW5nLXRvcDogMTAlOyAgXHJcbiAgICB3aWR0aDogOTklOyBcclxufVxyXG5cclxuI29wZW5Nb2RhbHtcclxuICAgIHRvcDogMzAlO1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAgd2lkdGg6IDUyMHB4O1xyXG4gICAgbGVmdDogMzUlOyAgXHJcbn1cclxuXHJcbiNidG5BY2VwdGFyIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IGdyZWVuO1xyXG4gICAgcGFkZGluZzogOHB4IDE1cHg7XHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbiAgICBmb250LWZhbWlseTogXCJIZWx2ZXRpY2EgTmV1ZVwiLEhlbHZldGljYSxBcmlhbCxzYW5zLXNlcmlmO1xyXG4gICAgYm9yZGVyLXJhZGl1czogNXJlbTtcclxufVxyXG4jYnRuQ2FuY2VsYXIge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmVkO1xyXG4gICAgcGFkZGluZzogOHB4IDE1cHg7XHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbiAgICBmb250LWZhbWlseTogXCJIZWx2ZXRpY2EgTmV1ZVwiLEhlbHZldGljYSxBcmlhbCxzYW5zLXNlcmlmO1xyXG4gICAgYm9yZGVyLXJhZGl1czogNXJlbTtcclxufVxyXG5cclxuOmhvc3QvZGVlcC9uZzItc21hcnQtdGFibGUgdGhlYWQgPiB0ciA+IHRoICB7IFxyXG4gICAgYmFja2dyb3VuZC1jb2xvcjojMDA0NjhmOyAgXHJcbn1cclxuXHJcbjpob3N0L2RlZXAvbmcyLXNtYXJ0LXRhYmxlIHRoLm5nMi1zbWFydC1hY3Rpb25zICB7IFxyXG4gICAgY29sb3I6IHdoaXRlOyAgXHJcbn1cclxuXHJcbjpob3N0L2RlZXAvbmcyLXNtYXJ0LXRhYmxlIF9uZ2hvc3QtbmVyLWM4NyBhICB7IFxyXG4gICAgYmFja2dyb3VuZC1jb2xvcjpibGFjazsgIFxyXG59XHJcblxyXG46aG9zdC9kZWVwL25nMi1zbWFydC10YWJsZS10aXRsZT4gYSB7XHJcbiAgICBjb2xvcjogd2hpdGU7IFxyXG59Il19 */"] });
 
 
 /***/ }),
@@ -9236,7 +9242,7 @@ class RegisterAdminComponent {
         this.registerForm = this.fb.group({
             Nombre: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].pattern(/^[a-z A-Z ñ Ñ]*$/)])],
             Apellido: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].pattern(/^[a-z A-Z ñ Ñ]*$/)])],
-            Correo: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].pattern(/^[a-z A-Z ñ Ñ]*.[a-z A-Z ñ Ñ]*@(usantotomas)[.](edu)[.](co)$/)])],
+            Correo: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].pattern(/^[a-zA-ZñÑ]*.[a-zA-ZñÑ]*@(usantotomas|usta|ustabuca|ustadistancia|ustamed|ustatunja)[.](edu)[.](co)$/)])],
             Cedula: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].min(100000), _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].max(2000000000), _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].pattern(/^[0-9]*$/)])],
             Activo: [1],
             Recovery: [''],
